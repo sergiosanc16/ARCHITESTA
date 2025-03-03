@@ -16,6 +16,7 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Contracts\Translation\TranslatorInterface;
 use SymfonyCasts\Bundle\VerifyEmail\Exception\VerifyEmailExceptionInterface;
+use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class RegistrationController extends AbstractController
 {
@@ -79,5 +80,26 @@ class RegistrationController extends AbstractController
         $this->addFlash('success', 'Your email address has been verified.');
 
         return $this->redirectToRoute('app_register');
+    }
+
+    #[Route(path: '/login', name: 'app_login')]
+    public function login(AuthenticationUtils $authenticationUtils): Response
+    {
+        // get the login error if there is one
+        $error = $authenticationUtils->getLastAuthenticationError();
+
+        // last username entered by the user
+        $lastUsername = $authenticationUtils->getLastUsername();
+
+        return $this->render('security/login.html.twig', [
+            'last_username' => $lastUsername,
+            'error' => $error,
+        ]);
+    }
+
+    #[Route(path: '/logout', name: 'app_logout')]
+    public function logout(): void
+    {
+        throw new \LogicException('This method can be blank - it will be intercepted by the logout key on your firewall.');
     }
 }
