@@ -18,8 +18,8 @@ class HomepageType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('Usuario', TextType::class)
-            ->add('Password', PasswordType::class, [
+            ->add('email', TextType::class)
+            ->add('plainPassword', PasswordType::class, [
                 // instead of being set onto the object directly,
                 // this is read and encoded in the controller
                 'mapped' => false,
