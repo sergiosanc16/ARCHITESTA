@@ -36,8 +36,6 @@ class HomepageType extends AbstractType
                     ]),
                 ],
             ])
-            ->add('Login', ButtonType::class)
-            ->add('Register', ButtonType::class)
         ;
     }
 
