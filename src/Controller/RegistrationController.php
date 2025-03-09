@@ -104,31 +104,4 @@ class RegistrationController extends AbstractController
     {
         throw new \LogicException('This method can be blank - it will be intercepted by the logout key on your firewall.');
     }
-
-    #[Route(path: '/',name: 'app_homepage')]
-    public function homepage(Request $request,UserPasswordHasherInterface $userPasswordHasher,EntityManagerInterface $entityManager,Security $security): Response
-    {
-
-        $user = new User();
-        $form = $this->createForm(HomepageType::class, $user);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            /** @var string $plainPassword */
-            $plainPassword = $form->get('Password')->getData();
-
-            // encode the plain password
-            $user->setPassword($userPasswordHasher->hashPassword($user, $plainPassword));
-
-            $userAux = $entityManager->getRepository(User::class)->findOneBy(['email' => $user]);
-
-            // do anything else you need here, like send an email
-
-            return $security->login($user, 'form_login', 'main');
-        }
-        
-        return $this->render('homepage.html.twig', [
-            'form' => $form,
-        ]);
-    }
 }
