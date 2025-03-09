@@ -11,15 +11,16 @@
     <div class="login-box p-4">
       {{ form_errors(form) }}
       <h1>Bienvenid@</h1>
-      {{ form_start(form) }}
+      {{ form_start(form, {
+                        action: path('app_login'),
+                        method: 'POST'
+                    }) }}
         {{ form_row(form.email) }}
         {{ form_row(form.plainPassword, { label: 'Password' }) }}
-        <!-- Botón Register: no envía formulario, redirige a app_register -->
         <button type="button" class="btn btn-secondary"
                 onclick="window.location.href='{{ path('app_register') }}'">
           Register
         </button>
-        <!-- Botón Login: envía formulario (submit) -->
         <button type="submit" class="btn btn-primary">
           Login
         </button>
