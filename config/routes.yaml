@@ -3,13 +3,9 @@ app_register:
   controller: App\Controller\RegistrationController::register
 
 app_login:
-  path: /login
+  path: /
   controller: App\Controller\RegistrationController::login
 
 app_logout:
   path: /logout
   controller: App\Controller\RegistrationController::logout
-
-app_homepage:
-  path: /
-  controller: App\Controller\RegistrationController::homepage

@@ -83,7 +83,7 @@ class RegistrationController extends AbstractController
         return $this->redirectToRoute('app_register');
     }
 
-    #[Route(path: '/login', name: 'app_login')]
+    #[Route(path: '/', name: 'app_login')]
     public function login(AuthenticationUtils $authenticationUtils): Response
     {
 
