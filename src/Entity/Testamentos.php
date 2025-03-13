@@ -18,31 +18,31 @@ class Testamentos
     private ?\DateTimeImmutable $fecha = null;
 
     #[ORM\Column]
-    private ?bool $Murcia = null;
+    private ?bool $murcia = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $NomGrantor = null;
+    private ?string $nomGrantor = null;
 
     #[ORM\Column(length: 255, nullable: true)]
-    private ?string $Oficio = null;
-
-    #[ORM\Column]
-    private ?bool $Relacion = null;
+    private ?string $oficio = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $TipoDoc = null;
+    private ?string $tipoDoc = null;
+
+    #[ORM\Column]
+    private ?bool $relacion = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $Notario = null;
+    private ?string $notario = null;
 
     #[ORM\Column]
-    private ?int $NumProtocol = null;
+    private ?int $numProtocol = null;
 
     #[ORM\Column]
-    private ?int $NumFolio = null;
+    private ?int $numFolio = null;
 
     #[ORM\Column(length: 255, nullable: true)]
-    private ?string $SegGrantor = null;
+    private ?string $segGrantor = null;
 
     public function getId(): ?int
     {
@@ -70,108 +70,108 @@ class Testamentos
 
     public function isMurcia(): ?bool
     {
-        return $this->Murcia;
+        return $this->murcia;
     }
 
-    public function setMurcia(bool $Murcia): static
+    public function setMurcia(bool $murcia): static
     {
-        $this->Murcia = $Murcia;
+        $this->murcia = $murcia;
 
         return $this;
     }
 
     public function getNomGrantor(): ?string
     {
-        return $this->NomGrantor;
+        return $this->nomGrantor;
     }
 
-    public function setNomGrantor(string $NomGrantor): static
+    public function setNomGrantor(string $nomGrantor): static
     {
-        $this->NomGrantor = $NomGrantor;
+        $this->nomGrantor = $nomGrantor;
 
         return $this;
     }
 
     public function getOficio(): ?string
     {
-        return $this->Oficio;
+        return $this->oficio;
     }
 
-    public function setOficio(?string $Oficio): static
+    public function setOficio(?string $oficio): static
     {
-        $this->Oficio = $Oficio;
-
-        return $this;
-    }
-
-    public function isRelacion(): ?bool
-    {
-        return $this->Relacion;
-    }
-
-    public function setRelacion(bool $Relacion): static
-    {
-        $this->Relacion = $Relacion;
+        $this->oficio = $oficio;
 
         return $this;
     }
 
     public function getTipoDoc(): ?string
     {
-        return $this->TipoDoc;
+        return $this->tipoDoc;
     }
 
-    public function setTipoDoc(string $TipoDoc): static
+    public function setTipoDoc(string $tipoDoc): static
     {
-        $this->TipoDoc = $TipoDoc;
+        $this->tipoDoc = $tipoDoc;
+
+        return $this;
+    }
+
+    public function isRelacion(): ?bool
+    {
+        return $this->relacion;
+    }
+
+    public function setRelacion(bool $relacion): static
+    {
+        $this->relacion = $relacion;
 
         return $this;
     }
 
     public function getNotario(): ?string
     {
-        return $this->Notario;
+        return $this->notario;
     }
 
-    public function setNotario(string $Notario): static
+    public function setNotario(string $notario): static
     {
-        $this->Notario = $Notario;
+        $this->notario = $notario;
 
         return $this;
     }
 
     public function getNumProtocol(): ?int
     {
-        return $this->NumProtocol;
+        return $this->numProtocol;
     }
 
-    public function setNumProtocol(int $NumProtocol): static
+    public function setNumProtocol(int $numProtocol): static
     {
-        $this->NumProtocol = $NumProtocol;
+        $this->numProtocol = $numProtocol;
 
         return $this;
     }
 
     public function getNumFolio(): ?int
     {
-        return $this->NumFolio;
+        return $this->numFolio;
     }
 
-    public function setNumFolio(int $NumFolio): static
+    public function setNumFolio(int $numFolio): static
     {
-        $this->NumFolio = $NumFolio;
+        $this->numFolio = $numFolio;
 
         return $this;
     }
 
     public function getSegGrantor(): ?string
     {
-        return $this->SegGrantor;
+        return $this->segGrantor;
     }
 
-    public function setSegGrantor(?string $SegGrantor): static
+    public function setSegGrantor(?string $segGrantor): static
     {
-        $this->SegGrantor = $SegGrantor;
+        $this->segGrantor = $segGrantor;
 
         return $this;
     }
