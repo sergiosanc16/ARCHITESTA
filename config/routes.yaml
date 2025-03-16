@@ -3,7 +3,7 @@ app_register:
   controller: App\Controller\RegistrationController::register
 
 app_login:
-  path: /
+  path: /login
   controller: App\Controller\RegistrationController::login
 
 app_logout:
