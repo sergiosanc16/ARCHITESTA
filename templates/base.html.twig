@@ -11,7 +11,7 @@
         {% endblock %}
 
         {% block javascripts %}
-            {{ encore_entry_script_tags('app') }}
+            {% block importmap %}{{ importmap('app') }}{% endblock %}
             <script src="{{asset('recursos/bootstrap/js/bootstrap.min.js') }}"></script>
             <script src="{{asset('recursos/mybootstrap/js/scripts.js')}}"></script>
         {% endblock %}
