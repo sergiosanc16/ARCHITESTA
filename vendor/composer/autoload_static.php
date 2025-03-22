@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit46d459740ae46f19b3805a21dcfdc9d8
+class ComposerStaticInit42eccd852b3b0b576ce2f579862238ae
 {
     public static $files = array (
         '6e3fae29631ef280660b3cdad06f25a8' => __DIR__ . '/..' . '/symfony/deprecation-contracts/function.php',
@@ -20,6 +20,7 @@ class ComposerStaticInit46d459740ae46f19b3805a21dcfdc9d8
         'b6b991a57620e2fb6b2f66f03fe9ddc2' => __DIR__ . '/..' . '/symfony/string/Resources/functions.php',
         'f598d06aa772fa33d905e87be6398fb1' => __DIR__ . '/..' . '/symfony/polyfill-intl-idn/bootstrap.php',
         '2203a247e6fda86070a5e4e07aed533a' => __DIR__ . '/..' . '/symfony/clock/Resources/now.php',
+        '9d2b9fc6db0f153a0a149fefb182415e' => __DIR__ . '/..' . '/symfony/polyfill-php84/bootstrap.php',
         '6124b4c8570aa390c21fafd04a26c69f' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/deep_copy.php',
         'ec07570ca5a812141189b1fa81503674' => __DIR__ . '/..' . '/phpunit/phpunit/src/Framework/Assert/Functions.php',
         '92c8763cd6170fce6fcfe7e26b4e8c10' => __DIR__ . '/..' . '/symfony/phpunit-bridge/bootstrap.php',
@@ -47,6 +48,7 @@ class ComposerStaticInit46d459740ae46f19b3805a21dcfdc9d8
             'Symfony\\UX\\StimulusBundle\\' => 26,
             'Symfony\\Runtime\\Symfony\\Component\\' => 34,
             'Symfony\\Requirements\\' => 21,
+            'Symfony\\Polyfill\\Php84\\' => 23,
             'Symfony\\Polyfill\\Php83\\' => 23,
             'Symfony\\Polyfill\\Mbstring\\' => 26,
             'Symfony\\Polyfill\\Intl\\Normalizer\\' => 33,
@@ -202,6 +204,10 @@ class ComposerStaticInit46d459740ae46f19b3805a21dcfdc9d8
         'Symfony\\Requirements\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/requirements-checker/src',
+        ),
+        'Symfony\\Polyfill\\Php84\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/polyfill-php84',
         ),
         'Symfony\\Polyfill\\Php83\\' => 
         array (
@@ -600,6 +606,7 @@ class ComposerStaticInit46d459740ae46f19b3805a21dcfdc9d8
         'DateMalformedStringException' => __DIR__ . '/..' . '/symfony/polyfill-php83/Resources/stubs/DateMalformedStringException.php',
         'DateObjectError' => __DIR__ . '/..' . '/symfony/polyfill-php83/Resources/stubs/DateObjectError.php',
         'DateRangeError' => __DIR__ . '/..' . '/symfony/polyfill-php83/Resources/stubs/DateRangeError.php',
+        'Deprecated' => __DIR__ . '/..' . '/symfony/polyfill-php84/Resources/stubs/Deprecated.php',
         'Normalizer' => __DIR__ . '/..' . '/symfony/polyfill-intl-normalizer/Resources/stubs/Normalizer.php',
         'Override' => __DIR__ . '/..' . '/symfony/polyfill-php83/Resources/stubs/Override.php',
         'PHPUnit\\Exception' => __DIR__ . '/..' . '/phpunit/phpunit/src/Exception.php',
@@ -1238,9 +1245,9 @@ class ComposerStaticInit46d459740ae46f19b3805a21dcfdc9d8
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit46d459740ae46f19b3805a21dcfdc9d8::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit46d459740ae46f19b3805a21dcfdc9d8::$prefixDirsPsr4;
-            $loader->classMap = ComposerStaticInit46d459740ae46f19b3805a21dcfdc9d8::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit42eccd852b3b0b576ce2f579862238ae::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit42eccd852b3b0b576ce2f579862238ae::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInit42eccd852b3b0b576ce2f579862238ae::$classMap;
 
         }, null, ClassLoader::class);
     }

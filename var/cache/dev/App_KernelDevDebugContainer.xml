@@ -26,6 +26,7 @@
       <parameter key="SymfonyCastsVerifyEmailBundle">SymfonyCasts\Bundle\VerifyEmail\SymfonyCastsVerifyEmailBundle</parameter>
       <parameter key="StimulusBundle">Symfony\UX\StimulusBundle\StimulusBundle</parameter>
       <parameter key="TurboBundle">Symfony\UX\Turbo\TurboBundle</parameter>
+      <parameter key="WebpackEncoreBundle">Symfony\WebpackEncoreBundle\WebpackEncoreBundle</parameter>
     </parameter>
     <parameter key="kernel.bundles_metadata" type="collection">
       <parameter key="FrameworkBundle" type="collection">
@@ -80,6 +81,10 @@
         <parameter key="path">/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/ux-turbo</parameter>
         <parameter key="namespace">Symfony\UX\Turbo</parameter>
       </parameter>
+      <parameter key="WebpackEncoreBundle" type="collection">
+        <parameter key="path">/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/webpack-encore-bundle/src</parameter>
+        <parameter key="namespace">Symfony\WebpackEncoreBundle</parameter>
+      </parameter>
     </parameter>
     <parameter key="kernel.charset">UTF-8</parameter>
     <parameter key="kernel.container_class">App_KernelDevDebugContainer</parameter>
@@ -88,11 +93,6 @@
       <parameter key="Symfony\Component\Console\Event\ConsoleErrorEvent">console.error</parameter>
       <parameter key="Symfony\Component\Console\Event\ConsoleSignalEvent">console.signal</parameter>
       <parameter key="Symfony\Component\Console\Event\ConsoleTerminateEvent">console.terminate</parameter>
-      <parameter key="Symfony\Component\Form\Event\PreSubmitEvent">form.pre_submit</parameter>
-      <parameter key="Symfony\Component\Form\Event\SubmitEvent">form.submit</parameter>
-      <parameter key="Symfony\Component\Form\Event\PostSubmitEvent">form.post_submit</parameter>
-      <parameter key="Symfony\Component\Form\Event\PreSetDataEvent">form.pre_set_data</parameter>
-      <parameter key="Symfony\Component\Form\Event\PostSetDataEvent">form.post_set_data</parameter>
       <parameter key="Symfony\Component\HttpKernel\Event\ControllerArgumentsEvent">kernel.controller_arguments</parameter>
       <parameter key="Symfony\Component\HttpKernel\Event\ControllerEvent">kernel.controller</parameter>
       <parameter key="Symfony\Component\HttpKernel\Event\ResponseEvent">kernel.response</parameter>
@@ -142,11 +142,6 @@
     </parameter>
     <parameter key="session.save_path">null</parameter>
     <parameter key="session.metadata.update_threshold">0</parameter>
-    <parameter key="form.type_extension.csrf.enabled">true</parameter>
-    <parameter key="form.type_extension.csrf.field_name">_token</parameter>
-    <parameter key="form.type_extension.csrf.field_attr" type="collection">
-      <parameter key="data-controller">csrf-protection</parameter>
-    </parameter>
     <parameter key="validator.mapping.cache.file">/Users/sergioillan/Desktop/ARCHITESTA/var/cache/dev/validation.php</parameter>
     <parameter key="validator.translation_domain">validators</parameter>
     <parameter key="profiler_listener.only_exceptions">false</parameter>
@@ -282,10 +277,6 @@
         <parameter>ajax</parameter>
         <parameter>@WebProfiler/Collector/ajax.html.twig</parameter>
       </parameter>
-      <parameter key="data_collector.form" type="collection">
-        <parameter>form</parameter>
-        <parameter>@WebProfiler/Collector/form.html.twig</parameter>
-      </parameter>
       <parameter key="data_collector.exception" type="collection">
         <parameter>exception</parameter>
         <parameter>@WebProfiler/Collector/exception.html.twig</parameter>
@@ -371,7 +362,7 @@
       </call>
     </service>
     <service id="App\Form\RegistrationFormType" class="App\Form\RegistrationFormType" autowire="true" autoconfigure="true">
-      <tag name="form.type"/>
+      <tag name="container.error" message="Class &quot;Symfony\Component\Form\AbstractType&quot; not found while loading &quot;App\Form\RegistrationFormType&quot;."/>
     </service>
     <service id="App\Repository\TestamentosRepository" class="App\Repository\TestamentosRepository" autowire="true" autoconfigure="true">
       <tag name="doctrine.repository_service"/>
@@ -548,16 +539,13 @@
         <argument key="debug.event_dispatcher" type="service" id="debug.event_dispatcher" on-invalid="ignore_uninitialized"/>
         <argument key="debug.log_processor" type="service" id="debug.log_processor" on-invalid="ignore_uninitialized"/>
         <argument key="session_listener" type="service" id="session_listener" on-invalid="ignore_uninitialized"/>
-        <argument key="form.choice_list_factory.cached" type="service" id="form.choice_list_factory.cached" on-invalid="ignore_uninitialized"/>
         <argument key="cache.validator_expression_language" type="service" id="cache.validator_expression_language" on-invalid="ignore_uninitialized"/>
         <argument key="messenger.transport.in_memory.factory" type="service" id="messenger.transport.in_memory.factory" on-invalid="ignore_uninitialized"/>
         <argument key="profiler" type="service" id="profiler" on-invalid="ignore_uninitialized"/>
         <argument key="debug.validator" type="service" id="debug.validator" on-invalid="ignore_uninitialized"/>
         <argument key="doctrine" type="service" id="doctrine" on-invalid="ignore_uninitialized"/>
         <argument key="doctrine.debug_data_holder" type="service" id="doctrine.debug_data_holder" on-invalid="ignore_uninitialized"/>
-        <argument key="form.type.entity" type="service" id="form.type.entity" on-invalid="ignore_uninitialized"/>
         <argument key="twig" type="service" id="twig" on-invalid="ignore_uninitialized"/>
-        <argument key="twig.form.engine" type="service" id="twig.form.engine" on-invalid="ignore_uninitialized"/>
         <argument key="security.token_storage" type="service" id="security.token_storage" on-invalid="ignore_uninitialized"/>
         <argument key="cache.security_expression_language" type="service" id="cache.security_expression_language" on-invalid="ignore_uninitialized"/>
         <argument key="cache.security_is_granted_attribute_expression_language" type="service" id="cache.security_is_granted_attribute_expression_language" on-invalid="ignore_uninitialized"/>
@@ -566,6 +554,9 @@
         <argument key="debug.security.firewall.authenticator.main" type="service" id="debug.security.firewall.authenticator.main" on-invalid="ignore_uninitialized"/>
         <argument key="monolog.handler.main" type="service" id="monolog.handler.main" on-invalid="ignore_uninitialized"/>
         <argument key="monolog.handler.console" type="service" id="monolog.handler.console" on-invalid="ignore_uninitialized"/>
+        <argument key="webpack_encore.tag_renderer" type="service" id="webpack_encore.tag_renderer" on-invalid="ignore_uninitialized"/>
+        <argument key="cache.webpack_encore" type="service" id="cache.webpack_encore" on-invalid="ignore_uninitialized"/>
+        <argument key="webpack_encore.entrypoint_lookup[_default]" type="service" id="webpack_encore.entrypoint_lookup[_default]" on-invalid="ignore_uninitialized"/>
         <argument key="debug.security.event_dispatcher.main" type="service" id="debug.security.event_dispatcher.main" on-invalid="ignore_uninitialized"/>
         <argument key=".debug.http_client" type="service" id=".debug.http_client" on-invalid="ignore_uninitialized"/>
       </argument>
@@ -621,9 +612,6 @@
         <argument key="session_listener" type="collection">
           <argument>reset</argument>
         </argument>
-        <argument key="form.choice_list_factory.cached" type="collection">
-          <argument>reset</argument>
-        </argument>
         <argument key="cache.validator_expression_language" type="collection">
           <argument>reset</argument>
         </argument>
@@ -642,14 +630,8 @@
         <argument key="doctrine.debug_data_holder" type="collection">
           <argument>reset</argument>
         </argument>
-        <argument key="form.type.entity" type="collection">
-          <argument>reset</argument>
-        </argument>
         <argument key="twig" type="collection">
           <argument>resetGlobals</argument>
-        </argument>
-        <argument key="twig.form.engine" type="collection">
-          <argument>reset</argument>
         </argument>
         <argument key="security.token_storage" type="collection">
           <argument>disableUsageTracking</argument>
@@ -674,6 +656,15 @@
           <argument>reset</argument>
         </argument>
         <argument key="monolog.handler.console" type="collection">
+          <argument>reset</argument>
+        </argument>
+        <argument key="webpack_encore.tag_renderer" type="collection">
+          <argument>reset</argument>
+        </argument>
+        <argument key="cache.webpack_encore" type="collection">
+          <argument>reset</argument>
+        </argument>
+        <argument key="webpack_encore.entrypoint_lookup[_default]" type="collection">
           <argument>reset</argument>
         </argument>
         <argument key="debug.security.event_dispatcher.main" type="collection">
@@ -848,6 +839,7 @@
         <argument>cache.security_expression_language</argument>
         <argument>cache.security_is_granted_attribute_expression_language</argument>
         <argument>cache.security_is_csrf_token_valid_attribute_expression_language</argument>
+        <argument>cache.webpack_encore</argument>
       </argument>
       <call method="setName">
         <argument>cache:pool:clear</argument>
@@ -896,6 +888,7 @@
         <argument>cache.security_expression_language</argument>
         <argument>cache.security_is_granted_attribute_expression_language</argument>
         <argument>cache.security_is_csrf_token_valid_attribute_expression_language</argument>
+        <argument>cache.webpack_encore</argument>
       </argument>
       <call method="setName">
         <argument>cache:pool:delete</argument>
@@ -921,6 +914,7 @@
         <argument>cache.security_expression_language</argument>
         <argument>cache.security_is_granted_attribute_expression_language</argument>
         <argument>cache.security_is_csrf_token_valid_attribute_expression_language</argument>
+        <argument>cache.webpack_encore</argument>
       </argument>
       <call method="setName">
         <argument>cache:pool:list</argument>
@@ -1238,13 +1232,11 @@
       <argument>/Users/sergioillan/Desktop/ARCHITESTA/templates</argument>
       <argument type="collection">
         <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/validator/Resources/translations</argument>
-        <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/form/Resources/translations</argument>
         <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/security-core/Resources/translations</argument>
         <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfonycasts/verify-email-bundle/src/Resources/translations</argument>
       </argument>
       <argument type="collection">
         <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/twig-bridge/Resources/views/Email</argument>
-        <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/twig-bridge/Resources/views/Form</argument>
       </argument>
       <argument type="collection"/>
       <call method="setName">
@@ -1265,13 +1257,11 @@
       <argument>/Users/sergioillan/Desktop/ARCHITESTA/templates</argument>
       <argument type="collection">
         <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/validator/Resources/translations</argument>
-        <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/form/Resources/translations</argument>
         <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/security-core/Resources/translations</argument>
         <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfonycasts/verify-email-bundle/src/Resources/translations</argument>
       </argument>
       <argument type="collection">
         <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/twig-bridge/Resources/views/Email</argument>
-        <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/twig-bridge/Resources/views/Form</argument>
       </argument>
       <argument type="collection"/>
       <call method="setName">
@@ -1352,47 +1342,6 @@
       </call>
       <call method="setDescription">
         <argument>Lint translations files syntax and outputs encountered errors</argument>
-      </call>
-    </service>
-    <service id="console.command.form_debug" class="Symfony\Component\Form\Command\DebugCommand">
-      <tag name="console.command"/>
-      <tag name="container.no_preload"/>
-      <argument type="service" id="form.registry"/>
-      <argument type="collection">
-        <argument>Symfony\Component\Form\Extension\Core\Type</argument>
-        <argument>App\Form</argument>
-        <argument>Symfony\Bridge\Doctrine\Form\Type</argument>
-      </argument>
-      <argument type="collection">
-        <argument>App\Form\RegistrationFormType</argument>
-        <argument>Symfony\Component\Form\Extension\Core\Type\FormType</argument>
-        <argument>Symfony\Component\Form\Extension\Core\Type\ChoiceType</argument>
-        <argument>Symfony\Component\Form\Extension\Core\Type\FileType</argument>
-        <argument>Symfony\Component\Form\Extension\Core\Type\ColorType</argument>
-        <argument>Symfony\Bridge\Doctrine\Form\Type\EntityType</argument>
-      </argument>
-      <argument type="collection">
-        <argument>Symfony\Component\Form\Extension\Core\Type\TransformationFailureExtension</argument>
-        <argument>Symfony\Component\Form\Extension\HttpFoundation\Type\FormTypeHttpFoundationExtension</argument>
-        <argument>Symfony\Component\Form\Extension\Validator\Type\FormTypeValidatorExtension</argument>
-        <argument>Symfony\Component\Form\Extension\Validator\Type\RepeatedTypeValidatorExtension</argument>
-        <argument>Symfony\Component\Form\Extension\Validator\Type\SubmitTypeValidatorExtension</argument>
-        <argument>Symfony\Component\Form\Extension\Validator\Type\UploadValidatorExtension</argument>
-        <argument>Symfony\Component\Form\Extension\Csrf\Type\FormTypeCsrfExtension</argument>
-        <argument>Symfony\Component\Form\Extension\DataCollector\Type\DataCollectorTypeExtension</argument>
-        <argument>Symfony\Component\Form\Extension\PasswordHasher\Type\FormTypePasswordHasherExtension</argument>
-        <argument>Symfony\Component\Form\Extension\PasswordHasher\Type\PasswordTypePasswordHasherExtension</argument>
-      </argument>
-      <argument type="collection">
-        <argument>Symfony\Component\Form\Extension\Validator\ValidatorTypeGuesser</argument>
-        <argument>Symfony\Bridge\Doctrine\Form\DoctrineOrmTypeGuesser</argument>
-      </argument>
-      <argument type="service" id="debug.file_link_formatter" on-invalid="null"/>
-      <call method="setName">
-        <argument>debug:form</argument>
-      </call>
-      <call method="setDescription">
-        <argument>Display form type information</argument>
       </call>
     </service>
     <service id="console.command.secrets_set" class="Symfony\Bundle\FrameworkBundle\Command\SecretsSetCommand">
@@ -1653,6 +1602,7 @@
         <argument key="cache.security_expression_language" type="service" id="cache.security_expression_language" on-invalid="ignore_uninitialized"/>
         <argument key="cache.security_is_granted_attribute_expression_language" type="service" id="cache.security_is_granted_attribute_expression_language" on-invalid="ignore_uninitialized"/>
         <argument key="cache.security_is_csrf_token_valid_attribute_expression_language" type="service" id="cache.security_is_csrf_token_valid_attribute_expression_language" on-invalid="ignore_uninitialized"/>
+        <argument key="cache.webpack_encore" type="service" id="cache.webpack_encore" on-invalid="ignore_uninitialized"/>
       </argument>
     </service>
     <service id="cache.global_clearer" class="Symfony\Component\HttpKernel\CacheClearer\Psr6CacheClearer" public="true">
@@ -1671,6 +1621,7 @@
         <argument key="cache.security_expression_language" type="service" id="cache.security_expression_language" on-invalid="ignore_uninitialized"/>
         <argument key="cache.security_is_granted_attribute_expression_language" type="service" id="cache.security_is_granted_attribute_expression_language" on-invalid="ignore_uninitialized"/>
         <argument key="cache.security_is_csrf_token_valid_attribute_expression_language" type="service" id="cache.security_is_csrf_token_valid_attribute_expression_language" on-invalid="ignore_uninitialized"/>
+        <argument key="cache.webpack_encore" type="service" id="cache.webpack_encore" on-invalid="ignore_uninitialized"/>
       </argument>
     </service>
     <service id="identity_translator" class="Symfony\Component\Translation\IdentityTranslator"/>
@@ -1986,10 +1937,6 @@
     <service id="mailer.transport_factory" class="Symfony\Component\Mailer\Transport">
       <argument type="tagged_iterator" tag="mailer.transport_factory"/>
     </service>
-    <service id="mailer.default_transport" class="Symfony\Component\Mailer\Transport\TransportInterface">
-      <argument>%env(MAILER_DSN)%</argument>
-      <factory service="mailer.transport_factory" method="fromString"/>
-    </service>
     <service id="mailer.messenger.message_handler" class="Symfony\Component\Mailer\Messenger\MessageHandler">
       <tag name="messenger.message_handler"/>
       <argument type="service" id="mailer.transports"/>
@@ -2096,312 +2043,255 @@
         <argument key="resource_files" type="collection">
           <argument key="af" type="collection">
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/validator/Resources/translations/validators.af.xlf</argument>
-            <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/form/Resources/translations/validators.af.xlf</argument>
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/security-core/Resources/translations/security.af.xlf</argument>
           </argument>
           <argument key="ar" type="collection">
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/validator/Resources/translations/validators.ar.xlf</argument>
-            <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/form/Resources/translations/validators.ar.xlf</argument>
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/security-core/Resources/translations/security.ar.xlf</argument>
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfonycasts/verify-email-bundle/src/Resources/translations/VerifyEmailBundle.ar.xlf</argument>
           </argument>
           <argument key="az" type="collection">
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/validator/Resources/translations/validators.az.xlf</argument>
-            <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/form/Resources/translations/validators.az.xlf</argument>
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/security-core/Resources/translations/security.az.xlf</argument>
           </argument>
           <argument key="be" type="collection">
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/validator/Resources/translations/validators.be.xlf</argument>
-            <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/form/Resources/translations/validators.be.xlf</argument>
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/security-core/Resources/translations/security.be.xlf</argument>
           </argument>
           <argument key="bg" type="collection">
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/validator/Resources/translations/validators.bg.xlf</argument>
-            <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/form/Resources/translations/validators.bg.xlf</argument>
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/security-core/Resources/translations/security.bg.xlf</argument>
           </argument>
           <argument key="bs" type="collection">
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/validator/Resources/translations/validators.bs.xlf</argument>
-            <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/form/Resources/translations/validators.bs.xlf</argument>
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/security-core/Resources/translations/security.bs.xlf</argument>
           </argument>
           <argument key="ca" type="collection">
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/validator/Resources/translations/validators.ca.xlf</argument>
-            <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/form/Resources/translations/validators.ca.xlf</argument>
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/security-core/Resources/translations/security.ca.xlf</argument>
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfonycasts/verify-email-bundle/src/Resources/translations/VerifyEmailBundle.ca.xlf</argument>
           </argument>
           <argument key="cs" type="collection">
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/validator/Resources/translations/validators.cs.xlf</argument>
-            <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/form/Resources/translations/validators.cs.xlf</argument>
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/security-core/Resources/translations/security.cs.xlf</argument>
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfonycasts/verify-email-bundle/src/Resources/translations/VerifyEmailBundle.cs.xlf</argument>
           </argument>
           <argument key="cy" type="collection">
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/validator/Resources/translations/validators.cy.xlf</argument>
-            <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/form/Resources/translations/validators.cy.xlf</argument>
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/security-core/Resources/translations/security.cy.xlf</argument>
           </argument>
           <argument key="da" type="collection">
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/validator/Resources/translations/validators.da.xlf</argument>
-            <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/form/Resources/translations/validators.da.xlf</argument>
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/security-core/Resources/translations/security.da.xlf</argument>
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfonycasts/verify-email-bundle/src/Resources/translations/VerifyEmailBundle.da.xlf</argument>
           </argument>
           <argument key="de" type="collection">
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/validator/Resources/translations/validators.de.xlf</argument>
-            <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/form/Resources/translations/validators.de.xlf</argument>
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/security-core/Resources/translations/security.de.xlf</argument>
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfonycasts/verify-email-bundle/src/Resources/translations/VerifyEmailBundle.de.xlf</argument>
           </argument>
           <argument key="el" type="collection">
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/validator/Resources/translations/validators.el.xlf</argument>
-            <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/form/Resources/translations/validators.el.xlf</argument>
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/security-core/Resources/translations/security.el.xlf</argument>
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfonycasts/verify-email-bundle/src/Resources/translations/VerifyEmailBundle.el.xlf</argument>
           </argument>
           <argument key="en" type="collection">
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/validator/Resources/translations/validators.en.xlf</argument>
-            <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/form/Resources/translations/validators.en.xlf</argument>
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/security-core/Resources/translations/security.en.xlf</argument>
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfonycasts/verify-email-bundle/src/Resources/translations/VerifyEmailBundle.en.xlf</argument>
           </argument>
           <argument key="es" type="collection">
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/validator/Resources/translations/validators.es.xlf</argument>
-            <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/form/Resources/translations/validators.es.xlf</argument>
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/security-core/Resources/translations/security.es.xlf</argument>
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfonycasts/verify-email-bundle/src/Resources/translations/VerifyEmailBundle.es.xlf</argument>
           </argument>
           <argument key="et" type="collection">
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/validator/Resources/translations/validators.et.xlf</argument>
-            <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/form/Resources/translations/validators.et.xlf</argument>
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/security-core/Resources/translations/security.et.xlf</argument>
           </argument>
           <argument key="eu" type="collection">
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/validator/Resources/translations/validators.eu.xlf</argument>
-            <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/form/Resources/translations/validators.eu.xlf</argument>
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/security-core/Resources/translations/security.eu.xlf</argument>
           </argument>
           <argument key="fa" type="collection">
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/validator/Resources/translations/validators.fa.xlf</argument>
-            <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/form/Resources/translations/validators.fa.xlf</argument>
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/security-core/Resources/translations/security.fa.xlf</argument>
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfonycasts/verify-email-bundle/src/Resources/translations/VerifyEmailBundle.fa.xlf</argument>
           </argument>
           <argument key="fi" type="collection">
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/validator/Resources/translations/validators.fi.xlf</argument>
-            <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/form/Resources/translations/validators.fi.xlf</argument>
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/security-core/Resources/translations/security.fi.xlf</argument>
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfonycasts/verify-email-bundle/src/Resources/translations/VerifyEmailBundle.fi.xlf</argument>
           </argument>
           <argument key="fr" type="collection">
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/validator/Resources/translations/validators.fr.xlf</argument>
-            <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/form/Resources/translations/validators.fr.xlf</argument>
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/security-core/Resources/translations/security.fr.xlf</argument>
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfonycasts/verify-email-bundle/src/Resources/translations/VerifyEmailBundle.fr.xlf</argument>
           </argument>
           <argument key="gl" type="collection">
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/validator/Resources/translations/validators.gl.xlf</argument>
-            <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/form/Resources/translations/validators.gl.xlf</argument>
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/security-core/Resources/translations/security.gl.xlf</argument>
           </argument>
           <argument key="he" type="collection">
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/validator/Resources/translations/validators.he.xlf</argument>
-            <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/form/Resources/translations/validators.he.xlf</argument>
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/security-core/Resources/translations/security.he.xlf</argument>
           </argument>
           <argument key="hr" type="collection">
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/validator/Resources/translations/validators.hr.xlf</argument>
-            <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/form/Resources/translations/validators.hr.xlf</argument>
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/security-core/Resources/translations/security.hr.xlf</argument>
           </argument>
           <argument key="hu" type="collection">
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/validator/Resources/translations/validators.hu.xlf</argument>
-            <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/form/Resources/translations/validators.hu.xlf</argument>
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/security-core/Resources/translations/security.hu.xlf</argument>
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfonycasts/verify-email-bundle/src/Resources/translations/VerifyEmailBundle.hu.xlf</argument>
           </argument>
           <argument key="hy" type="collection">
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/validator/Resources/translations/validators.hy.xlf</argument>
-            <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/form/Resources/translations/validators.hy.xlf</argument>
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/security-core/Resources/translations/security.hy.xlf</argument>
           </argument>
           <argument key="id" type="collection">
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/validator/Resources/translations/validators.id.xlf</argument>
-            <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/form/Resources/translations/validators.id.xlf</argument>
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/security-core/Resources/translations/security.id.xlf</argument>
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfonycasts/verify-email-bundle/src/Resources/translations/VerifyEmailBundle.id.xlf</argument>
           </argument>
           <argument key="it" type="collection">
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/validator/Resources/translations/validators.it.xlf</argument>
-            <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/form/Resources/translations/validators.it.xlf</argument>
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/security-core/Resources/translations/security.it.xlf</argument>
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfonycasts/verify-email-bundle/src/Resources/translations/VerifyEmailBundle.it.xlf</argument>
           </argument>
           <argument key="ja" type="collection">
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/validator/Resources/translations/validators.ja.xlf</argument>
-            <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/form/Resources/translations/validators.ja.xlf</argument>
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/security-core/Resources/translations/security.ja.xlf</argument>
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfonycasts/verify-email-bundle/src/Resources/translations/VerifyEmailBundle.ja.xlf</argument>
           </argument>
           <argument key="lb" type="collection">
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/validator/Resources/translations/validators.lb.xlf</argument>
-            <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/form/Resources/translations/validators.lb.xlf</argument>
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/security-core/Resources/translations/security.lb.xlf</argument>
           </argument>
           <argument key="lt" type="collection">
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/validator/Resources/translations/validators.lt.xlf</argument>
-            <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/form/Resources/translations/validators.lt.xlf</argument>
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/security-core/Resources/translations/security.lt.xlf</argument>
           </argument>
           <argument key="lv" type="collection">
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/validator/Resources/translations/validators.lv.xlf</argument>
-            <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/form/Resources/translations/validators.lv.xlf</argument>
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/security-core/Resources/translations/security.lv.xlf</argument>
           </argument>
           <argument key="mk" type="collection">
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/validator/Resources/translations/validators.mk.xlf</argument>
-            <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/form/Resources/translations/validators.mk.xlf</argument>
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/security-core/Resources/translations/security.mk.xlf</argument>
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfonycasts/verify-email-bundle/src/Resources/translations/VerifyEmailBundle.mk.xlf</argument>
           </argument>
           <argument key="mn" type="collection">
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/validator/Resources/translations/validators.mn.xlf</argument>
-            <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/form/Resources/translations/validators.mn.xlf</argument>
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/security-core/Resources/translations/security.mn.xlf</argument>
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfonycasts/verify-email-bundle/src/Resources/translations/VerifyEmailBundle.mn.xlf</argument>
           </argument>
           <argument key="my" type="collection">
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/validator/Resources/translations/validators.my.xlf</argument>
-            <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/form/Resources/translations/validators.my.xlf</argument>
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/security-core/Resources/translations/security.my.xlf</argument>
           </argument>
           <argument key="nb" type="collection">
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/validator/Resources/translations/validators.nb.xlf</argument>
-            <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/form/Resources/translations/validators.nb.xlf</argument>
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/security-core/Resources/translations/security.nb.xlf</argument>
           </argument>
           <argument key="nl" type="collection">
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/validator/Resources/translations/validators.nl.xlf</argument>
-            <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/form/Resources/translations/validators.nl.xlf</argument>
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/security-core/Resources/translations/security.nl.xlf</argument>
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfonycasts/verify-email-bundle/src/Resources/translations/VerifyEmailBundle+intl-icu.nl.xlf</argument>
           </argument>
           <argument key="nn" type="collection">
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/validator/Resources/translations/validators.nn.xlf</argument>
-            <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/form/Resources/translations/validators.nn.xlf</argument>
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/security-core/Resources/translations/security.nn.xlf</argument>
           </argument>
           <argument key="no" type="collection">
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/validator/Resources/translations/validators.no.xlf</argument>
-            <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/form/Resources/translations/validators.no.xlf</argument>
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/security-core/Resources/translations/security.no.xlf</argument>
           </argument>
           <argument key="pl" type="collection">
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/validator/Resources/translations/validators.pl.xlf</argument>
-            <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/form/Resources/translations/validators.pl.xlf</argument>
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/security-core/Resources/translations/security.pl.xlf</argument>
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfonycasts/verify-email-bundle/src/Resources/translations/VerifyEmailBundle.pl.xlf</argument>
           </argument>
           <argument key="pt" type="collection">
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/validator/Resources/translations/validators.pt.xlf</argument>
-            <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/form/Resources/translations/validators.pt.xlf</argument>
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/security-core/Resources/translations/security.pt.xlf</argument>
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfonycasts/verify-email-bundle/src/Resources/translations/VerifyEmailBundle.pt.xlf</argument>
           </argument>
           <argument key="pt_BR" type="collection">
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/validator/Resources/translations/validators.pt_BR.xlf</argument>
-            <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/form/Resources/translations/validators.pt_BR.xlf</argument>
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/security-core/Resources/translations/security.pt_BR.xlf</argument>
           </argument>
           <argument key="ro" type="collection">
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/validator/Resources/translations/validators.ro.xlf</argument>
-            <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/form/Resources/translations/validators.ro.xlf</argument>
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/security-core/Resources/translations/security.ro.xlf</argument>
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfonycasts/verify-email-bundle/src/Resources/translations/VerifyEmailBundle.ro.xlf</argument>
           </argument>
           <argument key="ru" type="collection">
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/validator/Resources/translations/validators.ru.xlf</argument>
-            <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/form/Resources/translations/validators.ru.xlf</argument>
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/security-core/Resources/translations/security.ru.xlf</argument>
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfonycasts/verify-email-bundle/src/Resources/translations/VerifyEmailBundle.ru.xlf</argument>
           </argument>
           <argument key="sk" type="collection">
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/validator/Resources/translations/validators.sk.xlf</argument>
-            <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/form/Resources/translations/validators.sk.xlf</argument>
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/security-core/Resources/translations/security.sk.xlf</argument>
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfonycasts/verify-email-bundle/src/Resources/translations/VerifyEmailBundle.sk.xlf</argument>
           </argument>
           <argument key="sl" type="collection">
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/validator/Resources/translations/validators.sl.xlf</argument>
-            <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/form/Resources/translations/validators.sl.xlf</argument>
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/security-core/Resources/translations/security.sl.xlf</argument>
           </argument>
           <argument key="sq" type="collection">
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/validator/Resources/translations/validators.sq.xlf</argument>
-            <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/form/Resources/translations/validators.sq.xlf</argument>
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/security-core/Resources/translations/security.sq.xlf</argument>
           </argument>
           <argument key="sr_Cyrl" type="collection">
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/validator/Resources/translations/validators.sr_Cyrl.xlf</argument>
-            <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/form/Resources/translations/validators.sr_Cyrl.xlf</argument>
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/security-core/Resources/translations/security.sr_Cyrl.xlf</argument>
           </argument>
           <argument key="sr_Latn" type="collection">
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/validator/Resources/translations/validators.sr_Latn.xlf</argument>
-            <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/form/Resources/translations/validators.sr_Latn.xlf</argument>
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/security-core/Resources/translations/security.sr_Latn.xlf</argument>
           </argument>
           <argument key="sv" type="collection">
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/validator/Resources/translations/validators.sv.xlf</argument>
-            <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/form/Resources/translations/validators.sv.xlf</argument>
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/security-core/Resources/translations/security.sv.xlf</argument>
           </argument>
           <argument key="th" type="collection">
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/validator/Resources/translations/validators.th.xlf</argument>
-            <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/form/Resources/translations/validators.th.xlf</argument>
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/security-core/Resources/translations/security.th.xlf</argument>
           </argument>
           <argument key="tl" type="collection">
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/validator/Resources/translations/validators.tl.xlf</argument>
-            <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/form/Resources/translations/validators.tl.xlf</argument>
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/security-core/Resources/translations/security.tl.xlf</argument>
           </argument>
           <argument key="tr" type="collection">
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/validator/Resources/translations/validators.tr.xlf</argument>
-            <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/form/Resources/translations/validators.tr.xlf</argument>
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/security-core/Resources/translations/security.tr.xlf</argument>
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfonycasts/verify-email-bundle/src/Resources/translations/VerifyEmailBundle.tr.xlf</argument>
           </argument>
           <argument key="uk" type="collection">
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/validator/Resources/translations/validators.uk.xlf</argument>
-            <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/form/Resources/translations/validators.uk.xlf</argument>
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/security-core/Resources/translations/security.uk.xlf</argument>
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfonycasts/verify-email-bundle/src/Resources/translations/VerifyEmailBundle.uk.xlf</argument>
           </argument>
           <argument key="ur" type="collection">
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/validator/Resources/translations/validators.ur.xlf</argument>
-            <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/form/Resources/translations/validators.ur.xlf</argument>
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/security-core/Resources/translations/security.ur.xlf</argument>
           </argument>
           <argument key="uz" type="collection">
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/validator/Resources/translations/validators.uz.xlf</argument>
-            <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/form/Resources/translations/validators.uz.xlf</argument>
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/security-core/Resources/translations/security.uz.xlf</argument>
           </argument>
           <argument key="vi" type="collection">
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/validator/Resources/translations/validators.vi.xlf</argument>
-            <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/form/Resources/translations/validators.vi.xlf</argument>
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/security-core/Resources/translations/security.vi.xlf</argument>
           </argument>
           <argument key="zh_CN" type="collection">
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/validator/Resources/translations/validators.zh_CN.xlf</argument>
-            <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/form/Resources/translations/validators.zh_CN.xlf</argument>
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/security-core/Resources/translations/security.zh_CN.xlf</argument>
           </argument>
           <argument key="zh_TW" type="collection">
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/validator/Resources/translations/validators.zh_TW.xlf</argument>
-            <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/form/Resources/translations/validators.zh_TW.xlf</argument>
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/security-core/Resources/translations/security.zh_TW.xlf</argument>
           </argument>
           <argument key="sr" type="collection">
@@ -2410,7 +2300,6 @@
         </argument>
         <argument key="scanned_directories" type="collection">
           <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/validator/Resources/translations</argument>
-          <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/form/Resources/translations</argument>
           <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/security-core/Resources/translations</argument>
           <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfonycasts/verify-email-bundle/src/Resources/translations</argument>
           <argument>/Users/sergioillan/Desktop/ARCHITESTA/translations</argument>
@@ -2426,11 +2315,11 @@
           <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/maker-bundle/translations</argument>
           <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/stimulus-bundle/translations</argument>
           <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/ux-turbo/translations</argument>
+          <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/webpack-encore-bundle/src/translations</argument>
         </argument>
         <argument key="cache_vary" type="collection">
           <argument key="scanned_directories" type="collection">
             <argument>vendor/symfony/validator/Resources/translations</argument>
-            <argument>vendor/symfony/form/Resources/translations</argument>
             <argument>vendor/symfony/security-core/Resources/translations</argument>
             <argument>vendor/symfonycasts/verify-email-bundle/src/Resources/translations</argument>
             <argument>translations</argument>
@@ -2446,6 +2335,7 @@
             <argument>vendor/symfony/maker-bundle/translations</argument>
             <argument>vendor/symfony/stimulus-bundle/translations</argument>
             <argument>vendor/symfony/ux-turbo/translations</argument>
+            <argument>vendor/symfony/webpack-encore-bundle/src/translations</argument>
           </argument>
         </argument>
       </argument>
@@ -2799,14 +2689,6 @@
       <argument type="service" id="monolog.logger.event" on-invalid="null"/>
       <argument type="service" id=".virtual_request_stack" on-invalid="null"/>
       <call method="addListener">
-        <argument>kernel.response</argument>
-        <argument type="collection">
-          <argument type="service_closure" id="security.csrf.same_origin_token_manager"/>
-          <argument>onKernelResponse</argument>
-        </argument>
-        <argument>0</argument>
-      </call>
-      <call method="addListener">
         <argument>kernel.controller</argument>
         <argument type="collection">
           <argument type="service_closure" id="data_collector.router"/>
@@ -2845,6 +2727,14 @@
           <argument>__invoke</argument>
         </argument>
         <argument>256</argument>
+      </call>
+      <call method="addListener">
+        <argument>kernel.exception</argument>
+        <argument type="collection">
+          <argument type="service_closure" id="webpack_encore.exception_listener"/>
+          <argument>onKernelException</argument>
+        </argument>
+        <argument>0</argument>
       </call>
       <call method="addListener">
         <argument>kernel.controller_arguments</argument>
@@ -3379,6 +3269,14 @@
         <argument type="collection">
           <argument type="service_closure" id="maker.console_error_listener"/>
           <argument>onConsoleTerminate</argument>
+        </argument>
+        <argument>0</argument>
+      </call>
+      <call method="addListener">
+        <argument>kernel.finish_request</argument>
+        <argument type="collection">
+          <argument type="service_closure" id="Symfony\WebpackEncoreBundle\EventListener\ResetAssetsEventListener"/>
+          <argument>resetAssets</argument>
         </argument>
         <argument>0</argument>
       </call>
@@ -3941,143 +3839,17 @@
     <service id="security.csrf.token_storage" class="Symfony\Component\Security\Csrf\TokenStorage\SessionTokenStorage">
       <argument type="service" id="request_stack"/>
     </service>
+    <service id="security.csrf.token_manager" class="Symfony\Component\Security\Csrf\CsrfTokenManager">
+      <argument type="service" id="security.csrf.token_generator"/>
+      <argument type="service" id="security.csrf.token_storage"/>
+      <argument type="service" id="request_stack" on-invalid="ignore"/>
+    </service>
     <service id="twig.runtime.security_csrf" class="Symfony\Bridge\Twig\Extension\CsrfRuntime">
       <tag name="twig.runtime"/>
-      <argument type="service" id="security.csrf.same_origin_token_manager"/>
+      <argument type="service" id="security.csrf.token_manager"/>
     </service>
     <service id="twig.extension.security_csrf" class="Symfony\Bridge\Twig\Extension\CsrfExtension">
       <tag name="twig.extension"/>
-    </service>
-    <service id="security.csrf.same_origin_token_manager" class="Symfony\Component\Security\Csrf\SameOriginCsrfTokenManager">
-      <tag name="monolog.logger" channel="request"/>
-      <tag name="kernel.event_listener" event="kernel.response" method="onKernelResponse"/>
-      <tag name="container.decorator" id="security.csrf.token_manager" inner="security.csrf.same_origin_token_manager.inner"/>
-      <tag name="container.hot_path"/>
-      <argument type="service" id="request_stack"/>
-      <argument type="service" id="monolog.logger.request" on-invalid="null"/>
-      <argument type="service" id="security.csrf.same_origin_token_manager.inner"/>
-      <argument type="collection">
-        <argument>submit</argument>
-        <argument>authenticate</argument>
-        <argument>logout</argument>
-      </argument>
-      <argument>false</argument>
-      <argument>csrf-token</argument>
-    </service>
-    <service id="form.resolved_type_factory" class="Symfony\Component\Form\Extension\DataCollector\Proxy\ResolvedTypeFactoryDataCollectorProxy">
-      <argument type="service">
-        <service class="Symfony\Component\Form\ResolvedFormTypeFactory"/>
-      </argument>
-      <argument type="service" id="data_collector.form"/>
-    </service>
-    <service id="form.registry" class="Symfony\Component\Form\FormRegistry">
-      <argument type="collection">
-        <argument type="service" id="form.extension"/>
-      </argument>
-      <argument type="service" id="form.resolved_type_factory"/>
-    </service>
-    <service id="form.factory" class="Symfony\Component\Form\FormFactory">
-      <argument type="service" id="form.registry"/>
-    </service>
-    <service id="form.extension" class="Symfony\Component\Form\Extension\DependencyInjection\DependencyInjectionExtension">
-      <argument type="service" id=".service_locator.wGEldOu"/>
-      <argument type="collection">
-        <argument key="Symfony\Component\Form\Extension\Core\Type\FormType" type="iterator">
-          <argument type="service" id="form.type_extension.form.transformation_failure_handling"/>
-          <argument type="service" id="form.type_extension.form.http_foundation"/>
-          <argument type="service" id="form.type_extension.form.validator"/>
-          <argument type="service" id="form.type_extension.upload.validator"/>
-          <argument type="service" id="form.type_extension.csrf"/>
-          <argument type="service" id="form.type_extension.form.data_collector"/>
-          <argument type="service" id="form.type_extension.form.password_hasher"/>
-        </argument>
-        <argument key="Symfony\Component\Form\Extension\Core\Type\RepeatedType" type="iterator">
-          <argument type="service" id="form.type_extension.repeated.validator"/>
-        </argument>
-        <argument key="Symfony\Component\Form\Extension\Core\Type\SubmitType" type="iterator">
-          <argument type="service" id="form.type_extension.submit.validator"/>
-        </argument>
-        <argument key="Symfony\Component\Form\Extension\Core\Type\PasswordType" type="iterator">
-          <argument type="service" id="form.type_extension.password.password_hasher"/>
-        </argument>
-      </argument>
-      <argument type="iterator">
-        <argument type="service" id="form.type_guesser.validator"/>
-        <argument type="service" id="form.type_guesser.doctrine"/>
-      </argument>
-    </service>
-    <service id="form.type_guesser.validator" class="Symfony\Component\Form\Extension\Validator\ValidatorTypeGuesser">
-      <tag name="form.type_guesser"/>
-      <argument type="service" id="debug.validator"/>
-    </service>
-    <service id="form.choice_list_factory.default" class="Symfony\Component\Form\ChoiceList\Factory\DefaultChoiceListFactory"/>
-    <service id="form.choice_list_factory.property_access" class="Symfony\Component\Form\ChoiceList\Factory\PropertyAccessDecorator">
-      <argument type="service" id="form.choice_list_factory.default"/>
-      <argument type="service" id="property_accessor"/>
-    </service>
-    <service id="form.choice_list_factory.cached" class="Symfony\Component\Form\ChoiceList\Factory\CachingFactoryDecorator">
-      <tag name="kernel.reset" method="reset"/>
-      <argument type="service" id="form.choice_list_factory.property_access"/>
-    </service>
-    <service id="form.type.form" class="Symfony\Component\Form\Extension\Core\Type\FormType">
-      <tag name="form.type"/>
-      <argument type="service" id="property_accessor"/>
-    </service>
-    <service id="form.type.choice" class="Symfony\Component\Form\Extension\Core\Type\ChoiceType">
-      <tag name="form.type"/>
-      <argument type="service" id="form.choice_list_factory.cached"/>
-      <argument type="service" id="translator.data_collector" on-invalid="ignore"/>
-    </service>
-    <service id="form.type.file" class="Symfony\Component\Form\Extension\Core\Type\FileType">
-      <tag name="form.type"/>
-      <argument type="service" id="translator.data_collector" on-invalid="ignore"/>
-    </service>
-    <service id="form.type.color" class="Symfony\Component\Form\Extension\Core\Type\ColorType">
-      <tag name="form.type"/>
-      <argument type="service" id="translator.data_collector" on-invalid="ignore"/>
-    </service>
-    <service id="form.type_extension.form.transformation_failure_handling" class="Symfony\Component\Form\Extension\Core\Type\TransformationFailureExtension">
-      <tag name="form.type_extension" extended-type="Symfony\Component\Form\Extension\Core\Type\FormType"/>
-      <argument type="service" id="translator.data_collector" on-invalid="ignore"/>
-    </service>
-    <service id="form.type_extension.form.http_foundation" class="Symfony\Component\Form\Extension\HttpFoundation\Type\FormTypeHttpFoundationExtension">
-      <tag name="form.type_extension"/>
-      <argument type="service" id="form.type_extension.form.request_handler"/>
-    </service>
-    <service id="form.type_extension.form.request_handler" class="Symfony\Component\Form\Extension\HttpFoundation\HttpFoundationRequestHandler">
-      <argument type="service" id="form.server_params"/>
-    </service>
-    <service id="form.server_params" class="Symfony\Component\Form\Util\ServerParams">
-      <argument type="service" id="request_stack"/>
-    </service>
-    <service id="form.type_extension.form.validator" class="Symfony\Component\Form\Extension\Validator\Type\FormTypeValidatorExtension">
-      <tag name="form.type_extension" extended-type="Symfony\Component\Form\Extension\Core\Type\FormType"/>
-      <argument type="service" id="debug.validator"/>
-      <argument>false</argument>
-      <argument type="service" id="twig.form.renderer" on-invalid="ignore"/>
-      <argument type="service" id="translator.data_collector" on-invalid="ignore"/>
-    </service>
-    <service id="form.type_extension.repeated.validator" class="Symfony\Component\Form\Extension\Validator\Type\RepeatedTypeValidatorExtension">
-      <tag name="form.type_extension"/>
-    </service>
-    <service id="form.type_extension.submit.validator" class="Symfony\Component\Form\Extension\Validator\Type\SubmitTypeValidatorExtension">
-      <tag name="form.type_extension" extended-type="Symfony\Component\Form\Extension\Core\Type\SubmitType"/>
-    </service>
-    <service id="form.type_extension.upload.validator" class="Symfony\Component\Form\Extension\Validator\Type\UploadValidatorExtension">
-      <tag name="form.type_extension"/>
-      <argument type="service" id="translator.data_collector"/>
-      <argument>validators</argument>
-    </service>
-    <service id="form.type_extension.csrf" class="Symfony\Component\Form\Extension\Csrf\Type\FormTypeCsrfExtension">
-      <tag name="form.type_extension"/>
-      <argument type="service" id="security.csrf.same_origin_token_manager"/>
-      <argument>true</argument>
-      <argument>_token</argument>
-      <argument type="service" id="translator.data_collector" on-invalid="null"/>
-      <argument>validators</argument>
-      <argument type="service" id="form.server_params"/>
-      <argument>%form.type_extension.csrf.field_attr%</argument>
-      <argument>submit</argument>
     </service>
     <service id="validator.builder" class="Symfony\Component\Validator\ValidatorBuilder">
       <call method="setConstraintValidatorFactory">
@@ -4091,11 +3863,6 @@
       </call>
       <call method="setTranslationDomain">
         <argument>validators</argument>
-      </call>
-      <call method="addXmlMappings">
-        <argument type="collection">
-          <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/form/Resources/config/validation.xml</argument>
-        </argument>
       </call>
       <call method="enableAttributeMapping"/>
       <call method="addMethodMapping">
@@ -4753,9 +4520,6 @@
         <argument type="service" id="data_collector.ajax"/>
       </call>
       <call method="add">
-        <argument type="service" id="data_collector.form"/>
-      </call>
-      <call method="add">
         <argument type="service" id="data_collector.exception"/>
       </call>
       <call method="add">
@@ -4943,6 +4707,10 @@
         <argument>cache.security_is_csrf_token_valid_attribute_expression_language</argument>
         <argument type="service" id="cache.security_is_csrf_token_valid_attribute_expression_language"/>
       </call>
+      <call method="addInstance">
+        <argument>cache.webpack_encore</argument>
+        <argument type="service" id="cache.webpack_encore"/>
+      </call>
     </service>
     <service id="cache_pool_clearer.cache_warmer" class="Symfony\Bundle\FrameworkBundle\CacheWarmer\CachePoolClearerCacheWarmer">
       <tag name="kernel.cache_warmer" priority="64"/>
@@ -4951,15 +4719,6 @@
         <argument>cache.validator</argument>
         <argument>cache.serializer</argument>
       </argument>
-    </service>
-    <service id="form.type_extension.form.data_collector" class="Symfony\Component\Form\Extension\DataCollector\Type\DataCollectorTypeExtension">
-      <tag name="form.type_extension"/>
-      <argument type="service" id="data_collector.form"/>
-    </service>
-    <service id="data_collector.form.extractor" class="Symfony\Component\Form\Extension\DataCollector\FormDataExtractor"/>
-    <service id="data_collector.form" class="Symfony\Component\Form\Extension\DataCollector\FormDataCollector">
-      <tag name="data_collector" template="@WebProfiler/Collector/form.html.twig" id="form" priority="310"/>
-      <argument type="service" id="data_collector.form.extractor"/>
     </service>
     <service id="debug.validator" class="Symfony\Component\Validator\Validator\TraceableValidator">
       <tag name="kernel.reset" method="reset"/>
@@ -5275,7 +5034,6 @@
     </service>
     <service id="form.type.entity" class="Symfony\Bridge\Doctrine\Form\Type\EntityType">
       <tag name="form.type" alias="entity"/>
-      <tag name="kernel.reset" method="reset"/>
       <argument type="service" id="doctrine"/>
     </service>
     <service id="doctrine.orm.configuration" class="Doctrine\ORM\Configuration" abstract="true"/>
@@ -5933,9 +5691,6 @@
         <argument type="service" id="twig.extension.serializer"/>
       </call>
       <call method="addExtension">
-        <argument type="service" id="twig.extension.form"/>
-      </call>
-      <call method="addExtension">
         <argument type="service" id="twig.extension.importmap"/>
       </call>
       <call method="addExtension">
@@ -5958,6 +5713,9 @@
       </call>
       <call method="addExtension">
         <argument type="service" id="turbo.twig.extension"/>
+      </call>
+      <call method="addExtension">
+        <argument type="service" id="webpack_encore.twig_entry_files_extension"/>
       </call>
       <call method="addExtension">
         <argument type="service" id="stimulus.twig_extension"/>
@@ -6013,7 +5771,6 @@
       <argument type="service" id="kernel"/>
       <argument type="collection">
         <argument key="/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/twig-bridge/Resources/views/Email">email</argument>
-        <argument key="/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/twig-bridge/Resources/views/Form">null</argument>
       </argument>
       <argument>/Users/sergioillan/Desktop/ARCHITESTA/templates</argument>
       <argument type="collection">
@@ -6097,9 +5854,6 @@
         <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/twig-bridge/Resources/views/Email</argument>
         <argument>!email</argument>
       </call>
-      <call method="addPath">
-        <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/twig-bridge/Resources/views/Form</argument>
-      </call>
     </service>
     <service id="twig.loader.chain" class="Twig\Loader\ChainLoader"/>
     <service id="twig.extension.profiler" class="Symfony\Bridge\Twig\Extension\ProfilerExtension">
@@ -6169,7 +5923,7 @@
       <argument>,</argument>
     </service>
     <service id="twig.runtime_loader" class="Twig\RuntimeLoader\ContainerRuntimeLoader">
-      <argument type="service" id=".service_locator.Nsv4T6i"/>
+      <argument type="service" id=".service_locator.nyCrpeg"/>
     </service>
     <service id="twig.error_renderer.html" class="Symfony\Bridge\Twig\ErrorRenderer\TwigErrorRenderer">
       <argument type="service" id="twig"/>
@@ -6192,20 +5946,6 @@
     <service id="controller.template_attribute_listener" class="Symfony\Bridge\Twig\EventListener\TemplateAttributeListener">
       <tag name="kernel.event_subscriber"/>
       <argument type="service" id="twig"/>
-    </service>
-    <service id="twig.extension.form" class="Symfony\Bridge\Twig\Extension\FormExtension">
-      <tag name="twig.extension"/>
-      <argument type="service" id="translator.data_collector" on-invalid="null"/>
-    </service>
-    <service id="twig.form.engine" class="Symfony\Bridge\Twig\Form\TwigRendererEngine">
-      <tag name="kernel.reset" method="reset"/>
-      <argument>%twig.form.resources%</argument>
-      <argument type="service" id="twig"/>
-    </service>
-    <service id="twig.form.renderer" class="Symfony\Component\Form\FormRenderer">
-      <tag name="twig.runtime"/>
-      <argument type="service" id="twig.form.engine"/>
-      <argument type="service" id="security.csrf.same_origin_token_manager" on-invalid="null"/>
     </service>
     <service id="twig.command.debug" class="Symfony\Bridge\Twig\Command\DebugCommand">
       <tag name="console.command"/>
@@ -6509,18 +6249,6 @@
     </service>
     <service id="security.user_password_hasher" class="Symfony\Component\PasswordHasher\Hasher\UserPasswordHasher">
       <argument type="service" id="security.password_hasher_factory"/>
-    </service>
-    <service id="form.listener.password_hasher" class="Symfony\Component\Form\Extension\PasswordHasher\EventListener\PasswordHasherListener">
-      <argument type="service" id="security.user_password_hasher"/>
-      <argument type="service" id="property_accessor" on-invalid="null"/>
-    </service>
-    <service id="form.type_extension.form.password_hasher" class="Symfony\Component\Form\Extension\PasswordHasher\Type\FormTypePasswordHasherExtension">
-      <tag name="form.type_extension" extended-type="Symfony\Component\Form\Extension\Core\Type\FormType"/>
-      <argument type="service" id="form.listener.password_hasher"/>
-    </service>
-    <service id="form.type_extension.password.password_hasher" class="Symfony\Component\Form\Extension\PasswordHasher\Type\PasswordTypePasswordHasherExtension">
-      <tag name="form.type_extension" extended-type="Symfony\Component\Form\Extension\Core\Type\PasswordType"/>
-      <argument type="service" id="form.listener.password_hasher"/>
     </service>
     <service id="security.channel_listener" class="Symfony\Component\Security\Http\Firewall\ChannelListener">
       <tag name="monolog.logger" channel="security"/>
@@ -6988,8 +6716,8 @@
       <call method="setOptions">
         <argument type="collection">
           <argument key="login_path">app_login</argument>
+          <argument key="default_target_path">null</argument>
           <argument key="always_use_default_target_path">false</argument>
-          <argument key="default_target_path">/</argument>
           <argument key="target_path_parameter">_target_path</argument>
           <argument key="use_referer">false</argument>
         </argument>
@@ -7430,11 +7158,79 @@
       <tag name="kernel.event_listener" event="kernel.request" priority="256"/>
       <tag name="container.hot_path"/>
     </service>
+    <service id=".1_ServiceLocator~ALGbbUG" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="webpack_encore.entrypoint_lookup_collection" type="service_closure" id="webpack_encore.entrypoint_lookup_collection"/>
+        <argument key="webpack_encore.tag_renderer" type="service_closure" id="webpack_encore.tag_renderer"/>
+      </argument>
+    </service>
+    <service id="webpack_encore.entrypoint_lookup_collection" class="Symfony\WebpackEncoreBundle\Asset\EntrypointLookupCollection">
+      <argument type="service" id=".service_locator.fKIsVqY"/>
+      <argument>_default</argument>
+    </service>
+    <service id="webpack_encore.tag_renderer" class="Symfony\WebpackEncoreBundle\Asset\TagRenderer">
+      <tag name="kernel.reset" method="reset"/>
+      <argument type="service" id="webpack_encore.entrypoint_lookup_collection"/>
+      <argument type="service" id="assets.packages"/>
+      <argument type="collection"/>
+      <argument type="collection"/>
+      <argument type="collection"/>
+      <argument type="service" id="debug.event_dispatcher"/>
+    </service>
+    <service id="webpack_encore.twig_entry_files_extension" class="Symfony\WebpackEncoreBundle\Twig\EntryFilesTwigExtension">
+      <tag name="twig.extension"/>
+      <argument type="service" id=".1_ServiceLocator~ALGbbUG"/>
+    </service>
+    <service id="webpack_encore.entrypoint_lookup.cache_warmer" class="Symfony\WebpackEncoreBundle\CacheWarmer\EntrypointCacheWarmer">
+      <tag name="kernel.cache_warmer"/>
+      <argument type="collection">
+        <argument key="_default">/Users/sergioillan/Desktop/ARCHITESTA/public/build/entrypoints.json</argument>
+      </argument>
+      <argument type="service" id=".debug.http_client" on-invalid="null"/>
+      <argument>/Users/sergioillan/Desktop/ARCHITESTA/var/cache/dev/webpack_encore.cache.php</argument>
+    </service>
+    <service id="webpack_encore.cache" class="Symfony\Component\Cache\Adapter\PhpArrayAdapter" constructor="create">
+      <argument>/Users/sergioillan/Desktop/ARCHITESTA/var/cache/dev/webpack_encore.cache.php</argument>
+      <argument type="service" id="cache.webpack_encore"/>
+    </service>
+    <service id="cache.webpack_encore" class="Symfony\Component\Cache\Adapter\TraceableAdapter">
+      <tag name="cache.pool"/>
+      <tag name="kernel.reset" method="reset"/>
+      <argument type="service" id="cache.webpack_encore.recorder_inner"/>
+    </service>
+    <service id="webpack_encore.exception_listener" class="Symfony\WebpackEncoreBundle\EventListener\ExceptionListener">
+      <tag name="kernel.event_listener" event="kernel.exception"/>
+      <argument type="service" id="webpack_encore.entrypoint_lookup_collection"/>
+      <argument type="collection">
+        <argument>_default</argument>
+      </argument>
+    </service>
+    <service id="Symfony\WebpackEncoreBundle\EventListener\ResetAssetsEventListener" class="Symfony\WebpackEncoreBundle\EventListener\ResetAssetsEventListener">
+      <tag name="kernel.event_subscriber"/>
+      <tag name="container.hot_path"/>
+      <argument type="service" id="webpack_encore.entrypoint_lookup_collection"/>
+      <argument type="collection">
+        <argument>_default</argument>
+      </argument>
+    </service>
+    <service id="webpack_encore.entrypoint_lookup[_default]" class="Symfony\WebpackEncoreBundle\Asset\EntrypointLookup">
+      <tag name="kernel.reset" method="reset"/>
+      <argument>/Users/sergioillan/Desktop/ARCHITESTA/public/build/entrypoints.json</argument>
+      <argument>null</argument>
+      <argument>_default</argument>
+      <argument>true</argument>
+      <argument type="service" id=".debug.http_client" on-invalid="null"/>
+    </service>
+    <service id=".service_locator.fKIsVqY" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="_default" type="service_closure" id="webpack_encore.entrypoint_lookup[_default]"/>
+      </argument>
+    </service>
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\RegistrationController" class="App\Controller\RegistrationController" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\RegistrationController" class="App\Controller\RegistrationController" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\RegistrationController" class="App\Controller\RegistrationController" autowire="true" autoconfigure="true" abstract="true"/>
-    <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\RegistrationFormType" class="App\Form\RegistrationFormType" autowire="true" abstract="true"/>
-    <service id=".abstract.instanceof.App\Form\RegistrationFormType" class="App\Form\RegistrationFormType" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\TestamentosRepository" class="App\Repository\TestamentosRepository" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Repository\TestamentosRepository" class="App\Repository\TestamentosRepository" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\UserRepository" class="App\Repository\UserRepository" autowire="true" abstract="true"/>
@@ -8205,17 +8001,6 @@
       <argument type="service" id="argument_resolver.query_parameter_value_resolver"/>
       <argument type="service" id="debug.stopwatch"/>
     </service>
-    <service id=".service_locator.wGEldOu" class="Symfony\Component\DependencyInjection\ServiceLocator">
-      <tag name="container.service_locator"/>
-      <argument type="collection">
-        <argument key="App\Form\RegistrationFormType" type="service_closure" id="App\Form\RegistrationFormType"/>
-        <argument key="Symfony\Component\Form\Extension\Core\Type\FormType" type="service_closure" id="form.type.form"/>
-        <argument key="Symfony\Component\Form\Extension\Core\Type\ChoiceType" type="service_closure" id="form.type.choice"/>
-        <argument key="Symfony\Component\Form\Extension\Core\Type\FileType" type="service_closure" id="form.type.file"/>
-        <argument key="Symfony\Component\Form\Extension\Core\Type\ColorType" type="service_closure" id="form.type.color"/>
-        <argument key="Symfony\Bridge\Doctrine\Form\Type\EntityType" type="service_closure" id="form.type.entity"/>
-      </argument>
-    </service>
     <service id="messenger.bus.default.middleware.traceable" class="Symfony\Component\Messenger\Middleware\TraceableMiddleware">
       <argument type="service" id="debug.stopwatch"/>
       <argument>messenger.bus.default</argument>
@@ -8399,12 +8184,12 @@
     </service>
     <service id="security.listener.csrf_protection" class="Symfony\Component\Security\Http\EventListener\CsrfProtectionListener">
       <tag name="kernel.event_subscriber"/>
-      <argument type="service" id="security.csrf.same_origin_token_manager"/>
+      <argument type="service" id="security.csrf.token_manager"/>
     </service>
     <service id="controller.is_csrf_token_valid_attribute_listener" class="Symfony\Component\Security\Http\EventListener\IsCsrfTokenValidAttributeListener">
       <tag name="kernel.event_subscriber"/>
       <tag name="container.hot_path"/>
-      <argument type="service" id="security.csrf.same_origin_token_manager"/>
+      <argument type="service" id="security.csrf.token_manager"/>
       <argument type="service" id="security.is_csrf_token_valid_attribute_expression_language" on-invalid="null"/>
     </service>
     <service id="security.logout.listener.csrf_token_clearing" class="Symfony\Component\Security\Http\EventListener\CsrfTokenClearingLogoutListener">
@@ -8591,9 +8376,8 @@
         <argument key="serializer" type="service_closure" id="debug.serializer" on-invalid="ignore"/>
         <argument key="security.authorization_checker" type="service_closure" id="security.authorization_checker" on-invalid="ignore"/>
         <argument key="twig" type="service_closure" id="twig" on-invalid="ignore"/>
-        <argument key="form.factory" type="service_closure" id="form.factory" on-invalid="ignore"/>
         <argument key="security.token_storage" type="service_closure" id="security.token_storage" on-invalid="ignore"/>
-        <argument key="security.csrf.token_manager" type="service_closure" id="security.csrf.same_origin_token_manager" on-invalid="ignore"/>
+        <argument key="security.csrf.token_manager" type="service_closure" id="security.csrf.token_manager" on-invalid="ignore"/>
         <argument key="parameter_bag" type="service_closure" id="parameter_bag" on-invalid="ignore"/>
         <argument key="web_link.http_header_serializer" type="service_closure" id="web_link.http_header_serializer" on-invalid="ignore"/>
       </argument>
@@ -8754,7 +8538,7 @@
         <argument key="security.firewall.map" type="service_closure" id="security.firewall.map"/>
         <argument key="security.user_checker_locator" type="service_closure" id="security.user_checker_locator"/>
         <argument key="security.firewall.event_dispatcher_locator" type="service_closure" id="security.firewall.event_dispatcher_locator"/>
-        <argument key="security.csrf.token_manager" type="service_closure" id="security.csrf.same_origin_token_manager" on-invalid="ignore"/>
+        <argument key="security.csrf.token_manager" type="service_closure" id="security.csrf.token_manager" on-invalid="ignore"/>
       </argument>
     </service>
     <service id="debug.validator.inner" class="Symfony\Component\Validator\Validator\ValidatorInterface">
@@ -8811,11 +8595,6 @@
         <argument type="service" id=".debug.value_resolver.argument_resolver.not_tagged_controller"/>
       </argument>
       <argument type="service" id=".service_locator.ccTBFaB"/>
-    </service>
-    <service id="security.csrf.same_origin_token_manager.inner" class="Symfony\Component\Security\Csrf\CsrfTokenManager">
-      <argument type="service" id="security.csrf.token_generator"/>
-      <argument type="service" id="security.csrf.token_storage"/>
-      <argument type="service" id="request_stack" on-invalid="ignore"/>
     </service>
     <service id="debug.serializer.inner" class="Symfony\Component\Serializer\Serializer">
       <argument type="collection">
@@ -9258,13 +9037,6 @@
       <argument>false</argument>
       <argument type="service_closure" id="console.command.translation_lint"/>
     </service>
-    <service id=".console.command.form_debug.lazy" class="Symfony\Component\Console\Command\LazyCommand">
-      <argument>debug:form</argument>
-      <argument type="collection"/>
-      <argument>Display form type information</argument>
-      <argument>false</argument>
-      <argument type="service_closure" id="console.command.form_debug"/>
-    </service>
     <service id=".console.command.secrets_set.lazy" class="Symfony\Component\Console\Command\LazyCommand">
       <argument>secrets:set</argument>
       <argument type="collection"/>
@@ -9706,7 +9478,7 @@
     </service>
     <service id="console.command_loader" class="Symfony\Component\Console\CommandLoader\ContainerCommandLoader" public="true">
       <tag name="container.no_preload"/>
-      <argument type="service" id=".service_locator.46aAMhU"/>
+      <argument type="service" id=".service_locator.cXqEWsR"/>
       <argument type="collection">
         <argument key="about">console.command.about</argument>
         <argument key="assets:install">console.command.assets_install</argument>
@@ -9743,7 +9515,6 @@
         <argument key="lint:xliff">console.command.xliff_lint</argument>
         <argument key="lint:yaml">console.command.yaml_lint</argument>
         <argument key="lint:translations">console.command.translation_lint</argument>
-        <argument key="debug:form">console.command.form_debug</argument>
         <argument key="secrets:set">console.command.secrets_set</argument>
         <argument key="secrets:remove">console.command.secrets_remove</argument>
         <argument key="secrets:generate-keys">console.command.secrets_generate_key</argument>
@@ -9827,7 +9598,7 @@
         <argument key="make:webhook">maker.auto_command.make_webhook</argument>
       </argument>
     </service>
-    <service id=".service_locator.46aAMhU" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.cXqEWsR" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="console.command.about" type="service_closure" id=".console.command.about.lazy"/>
@@ -9865,7 +9636,6 @@
         <argument key="console.command.xliff_lint" type="service_closure" id=".console.command.xliff_lint.lazy"/>
         <argument key="console.command.yaml_lint" type="service_closure" id=".console.command.yaml_lint.lazy"/>
         <argument key="console.command.translation_lint" type="service_closure" id=".console.command.translation_lint.lazy"/>
-        <argument key="console.command.form_debug" type="service_closure" id=".console.command.form_debug.lazy"/>
         <argument key="console.command.secrets_set" type="service_closure" id=".console.command.secrets_set.lazy"/>
         <argument key="console.command.secrets_remove" type="service_closure" id=".console.command.secrets_remove.lazy"/>
         <argument key="console.command.secrets_generate_key" type="service_closure" id=".console.command.secrets_generate_key.lazy"/>
@@ -10038,13 +9808,20 @@
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
     </service>
-    <service id=".service_locator.Nsv4T6i" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id="cache.webpack_encore.recorder_inner" class="Symfony\Component\Cache\Adapter\AdapterInterface">
+      <argument>RE45LMp4ku</argument>
+      <argument>0</argument>
+      <argument>%container.build_id%</argument>
+      <argument>/Users/sergioillan/Desktop/ARCHITESTA/var/cache/dev/pools/system</argument>
+      <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
+      <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
+    </service>
+    <service id=".service_locator.nyCrpeg" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="Symfony\Bridge\Twig\Extension\CsrfRuntime" type="service_closure" id="twig.runtime.security_csrf"/>
         <argument key="Symfony\Bridge\Twig\Extension\HttpKernelRuntime" type="service_closure" id="twig.runtime.httpkernel"/>
         <argument key="Symfony\Bridge\Twig\Extension\SerializerRuntime" type="service_closure" id="twig.runtime.serializer"/>
-        <argument key="Symfony\Component\Form\FormRenderer" type="service_closure" id="twig.form.renderer"/>
         <argument key="Symfony\Bridge\Twig\Extension\ImportMapRuntime" type="service_closure" id="twig.runtime.importmap"/>
         <argument key="Symfony\UX\StimulusBundle\Twig\UxControllersTwigRuntime" type="service_closure" id="stimulus.ux_controllers_twig_runtime"/>
       </argument>
@@ -10084,7 +9861,8 @@
     <service id="Symfony\Contracts\HttpClient\HttpClientInterface" alias=".debug.http_client"/>
     <service id="mailer" alias="mailer.mailer"/>
     <service id="Symfony\Component\Mailer\MailerInterface" alias="mailer.mailer"/>
-    <service id="Symfony\Component\Mailer\Transport\TransportInterface" alias="mailer.default_transport"/>
+    <service id="mailer.default_transport" alias="mailer.transports"/>
+    <service id="Symfony\Component\Mailer\Transport\TransportInterface" alias="mailer.transports"/>
     <service id="Symfony\Component\Translation\Reader\TranslationReaderInterface" alias="translation.reader"/>
     <service id="Symfony\Component\Translation\Extractor\ExtractorInterface" alias="translation.extractor"/>
     <service id="Symfony\Component\Translation\Writer\TranslationWriterInterface" alias="translation.writer"/>
@@ -10128,12 +9906,7 @@
     <service id="session.handler" alias="session.handler.native"/>
     <service id="Symfony\Component\Security\Csrf\TokenGenerator\TokenGeneratorInterface" alias="security.csrf.token_generator"/>
     <service id="Symfony\Component\Security\Csrf\TokenStorage\TokenStorageInterface" alias="security.csrf.token_storage"/>
-    <service id="Symfony\Component\Security\Csrf\CsrfTokenManagerInterface" alias="security.csrf.same_origin_token_manager"/>
-    <service id="Symfony\Component\Form\ResolvedFormTypeFactoryInterface" alias="form.resolved_type_factory"/>
-    <service id="Symfony\Component\Form\FormRegistryInterface" alias="form.registry"/>
-    <service id="Symfony\Component\Form\FormFactoryInterface" alias="form.factory"/>
-    <service id="form.property_accessor" alias="property_accessor"/>
-    <service id="form.choice_list_factory" alias="form.choice_list_factory.cached"/>
+    <service id="Symfony\Component\Security\Csrf\CsrfTokenManagerInterface" alias="security.csrf.token_manager"/>
     <service id="Symfony\Component\Validator\Validator\ValidatorInterface" alias="debug.validator"/>
     <service id="validator.mapping.class_metadata_factory" alias="debug.validator"/>
     <service id="Symfony\Component\Messenger\Transport\Serialization\SerializerInterface" alias="messenger.transport.native_php_serializer"/>
@@ -10185,6 +9958,8 @@
     <service id="Psr\Log\LoggerInterface" alias="monolog.logger"/>
     <service id="SymfonyCasts\Bundle\VerifyEmail\VerifyEmailHelperInterface" alias="symfonycasts.verify_email.helper"/>
     <service id="Symfony\UX\Turbo\Broadcaster\BroadcasterInterface" alias="turbo.broadcaster.action_renderer"/>
+    <service id="Symfony\WebpackEncoreBundle\Asset\EntrypointLookupCollectionInterface" alias="webpack_encore.entrypoint_lookup_collection"/>
+    <service id="Symfony\WebpackEncoreBundle\Asset\EntrypointLookupInterface" alias="webpack_encore.entrypoint_lookup[_default]"/>
     <service id="container.env_var_processors_locator" alias=".service_locator.pRu6x_4" public="true"/>
     <service id="twig.loader.filesystem" alias="twig.loader.native_filesystem"/>
     <service id="argument_resolver.controller_locator" alias=".service_locator.SSIhJf3"/>
@@ -10210,6 +9985,7 @@
     <service id="Psr\Log\LoggerInterface $deprecationLogger" alias="monolog.logger.deprecation"/>
     <service id=".service_locator.xqODiDp" alias="messenger.receiver_locator"/>
     <service id=".service_locator.kVuTj7R" alias="messenger.retry_strategy_locator"/>
+    <service id=".service_locator.q6rKGBk" alias=".1_ServiceLocator~ALGbbUG"/>
     <service id=".service_locator.hUPzsWO" alias=".service_locator.ea.H0ae"/>
     <service id="validator" alias="debug.validator"/>
     <service id="http_client" alias=".debug.http_client"/>
@@ -10219,7 +9995,6 @@
     <service id="event_dispatcher" alias="debug.event_dispatcher" public="true"/>
     <service id="controller_resolver" alias="debug.controller_resolver"/>
     <service id="argument_resolver" alias="debug.argument_resolver"/>
-    <service id="security.csrf.token_manager" alias="security.csrf.same_origin_token_manager"/>
     <service id="translator.data_collector.inner" alias="translator.default"/>
     <service id="serializer" alias="debug.serializer"/>
     <service id="var_dumper.cli_dumper" alias="var_dumper.contextualized_cli_dumper"/>
@@ -10234,6 +10009,6 @@
     <service id=".service_locator.o4KKgIJ" alias=".service_locator.tEL1pRK"/>
     <service id=".service_locator.l6GrDWv" alias=".service_locator.KHhLDTq"/>
     <service id=".service_locator.Nrz07Zz" alias=".service_locator.3QECKYg"/>
-    <service id=".service_locator.9nvaCmp" alias=".service_locator.ZyP9f7K"/>
+    <service id=".service_locator.BkMMBek" alias=".service_locator.ZyP9f7K"/>
   </services>
 </container>
