@@ -34,8 +34,11 @@ class TestaTtestamento
     #[ORM\Column]
     private ?int $num_protocolo = null;
 
-    #[ORM\ManyToOne(inversedBy: 'borrar')]
-    private ?TestaTpoblacion $num_folio = null;
+    #[ORM\Column]
+    private ?int $num_folio = null;
+
+    #[ORM\ManyToOne(inversedBy: 'testaTpoblacion')]
+    private ?TestaTpoblacion $id_poblacion = null;
 
     #[ORM\ManyToOne(inversedBy: 'testaTtestamentos')]
     private ?TestaTnotario $id_notario = null;
@@ -59,15 +62,14 @@ class TestaTtestamento
         return $this->id;
     }
 
-    public function getIdid(): ?int
+    public function getIdPoblacion(): ?TestaTpoblacion
     {
-        return $this->idid;
+        return $this->id_poblacion;
     }
 
-    public function setIdid(int $idid): static
+    public function setIdPoblacion(?TestaTpoblacion $poblacion): self
     {
-        $this->idid = $idid;
-
+        $this->id_poblacion = $poblacion;
         return $this;
     }
 
