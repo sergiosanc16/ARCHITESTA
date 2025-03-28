@@ -2,22 +2,22 @@
 
 namespace App\Repository;
 
-use App\Entity\Testamentos;
+use App\Entity\TestaTpoblacion;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @extends ServiceEntityRepository<Testamentos>
+ * @extends ServiceEntityRepository<TestaTpoblacion>
  */
-class TestamentosRepository extends ServiceEntityRepository
+class TestaTpoblacionRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Testamentos::class);
+        parent::__construct($registry, TestaTpoblacion::class);
     }
 
     //    /**
-    //     * @return Testamentos[] Returns an array of Testamentos objects
+    //     * @return TestaTpoblacion[] Returns an array of TestaTpoblacion objects
     //     */
     //    public function findByExampleField($value): array
     //    {
@@ -31,7 +31,7 @@ class TestamentosRepository extends ServiceEntityRepository
     //        ;
     //    }
 
-    //    public function findOneBySomeField($value): ?Testamentos
+    //    public function findOneBySomeField($value): ?TestaTpoblacion
     //    {
     //        return $this->createQueryBuilder('t')
     //            ->andWhere('t.exampleField = :val')

@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New TestaTotorgante{% endblock %}
+
+{% block body %}
+    <h1>Create new TestaTotorgante</h1>
+
+    {{ include('testa_totorgante/_form.html.twig') }}
+
+    <a href="{{ path('app_testa_totorgante_index') }}">back to list</a>
+{% endblock %}

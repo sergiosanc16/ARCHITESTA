@@ -1,0 +1,208 @@
+<?php
+
+namespace App\Entity;
+
+use App\Repository\TestaTtestamentoRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\DBAL\Types\Types;
+use Doctrine\ORM\Mapping as ORM;
+
+#[ORM\Entity(repositoryClass: TestaTtestamentoRepository::class)]
+class TestaTtestamento
+{
+    #[ORM\Id]
+    #[ORM\GeneratedValue]
+    #[ORM\Column]
+    private ?int $id = null;
+
+    #[ORM\Column]
+    private ?int $idid = null;
+
+    #[ORM\Column(type: Types::SMALLINT)]
+    private ?int $anno = null;
+
+    #[ORM\Column(type: Types::SMALLINT)]
+    private ?int $mes = null;
+
+    #[ORM\Column(type: Types::SMALLINT)]
+    private ?int $dia = null;
+
+    #[ORM\Column]
+    private ?bool $mancomunado = null;
+
+    #[ORM\Column]
+    private ?bool $textoilegible = null;
+
+    #[ORM\Column]
+    private ?int $num_protocolo = null;
+
+    #[ORM\ManyToOne(inversedBy: 'borrar')]
+    private ?TestaTpoblacion $num_folio = null;
+
+    #[ORM\ManyToOne(inversedBy: 'testaTtestamentos')]
+    private ?TestaTnotario $id_notario = null;
+
+    /**
+     * @var Collection<int, TestaTparentesco>
+     */
+    #[ORM\ManyToMany(targetEntity: TestaTparentesco::class, inversedBy: 'testaTtestamentos')]
+    private Collection $id_parentesco;
+
+    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
+    private ?TestaTimagen $id_imagen = null;
+
+    public function __construct()
+    {
+        $this->id_parentesco = new ArrayCollection();
+    }
+
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
+
+    public function getIdid(): ?int
+    {
+        return $this->idid;
+    }
+
+    public function setIdid(int $idid): static
+    {
+        $this->idid = $idid;
+
+        return $this;
+    }
+
+    public function getAnno(): ?int
+    {
+        return $this->anno;
+    }
+
+    public function setAnno(int $anno): static
+    {
+        $this->anno = $anno;
+
+        return $this;
+    }
+
+    public function getMes(): ?int
+    {
+        return $this->mes;
+    }
+
+    public function setMes(int $mes): static
+    {
+        $this->mes = $mes;
+
+        return $this;
+    }
+
+    public function getDia(): ?int
+    {
+        return $this->dia;
+    }
+
+    public function setDia(int $dia): static
+    {
+        $this->dia = $dia;
+
+        return $this;
+    }
+
+    public function isMancomunado(): ?bool
+    {
+        return $this->mancomunado;
+    }
+
+    public function setMancomunado(bool $mancomunado): static
+    {
+        $this->mancomunado = $mancomunado;
+
+        return $this;
+    }
+
+    public function isTextoilegible(): ?bool
+    {
+        return $this->textoilegible;
+    }
+
+    public function setTextoilegible(bool $textoilegible): static
+    {
+        $this->textoilegible = $textoilegible;
+
+        return $this;
+    }
+
+    public function getNumProtocolo(): ?int
+    {
+        return $this->num_protocolo;
+    }
+
+    public function setNumProtocolo(int $num_protocolo): static
+    {
+        $this->num_protocolo = $num_protocolo;
+
+        return $this;
+    }
+
+    public function getNumFolio(): ?TestaTpoblacion
+    {
+        return $this->num_folio;
+    }
+
+    public function setNumFolio(?TestaTpoblacion $num_folio): static
+    {
+        $this->num_folio = $num_folio;
+
+        return $this;
+    }
+
+    public function getIdNotario(): ?TestaTnotario
+    {
+        return $this->id_notario;
+    }
+
+    public function setIdNotario(?TestaTnotario $id_notario): static
+    {
+        $this->id_notario = $id_notario;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, TestaTparentesco>
+     */
+    public function getIdParentesco(): Collection
+    {
+        return $this->id_parentesco;
+    }
+
+    public function addIdParentesco(TestaTparentesco $idParentesco): static
+    {
+        if (!$this->id_parentesco->contains($idParentesco)) {
+            $this->id_parentesco->add($idParentesco);
+        }
+
+        return $this;
+    }
+
+    public function removeIdParentesco(TestaTparentesco $idParentesco): static
+    {
+        $this->id_parentesco->removeElement($idParentesco);
+
+        return $this;
+    }
+
+    public function getIdImagen(): ?TestaTimagen
+    {
+        return $this->id_imagen;
+    }
+
+    public function setIdImagen(?TestaTimagen $id_imagen): static
+    {
+        $this->id_imagen = $id_imagen;
+
+        return $this;
+    }
+}
