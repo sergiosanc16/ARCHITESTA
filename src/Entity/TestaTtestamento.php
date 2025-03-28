@@ -16,9 +16,6 @@ class TestaTtestamento
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column]
-    private ?int $idid = null;
-
     #[ORM\Column(type: Types::SMALLINT)]
     private ?int $anno = null;
 
