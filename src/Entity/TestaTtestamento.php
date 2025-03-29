@@ -42,15 +42,18 @@ class TestaTtestamento
     private ?TestaTpoblacion $id_poblacion = null;
 
     #[ORM\ManyToOne(inversedBy: 'testaTtestamentos')]
+    #[ORM\JoinColumn(name: "id_notario", referencedColumnName: "id")]
     private ?TestaTnotario $id_notario = null;
 
     /**
      * @var Collection<int, TestaTparentesco>
      */
     #[ORM\ManyToMany(targetEntity: TestaTparentesco::class, inversedBy: 'testaTtestamentos')]
+    #[ORM\JoinColumn(name: "id_parentesco", referencedColumnName: "id")]
     private Collection $id_parentesco;
 
     #[ORM\OneToOne(cascade: ['persist', 'remove'])]
+    #[ORM\JoinColumn(name: "id_imagen", referencedColumnName: "id")]
     private ?TestaTimagen $id_imagen = null;
 
     public function __construct()

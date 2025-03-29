@@ -24,7 +24,8 @@ class TestaTtestamentoType extends AbstractType
             ->add('mancomunado')
             ->add('textoilegible')
             ->add('num_protocolo')
-            ->add('num_folio', EntityType::class, [
+            ->add('num_folio')
+            ->add('id_poblacion', EntityType::class, [
                 'class' => TestaTpoblacion::class,
                 'choice_label' => 'id',
             ])
