@@ -49,9 +49,11 @@
              btn-primary" type="submit">
                 Sign in
             </button>
-            <a onclick="window.location.href='{{ path('app_forgot_password_request') }}'">
-            Recuperar la contraseña
-            </a>
+            <small class="d-block mt-2">
+                <a href="{{ path('app_forgot_password_request') }}">
+                    Recuperar la contraseña
+                </a>
+            </small>
         </form>
     </div>
 </div>
