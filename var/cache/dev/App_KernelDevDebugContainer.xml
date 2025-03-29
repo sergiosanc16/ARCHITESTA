@@ -27,6 +27,7 @@
       <parameter key="TurboBundle">Symfony\UX\Turbo\TurboBundle</parameter>
       <parameter key="WebpackEncoreBundle">Symfony\WebpackEncoreBundle\WebpackEncoreBundle</parameter>
       <parameter key="TwigExtraBundle">Twig\Extra\TwigExtraBundle\TwigExtraBundle</parameter>
+      <parameter key="SymfonyCastsResetPasswordBundle">SymfonyCasts\Bundle\ResetPassword\SymfonyCastsResetPasswordBundle</parameter>
     </parameter>
     <parameter key="kernel.bundles_metadata" type="collection">
       <parameter key="FrameworkBundle" type="collection">
@@ -84,6 +85,10 @@
       <parameter key="TwigExtraBundle" type="collection">
         <parameter key="path">/Users/sergioillan/Desktop/ARCHITESTA/vendor/twig/extra-bundle</parameter>
         <parameter key="namespace">Twig\Extra\TwigExtraBundle</parameter>
+      </parameter>
+      <parameter key="SymfonyCastsResetPasswordBundle" type="collection">
+        <parameter key="path">/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfonycasts/reset-password-bundle/src</parameter>
+        <parameter key="namespace">SymfonyCasts\Bundle\ResetPassword</parameter>
       </parameter>
     </parameter>
     <parameter key="kernel.charset">UTF-8</parameter>
@@ -376,6 +381,15 @@
         <argument type="service" id=".service_locator.ZyP9f7K.App\Controller\RegistrationController"/>
       </call>
     </service>
+    <service id="App\Controller\ResetPasswordController" class="App\Controller\ResetPasswordController" public="true" autowire="true" autoconfigure="true">
+      <tag name="controller.service_arguments"/>
+      <tag name="container.service_subscriber"/>
+      <argument type="service" id="symfonycasts.reset_password.helper"/>
+      <argument type="service" id="doctrine.orm.default_entity_manager"/>
+      <call method="setContainer">
+        <argument type="service" id=".service_locator.ZyP9f7K.App\Controller\ResetPasswordController"/>
+      </call>
+    </service>
     <service id="App\Controller\TestaTimagenController" class="App\Controller\TestaTimagenController" public="true" autowire="true" autoconfigure="true">
       <tag name="controller.service_arguments"/>
       <tag name="container.service_subscriber"/>
@@ -439,7 +453,13 @@
         <argument type="service" id=".service_locator.ZyP9f7K.App\Controller\UserController"/>
       </call>
     </service>
+    <service id="App\Form\ChangePasswordFormType" class="App\Form\ChangePasswordFormType" autowire="true" autoconfigure="true">
+      <tag name="form.type" csrf_token_id="%.form.type_extension.csrf.token_id%"/>
+    </service>
     <service id="App\Form\RegistrationFormType" class="App\Form\RegistrationFormType" autowire="true" autoconfigure="true">
+      <tag name="form.type" csrf_token_id="%.form.type_extension.csrf.token_id%"/>
+    </service>
+    <service id="App\Form\ResetPasswordRequestFormType" class="App\Form\ResetPasswordRequestFormType" autowire="true" autoconfigure="true">
       <tag name="form.type" csrf_token_id="%.form.type_extension.csrf.token_id%"/>
     </service>
     <service id="App\Form\TestaTimagenType" class="App\Form\TestaTimagenType" autowire="true" autoconfigure="true">
@@ -468,6 +488,10 @@
     </service>
     <service id="App\Form\UserType" class="App\Form\UserType" autowire="true" autoconfigure="true">
       <tag name="form.type" csrf_token_id="%.form.type_extension.csrf.token_id%"/>
+    </service>
+    <service id="App\Repository\ResetPasswordRequestRepository" class="App\Repository\ResetPasswordRequestRepository" autowire="true" autoconfigure="true">
+      <tag name="doctrine.repository_service"/>
+      <argument type="service" id="doctrine"/>
     </service>
     <service id="App\Repository\TestaTimagenRepository" class="App\Repository\TestaTimagenRepository" autowire="true" autoconfigure="true">
       <tag name="doctrine.repository_service"/>
@@ -538,7 +562,7 @@
     </service>
     <service id="argument_resolver.service" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver">
       <tag priority="-50" name="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver">controller.argument_value_resolver</tag>
-      <argument type="service" id=".service_locator.uIY5MO5"/>
+      <argument type="service" id=".service_locator.EcVxXmi"/>
     </service>
     <service id="argument_resolver.default" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver">
       <tag priority="-100" name="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver">controller.argument_value_resolver</tag>
@@ -1380,6 +1404,7 @@
         <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/form/Resources/translations</argument>
         <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/security-core/Resources/translations</argument>
         <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfonycasts/verify-email-bundle/src/Resources/translations</argument>
+        <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfonycasts/reset-password-bundle/src/Resources/translations</argument>
       </argument>
       <argument type="collection">
         <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/twig-bridge/Resources/views/Email</argument>
@@ -1407,6 +1432,7 @@
         <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/form/Resources/translations</argument>
         <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/security-core/Resources/translations</argument>
         <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfonycasts/verify-email-bundle/src/Resources/translations</argument>
+        <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfonycasts/reset-password-bundle/src/Resources/translations</argument>
       </argument>
       <argument type="collection">
         <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/twig-bridge/Resources/views/Email</argument>
@@ -1503,7 +1529,9 @@
         <argument>Symfony\Bridge\Doctrine\Form\Type</argument>
       </argument>
       <argument type="collection">
+        <argument>App\Form\ChangePasswordFormType</argument>
         <argument>App\Form\RegistrationFormType</argument>
+        <argument>App\Form\ResetPasswordRequestFormType</argument>
         <argument>App\Form\TestaTimagenType</argument>
         <argument>App\Form\TestaTnotarioType</argument>
         <argument>App\Form\TestaToficioType</argument>
@@ -2250,6 +2278,7 @@
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/form/Resources/translations/validators.ar.xlf</argument>
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/security-core/Resources/translations/security.ar.xlf</argument>
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfonycasts/verify-email-bundle/src/Resources/translations/VerifyEmailBundle.ar.xlf</argument>
+            <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfonycasts/reset-password-bundle/src/Resources/translations/ResetPasswordBundle.ar.xlf</argument>
           </argument>
           <argument key="az" type="collection">
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/validator/Resources/translations/validators.az.xlf</argument>
@@ -2276,12 +2305,14 @@
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/form/Resources/translations/validators.ca.xlf</argument>
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/security-core/Resources/translations/security.ca.xlf</argument>
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfonycasts/verify-email-bundle/src/Resources/translations/VerifyEmailBundle.ca.xlf</argument>
+            <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfonycasts/reset-password-bundle/src/Resources/translations/ResetPasswordBundle.ca.xlf</argument>
           </argument>
           <argument key="cs" type="collection">
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/validator/Resources/translations/validators.cs.xlf</argument>
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/form/Resources/translations/validators.cs.xlf</argument>
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/security-core/Resources/translations/security.cs.xlf</argument>
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfonycasts/verify-email-bundle/src/Resources/translations/VerifyEmailBundle.cs.xlf</argument>
+            <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfonycasts/reset-password-bundle/src/Resources/translations/ResetPasswordBundle.cs.xlf</argument>
           </argument>
           <argument key="cy" type="collection">
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/validator/Resources/translations/validators.cy.xlf</argument>
@@ -2293,30 +2324,35 @@
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/form/Resources/translations/validators.da.xlf</argument>
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/security-core/Resources/translations/security.da.xlf</argument>
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfonycasts/verify-email-bundle/src/Resources/translations/VerifyEmailBundle.da.xlf</argument>
+            <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfonycasts/reset-password-bundle/src/Resources/translations/ResetPasswordBundle.da.xlf</argument>
           </argument>
           <argument key="de" type="collection">
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/validator/Resources/translations/validators.de.xlf</argument>
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/form/Resources/translations/validators.de.xlf</argument>
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/security-core/Resources/translations/security.de.xlf</argument>
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfonycasts/verify-email-bundle/src/Resources/translations/VerifyEmailBundle.de.xlf</argument>
+            <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfonycasts/reset-password-bundle/src/Resources/translations/ResetPasswordBundle.de.xlf</argument>
           </argument>
           <argument key="el" type="collection">
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/validator/Resources/translations/validators.el.xlf</argument>
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/form/Resources/translations/validators.el.xlf</argument>
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/security-core/Resources/translations/security.el.xlf</argument>
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfonycasts/verify-email-bundle/src/Resources/translations/VerifyEmailBundle.el.xlf</argument>
+            <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfonycasts/reset-password-bundle/src/Resources/translations/ResetPasswordBundle.el.xlf</argument>
           </argument>
           <argument key="en" type="collection">
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/validator/Resources/translations/validators.en.xlf</argument>
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/form/Resources/translations/validators.en.xlf</argument>
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/security-core/Resources/translations/security.en.xlf</argument>
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfonycasts/verify-email-bundle/src/Resources/translations/VerifyEmailBundle.en.xlf</argument>
+            <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfonycasts/reset-password-bundle/src/Resources/translations/ResetPasswordBundle.en.xlf</argument>
           </argument>
           <argument key="es" type="collection">
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/validator/Resources/translations/validators.es.xlf</argument>
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/form/Resources/translations/validators.es.xlf</argument>
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/security-core/Resources/translations/security.es.xlf</argument>
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfonycasts/verify-email-bundle/src/Resources/translations/VerifyEmailBundle.es.xlf</argument>
+            <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfonycasts/reset-password-bundle/src/Resources/translations/ResetPasswordBundle.es.xlf</argument>
           </argument>
           <argument key="et" type="collection">
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/validator/Resources/translations/validators.et.xlf</argument>
@@ -2333,18 +2369,21 @@
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/form/Resources/translations/validators.fa.xlf</argument>
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/security-core/Resources/translations/security.fa.xlf</argument>
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfonycasts/verify-email-bundle/src/Resources/translations/VerifyEmailBundle.fa.xlf</argument>
+            <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfonycasts/reset-password-bundle/src/Resources/translations/ResetPasswordBundle.fa.xlf</argument>
           </argument>
           <argument key="fi" type="collection">
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/validator/Resources/translations/validators.fi.xlf</argument>
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/form/Resources/translations/validators.fi.xlf</argument>
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/security-core/Resources/translations/security.fi.xlf</argument>
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfonycasts/verify-email-bundle/src/Resources/translations/VerifyEmailBundle.fi.xlf</argument>
+            <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfonycasts/reset-password-bundle/src/Resources/translations/ResetPasswordBundle.fi.xlf</argument>
           </argument>
           <argument key="fr" type="collection">
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/validator/Resources/translations/validators.fr.xlf</argument>
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/form/Resources/translations/validators.fr.xlf</argument>
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/security-core/Resources/translations/security.fr.xlf</argument>
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfonycasts/verify-email-bundle/src/Resources/translations/VerifyEmailBundle.fr.xlf</argument>
+            <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfonycasts/reset-password-bundle/src/Resources/translations/ResetPasswordBundle.fr.xlf</argument>
           </argument>
           <argument key="gl" type="collection">
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/validator/Resources/translations/validators.gl.xlf</argument>
@@ -2366,6 +2405,7 @@
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/form/Resources/translations/validators.hu.xlf</argument>
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/security-core/Resources/translations/security.hu.xlf</argument>
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfonycasts/verify-email-bundle/src/Resources/translations/VerifyEmailBundle.hu.xlf</argument>
+            <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfonycasts/reset-password-bundle/src/Resources/translations/ResetPasswordBundle.hu.xlf</argument>
           </argument>
           <argument key="hy" type="collection">
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/validator/Resources/translations/validators.hy.xlf</argument>
@@ -2377,18 +2417,21 @@
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/form/Resources/translations/validators.id.xlf</argument>
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/security-core/Resources/translations/security.id.xlf</argument>
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfonycasts/verify-email-bundle/src/Resources/translations/VerifyEmailBundle.id.xlf</argument>
+            <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfonycasts/reset-password-bundle/src/Resources/translations/ResetPasswordBundle.id.xlf</argument>
           </argument>
           <argument key="it" type="collection">
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/validator/Resources/translations/validators.it.xlf</argument>
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/form/Resources/translations/validators.it.xlf</argument>
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/security-core/Resources/translations/security.it.xlf</argument>
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfonycasts/verify-email-bundle/src/Resources/translations/VerifyEmailBundle.it.xlf</argument>
+            <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfonycasts/reset-password-bundle/src/Resources/translations/ResetPasswordBundle.it.xlf</argument>
           </argument>
           <argument key="ja" type="collection">
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/validator/Resources/translations/validators.ja.xlf</argument>
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/form/Resources/translations/validators.ja.xlf</argument>
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/security-core/Resources/translations/security.ja.xlf</argument>
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfonycasts/verify-email-bundle/src/Resources/translations/VerifyEmailBundle.ja.xlf</argument>
+            <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfonycasts/reset-password-bundle/src/Resources/translations/ResetPasswordBundle.ja.xlf</argument>
           </argument>
           <argument key="lb" type="collection">
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/validator/Resources/translations/validators.lb.xlf</argument>
@@ -2410,12 +2453,14 @@
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/form/Resources/translations/validators.mk.xlf</argument>
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/security-core/Resources/translations/security.mk.xlf</argument>
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfonycasts/verify-email-bundle/src/Resources/translations/VerifyEmailBundle.mk.xlf</argument>
+            <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfonycasts/reset-password-bundle/src/Resources/translations/ResetPasswordBundle.mk.xlf</argument>
           </argument>
           <argument key="mn" type="collection">
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/validator/Resources/translations/validators.mn.xlf</argument>
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/form/Resources/translations/validators.mn.xlf</argument>
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/security-core/Resources/translations/security.mn.xlf</argument>
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfonycasts/verify-email-bundle/src/Resources/translations/VerifyEmailBundle.mn.xlf</argument>
+            <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfonycasts/reset-password-bundle/src/Resources/translations/ResetPasswordBundle.mn.xlf</argument>
           </argument>
           <argument key="my" type="collection">
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/validator/Resources/translations/validators.my.xlf</argument>
@@ -2432,6 +2477,7 @@
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/form/Resources/translations/validators.nl.xlf</argument>
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/security-core/Resources/translations/security.nl.xlf</argument>
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfonycasts/verify-email-bundle/src/Resources/translations/VerifyEmailBundle+intl-icu.nl.xlf</argument>
+            <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfonycasts/reset-password-bundle/src/Resources/translations/ResetPasswordBundle+intl-icu.nl.xlf</argument>
           </argument>
           <argument key="nn" type="collection">
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/validator/Resources/translations/validators.nn.xlf</argument>
@@ -2448,12 +2494,14 @@
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/form/Resources/translations/validators.pl.xlf</argument>
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/security-core/Resources/translations/security.pl.xlf</argument>
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfonycasts/verify-email-bundle/src/Resources/translations/VerifyEmailBundle.pl.xlf</argument>
+            <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfonycasts/reset-password-bundle/src/Resources/translations/ResetPasswordBundle.pl.xlf</argument>
           </argument>
           <argument key="pt" type="collection">
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/validator/Resources/translations/validators.pt.xlf</argument>
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/form/Resources/translations/validators.pt.xlf</argument>
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/security-core/Resources/translations/security.pt.xlf</argument>
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfonycasts/verify-email-bundle/src/Resources/translations/VerifyEmailBundle.pt.xlf</argument>
+            <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfonycasts/reset-password-bundle/src/Resources/translations/ResetPasswordBundle.pt.xlf</argument>
           </argument>
           <argument key="pt_BR" type="collection">
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/validator/Resources/translations/validators.pt_BR.xlf</argument>
@@ -2465,18 +2513,21 @@
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/form/Resources/translations/validators.ro.xlf</argument>
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/security-core/Resources/translations/security.ro.xlf</argument>
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfonycasts/verify-email-bundle/src/Resources/translations/VerifyEmailBundle.ro.xlf</argument>
+            <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfonycasts/reset-password-bundle/src/Resources/translations/ResetPasswordBundle.ro.xlf</argument>
           </argument>
           <argument key="ru" type="collection">
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/validator/Resources/translations/validators.ru.xlf</argument>
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/form/Resources/translations/validators.ru.xlf</argument>
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/security-core/Resources/translations/security.ru.xlf</argument>
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfonycasts/verify-email-bundle/src/Resources/translations/VerifyEmailBundle.ru.xlf</argument>
+            <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfonycasts/reset-password-bundle/src/Resources/translations/ResetPasswordBundle.ru.xlf</argument>
           </argument>
           <argument key="sk" type="collection">
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/validator/Resources/translations/validators.sk.xlf</argument>
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/form/Resources/translations/validators.sk.xlf</argument>
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/security-core/Resources/translations/security.sk.xlf</argument>
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfonycasts/verify-email-bundle/src/Resources/translations/VerifyEmailBundle.sk.xlf</argument>
+            <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfonycasts/reset-password-bundle/src/Resources/translations/ResetPasswordBundle.sk.xlf</argument>
           </argument>
           <argument key="sl" type="collection">
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/validator/Resources/translations/validators.sl.xlf</argument>
@@ -2518,12 +2569,14 @@
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/form/Resources/translations/validators.tr.xlf</argument>
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/security-core/Resources/translations/security.tr.xlf</argument>
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfonycasts/verify-email-bundle/src/Resources/translations/VerifyEmailBundle.tr.xlf</argument>
+            <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfonycasts/reset-password-bundle/src/Resources/translations/ResetPasswordBundle.tr.xlf</argument>
           </argument>
           <argument key="uk" type="collection">
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/validator/Resources/translations/validators.uk.xlf</argument>
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/form/Resources/translations/validators.uk.xlf</argument>
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/security-core/Resources/translations/security.uk.xlf</argument>
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfonycasts/verify-email-bundle/src/Resources/translations/VerifyEmailBundle.uk.xlf</argument>
+            <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfonycasts/reset-password-bundle/src/Resources/translations/ResetPasswordBundle.uk.xlf</argument>
           </argument>
           <argument key="ur" type="collection">
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/validator/Resources/translations/validators.ur.xlf</argument>
@@ -2552,6 +2605,7 @@
           </argument>
           <argument key="sr" type="collection">
             <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfonycasts/verify-email-bundle/src/Resources/translations/VerifyEmailBundle.sr.xlf</argument>
+            <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfonycasts/reset-password-bundle/src/Resources/translations/ResetPasswordBundle.sr.xlf</argument>
           </argument>
         </argument>
         <argument key="scanned_directories" type="collection">
@@ -2559,6 +2613,7 @@
           <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/form/Resources/translations</argument>
           <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/security-core/Resources/translations</argument>
           <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfonycasts/verify-email-bundle/src/Resources/translations</argument>
+          <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfonycasts/reset-password-bundle/src/Resources/translations</argument>
           <argument>/Users/sergioillan/Desktop/ARCHITESTA/translations</argument>
           <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/symfony/framework-bundle/translations</argument>
           <argument>/Users/sergioillan/Desktop/ARCHITESTA/vendor/doctrine/doctrine-bundle/translations</argument>
@@ -2580,6 +2635,7 @@
             <argument>vendor/symfony/form/Resources/translations</argument>
             <argument>vendor/symfony/security-core/Resources/translations</argument>
             <argument>vendor/symfonycasts/verify-email-bundle/src/Resources/translations</argument>
+            <argument>vendor/symfonycasts/reset-password-bundle/src/Resources/translations</argument>
             <argument>translations</argument>
             <argument>vendor/symfony/framework-bundle/translations</argument>
             <argument>vendor/doctrine/doctrine-bundle/translations</argument>
@@ -3584,7 +3640,7 @@
     </service>
     <service id="argument_resolver.not_tagged_controller" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\NotTaggedControllerValueResolver">
       <tag name="controller.argument_value_resolver" priority="-200"/>
-      <argument type="service" id=".service_locator.uIY5MO5"/>
+      <argument type="service" id=".service_locator.EcVxXmi"/>
     </service>
     <service id="debug.log_processor" class="Symfony\Bridge\Monolog\Processor\DebugProcessor">
       <tag name="kernel.reset" method="reset"/>
@@ -4144,7 +4200,7 @@
       <argument type="service" id="form.registry"/>
     </service>
     <service id="form.extension" class="Symfony\Component\Form\Extension\DependencyInjection\DependencyInjectionExtension">
-      <argument type="service" id=".service_locator.sTAG8ID"/>
+      <argument type="service" id=".service_locator.9Cn.qMY"/>
       <argument type="collection">
         <argument key="Symfony\Component\Form\Extension\Core\Type\FormType" type="iterator">
           <argument type="service" id="form.type_extension.form.transformation_failure_handling"/>
@@ -4242,7 +4298,9 @@
       <argument type="service" id="form.server_params"/>
       <argument>%form.type_extension.csrf.field_attr%</argument>
       <argument type="collection">
+        <argument key="App\Form\ChangePasswordFormType">submit</argument>
         <argument key="App\Form\RegistrationFormType">submit</argument>
+        <argument key="App\Form\ResetPasswordRequestFormType">submit</argument>
         <argument key="App\Form\TestaTimagenType">submit</argument>
         <argument key="App\Form\TestaTnotarioType">submit</argument>
         <argument key="App\Form\TestaToficioType">submit</argument>
@@ -5460,7 +5518,7 @@
     <service id="doctrine.orm.configuration" class="Doctrine\ORM\Configuration" abstract="true"/>
     <service id="doctrine.orm.entity_manager.abstract" class="Doctrine\ORM\EntityManager" lazy="true" abstract="true"/>
     <service id="doctrine.orm.container_repository_factory" class="Doctrine\Bundle\DoctrineBundle\Repository\ContainerRepositoryFactory">
-      <argument type="service" id=".service_locator.ELBL6_a"/>
+      <argument type="service" id=".service_locator.icfBOu_"/>
     </service>
     <service id="doctrine.orm.manager_configurator.abstract" class="Doctrine\Bundle\DoctrineBundle\ManagerConfigurator" abstract="true">
       <argument type="collection"/>
@@ -7682,9 +7740,37 @@
       </argument>
     </service>
     <service id="twig.missing_extension_suggestor" class="Twig\Extra\TwigExtraBundle\MissingExtensionSuggestor"/>
+    <service id="symfonycasts.reset_password.fake_request_repository" class="SymfonyCasts\Bundle\ResetPassword\Persistence\Fake\FakeResetPasswordInternalRepository"/>
+    <service id="symfonycasts.reset_password.cleaner" class="SymfonyCasts\Bundle\ResetPassword\Util\ResetPasswordCleaner">
+      <argument type="service" id="App\Repository\ResetPasswordRequestRepository"/>
+      <argument>true</argument>
+    </service>
+    <service id="SymfonyCasts\Bundle\ResetPassword\Command\ResetPasswordRemoveExpiredCommand" class="SymfonyCasts\Bundle\ResetPassword\Command\ResetPasswordRemoveExpiredCommand">
+      <tag name="console.command" command="reset-password:remove-expired"/>
+      <tag name="container.no_preload"/>
+      <argument type="service" id="symfonycasts.reset_password.cleaner"/>
+      <call method="setName">
+        <argument>reset-password:remove-expired</argument>
+      </call>
+    </service>
+    <service id="symfonycasts.reset_password.random_generator" class="SymfonyCasts\Bundle\ResetPassword\Generator\ResetPasswordRandomGenerator"/>
+    <service id="symfonycasts.reset_password.token_generator" class="SymfonyCasts\Bundle\ResetPassword\Generator\ResetPasswordTokenGenerator">
+      <argument>%env(APP_SECRET)%</argument>
+      <argument type="service" id="symfonycasts.reset_password.random_generator"/>
+    </service>
+    <service id="symfonycasts.reset_password.helper" class="SymfonyCasts\Bundle\ResetPassword\ResetPasswordHelper">
+      <argument type="service" id="symfonycasts.reset_password.token_generator"/>
+      <argument type="service" id="symfonycasts.reset_password.cleaner"/>
+      <argument type="service" id="App\Repository\ResetPasswordRequestRepository"/>
+      <argument>3600</argument>
+      <argument>3600</argument>
+    </service>
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\RegistrationController" class="App\Controller\RegistrationController" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\RegistrationController" class="App\Controller\RegistrationController" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\RegistrationController" class="App\Controller\RegistrationController" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\ResetPasswordController" class="App\Controller\ResetPasswordController" autowire="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\ResetPasswordController" class="App\Controller\ResetPasswordController" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Controller\ResetPasswordController" class="App\Controller\ResetPasswordController" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\TestaTimagenController" class="App\Controller\TestaTimagenController" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\TestaTimagenController" class="App\Controller\TestaTimagenController" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\TestaTimagenController" class="App\Controller\TestaTimagenController" autowire="true" autoconfigure="true" abstract="true"/>
@@ -7712,8 +7798,12 @@
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\UserController" class="App\Controller\UserController" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\UserController" class="App\Controller\UserController" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\UserController" class="App\Controller\UserController" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\ChangePasswordFormType" class="App\Form\ChangePasswordFormType" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Form\ChangePasswordFormType" class="App\Form\ChangePasswordFormType" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\RegistrationFormType" class="App\Form\RegistrationFormType" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Form\RegistrationFormType" class="App\Form\RegistrationFormType" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\ResetPasswordRequestFormType" class="App\Form\ResetPasswordRequestFormType" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Form\ResetPasswordRequestFormType" class="App\Form\ResetPasswordRequestFormType" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\TestaTimagenType" class="App\Form\TestaTimagenType" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Form\TestaTimagenType" class="App\Form\TestaTimagenType" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\TestaTnotarioType" class="App\Form\TestaTnotarioType" autowire="true" abstract="true"/>
@@ -7732,6 +7822,8 @@
     <service id=".abstract.instanceof.App\Form\TestaTtestaotorganteType" class="App\Form\TestaTtestaotorganteType" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\UserType" class="App\Form\UserType" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Form\UserType" class="App\Form\UserType" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\ResetPasswordRequestRepository" class="App\Repository\ResetPasswordRequestRepository" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Repository\ResetPasswordRequestRepository" class="App\Repository\ResetPasswordRequestRepository" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\TestaTimagenRepository" class="App\Repository\TestaTimagenRepository" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Repository\TestaTimagenRepository" class="App\Repository\TestaTimagenRepository" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\TestaTnotarioRepository" class="App\Repository\TestaTnotarioRepository" autowire="true" abstract="true"/>
@@ -8322,6 +8414,32 @@
       <argument type="service" id="service_container"/>
       <factory service=".service_locator.3QECKYg" method="withContext"/>
     </service>
+    <service id=".service_locator.PtEirWk" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="mailer" type="service_closure" id="mailer.mailer"/>
+        <argument key="translator" type="service_closure" id="translator.data_collector"/>
+      </argument>
+    </service>
+    <service id=".service_locator.PtEirWk.App\Controller\ResetPasswordController::request()" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator_context" id="App\Controller\ResetPasswordController::request()"/>
+      <argument>App\Controller\ResetPasswordController::request()</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.PtEirWk" method="withContext"/>
+    </service>
+    <service id=".service_locator.qHpfPrp" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="passwordHasher" type="service_closure" id="security.user_password_hasher"/>
+        <argument key="translator" type="service_closure" id="translator.data_collector"/>
+      </argument>
+    </service>
+    <service id=".service_locator.qHpfPrp.App\Controller\ResetPasswordController::reset()" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator_context" id="App\Controller\ResetPasswordController::reset()"/>
+      <argument>App\Controller\ResetPasswordController::reset()</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.qHpfPrp" method="withContext"/>
+    </service>
     <service id=".service_locator.UPSydW3" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
@@ -8769,7 +8887,7 @@
       <argument type="service" id="service_container"/>
       <factory service=".service_locator.WkfvUVe" method="withContext"/>
     </service>
-    <service id=".service_locator.uIY5MO5" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.EcVxXmi" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="kernel::registerContainerConfiguration" type="service_closure" id=".service_locator.zHyJIs5.kernel::registerContainerConfiguration()"/>
@@ -8779,6 +8897,8 @@
         <argument key="App\Controller\RegistrationController::register" type="service_closure" id=".service_locator.tEL1pRK.App\Controller\RegistrationController::register()"/>
         <argument key="App\Controller\RegistrationController::verifyUserEmail" type="service_closure" id=".service_locator.KHhLDTq.App\Controller\RegistrationController::verifyUserEmail()"/>
         <argument key="App\Controller\RegistrationController::login" type="service_closure" id=".service_locator.3QECKYg.App\Controller\RegistrationController::login()"/>
+        <argument key="App\Controller\ResetPasswordController::request" type="service_closure" id=".service_locator.PtEirWk.App\Controller\ResetPasswordController::request()"/>
+        <argument key="App\Controller\ResetPasswordController::reset" type="service_closure" id=".service_locator.qHpfPrp.App\Controller\ResetPasswordController::reset()"/>
         <argument key="App\Controller\TestaTimagenController::index" type="service_closure" id=".service_locator.UPSydW3.App\Controller\TestaTimagenController::index()"/>
         <argument key="App\Controller\TestaTimagenController::new" type="service_closure" id=".service_locator.egipcEH.App\Controller\TestaTimagenController::new()"/>
         <argument key="App\Controller\TestaTimagenController::show" type="service_closure" id=".service_locator.TXe5Fpk.App\Controller\TestaTimagenController::show()"/>
@@ -8829,6 +8949,8 @@
         <argument key="App\Controller\RegistrationController:register" type="service_closure" id=".service_locator.tEL1pRK.App\Controller\RegistrationController::register()"/>
         <argument key="App\Controller\RegistrationController:verifyUserEmail" type="service_closure" id=".service_locator.KHhLDTq.App\Controller\RegistrationController::verifyUserEmail()"/>
         <argument key="App\Controller\RegistrationController:login" type="service_closure" id=".service_locator.3QECKYg.App\Controller\RegistrationController::login()"/>
+        <argument key="App\Controller\ResetPasswordController:request" type="service_closure" id=".service_locator.PtEirWk.App\Controller\ResetPasswordController::request()"/>
+        <argument key="App\Controller\ResetPasswordController:reset" type="service_closure" id=".service_locator.qHpfPrp.App\Controller\ResetPasswordController::reset()"/>
         <argument key="App\Controller\TestaTimagenController:index" type="service_closure" id=".service_locator.UPSydW3.App\Controller\TestaTimagenController::index()"/>
         <argument key="App\Controller\TestaTimagenController:new" type="service_closure" id=".service_locator.egipcEH.App\Controller\TestaTimagenController::new()"/>
         <argument key="App\Controller\TestaTimagenController:show" type="service_closure" id=".service_locator.TXe5Fpk.App\Controller\TestaTimagenController::show()"/>
@@ -9053,10 +9175,12 @@
       <argument type="service" id="argument_resolver.query_parameter_value_resolver"/>
       <argument type="service" id="debug.stopwatch"/>
     </service>
-    <service id=".service_locator.sTAG8ID" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.9Cn.qMY" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
+        <argument key="App\Form\ChangePasswordFormType" type="service_closure" id="App\Form\ChangePasswordFormType"/>
         <argument key="App\Form\RegistrationFormType" type="service_closure" id="App\Form\RegistrationFormType"/>
+        <argument key="App\Form\ResetPasswordRequestFormType" type="service_closure" id="App\Form\ResetPasswordRequestFormType"/>
         <argument key="App\Form\TestaTimagenType" type="service_closure" id="App\Form\TestaTimagenType"/>
         <argument key="App\Form\TestaTnotarioType" type="service_closure" id="App\Form\TestaTnotarioType"/>
         <argument key="App\Form\TestaToficioType" type="service_closure" id="App\Form\TestaToficioType"/>
@@ -9198,9 +9322,10 @@
         <argument key="turbo.doctrine.event_listener" type="service_closure" id="turbo.doctrine.event_listener"/>
       </argument>
     </service>
-    <service id=".service_locator.ELBL6_a" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.icfBOu_" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
+        <argument key="App\Repository\ResetPasswordRequestRepository" type="service_closure" id="App\Repository\ResetPasswordRequestRepository"/>
         <argument key="App\Repository\TestaTimagenRepository" type="service_closure" id="App\Repository\TestaTimagenRepository"/>
         <argument key="App\Repository\TestaTnotarioRepository" type="service_closure" id="App\Repository\TestaTnotarioRepository"/>
         <argument key="App\Repository\TestaToficioRepository" type="service_closure" id="App\Repository\TestaToficioRepository"/>
@@ -9468,6 +9593,12 @@
       <argument type="service" id="service_container"/>
       <factory service=".service_locator.ZyP9f7K" method="withContext"/>
     </service>
+    <service id=".service_locator.ZyP9f7K.App\Controller\ResetPasswordController" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator_context" id="App\Controller\ResetPasswordController"/>
+      <argument>App\Controller\ResetPasswordController</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.ZyP9f7K" method="withContext"/>
+    </service>
     <service id=".service_locator.ZyP9f7K.App\Controller\TestaTimagenController" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator_context" id="App\Controller\TestaTimagenController"/>
       <argument>App\Controller\TestaTimagenController</argument>
@@ -9708,6 +9839,7 @@
         <argument type="collection">
           <argument>App\Kernel</argument>
           <argument>App\Controller\RegistrationController</argument>
+          <argument>App\Controller\ResetPasswordController</argument>
           <argument>App\Controller\TestaTimagenController</argument>
           <argument>App\Controller\TestaTnotarioController</argument>
           <argument>App\Controller\TestaToficioController</argument>
@@ -10687,7 +10819,7 @@
     </service>
     <service id="console.command_loader" class="Symfony\Component\Console\CommandLoader\ContainerCommandLoader" public="true">
       <tag name="container.no_preload"/>
-      <argument type="service" id=".service_locator.46aAMhU"/>
+      <argument type="service" id=".service_locator.aNup9e3"/>
       <argument type="collection">
         <argument key="about">console.command.about</argument>
         <argument key="assets:install">console.command.assets_install</argument>
@@ -10776,6 +10908,7 @@
         <argument key="lint:twig">twig.command.lint</argument>
         <argument key="debug:firewall">security.command.debug_firewall</argument>
         <argument key="security:hash-password">security.command.user_password_hash</argument>
+        <argument key="reset-password:remove-expired">SymfonyCasts\Bundle\ResetPassword\Command\ResetPasswordRemoveExpiredCommand</argument>
         <argument key="make:auth">maker.auto_command.make_auth</argument>
         <argument key="make:command">maker.auto_command.make_command</argument>
         <argument key="make:twig-component">maker.auto_command.make_twig_component</argument>
@@ -10808,7 +10941,7 @@
         <argument key="make:webhook">maker.auto_command.make_webhook</argument>
       </argument>
     </service>
-    <service id=".service_locator.46aAMhU" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.aNup9e3" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="console.command.about" type="service_closure" id=".console.command.about.lazy"/>
@@ -10898,6 +11031,7 @@
         <argument key="twig.command.lint" type="service_closure" id=".twig.command.lint.lazy"/>
         <argument key="security.command.debug_firewall" type="service_closure" id=".security.command.debug_firewall.lazy"/>
         <argument key="security.command.user_password_hash" type="service_closure" id=".security.command.user_password_hash.lazy"/>
+        <argument key="SymfonyCasts\Bundle\ResetPassword\Command\ResetPasswordRemoveExpiredCommand" type="service_closure" id="SymfonyCasts\Bundle\ResetPassword\Command\ResetPasswordRemoveExpiredCommand"/>
         <argument key="maker.auto_command.make_auth" type="service_closure" id=".maker.auto_command.make_auth.lazy"/>
         <argument key="maker.auto_command.make_command" type="service_closure" id=".maker.auto_command.make_command.lazy"/>
         <argument key="maker.auto_command.make_twig_component" type="service_closure" id=".maker.auto_command.make_twig_component.lazy"/>
@@ -11177,9 +11311,10 @@
     <service id="Symfony\UX\Turbo\Broadcaster\BroadcasterInterface" alias="turbo.broadcaster.action_renderer"/>
     <service id="Symfony\WebpackEncoreBundle\Asset\EntrypointLookupCollectionInterface" alias="webpack_encore.entrypoint_lookup_collection"/>
     <service id="Symfony\WebpackEncoreBundle\Asset\EntrypointLookupInterface" alias="webpack_encore.entrypoint_lookup[_default]"/>
+    <service id="SymfonyCasts\Bundle\ResetPassword\ResetPasswordHelperInterface" alias="symfonycasts.reset_password.helper"/>
     <service id="container.env_var_processors_locator" alias=".service_locator.pRu6x_4" public="true"/>
     <service id="twig.loader.filesystem" alias="twig.loader.native_filesystem"/>
-    <service id="argument_resolver.controller_locator" alias=".service_locator.uIY5MO5"/>
+    <service id="argument_resolver.controller_locator" alias=".service_locator.EcVxXmi"/>
     <service id="doctrine.id_generator_locator" alias=".service_locator.BxSdgVt"/>
     <service id="twig.loader" alias="twig.loader.native_filesystem"/>
     <service id="Psr\Log\LoggerInterface $requestLogger" alias="monolog.logger.request"/>
@@ -11227,6 +11362,8 @@
     <service id=".service_locator.o4KKgIJ" alias=".service_locator.tEL1pRK"/>
     <service id=".service_locator.l6GrDWv" alias=".service_locator.KHhLDTq"/>
     <service id=".service_locator.Nrz07Zz" alias=".service_locator.3QECKYg"/>
+    <service id=".service_locator.GGNRYUI" alias=".service_locator.PtEirWk"/>
+    <service id=".service_locator.UnhqfR0" alias=".service_locator.qHpfPrp"/>
     <service id=".service_locator.6x6worN" alias=".service_locator.UPSydW3"/>
     <service id=".service_locator.5Vd5JYV" alias=".service_locator.egipcEH"/>
     <service id=".service_locator.9bJ04jE" alias=".service_locator.TXe5Fpk"/>
