@@ -38,7 +38,7 @@ class TestaTtestamento
     private ?int $num_folio = null;
 
     #[ORM\ManyToOne(inversedBy: 'testaTpoblacion')]
-    #[ORM\JoinColumn(name: "ID_POBLACION", referencedColumnName: "ID")]
+    #[ORM\JoinColumn(name: "id_poblacion", referencedColumnName: "is")]
     private ?TestaTpoblacion $id_poblacion = null;
 
     #[ORM\ManyToOne(inversedBy: 'testaTtestamentos')]
