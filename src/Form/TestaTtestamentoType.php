@@ -17,7 +17,7 @@ class TestaTtestamentoType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('idid')
+            ->add('id')
             ->add('anno')
             ->add('mes')
             ->add('dia')
