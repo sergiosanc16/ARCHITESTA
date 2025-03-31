@@ -9,6 +9,8 @@ return [
     false, // $matchHost
     [ // $staticRoutes
         '/verify/email' => [[['_route' => 'app_verify_email', '_controller' => 'App\\Controller\\RegistrationController::verifyUserEmail'], null, null, null, false, false, null]],
+        '/reset-password' => [[['_route' => 'app_forgot_password_request', '_controller' => 'App\\Controller\\ResetPasswordController::request'], null, null, null, false, false, null]],
+        '/reset-password/check-email' => [[['_route' => 'app_check_email', '_controller' => 'App\\Controller\\ResetPasswordController::checkEmail'], null, null, null, false, false, null]],
         '/testa/timagen' => [[['_route' => 'app_testa_timagen_index', '_controller' => 'App\\Controller\\TestaTimagenController::index'], null, ['GET' => 0], null, false, false, null]],
         '/testa/timagen/new' => [[['_route' => 'app_testa_timagen_new', '_controller' => 'App\\Controller\\TestaTimagenController::new'], null, ['GET' => 0, 'POST' => 1], null, false, false, null]],
         '/testa/tnotario' => [[['_route' => 'app_testa_tnotario_index', '_controller' => 'App\\Controller\\TestaTnotarioController::index'], null, ['GET' => 0], null, false, false, null]],
@@ -58,58 +60,59 @@ return [
                         .')'
                     .')'
                 .')'
+                .'|/reset\\-password/reset(?:/([^/]++))?(*:238)'
                 .'|/testa/t(?'
                     .'|imagen/([^/]++)(?'
-                        .'|(*:231)'
-                        .'|/edit(*:244)'
-                        .'|(*:252)'
+                        .'|(*:275)'
+                        .'|/edit(*:288)'
+                        .'|(*:296)'
                     .')'
                     .'|notario/([^/]++)(?'
-                        .'|(*:280)'
-                        .'|/edit(*:293)'
-                        .'|(*:301)'
+                        .'|(*:324)'
+                        .'|/edit(*:337)'
+                        .'|(*:345)'
                     .')'
                     .'|o(?'
                         .'|ficio/([^/]++)(?'
-                            .'|(*:331)'
-                            .'|/edit(*:344)'
-                            .'|(*:352)'
+                            .'|(*:375)'
+                            .'|/edit(*:388)'
+                            .'|(*:396)'
                         .')'
                         .'|torgante/([^/]++)(?'
-                            .'|(*:381)'
-                            .'|/edit(*:394)'
-                            .'|(*:402)'
+                            .'|(*:425)'
+                            .'|/edit(*:438)'
+                            .'|(*:446)'
                         .')'
                     .')'
                     .'|p(?'
                         .'|arentesco/([^/]++)(?'
-                            .'|(*:437)'
-                            .'|/edit(*:450)'
-                            .'|(*:458)'
+                            .'|(*:481)'
+                            .'|/edit(*:494)'
+                            .'|(*:502)'
                         .')'
                         .'|oblacion/([^/]++)(?'
-                            .'|(*:487)'
-                            .'|/edit(*:500)'
-                            .'|(*:508)'
+                            .'|(*:531)'
+                            .'|/edit(*:544)'
+                            .'|(*:552)'
                         .')'
                     .')'
                     .'|testa(?'
                         .'|mento/([^/]++)(?'
-                            .'|(*:543)'
-                            .'|/edit(*:556)'
-                            .'|(*:564)'
+                            .'|(*:587)'
+                            .'|/edit(*:600)'
+                            .'|(*:608)'
                         .')'
                         .'|otorgante/([^/]++)(?'
-                            .'|(*:594)'
-                            .'|/edit(*:607)'
-                            .'|(*:615)'
+                            .'|(*:638)'
+                            .'|/edit(*:651)'
+                            .'|(*:659)'
                         .')'
                     .')'
                 .')'
                 .'|/user/([^/]++)(?'
-                    .'|(*:643)'
-                    .'|/edit(*:656)'
-                    .'|(*:664)'
+                    .'|(*:687)'
+                    .'|/edit(*:700)'
+                    .'|(*:708)'
                 .')'
             .')/?$}sDu',
     ],
@@ -122,33 +125,34 @@ return [
         168 => [[['_route' => '_profiler_exception', '_controller' => 'web_profiler.controller.exception_panel::body'], ['token'], null, null, false, false, null]],
         181 => [[['_route' => '_profiler_exception_css', '_controller' => 'web_profiler.controller.exception_panel::stylesheet'], ['token'], null, null, false, false, null]],
         191 => [[['_route' => '_profiler', '_controller' => 'web_profiler.controller.profiler::panelAction'], ['token'], null, null, false, true, null]],
-        231 => [[['_route' => 'app_testa_timagen_show', '_controller' => 'App\\Controller\\TestaTimagenController::show'], ['id'], ['GET' => 0], null, false, true, null]],
-        244 => [[['_route' => 'app_testa_timagen_edit', '_controller' => 'App\\Controller\\TestaTimagenController::edit'], ['id'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
-        252 => [[['_route' => 'app_testa_timagen_delete', '_controller' => 'App\\Controller\\TestaTimagenController::delete'], ['id'], ['POST' => 0], null, false, true, null]],
-        280 => [[['_route' => 'app_testa_tnotario_show', '_controller' => 'App\\Controller\\TestaTnotarioController::show'], ['id'], ['GET' => 0], null, false, true, null]],
-        293 => [[['_route' => 'app_testa_tnotario_edit', '_controller' => 'App\\Controller\\TestaTnotarioController::edit'], ['id'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
-        301 => [[['_route' => 'app_testa_tnotario_delete', '_controller' => 'App\\Controller\\TestaTnotarioController::delete'], ['id'], ['POST' => 0], null, false, true, null]],
-        331 => [[['_route' => 'app_testa_toficio_show', '_controller' => 'App\\Controller\\TestaToficioController::show'], ['id'], ['GET' => 0], null, false, true, null]],
-        344 => [[['_route' => 'app_testa_toficio_edit', '_controller' => 'App\\Controller\\TestaToficioController::edit'], ['id'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
-        352 => [[['_route' => 'app_testa_toficio_delete', '_controller' => 'App\\Controller\\TestaToficioController::delete'], ['id'], ['POST' => 0], null, false, true, null]],
-        381 => [[['_route' => 'app_testa_totorgante_show', '_controller' => 'App\\Controller\\TestaTotorganteController::show'], ['id'], ['GET' => 0], null, false, true, null]],
-        394 => [[['_route' => 'app_testa_totorgante_edit', '_controller' => 'App\\Controller\\TestaTotorganteController::edit'], ['id'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
-        402 => [[['_route' => 'app_testa_totorgante_delete', '_controller' => 'App\\Controller\\TestaTotorganteController::delete'], ['id'], ['POST' => 0], null, false, true, null]],
-        437 => [[['_route' => 'app_testa_tparentesco_show', '_controller' => 'App\\Controller\\TestaTparentescoController::show'], ['id'], ['GET' => 0], null, false, true, null]],
-        450 => [[['_route' => 'app_testa_tparentesco_edit', '_controller' => 'App\\Controller\\TestaTparentescoController::edit'], ['id'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
-        458 => [[['_route' => 'app_testa_tparentesco_delete', '_controller' => 'App\\Controller\\TestaTparentescoController::delete'], ['id'], ['POST' => 0], null, false, true, null]],
-        487 => [[['_route' => 'app_testa_tpoblacion_show', '_controller' => 'App\\Controller\\TestaTpoblacionController::show'], ['id'], ['GET' => 0], null, false, true, null]],
-        500 => [[['_route' => 'app_testa_tpoblacion_edit', '_controller' => 'App\\Controller\\TestaTpoblacionController::edit'], ['id'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
-        508 => [[['_route' => 'app_testa_tpoblacion_delete', '_controller' => 'App\\Controller\\TestaTpoblacionController::delete'], ['id'], ['POST' => 0], null, false, true, null]],
-        543 => [[['_route' => 'app_testa_ttestamento_show', '_controller' => 'App\\Controller\\TestaTtestamentoController::show'], ['id'], ['GET' => 0], null, false, true, null]],
-        556 => [[['_route' => 'app_testa_ttestamento_edit', '_controller' => 'App\\Controller\\TestaTtestamentoController::edit'], ['id'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
-        564 => [[['_route' => 'app_testa_ttestamento_delete', '_controller' => 'App\\Controller\\TestaTtestamentoController::delete'], ['id'], ['POST' => 0], null, false, true, null]],
-        594 => [[['_route' => 'app_testa_ttestaotorgante_show', '_controller' => 'App\\Controller\\TestaTtestaotorganteController::show'], ['id'], ['GET' => 0], null, false, true, null]],
-        607 => [[['_route' => 'app_testa_ttestaotorgante_edit', '_controller' => 'App\\Controller\\TestaTtestaotorganteController::edit'], ['id'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
-        615 => [[['_route' => 'app_testa_ttestaotorgante_delete', '_controller' => 'App\\Controller\\TestaTtestaotorganteController::delete'], ['id'], ['POST' => 0], null, false, true, null]],
-        643 => [[['_route' => 'app_user_show', '_controller' => 'App\\Controller\\UserController::show'], ['id'], ['GET' => 0], null, false, true, null]],
-        656 => [[['_route' => 'app_user_edit', '_controller' => 'App\\Controller\\UserController::edit'], ['id'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
-        664 => [
+        238 => [[['_route' => 'app_reset_password', 'token' => null, '_controller' => 'App\\Controller\\ResetPasswordController::reset'], ['token'], null, null, false, true, null]],
+        275 => [[['_route' => 'app_testa_timagen_show', '_controller' => 'App\\Controller\\TestaTimagenController::show'], ['id'], ['GET' => 0], null, false, true, null]],
+        288 => [[['_route' => 'app_testa_timagen_edit', '_controller' => 'App\\Controller\\TestaTimagenController::edit'], ['id'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
+        296 => [[['_route' => 'app_testa_timagen_delete', '_controller' => 'App\\Controller\\TestaTimagenController::delete'], ['id'], ['POST' => 0], null, false, true, null]],
+        324 => [[['_route' => 'app_testa_tnotario_show', '_controller' => 'App\\Controller\\TestaTnotarioController::show'], ['id'], ['GET' => 0], null, false, true, null]],
+        337 => [[['_route' => 'app_testa_tnotario_edit', '_controller' => 'App\\Controller\\TestaTnotarioController::edit'], ['id'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
+        345 => [[['_route' => 'app_testa_tnotario_delete', '_controller' => 'App\\Controller\\TestaTnotarioController::delete'], ['id'], ['POST' => 0], null, false, true, null]],
+        375 => [[['_route' => 'app_testa_toficio_show', '_controller' => 'App\\Controller\\TestaToficioController::show'], ['id'], ['GET' => 0], null, false, true, null]],
+        388 => [[['_route' => 'app_testa_toficio_edit', '_controller' => 'App\\Controller\\TestaToficioController::edit'], ['id'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
+        396 => [[['_route' => 'app_testa_toficio_delete', '_controller' => 'App\\Controller\\TestaToficioController::delete'], ['id'], ['POST' => 0], null, false, true, null]],
+        425 => [[['_route' => 'app_testa_totorgante_show', '_controller' => 'App\\Controller\\TestaTotorganteController::show'], ['id'], ['GET' => 0], null, false, true, null]],
+        438 => [[['_route' => 'app_testa_totorgante_edit', '_controller' => 'App\\Controller\\TestaTotorganteController::edit'], ['id'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
+        446 => [[['_route' => 'app_testa_totorgante_delete', '_controller' => 'App\\Controller\\TestaTotorganteController::delete'], ['id'], ['POST' => 0], null, false, true, null]],
+        481 => [[['_route' => 'app_testa_tparentesco_show', '_controller' => 'App\\Controller\\TestaTparentescoController::show'], ['id'], ['GET' => 0], null, false, true, null]],
+        494 => [[['_route' => 'app_testa_tparentesco_edit', '_controller' => 'App\\Controller\\TestaTparentescoController::edit'], ['id'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
+        502 => [[['_route' => 'app_testa_tparentesco_delete', '_controller' => 'App\\Controller\\TestaTparentescoController::delete'], ['id'], ['POST' => 0], null, false, true, null]],
+        531 => [[['_route' => 'app_testa_tpoblacion_show', '_controller' => 'App\\Controller\\TestaTpoblacionController::show'], ['id'], ['GET' => 0], null, false, true, null]],
+        544 => [[['_route' => 'app_testa_tpoblacion_edit', '_controller' => 'App\\Controller\\TestaTpoblacionController::edit'], ['id'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
+        552 => [[['_route' => 'app_testa_tpoblacion_delete', '_controller' => 'App\\Controller\\TestaTpoblacionController::delete'], ['id'], ['POST' => 0], null, false, true, null]],
+        587 => [[['_route' => 'app_testa_ttestamento_show', '_controller' => 'App\\Controller\\TestaTtestamentoController::show'], ['id'], ['GET' => 0], null, false, true, null]],
+        600 => [[['_route' => 'app_testa_ttestamento_edit', '_controller' => 'App\\Controller\\TestaTtestamentoController::edit'], ['id'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
+        608 => [[['_route' => 'app_testa_ttestamento_delete', '_controller' => 'App\\Controller\\TestaTtestamentoController::delete'], ['id'], ['POST' => 0], null, false, true, null]],
+        638 => [[['_route' => 'app_testa_ttestaotorgante_show', '_controller' => 'App\\Controller\\TestaTtestaotorganteController::show'], ['id'], ['GET' => 0], null, false, true, null]],
+        651 => [[['_route' => 'app_testa_ttestaotorgante_edit', '_controller' => 'App\\Controller\\TestaTtestaotorganteController::edit'], ['id'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
+        659 => [[['_route' => 'app_testa_ttestaotorgante_delete', '_controller' => 'App\\Controller\\TestaTtestaotorganteController::delete'], ['id'], ['POST' => 0], null, false, true, null]],
+        687 => [[['_route' => 'app_user_show', '_controller' => 'App\\Controller\\UserController::show'], ['id'], ['GET' => 0], null, false, true, null]],
+        700 => [[['_route' => 'app_user_edit', '_controller' => 'App\\Controller\\UserController::edit'], ['id'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
+        708 => [
             [['_route' => 'app_user_delete', '_controller' => 'App\\Controller\\UserController::delete'], ['id'], ['POST' => 0], null, false, true, null],
             [null, null, null, null, false, false, 0],
         ],
