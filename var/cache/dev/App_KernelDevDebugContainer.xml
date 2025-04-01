@@ -517,6 +517,10 @@
       <tag name="doctrine.repository_service"/>
       <argument type="service" id="doctrine"/>
     </service>
+    <service id="App\Repository\TestaTrawRepository" class="App\Repository\TestaTrawRepository" autowire="true" autoconfigure="true">
+      <tag name="doctrine.repository_service"/>
+      <argument type="service" id="doctrine"/>
+    </service>
     <service id="App\Repository\TestaTtestamentoRepository" class="App\Repository\TestaTtestamentoRepository" autowire="true" autoconfigure="true">
       <tag name="doctrine.repository_service"/>
       <argument type="service" id="doctrine"/>
@@ -5518,7 +5522,7 @@
     <service id="doctrine.orm.configuration" class="Doctrine\ORM\Configuration" abstract="true"/>
     <service id="doctrine.orm.entity_manager.abstract" class="Doctrine\ORM\EntityManager" lazy="true" abstract="true"/>
     <service id="doctrine.orm.container_repository_factory" class="Doctrine\Bundle\DoctrineBundle\Repository\ContainerRepositoryFactory">
-      <argument type="service" id=".service_locator.icfBOu_"/>
+      <argument type="service" id=".service_locator.QN8Xx6C"/>
     </service>
     <service id="doctrine.orm.manager_configurator.abstract" class="Doctrine\Bundle\DoctrineBundle\ManagerConfigurator" abstract="true">
       <argument type="collection"/>
@@ -7836,6 +7840,8 @@
     <service id=".abstract.instanceof.App\Repository\TestaTparentescoRepository" class="App\Repository\TestaTparentescoRepository" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\TestaTpoblacionRepository" class="App\Repository\TestaTpoblacionRepository" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Repository\TestaTpoblacionRepository" class="App\Repository\TestaTpoblacionRepository" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\TestaTrawRepository" class="App\Repository\TestaTrawRepository" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Repository\TestaTrawRepository" class="App\Repository\TestaTrawRepository" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\TestaTtestamentoRepository" class="App\Repository\TestaTtestamentoRepository" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Repository\TestaTtestamentoRepository" class="App\Repository\TestaTtestamentoRepository" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\TestaTtestaotorganteRepository" class="App\Repository\TestaTtestaotorganteRepository" autowire="true" abstract="true"/>
@@ -9322,7 +9328,7 @@
         <argument key="turbo.doctrine.event_listener" type="service_closure" id="turbo.doctrine.event_listener"/>
       </argument>
     </service>
-    <service id=".service_locator.icfBOu_" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.QN8Xx6C" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="App\Repository\ResetPasswordRequestRepository" type="service_closure" id="App\Repository\ResetPasswordRequestRepository"/>
@@ -9332,6 +9338,7 @@
         <argument key="App\Repository\TestaTotorganteRepository" type="service_closure" id="App\Repository\TestaTotorganteRepository"/>
         <argument key="App\Repository\TestaTparentescoRepository" type="service_closure" id="App\Repository\TestaTparentescoRepository"/>
         <argument key="App\Repository\TestaTpoblacionRepository" type="service_closure" id="App\Repository\TestaTpoblacionRepository"/>
+        <argument key="App\Repository\TestaTrawRepository" type="service_closure" id="App\Repository\TestaTrawRepository"/>
         <argument key="App\Repository\TestaTtestamentoRepository" type="service_closure" id="App\Repository\TestaTtestamentoRepository"/>
         <argument key="App\Repository\TestaTtestaotorganteRepository" type="service_closure" id="App\Repository\TestaTtestaotorganteRepository"/>
         <argument key="App\Repository\UserRepository" type="service_closure" id="App\Repository\UserRepository"/>
