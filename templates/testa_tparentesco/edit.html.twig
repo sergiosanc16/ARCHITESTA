@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit TestaTparentesco{% endblock %}
+
+{% block body %}
+    <h1>Edit TestaTparentesco</h1>
+
+    {{ include('testa_tparentesco/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_testa_tparentesco_index') }}">back to list</a>
+
+    {{ include('testa_tparentesco/_delete_form.html.twig') }}
+{% endblock %}
