@@ -23,6 +23,12 @@
         <li><a href="{{path('app_testa_tpoblacion_index')}}"> Poblacion</a></li>
         <li><a href="{{path('app_testa_ttestamento_index')}}"> Testamento</a></li>
         <li><a href="{{path('app_testa_ttestaotorgante_index')}}"> Otorgantes de un testamento</a></li>
+        {% if user %}
+            {% if is_granted('ROLE_ADMIN') %}
+                <li><a href="{{path('app_user_index')}}"> Lista de usuarios</a></li>
+            {% endif %}
+        {% endif %}
+
     </ul>
 </div>
 {% endblock %}
