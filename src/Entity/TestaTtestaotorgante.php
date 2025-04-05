@@ -17,6 +17,7 @@ class TestaTtestaotorgante
     private ?int $id = null;
 
     #[ORM\OneToOne(cascade: ['persist', 'remove'])]
+    #[ORM\JoinColumn(name: "id_testamento", referencedColumnName: "id", nullable: false)]
     private ?TestaTtestamento $id_testamento = null;
 
     /**
