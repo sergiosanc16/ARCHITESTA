@@ -1,13 +1,12 @@
 ul {
+    
+    display: flex;          /* Activa Flexbox */
+    justify-content: center; /* Centra horizontalmente */
+    flex-wrap: wrap;        /* Permite saltos de línea si no caben */
     list-style-type: none;
     margin: 0;
     padding: 0;
-    overflow: hidden;
     background-color: #333;
-}
-  
-li {
-    float: left;
 }
   
 li a {
@@ -16,9 +15,40 @@ li a {
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
-}
-  
+}  
 
 li a:hover {
     background-color: #111;
+}
+
+.navbar ul {
+  display: flex;
+  justify-content: center; /* Centrado horizontal principal */
+  flex-wrap: wrap; /* Permite saltos de línea en móviles */
+  list-style: none;
+  padding: 0;
+  margin: 0 auto; /* Centrado adicional como contingencia */
+  background-color: #333; /* Mantén tu color actual */
+  width: 100%; /* Ocupa todo el ancho disponible */
+}
+
+.navbar li {
+  margin: 0 8px; /* Espaciado entre ítems, ajusta según necesites */
+}
+
+.navbar li a {
+  display: block;
+  color: white;
+  padding: 14px 16px;
+  text-decoration: none;
+  white-space: nowrap; /* Evita saltos de línea en texto */
+}
+  
+@media (max-width: 768px) {
+    .navbar li {
+      flex: 1 0 auto; /* Items crecen según necesidad */
+    }
+    .navbar li a {
+      padding: 10px 8px;
+    }
 }
