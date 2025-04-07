@@ -8,8 +8,29 @@
     .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
 </style>
 
-    <input type="file" id="csv_upload" accept=".csv"/>
-    <button class="btn btn-primary btn-primary" type="submit">
-                Subir fichero
-            </button>
+    <h1>Subir Archivo CSV</h1>
+    
+    {% for message in app.flashes('error') %}
+        <div class="alert alert-danger">{{ message }}</div>
+    {% endfor %}
+    
+    {% for message in app.flashes('success') %}
+        <div class="alert alert-success">{{ message }}</div>
+    {% endfor %}
+    
+    <form method="post" enctype="multipart/form-data">
+        <div class="form-group mb-3">
+            <label for="csv_file" class="form-label">Archivo CSV:</label>
+            <input 
+                type="file" 
+                name="csv_file" 
+                id="csv_file" 
+                class="form-control" 
+                accept=".csv" 
+                required
+            >
+            <div class="form-text">Solo archivos con extensión .csv</div>
+        </div>
+        <button type="submit" class="btn btn-primary">Subir</button>
+    </form>
 {% endblock %}
