@@ -16,6 +16,8 @@ final class CsvUploadController extends AbstractController
     #[Route('/csv/upload', name: 'app_csv_upload')]
     public function index(Request $request, EntityManagerInterface $em): Response
     {
+
+        $i = 0;
         if ($request->isMethod('POST')) {
             $uploadedFile = $request->files->get('csv_file');
 
@@ -26,7 +28,6 @@ final class CsvUploadController extends AbstractController
             $registros = $reader->getRecords();
                 
             $lote = 20;
-            $i = 0;
                 
             foreach ($registros as $registro) {
                 $raw = new TestaTraw();
