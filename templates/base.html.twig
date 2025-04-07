@@ -8,8 +8,6 @@
             {{ encore_entry_link_tags('app') }}
             <link rel="stylesheet" href="{{asset('recursos/bootstrap/css/bootstrap.min.css') }}"></link>
             <link rel="stylesheet" href="{{asset('recursos/mybootstrap/css/general.css') }}"></link>
-
-            <link rel="stylesheet" type="text/css"  href={{ asset('recursos/mybootstrap/css/homepage.css') }}>
         {% endblock %}
 
         {% block javascripts %}
@@ -19,25 +17,6 @@
         {% endblock %}
     </head>
     <body>
-        {% block body %}
-        <div>
-            <ul class="navbar">
-                <li><a href="{{path('app_homepage')}}"> Pantalla principal</a></li>
-                <li><a href="{{path('app_testa_timagen_index')}}"> Imagenes</a></li>
-                <li><a href="{{path('app_testa_tnotario_index')}}"> Notario</a></li>
-                <li><a href="{{path('app_testa_toficio_index')}}"> oficio</a></li>
-                <li><a href="{{path('app_testa_totorgante_index')}}"> Otorgante</a></li>
-                <li><a href="{{path('app_testa_tparentesco_index')}}"> Parentesco</a></li>
-                <li><a href="{{path('app_testa_tpoblacion_index')}}"> Poblacion</a></li>
-                <li><a href="{{path('app_testa_ttestamento_index')}}"> Testamento</a></li>
-                <li><a href="{{path('app_testa_ttestaotorgante_index')}}"> Otorgantes de un testamento</a></li>
-                {% if user %}
-                    {% if is_granted('ROLE_ADMIN') %}
-                        <li><a href="{{path('app_user_index')}}"> Lista de usuarios</a></li>
-                    {% endif %}
-                {% endif %}
-            </ul>
-        </div>
-        {% endblock %}
+        {% block body %}{% endblock %}
     </body>
 </html>
