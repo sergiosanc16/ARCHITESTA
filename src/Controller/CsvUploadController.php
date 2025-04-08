@@ -127,6 +127,7 @@ final class CsvUploadController extends AbstractController
             
         return $this->render('csv_upload/index.html.twig', [
             'controller_name' => 'CsvUploadController',
+            'form' => $form,
         ]);
     }
 }

@@ -11,18 +11,20 @@
     <h1>Subir Archivo CSV</h1>
     
     
-    <form method="post">
-        <div>
-            <label for="csv_file" class="form-label">Archivo CSV:</label>
-            <input 
-                type="file" 
-                name="csv_file" 
-                id="csv_file" 
-                class="form-control" 
-                accept=".csv" 
-                required
-            >
+    <div class="card">
+        <div class="card-body">
+            {{ form_start(form) }}
+                <div class="mb-3">
+                    {{ form_label(form.csv_file) }}
+                    {{ form_widget(form.csv_file) }}
+                    {{ form_errors(form.csv_file) }}
+                    <div class="form-text">
+                        Formatos aceptados: .csv (Tamaño máximo: 1MB)
+                    </div>
+                </div>
+                
+                {{ form_widget(form.submit) }}
+            {{ form_end(form) }}
         </div>
-        <button type="submit" class="btn btn-primary">Subir</button>
-    </form>
+    </div>
 {% endblock %}
