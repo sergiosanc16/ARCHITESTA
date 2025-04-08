@@ -10,16 +10,9 @@
 
     <h1>Subir Archivo CSV</h1>
     
-    {% for message in app.flashes('error') %}
-        <div class="alert alert-danger">{{ message }}</div>
-    {% endfor %}
     
-    {% for message in app.flashes('success') %}
-        <div class="alert alert-success">{{ message }}</div>
-    {% endfor %}
-    
-    <form method="post" enctype="multipart/form-data">
-        <div class="form-group mb-3">
+    <form method="post">
+        <div>
             <label for="csv_file" class="form-label">Archivo CSV:</label>
             <input 
                 type="file" 
@@ -29,7 +22,6 @@
                 accept=".csv" 
                 required
             >
-            <div class="form-text">Solo archivos con extensión .csv</div>
         </div>
         <button type="submit" class="btn btn-primary">Subir</button>
     </form>
