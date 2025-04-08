@@ -11,15 +11,19 @@ use League\Csv\Reader;
 use League\Csv\Statement;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Entity\TestaTraw;
+use App\Form\CsvUploadType;
 
 final class CsvUploadController extends AbstractController
 {
+    //Request $request,
     #[Route('/csv/upload', name: 'app_csv_upload')]
-    public function index(Request $request, EntityManagerInterface $em): Response
+    public function index( EntityManagerInterface $em): Response
     {
 
-        
-        if ($request->isMethod('POST')) {
+        $form = $this->createForm(RegistrationFormType::class, $user);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
             $uploadedFile = $request->files->get('csv_file');
 
             // Configuración de league/csv
