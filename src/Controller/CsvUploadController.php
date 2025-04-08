@@ -15,9 +15,9 @@ use App\Form\CsvUploadType;
 
 final class CsvUploadController extends AbstractController
 {
-    //Request $request,
+    
     #[Route('/csv/upload', name: 'app_csv_upload')]
-    public function index( EntityManagerInterface $em): Response
+    public function index(Request $request, EntityManagerInterface $em): Response
     {
 
         $form = $this->createForm(CsvUploadType::class);
