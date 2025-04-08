@@ -24,7 +24,7 @@ final class CsvUploadController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $uploadedFile = $form->get('csv_file')->getData();
+                    $uploadedFile = $form->get('csv_file')->getData();
 
 
             // Configuración de league/csv
@@ -38,14 +38,16 @@ final class CsvUploadController extends AbstractController
 
             foreach ($registros as $registro) {
                 $raw = new TestaTraw();
-
+                if (count($csv) === 0) {
+                    throw new \RuntimeException('El archivo CSV está vacío');
+                }
                 $raw->setClassificationId($registro[0]);
 
                 $tareas = $registro[count($registro)];
                 $datosTareas = json_decode($tareas, true);
                 if ($datosTareas) {
-                    $taskId = $task['task'] ?? null;
-                    $value = $task['value'] ?? null;
+                    $taskId = $datosTareas['task'] ?? null;
+                    $value = $datosTareas['value'] ?? null;
                 
                     switch ($taskId) {
                         case 'T0':
