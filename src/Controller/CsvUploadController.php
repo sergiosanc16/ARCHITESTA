@@ -42,7 +42,7 @@ final class CsvUploadController extends AbstractController
                 if (count($registro) === 0) {
                     throw new \RuntimeException('El archivo CSV está vacío');
                 }
-                $raw->setClassificationId($registro[0]);
+                $raw->setClassificationId($registro['classification_id']?? null);
 
                 $tareas = $registro[count($registro)];
                 $datosTareas = json_decode($tareas, true);
