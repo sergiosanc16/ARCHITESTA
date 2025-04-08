@@ -20,7 +20,7 @@ final class CsvUploadController extends AbstractController
     public function index( EntityManagerInterface $em): Response
     {
 
-        $form = $this->createForm(RegistrationFormType::class, $user);
+        $form = $this->createForm(CsvUploadType::class);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
