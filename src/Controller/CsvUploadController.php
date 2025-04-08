@@ -37,6 +37,7 @@ final class CsvUploadController extends AbstractController
             $i = 0;
 
             foreach ($registros as $registro) {
+                dump($registro);
                 $raw = new TestaTraw();
                 if (count($registro) === 0) {
                     throw new \RuntimeException('El archivo CSV está vacío');
