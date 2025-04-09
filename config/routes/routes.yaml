@@ -12,5 +12,5 @@ phpmyadmin:
   path: /phpmyadmin
   controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController::urlRedirectAction
   defaults:
-    path: 'http://localhost/phpmyadmin'  # Ajusta la URL
+    path: 'https://plasnake.net/phpmyadmin'  # Ajusta la URL
     permanent: true
