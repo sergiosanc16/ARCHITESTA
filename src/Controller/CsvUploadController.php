@@ -44,7 +44,10 @@ final class CsvUploadController extends AbstractController
                 }
                 $raw->setClassificationId($registro['classification_id']?? null);
 
-                $tareas = $registro[count($registro)];
+                $columnas = array_values($registro);
+                $tareasJson = $columnas[14];
+
+                $tareas = $registro['task'];
                 $datosTareas = json_decode($tareas, true);
                 if ($datosTareas) {
                     $taskId = $datosTareas['task'] ?? null;
