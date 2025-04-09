@@ -38,16 +38,12 @@ final class CsvUploadController extends AbstractController
 
             foreach ($registros as $registro) {
                 dump($registro);
-                $raw = new TestaTraw();
-                if (count($registro) === 0) {
-                    throw new \RuntimeException('El archivo CSV está vacío');
-                }
-                $raw->setClassificationId($registro['classification_id']?? null);
 
                 $columnas = array_values($registro);
-                $tareasJson = $columnas[14] ?? null;
-
-                $tareas = $registro['task'];
+                if(isset($registro['classification_id'])){
+                    $raw->setClassificationId($registro['classification_id']?? null);
+                }else if(isset($columnas[14])){
+                    $tareas = $columnas[14];
                 $datosTareas = json_decode($tareas, true);
                 if ($datosTareas) {
                     $taskId = $datosTareas['task'] ?? null;
@@ -125,8 +121,8 @@ final class CsvUploadController extends AbstractController
                     $em->clear();
                 }
                 $i++;
+                }
             }
-                
             $em->flush();
             $em->clear();
             $this->addFlash('success', "Se importaron {$i} registros");
