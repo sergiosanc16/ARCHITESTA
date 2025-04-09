@@ -45,7 +45,7 @@ final class CsvUploadController extends AbstractController
                 $raw->setClassificationId($registro['classification_id']?? null);
 
                 $columnas = array_values($registro);
-                $tareasJson = $columnas[14];
+                $tareasJson = $columnas[14] ?? null;
 
                 $tareas = $registro['task'];
                 $datosTareas = json_decode($tareas, true);
