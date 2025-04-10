@@ -30,6 +30,8 @@ final class CsvUploadController extends AbstractController
             $reader = Reader::createFromPath($uploadedFile->getPathname(), 'r');
             $reader->setHeaderOffset(0);
             $reader->setDelimiter(';');
+            $reader->setEnclosure('"');
+            $reader->setEscape('\\');
                 
             $registros = $reader->getRecords();
                 
