@@ -24,12 +24,12 @@ final class CsvUploadController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-                    $uploadedFile = $form->get('csv_file')->getData();
 
+            $uploadedFile = $form->get('csv_file')->getData();
 
-            // Configuración de league/csv
             $reader = Reader::createFromPath($uploadedFile->getPathname(), 'r');
-            $reader->setHeaderOffset(0); 
+            $reader->setHeaderOffset(0);
+            $reader->setDelimiter(';');
                 
             $registros = $reader->getRecords();
                 
