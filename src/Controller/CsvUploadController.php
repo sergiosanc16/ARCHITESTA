@@ -38,6 +38,7 @@ final class CsvUploadController extends AbstractController
                 $registros = $reader->getRecords();
             } catch (SyntaxError $exception) {
                 $duplicates = $exception->duplicateColumnNames(); //returns ['field1']
+                dump($duplicates);
             }
 
             
