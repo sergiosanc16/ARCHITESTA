@@ -9,6 +9,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Mime\Address;
 use League\Csv\Reader;
 use League\Csv\Statement;
+use League\Csv\SyntaxError;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Entity\TestaTraw;
 use App\Form\CsvUploadType;
