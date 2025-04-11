@@ -29,24 +29,17 @@ final class CsvUploadController extends AbstractController
             $uploadedFile = $form->get('csv_file')->getData();
 
             $reader = Reader::createFromPath($uploadedFile->getPathname(), 'r');
-            $reader->setHeaderOffset(0);
-            $reader->setDelimiter(';');
+            $reader->setDelimiter(',');
             $reader->setEnclosure('"');
             $reader->setEscape('\\');
-                
-            try {
-                $registros = $reader->getRecords();
-            } catch (SyntaxError $exception) {
-                $duplicates = $exception->duplicateColumnNames();
-                dump($duplicates);
-            }
-
+            $reader->setHeaderOffset(0); // Indicar que la primera línea es la cabecera
             
-                
+            $registros = $reader->getRecords();
+           
             $lote = 20;
             $i = 0;
 
-            foreach ($registros as $registro) {
+            foreach ($registros as $indice => $registro) {
                 dump($registro);
 
                 $raw = new TestaTraw();
