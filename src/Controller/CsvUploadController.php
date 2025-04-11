@@ -34,14 +34,7 @@ final class CsvUploadController extends AbstractController
             $reader->setEnclosure('"');
             $reader->setEscape('\\');
                 
-            try {
-                $registros = $reader->getRecords();
-            } catch (SyntaxError $exception) {
-                $duplicates = $exception->duplicateColumnNames(); //returns ['field1']
-                dump($duplicates);
-            }
-
-            
+            $registros = $reader->getRecords();
                 
             $lote = 20;
             $i = 0;
