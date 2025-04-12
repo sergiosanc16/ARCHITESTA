@@ -57,19 +57,23 @@ final class CsvUploadController extends AbstractController
                 
                     switch ($taskId) {
                         case 'T0':
-                            foreach ($value as $subTask) {
-                                $this->processTask($subTask, $raw);
+                            $datosFecha = json_decode($value, true);
+                            $fechaId = $datosTareas['task'] ?? null;
+                            $fecha = $datosTareas['value'] ?? null;
+                
+                            switch ($taskId) {
+                                case 'T1':
+                                    $raw->setYear((int) $value);
+                                    break;
+                                case 'T2':
+                                    $raw->setMonth($this->normalizeMonth($value));
+                                    break;
+                                case 'T3':
+                                    $raw->setDay((int) $value);
+                                    break;
                             }
                             break;
-                        case 'T1':
-                            $raw->setYear((int) $value);
-                            break;
-                        case 'T2':
-                            $raw->setMonth($this->normalizeMonth($value));
-                            break;
-                        case 'T3':
-                            $raw->setDay((int) $value);
-                            break;
+                        
                         case 'T4':
                             $raw->setOtherPopulation($value === 'Yes');
                             break;
