@@ -48,6 +48,7 @@ final class CsvUploadController extends AbstractController
                 $tareas = $registro['annotations'];
 
                 $datosTareas = json_decode($tareas, true);
+                dump($datosTareas);
                 if ($datosTareas) {
                     $taskId = $datosTareas['task'] ?? null;
                     $value = $datosTareas['value'] ?? null;
