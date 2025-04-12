@@ -44,11 +44,10 @@ final class CsvUploadController extends AbstractController
 
                 $raw = new TestaTraw();
 
-                $columnas = array_values($registro);
-                if(isset($registro['classification_id'])){
-                    $raw->setClassificationId($registro['classification_id']?? null);
-                }else if(isset($columnas[14])){
-                    $tareas = $columnas[14];
+                $raw->setClassificationId($registro['classification_id']?? null);
+
+                $tareas = $registro['annotations'];
+
                 $datosTareas = json_decode($tareas, true);
                 if ($datosTareas) {
                     $taskId = $datosTareas['task'] ?? null;
@@ -56,7 +55,7 @@ final class CsvUploadController extends AbstractController
                 
                     switch ($taskId) {
                         case 'T0':
-                            foreach ($value as $subTask) {
+                            foreach ($value as $subTask) {º
                                 $this->processTask($subTask, $raw);
                             }
                             break;
@@ -126,7 +125,6 @@ final class CsvUploadController extends AbstractController
                     $em->clear();
                 }
                 $i++;
-                }
             }
             $em->flush();
             $em->clear();
