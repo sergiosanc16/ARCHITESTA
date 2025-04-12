@@ -61,15 +61,15 @@ final class CsvUploadController extends AbstractController
                             $fechaId = $datosTareas['task'] ?? null;
                             $fecha = $datosTareas['value'] ?? null;
                 
-                            switch ($taskId) {
+                            switch ($fechaId) {
                                 case 'T1':
-                                    $raw->setYear((int) $value);
+                                    $raw->setYear((int) $fecha);
                                     break;
                                 case 'T2':
-                                    $raw->setMonth($this->normalizeMonth($value));
+                                    $raw->setMonth($this->normalizeMonth($fecha));
                                     break;
                                 case 'T3':
-                                    $raw->setDay((int) $value);
+                                    $raw->setDay((int) $fecha);
                                     break;
                             }
                             break;
