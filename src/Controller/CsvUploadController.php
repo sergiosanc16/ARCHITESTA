@@ -40,7 +40,6 @@ final class CsvUploadController extends AbstractController
             $i = 0;
 
             foreach ($registros as $indice => $registro) {
-                dump($registro);
 
                 $raw = new TestaTraw();
 
@@ -60,6 +59,7 @@ final class CsvUploadController extends AbstractController
                             }
                             break;
                         case 'T1':
+                            dump($value);
                             $raw->setYear((int) $value);
                             break;
                         case 'T2':
