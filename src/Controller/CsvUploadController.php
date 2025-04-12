@@ -55,7 +55,7 @@ final class CsvUploadController extends AbstractController
                 
                     switch ($taskId) {
                         case 'T0':
-                            foreach ($value as $subTask) {º
+                            foreach ($value as $subTask) {
                                 $this->processTask($subTask, $raw);
                             }
                             break;
