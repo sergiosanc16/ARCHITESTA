@@ -51,6 +51,8 @@ final class CsvUploadController extends AbstractController
                 if ($datosTareas) {
                     $taskId = $datosTareas['task'] ?? null;
                     $value = $datosTareas['value'] ?? null;
+                    dump($taskId);
+                    dump($value);
                 
                     switch ($taskId) {
                         case 'T0':
@@ -59,7 +61,6 @@ final class CsvUploadController extends AbstractController
                             }
                             break;
                         case 'T1':
-                            dump($value);
                             $raw->setYear((int) $value);
                             break;
                         case 'T2':
