@@ -44,7 +44,8 @@ final class CsvUploadController extends AbstractController
 
                 $raw = new TestaTraw();
 
-                $raw->setClassificationId($registro['classification_id']?? null);
+                $raw->setClassificationId($registro['classification_id']);
+                $raw->setUserName($registro['user_name']);
 
                 $tareas = $registro['annotations'];
 

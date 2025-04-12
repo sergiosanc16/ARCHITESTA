@@ -17,12 +17,6 @@ class TestaTraw
     #[ORM\Column(type: Types::BIGINT)]
     private ?string $classificationId = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $userName = null;
-
-    #[ORM\Column]
-    private ?\DateTimeImmutable $createdAt = null;
-
     #[ORM\Column]
     private ?int $year = null;
 
@@ -102,30 +96,6 @@ class TestaTraw
     public function setClassificationId(string $classificationId): static
     {
         $this->classificationId = $classificationId;
-
-        return $this;
-    }
-
-    public function getUserName(): ?string
-    {
-        return $this->userName;
-    }
-
-    public function setUserName(string $userName): static
-    {
-        $this->userName = $userName;
-
-        return $this;
-    }
-
-    public function getCreatedAt(): ?\DateTimeImmutable
-    {
-        return $this->createdAt;
-    }
-
-    public function setCreatedAt(\DateTimeImmutable $createdAt): static
-    {
-        $this->createdAt = $createdAt;
 
         return $this;
     }
