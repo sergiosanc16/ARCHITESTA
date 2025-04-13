@@ -50,8 +50,13 @@ final class CsvUploadController extends AbstractController
                 $datosTareas = json_decode($tareas, true);
                 dump($datosTareas);
                 if ($datosTareas) {
-                    $taskId = $datosTareas['task'];
+                    $primeraTarea = $datosTareas['0'];
+                    $T0 = $primeraTarea['value'];
+                    
                     $value = $datosTareas['value'] ;
+
+                    $fecha = $datosTareas['0']['value']['0']['value'];
+
                     dump($taskId);
                     dump($value);
                 
