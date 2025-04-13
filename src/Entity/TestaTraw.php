@@ -59,9 +59,6 @@ class TestaTraw
     #[ORM\Column(length: 255)]
     private ?string $notaryName = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $notarySurname = null;
-
     #[ORM\Column]
     private ?int $protocolNumber = null;
 
