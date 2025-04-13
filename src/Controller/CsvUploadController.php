@@ -58,7 +58,9 @@ final class CsvUploadController extends AbstractController
                     //OtraPoblacion
                     if($datosTareas['1']['value']=='Yes'){
                         $raw->setOtherPopulation(True);
-                        dump($raw->getOtherPopulation());
+
+                        
+
                         $raw->setPopulationName($datosTareas['2']['value']);
                         //nombre otorgante
                         $raw->setGrantorSurname1($datosTareas['3']['value']['0']['value']);
@@ -98,6 +100,9 @@ final class CsvUploadController extends AbstractController
                         }
                     } else {
                         $raw->setOtherPopulation(False);
+
+                        dump($raw->getOtherPopulation());
+                        
                         $raw->setGrantorSurname1($datosTareas['2']['value']['0']['value']);
                         $raw->setGratorSurname2($datosTareas['2']['value']['1']['value']);
                         $raw->setGrantorName($datosTareas['2']['value']['2']['value']);
