@@ -50,16 +50,16 @@ final class CsvUploadController extends AbstractController
                 $datosTareas = json_decode($tareas, true);
                 dump($datosTareas);
                 if ($datosTareas) {
-                    $taskId = $datosTareas['task'] ?? null;
-                    $value = $datosTareas['value'] ?? null;
+                    $taskId = $datosTareas['task'];
+                    $value = $datosTareas['value'] ;
                     dump($taskId);
                     dump($value);
                 
                     switch ($taskId) {
                         case 'T0':
                             $datosFecha = json_decode($value, true);
-                            $fechaId = $datosFecha['task'] ?? null;
-                            $fecha = $datosFecha['value'] ?? null;
+                            $fechaId = $datosFecha['task'];
+                            $fecha = $datosFecha['value'];
                 
                             switch ($fechaId) {
                                 case 'T1':
