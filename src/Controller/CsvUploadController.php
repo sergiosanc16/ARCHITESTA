@@ -97,7 +97,7 @@ final class CsvUploadController extends AbstractController
                         }
                     } else {
                         $raw->setGrantorSurname1($datosTareas['2']['value']['0']['value']);
-                        $raw->setGrantorSurname2($datosTareas['2']['value']['1']['value']);
+                        $raw->setGratorSurname2($datosTareas['2']['value']['1']['value']);
                         $raw->setGrantorName($datosTareas['2']['value']['2']['value']);
                         if($datosTareas['3']['value']=='Yes'){
                             $raw->setOfficeMentioned(true);
