@@ -47,7 +47,7 @@ final class CsvUploadController extends AbstractController
 
                 $tareas = $registro['annotations'];
 
-                $datosTareas = json_decode($tareas, true);
+                $datosTareas = json_decode($tareas, True);
                 dump($datosTareas);
                 if ($datosTareas) {
                     //año
@@ -58,14 +58,14 @@ final class CsvUploadController extends AbstractController
                     $raw->setDay((int) $datosTareas['0']['value']['2']['value']);
                     //OtraPoblacion
                     if($datosTareas['1']['value']=='Yes'){
-                        $raw->setOtherPopulation(true);
+                        $raw->setOtherPopulation(True);
                         $raw->setPopulationName($datosTareas['2']['value']);
                         //nombre otorgante
                         $raw->setGrantorSurname1($datosTareas['3']['value']['0']['value']);
                         $raw->setGratorSurname2($datosTareas['3']['value']['1']['value']);
                         $raw->setGrantorName($datosTareas['3']['value']['2']['value']);
                         if($datosTareas['4']['value']=='Yes'){
-                            $raw->setOfficeMentioned(true);
+                            $raw->setOfficeMentioned(True);
                             $raw->setGrantorOffice($datosTareas['5']['value']);
                             if($datosTareas['6']['value']=='Yes'){
                                 $raw->setRelationshipMentioned(True);
@@ -100,7 +100,7 @@ final class CsvUploadController extends AbstractController
                         $raw->setGratorSurname2($datosTareas['2']['value']['1']['value']);
                         $raw->setGrantorName($datosTareas['2']['value']['2']['value']);
                         if($datosTareas['3']['value']=='Yes'){
-                            $raw->setOfficeMentioned(true);
+                            $raw->setOfficeMentioned(True);
                             $raw->setGrantorOffice($datosTareas['4']['value']);
                             if($datosTareas['5']['value']=='Yes'){
                                 $raw->setRelationshipMentioned(True);
