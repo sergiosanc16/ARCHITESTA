@@ -48,7 +48,6 @@ final class CsvUploadController extends AbstractController
                 $tareas = $registro['annotations'];
 
                 $datosTareas = json_decode($tareas, True);
-                dump($datosTareas);
                 if ($datosTareas) {
                     //año
                     $raw->setYear((int) $datosTareas['0']['value']['0']['value']);
@@ -59,6 +58,7 @@ final class CsvUploadController extends AbstractController
                     //OtraPoblacion
                     if($datosTareas['1']['value']=='Yes'){
                         $raw->setOtherPopulation(True);
+                        dump($raw->getOtherPopulation());
                         $raw->setPopulationName($datosTareas['2']['value']);
                         //nombre otorgante
                         $raw->setGrantorSurname1($datosTareas['3']['value']['0']['value']);
@@ -89,6 +89,7 @@ final class CsvUploadController extends AbstractController
                                 $raw->setProtocolNumber($datosTareas['9']['value']);
                                 $raw->setFolioNumber((int)$datosTareas['10']['value']);
                             } else {
+                                $raw->setRelationshipMentioned(False);
                                 $raw->setNotaryName($datosTareas['6']['value']);
                                 $raw->setDocumentType($datosTareas['7']['value']['0']['label']);
                                 $raw->setProtocolNumber($datosTareas['8']['value']);
@@ -96,6 +97,7 @@ final class CsvUploadController extends AbstractController
                             }
                         }
                     } else {
+                        $raw->setOtherPopulation(False);
                         $raw->setGrantorSurname1($datosTareas['2']['value']['0']['value']);
                         $raw->setGratorSurname2($datosTareas['2']['value']['1']['value']);
                         $raw->setGrantorName($datosTareas['2']['value']['2']['value']);
@@ -110,6 +112,7 @@ final class CsvUploadController extends AbstractController
                                 $raw->setProtocolNumber($datosTareas['9']['value']);
                                 $raw->setFolioNumber((int)$datosTareas['10']['value']);
                             } else {
+                                $raw->setRelationshipMentioned(False);
                                 $raw->setNotaryName($datosTareas['6']['value']);
                                 $raw->setDocumentType($datosTareas['7']['value']['0']['label']);
                                 $raw->setProtocolNumber($datosTareas['8']['value']);
