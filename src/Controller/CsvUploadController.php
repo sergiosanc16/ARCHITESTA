@@ -57,8 +57,7 @@ final class CsvUploadController extends AbstractController
 
                     $fecha = $datosTareas['0']['value']['0']['value'];
 
-                    dump($taskId);
-                    dump($value);
+                    dump($fecha);
                 
                     switch ($taskId) {
                         case 'T0':
