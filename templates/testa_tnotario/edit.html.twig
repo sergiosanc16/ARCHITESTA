@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit TestaTnotario{% endblock %}
+
+{% block body %}
+    <h1>Edit TestaTnotario</h1>
+
+    {{ include('testa_tnotario/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_testa_tnotario_index') }}">back to list</a>
+
+    {{ include('testa_tnotario/_delete_form.html.twig') }}
+{% endblock %}
