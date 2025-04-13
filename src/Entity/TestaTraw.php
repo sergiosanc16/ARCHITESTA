@@ -268,18 +268,6 @@ class TestaTraw
         return $this;
     }
 
-    public function getNotarySurname(): ?string
-    {
-        return $this->notarySurname;
-    }
-
-    public function setNotarySurname(string $notarySurname): static
-    {
-        $this->notarySurname = $notarySurname;
-
-        return $this;
-    }
-
     public function getProtocolNumber(): ?int
     {
         return $this->protocolNumber;

@@ -50,81 +50,86 @@ final class CsvUploadController extends AbstractController
                 $datosTareas = json_decode($tareas, true);
                 dump($datosTareas);
                 if ($datosTareas) {
-                    //$primeraTarea = $datosTareas['0'];
-                    //$T0 = $primeraTarea['value'];
-                    
-                    //$value = $datosTareas['value'] ;
-
-                    $fecha = $datosTareas['0']['value']['0']['value'];
-
-                    dump($fecha);
-                
-                    switch ($taskId) {
-                        case 'T0':
-                            $datosFecha = json_decode($value, true);
-                            $fechaId = $datosFecha['task'];
-                            $fecha = $datosFecha['value'];
-                
-                            switch ($fechaId) {
-                                case 'T1':
-                                    $raw->setYear((int) $fecha);
-                                    break;
-                                case 'T2':
-                                    $raw->setMonth($this->normalizeMonth($fecha));
-                                    break;
-                                case 'T3':
-                                    $raw->setDay((int) $fecha);
-                                    break;
+                    //año
+                    $raw->setYear((int) $datosTareas['0']['value']['0']['value']);
+                    //mes
+                    $raw->setMonth($datosTareas['0']['value']['1']['value']);
+                    //dia
+                    $raw->setDay((int) $datosTareas['0']['value']['2']['value']);
+                    //OtraPoblacion
+                    if($datosTareas['1']['value']=='Yes'){
+                        $raw->setOtherPopulation(true);
+                        $raw->setPopulationName($datosTareas['2']['value']);
+                        //nombre otorgante
+                        $raw->setGrantorSurname1($datosTareas['3']['value']['0']['value']);
+                        $raw->setGrantorSurname2($datosTareas['3']['value']['1']['value']);
+                        $raw->setGrantorName($datosTareas['3']['value']['2']['value']);
+                        if($datosTareas['4']['value']=='Yes'){
+                            $raw->setOfficeMentioned(true);
+                            $raw->setGrantorOffice($datosTareas['5']['value']);
+                            if($datosTareas['6']['value']=='Yes'){
+                                $raw->setRelationshipMentioned(True);
+                                $raw->setGrantorRelationship($datosTareas['7']['value']);
+                                $raw->setNotaryName($datosTareas['8']['value']);
+                                $raw->setDocumentType($datosTareas['9']['value']['0']['label']);
+                                $raw->setProtocolNumber($datosTareas['10']['value']);
+                                $raw->setFolioNumber($datosTareas['11']['value']);
+                            } else {
+                                $raw->setNotaryName($datosTareas['7']['value']);
+                                $raw->setDocumentType($datosTareas['8']['value']['0']['label']);
+                                $raw->setProtocolNumber($datosTareas['9']['value']);
+                                $raw->setFolioNumber($datosTareas['10']['value']);
+                                }
+                        } else {
+                            if($datosTareas['5']['value']=='Yes'){
+                                $raw->setRelationshipMentioned(True);
+                                $raw->setGrantorRelationship($datosTareas['6']['value']);
+                                $raw->setNotaryName($datosTareas['7']['value']);
+                                $raw->setDocumentType($datosTareas['8']['value']['0']['label']);
+                                $raw->setProtocolNumber($datosTareas['9']['value']);
+                                $raw->setFolioNumber($datosTareas['10']['value']);
+                            } else {
+                                $raw->setNotaryName($datosTareas['6']['value']);
+                                $raw->setDocumentType($datosTareas['7']['value']['0']['label']);
+                                $raw->setProtocolNumber($datosTareas['8']['value']);
+                                $raw->setFolioNumber($datosTareas['9']['value']);
                             }
-                            break;
-                        
-                        case 'T4':
-                            $raw->setOtherPopulation($value === 'Yes');
-                            break;
-                        case 'T5':
-                            if ($value) $raw->setPopulationName($value);
-                            break;
-                        case 'T6':
-                            foreach ($value as $subTask) {
-                                $this->processTask($subTask, $raw);
+                        }
+                    } else {
+                        $raw->setGrantorSurname1($datosTareas['2']['value']['0']['value']);
+                        $raw->setGrantorSurname2($datosTareas['2']['value']['1']['value']);
+                        $raw->setGrantorName($datosTareas['2']['value']['2']['value']);
+                        if($datosTareas['3']['value']=='Yes'){
+                            $raw->setOfficeMentioned(true);
+                            $raw->setGrantorOffice($datosTareas['4']['value']);
+                            if($datosTareas['5']['value']=='Yes'){
+                                $raw->setRelationshipMentioned(True);
+                                $raw->setGrantorRelationship($datosTareas['6']['value']);
+                                $raw->setNotaryName($datosTareas['7']['value']);
+                                $raw->setDocumentType($datosTareas['8']['value']['0']['label']);
+                                $raw->setProtocolNumber($datosTareas['9']['value']);
+                                $raw->setFolioNumber($datosTareas['10']['value']);
+                            } else {
+                                $raw->setNotaryName($datosTareas['6']['value']);
+                                $raw->setDocumentType($datosTareas['7']['value']['0']['label']);
+                                $raw->setProtocolNumber($datosTareas['8']['value']);
+                                $raw->setFolioNumber($datosTareas['9']['value']);
                             }
-                            break;
-                        case 'T7':
-                            $raw->setGrantorSurname1($value);
-                            break;
-                        case 'T8':
-                            $raw->setGrantorSurname2($value ?: null);
-                            break;
-                        case 'T9':
-                            $raw->setGrantorName($value);
-                            break;
-                        case 'T10':
-                            $raw->setOfficeMentioned($value === 'Yes');
-                            break;
-                        case 'T11':
-                            if ($value) $raw->setGrantorOffice($value);
-                            break;
-                        case 'T12':
-                            $this->parseNotary($value, $raw);
-                            break;
-                        case 'T13':
-                            $raw->setProtocolNumber((int) $value);
-                            break;
-                        case 'T14':
-                            $raw->setFolioNumber($this->parseFolio($value));
-                            break;
-                        case 'T15':
-                            $raw->setRelationshipMentioned($value === 'Yes');
-                            break;
-                        case 'T16':
-                            $raw->setGrantorRelationship($value);
-                            break;
-                        case 'T17':
-                            $raw->setDocumentType($value[0]['label']);
-                            break;
-                        case 'T20':
-                            $raw->setSecondGrantor($value === 'Yes');
-                            break;
+                        } else {
+                            if($datosTareas['4']['value']=='Yes'){
+                                $raw->setRelationshipMentioned(True);
+                                $raw->setGrantorRelationship($datosTareas['5']['value']);
+                                $raw->setNotaryName($datosTareas['6']['value']);
+                                $raw->setDocumentType($datosTareas['7']['value']['0']['label']);
+                                $raw->setProtocolNumber($datosTareas['8']['value']);
+                                $raw->setFolioNumber($datosTareas['9']['value']);
+                            } else {
+                                $raw->setNotaryName($datosTareas['5']['value']);
+                                $raw->setDocumentType($datosTareas['6']['value']['0']['label']);
+                                $raw->setProtocolNumber($datosTareas['7']['value']);
+                                $raw->setFolioNumber($datosTareas['8']['value']);
+                            }
+                        }
                     }
                         
                     $em->persist($raw);
