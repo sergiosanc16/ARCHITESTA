@@ -121,6 +121,7 @@ final class CsvUploadController extends AbstractController
                                 $raw->setFolioNumber((int)$datosTareas['9']['value']);
                             }
                         } else {
+                            $raw->setOfficeMentioned(False);
                             if($datosTareas['4']['value']=='Yes'){
                                 $raw->setRelationshipMentioned(True);
                                 $raw->setGrantorRelationship($datosTareas['5']['value']);
