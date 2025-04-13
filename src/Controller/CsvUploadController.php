@@ -53,7 +53,7 @@ final class CsvUploadController extends AbstractController
                     //año
                     $raw->setYear((int) $datosTareas['0']['value']['0']['value']);
                     //mes
-                    $raw->setMonth($datosTareas['0']['value']['1']['value']);
+                    $raw->setMonth((int)$datosTareas['0']['value']['1']['value']);
                     //dia
                     $raw->setDay((int) $datosTareas['0']['value']['2']['value']);
                     //OtraPoblacion
