@@ -74,9 +74,6 @@ class TestaTraw
     #[ORM\Column(length: 255)]
     private ?string $filename = null;
 
-    #[ORM\Column]
-    private ?bool $retired = null;
-
     public function getId(): ?int
     {
         return $this->id;
@@ -318,18 +315,6 @@ class TestaTraw
     public function setFilename(string $filename): static
     {
         $this->filename = $filename;
-
-        return $this;
-    }
-
-    public function isRetired(): ?bool
-    {
-        return $this->retired;
-    }
-
-    public function setRetired(bool $retired): static
-    {
-        $this->retired = $retired;
 
         return $this;
     }
