@@ -120,11 +120,10 @@ final class CsvUploadController extends AbstractController
                                 $raw->setNotaryName($datosTareas[$i]['value']);
                                 break;
                         }
-                        $datosFoto = json_decode($registro['subject_data'], True);
-                        dump($datosFoto);
-
-                        
                     }
+                    $datosFoto = json_decode($registro['subject_data'], True);
+                    dump($datosFoto);
+                    $raw->setFilename($datosFoto[$registro['subject_ids']['Filename']]);
                         
                     $em->persist($raw);
                 }
