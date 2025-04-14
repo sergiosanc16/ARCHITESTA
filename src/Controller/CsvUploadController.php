@@ -88,7 +88,7 @@ final class CsvUploadController extends AbstractController
                                 $raw->setNotaryName($datosTareas[$i]['value']);
                                 break;
                             case 'T13':
-                                $raw->setProtocolNumber($datosTareas[$i]['value']);
+                                $raw->setProtocolNumber((int)$datosTareas[$i]['value']);
                                 break;
                             case 'T14':
                                 $raw->setFolioNumber((int)$datosTareas[$i]['value']);
