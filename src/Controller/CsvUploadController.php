@@ -131,6 +131,7 @@ final class CsvUploadController extends AbstractController
                             if($datosTareas['4']['value']=='Yes'){
                                 $raw->setRelationshipMentioned(True);
                                 $raw->setGrantorRelationship($datosTareas['5']['value']);
+                                dump($raw); 
                                 $raw->setNotaryName($datosTareas['6']['value']);
                                 $raw->setDocumentType($datosTareas['7']['value']['0']['label']);
                                 $raw->setProtocolNumber($datosTareas['8']['value']);
