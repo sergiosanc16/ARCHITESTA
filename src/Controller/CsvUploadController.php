@@ -81,6 +81,7 @@ final class CsvUploadController extends AbstractController
                                 }
                         } else {
                             $raw->setOfficeMentioned(False);
+                            $raw->setGrantorOffice('Ninguna');
                             if($datosTareas['5']['value']=='Yes'){
                                 $raw->setRelationshipMentioned(True);
                                 $raw->setGrantorRelationship($datosTareas['6']['value']);
@@ -122,6 +123,7 @@ final class CsvUploadController extends AbstractController
                             }
                         } else {
                             $raw->setOfficeMentioned(False);
+                            $raw->setGrantorOffice('Ninguna');
                             if($datosTareas['4']['value']=='Yes'){
                                 $raw->setRelationshipMentioned(True);
                                 $raw->setGrantorRelationship($datosTareas['5']['value']);
