@@ -39,9 +39,9 @@ final class CsvUploadController extends AbstractController
             $lote = 20;
             $i = 0;
 
-            foreach ($registros as $indice => $registro) {
+            $raw = new TestaTraw();
 
-                $raw = new TestaTraw();
+            foreach ($registros as $indice => $registro) {
 
                 $raw->setClassificationId($registro['classification_id']);
 
