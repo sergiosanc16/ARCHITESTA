@@ -58,7 +58,7 @@ final class CsvUploadController extends AbstractController
                     //dia
                     $raw->setDay((int) $datosTareas['0']['value']['2']['value']);
                     //OtraPoblacion
-                    for($i=1;$i<cout($datosTarea);$i++){
+                    for($i=1;$i<count($datosTarea);$i++){
                         $task = $datosTareas[$i]['task'];
                         switch ($task){
                             case 'T4':
