@@ -40,7 +40,6 @@ final class CsvUploadController extends AbstractController
             $i = 0;
 
             foreach ($registros as $indice => $registro) {
-                dump($registro);
 
                 $raw = new TestaTraw();
 
@@ -48,7 +47,6 @@ final class CsvUploadController extends AbstractController
 
                 $datosTareas = json_decode($registro['annotations'], True);
                 if ($datosTareas) {
-                    dump($datosTareas);
                     //año
                     $raw->setYear((int) $datosTareas['0']['value']['0']['value']);
                     //mes
@@ -122,9 +120,10 @@ final class CsvUploadController extends AbstractController
                         }
                     }
                     $datosFoto = json_decode($registro['subject_data'], True);
-                    dump($datosFoto);
                     $idFoto = (int) $registro['subject_ids'];
                     $raw->setFilename($datosFoto[$idFoto]['Filename']);
+
+                    dump($raw);
                         
                     $em->persist($raw);
                 }
