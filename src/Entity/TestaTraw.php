@@ -72,9 +72,6 @@ class TestaTraw
     private ?string $secondGrantorName = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $secondGrantorSurname = null;
-
-    #[ORM\Column(length: 255)]
     private ?string $filename = null;
 
     #[ORM\Column]
@@ -309,18 +306,6 @@ class TestaTraw
     public function setSecondGrantorName(string $secondGrantorName): static
     {
         $this->secondGrantorName = $secondGrantorName;
-
-        return $this;
-    }
-
-    public function getSecondGrantorSurname(): ?string
-    {
-        return $this->secondGrantorSurname;
-    }
-
-    public function setSecondGrantorSurname(string $secondGrantorSurname): static
-    {
-        $this->secondGrantorSurname = $secondGrantorSurname;
 
         return $this;
     }
