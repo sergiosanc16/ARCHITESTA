@@ -74,6 +74,8 @@ final class CsvUploadController extends AbstractController
                                 $raw->setProtocolNumber($datosTareas['10']['value']);
                                 $raw->setFolioNumber((int)$datosTareas['11']['value']);
                             } else {
+                                $raw->setRelationshipMentioned(False);
+                                $raw->setGrantorRelationship('Ninguna');
                                 $raw->setNotaryName($datosTareas['7']['value']);
                                 $raw->setDocumentType($datosTareas['8']['value']['0']['label']);
                                 $raw->setProtocolNumber($datosTareas['9']['value']);
@@ -91,6 +93,7 @@ final class CsvUploadController extends AbstractController
                                 $raw->setFolioNumber((int)$datosTareas['10']['value']);
                             } else {
                                 $raw->setRelationshipMentioned(False);
+                                $raw->setGrantorRelationship('Ninguna');
                                 $raw->setNotaryName($datosTareas['6']['value']);
                                 $raw->setDocumentType($datosTareas['7']['value']['0']['label']);
                                 $raw->setProtocolNumber($datosTareas['8']['value']);
@@ -100,7 +103,6 @@ final class CsvUploadController extends AbstractController
                     } else {
                         $raw->setOtherPopulation(False);
                         $raw->setPopulationName('Ninguna');
-
                         $raw->setGrantorSurname1($datosTareas['2']['value']['0']['value']);
                         $raw->setGratorSurname2($datosTareas['2']['value']['1']['value']);
                         $raw->setGrantorName($datosTareas['2']['value']['2']['value']);
@@ -116,6 +118,7 @@ final class CsvUploadController extends AbstractController
                                 $raw->setFolioNumber((int)$datosTareas['10']['value']);
                             } else {
                                 $raw->setRelationshipMentioned(False);
+                                $raw->setGrantorRelationship('Ninguna');
                                 $raw->setNotaryName($datosTareas['6']['value']);
                                 $raw->setDocumentType($datosTareas['7']['value']['0']['label']);
                                 $raw->setProtocolNumber($datosTareas['8']['value']);
@@ -132,6 +135,8 @@ final class CsvUploadController extends AbstractController
                                 $raw->setProtocolNumber($datosTareas['8']['value']);
                                 $raw->setFolioNumber((int)$datosTareas['9']['value']);
                             } else {
+                                $raw->setRelationshipMentioned(False);
+                                $raw->setGrantorRelationship('Ninguna');
                                 $raw->setNotaryName($datosTareas['5']['value']);
                                 $raw->setDocumentType($datosTareas['6']['value']['0']['label']);
                                 $raw->setProtocolNumber($datosTareas['7']['value']);
