@@ -123,7 +123,8 @@ final class CsvUploadController extends AbstractController
                     }
                     $datosFoto = json_decode($registro['subject_data'], True);
                     dump($datosFoto);
-                    $raw->setFilename($datosFoto[$registro['subject_ids']][['Filename']]);
+                    $idFoto = (int) $registro['subject_ids'];
+                    $raw->setFilename($datosFoto[$idFoto]['Filename']);
                         
                     $em->persist($raw);
                 }
