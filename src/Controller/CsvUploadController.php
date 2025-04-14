@@ -46,9 +46,7 @@ final class CsvUploadController extends AbstractController
 
                 $raw->setClassificationId($registro['classification_id']);
 
-                $tareas = $registro['annotations'];
-
-                $datosTareas = json_decode($tareas, True);
+                $datosTareas = json_decode($registro['annotations'], True);
                 if ($datosTareas) {
                     dump($datosTareas);
                     //año
@@ -121,8 +119,10 @@ final class CsvUploadController extends AbstractController
                             case 'T22':
                                 $raw->setNotaryName($datosTareas[$i]['value']);
                                 break;
-
                         }
+                        $datosFoto = json_decode($registro['subject_data'], True);
+                        dump($datosFoto);
+
                         
                     }
                         
