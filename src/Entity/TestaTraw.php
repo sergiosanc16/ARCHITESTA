@@ -324,7 +324,7 @@ class TestaTraw
         return $this;
     }
 
-    public static function cargaCSV(FormInterface $form, EntityManagerInterface $em): int
+    public static function cargaCSV(Form $form, EntityManagerInterface $em): int
     {
         $uploadedFile = $form->get('csv_file')->getData();
 
