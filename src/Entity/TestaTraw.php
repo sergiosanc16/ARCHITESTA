@@ -436,6 +436,7 @@ class TestaTraw
             $nbRows = $reader->each(function ($row) {
                 return true;
             });
+            dump($em);
             if ((($i % $lote) === 0) or $nbRows < 20 ) {
                 $em->flush();
                 $em->clear();
