@@ -433,8 +433,10 @@ class TestaTraw
                         
                 $em->persist($raw);
             }
-                    
-            if ((($i % $lote) === 0) or count($registros) < 20 ) {
+            $nbRows = $reader->each(function ($row) {
+                return true;
+            });
+            if ((($i % $lote) === 0) or $nbRows < 20 ) {
                 $em->flush();
                 $em->clear();
             }
