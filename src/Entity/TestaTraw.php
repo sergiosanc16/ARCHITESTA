@@ -357,7 +357,12 @@ class TestaTraw
                 //año
                 $raw->setYear((int) $datosTareas['0']['value']['0']['value']);
                 //mes
-                $raw->setMonth($meses[$datosTareas['0']['value']['1']['value']]);
+                if(gettype($datosTareas['0']['value']['1']['value'])=='string'){
+                    $raw->setMonth($meses[$datosTareas['0']['value']['1']['value']]);
+                } else {
+                    $raw->setMonth($datosTareas['0']['value']['1']['value']);
+                }
+
                 //dia
                 $raw->setDay((int) $datosTareas['0']['value']['2']['value']);
                 //OtraPoblacion
