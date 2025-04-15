@@ -345,6 +345,7 @@ class TestaTraw
         $raw = new TestaTraw();
 
         foreach ($registros as $indice => $registro) {
+            dump($registro);
 
             $raw = new TestaTraw();
 
@@ -425,8 +426,6 @@ class TestaTraw
                             break;
                     }
                 }
-
-                dump($raw);
 
                 $datosFoto = json_decode($registro['subject_data'], True);
                 $idFoto = (int) $registro['subject_ids'];
