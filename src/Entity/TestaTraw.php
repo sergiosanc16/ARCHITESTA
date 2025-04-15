@@ -32,52 +32,52 @@ class TestaTraw
     #[ORM\Column]
     private ?int $day = null;
 
-    #[ORM\Column]
+    #[ORM\Column(nullable: true)]
     private ?bool $otherPopulation = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255,nullable: true)]
     private ?string $populationName = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255,nullable: true)]
     private ?string $grantorSurname1 = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255,nullable: true)]
     private ?string $gratorSurname2 = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255,nullable: true)]
     private ?string $grantorName = null;
 
-    #[ORM\Column]
+    #[ORM\Column(nullable: true)]
     private ?bool $officeMentioned = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255,nullable: true)]
     private ?string $grantorOffice = null;
 
     #[ORM\Column(nullable: true)]
     private ?bool $relationshipMentioned = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255,nullable: true)]
     private ?string $grantorRelationship = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255,nullable: true)]
     private ?string $documentType = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255,nullable: true)]
     private ?string $notaryName = null;
 
-    #[ORM\Column]
+    #[ORM\Column(nullable: true)]
     private ?int $protocolNumber = null;
 
-    #[ORM\Column]
+    #[ORM\Column(nullable: true)]
     private ?int $folioNumber = null;
 
-    #[ORM\Column]
+    #[ORM\Column(nullable: true)]
     private ?bool $secondGrantor = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255,nullable: true)]
     private ?string $secondGrantorName = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255,nullable: true)]
     private ?string $filename = null;
 
     public function getId(): ?int
