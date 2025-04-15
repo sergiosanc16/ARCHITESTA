@@ -425,17 +425,19 @@ class TestaTraw
                             break;
                     }
                 }
+
+                dump($raw);
+
                 $datosFoto = json_decode($registro['subject_data'], True);
                 $idFoto = (int) $registro['subject_ids'];
                 $raw->setFilename($datosFoto[$idFoto]['Filename']);
+
                 if(!$segOtor){
                     $raw->setSecondGrantor(FALSE);
                     $raw->setSecondGrantorName("Ningun@");
                 }
                 $em->persist($raw);
             }
-
-            dump($raw);
                     
             $nbRows = $reader->each(function ($row) {
                 return true;
