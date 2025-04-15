@@ -53,7 +53,7 @@ class TestaTraw
     #[ORM\Column(length: 255)]
     private ?string $grantorOffice = null;
 
-    #[ORM\Column]
+    #[ORM\Column(nullable: true)]
     private ?bool $relationshipMentioned = null;
 
     #[ORM\Column(length: 255)]
