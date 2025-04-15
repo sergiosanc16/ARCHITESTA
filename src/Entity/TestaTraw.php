@@ -399,7 +399,6 @@ class TestaTraw
                             if($datosTareas[$i]['value']=='Yes'){
                                 $raw->setRelationshipMentioned(True);
                                 $raw->setGrantorRelationship($datosTareas[++$i]['value']);
-                                dump($raw);
                             } else {
                                 $raw->setRelationshipMentioned(False);
                                 $raw->setGrantorRelationship('Ninguna');
@@ -436,6 +435,8 @@ class TestaTraw
                     $raw->setSecondGrantor(FALSE);
                     $raw->setSecondGrantorName("Ningun@");
                 }
+                dump($raw);
+
                 $em->persist($raw);
             }
             if ((($i % $lote) === 0)) {
