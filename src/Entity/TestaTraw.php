@@ -352,7 +352,6 @@ class TestaTraw
 
             $datosTareas = json_decode($registro['annotations'], True);
             if ($datosTareas) {
-                dump($datosTareas);
                 //año
                 $raw->setYear((int) $datosTareas['0']['value']['0']['value']);
                 //mes
@@ -406,7 +405,8 @@ class TestaTraw
                             break;
                         case 'T17':
                             if($datosTareas[$i]['value']['0']['label'] =='Otros'){
-                                $raw->setDocumentType($datosTareas[$i++]['value']);
+                                dump($datosTareas[$i++]['value']);
+                                //$raw->setDocumentType($datosTareas[$i++]['value']);
                             } else {
                                 $raw->setDocumentType($datosTareas[$i]['value']['0']['label']);
                             }
