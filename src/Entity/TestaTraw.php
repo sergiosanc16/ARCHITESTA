@@ -345,7 +345,6 @@ class TestaTraw
         $raw = new TestaTraw();
 
         foreach ($registros as $indice => $registro) {
-            dump($registro);
 
             $raw = new TestaTraw();
 
@@ -353,6 +352,7 @@ class TestaTraw
 
             $datosTareas = json_decode($registro['annotations'], True);
             if ($datosTareas) {
+                dump($datosTareas);
                 //año
                 $raw->setYear((int) $datosTareas['0']['value']['0']['value']);
                 //mes
