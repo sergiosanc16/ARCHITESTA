@@ -428,15 +428,14 @@ class TestaTraw
                     $raw->setSecondGrantor(FALSE);
                     $raw->setSecondGrantorName("Ningun@");
                 }
-
-                dump($raw);
-                        
                 $em->persist($raw);
             }
+
+            dump($raw);
+                    
             $nbRows = $reader->each(function ($row) {
                 return true;
             });
-            dump($em);
             if ((($i % $lote) === 0) or $nbRows < 20 ) {
                 $em->flush();
                 $em->clear();
