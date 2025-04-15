@@ -352,6 +352,7 @@ class TestaTraw
 
             $datosTareas = json_decode($registro['annotations'], True);
             if ($datosTareas) {
+                dump($datosTareas);
                 //año
                 $raw->setYear((int) $datosTareas['0']['value']['0']['value']);
                 //mes
@@ -365,7 +366,7 @@ class TestaTraw
                         case 'T4':
                             if($datosTareas[$i]['value']=='Yes'){
                                 $raw->setOtherPopulation(True);
-                                $raw->setPopulationName($datosTareas[$i++]['value']);
+                                $raw->setPopulationName($datosTareas[++$i]['value']);
                             } else {
                                 $raw->setOtherPopulation(False);
                                 $raw->setPopulationName('Ninguna');
@@ -379,7 +380,7 @@ class TestaTraw
                         case 'T10':
                             if($datosTareas[$i]['value']=='Yes'){
                                 $raw->setOfficeMentioned(True);
-                                $raw->setGrantorOffice($datosTareas[$i++]['value']);
+                                $raw->setGrantorOffice($datosTareas[++$i]['value']);
                             } else {
                                 $raw->setOfficeMentioned(False);
                                 $raw->setGrantorOffice('Ninguna');
@@ -397,7 +398,7 @@ class TestaTraw
                         case 'T15':
                             if($datosTareas[$i]['value']=='Yes'){
                                 $raw->setRelationshipMentioned(True);
-                                $raw->setGrantorRelationship($datosTareas[$i++]['value']);
+                                $raw->setGrantorRelationship($datosTareas[++$i]['value']);
                             } else {
                                 $raw->setRelationshipMentioned(False);
                                 $raw->setGrantorRelationship('Ninguna');
@@ -405,8 +406,7 @@ class TestaTraw
                             break;
                         case 'T17':
                             if($datosTareas[$i]['value']['0']['label'] =='Otros'){
-                                dump($datosTareas[++$i]['value']);
-                                //$raw->setDocumentType($datosTareas[$i++]['value']);
+                                $raw->setDocumentType($datosTareas[++$i]['value']);
                             } else {
                                 $raw->setDocumentType($datosTareas[$i]['value']['0']['label']);
                             }
@@ -415,7 +415,7 @@ class TestaTraw
                             $segOtor=TRUE;
                             if($datosTareas[$i]['value']=='Yes'){
                                 $raw->setSecondGrantor(TRUE);
-                                $raw->setSecondGrantorName($datosTareas[$i++]['value']);
+                                $raw->setSecondGrantorName($datosTareas[++$i]['value']);
                             } else {
                                 $raw->setSecondGrantor(FALSE);
                                 $raw->setSecondGrantorName("Ningun@");
