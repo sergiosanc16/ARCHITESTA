@@ -343,6 +343,7 @@ class TestaTraw
         $i = 0;
         $segOtor=FALSE;
         $raw = new TestaTraw();
+        $meses = array('Enero' => 1,'Febrero' => 2,'Marzo' => 3,'Abril' => 4,'Mayo' => 5,'Junio' => 6,'Julio' => 7,'Agosto' => 8,'Septiembre' => 9,'Octubre' => 10,'Noviembre' => 11,'Diciembre' => 12);
 
         foreach ($registros as $indice => $registro) {
             dump($registro);
@@ -356,7 +357,7 @@ class TestaTraw
                 //año
                 $raw->setYear((int) $datosTareas['0']['value']['0']['value']);
                 //mes
-                $raw->setMonth((int)$datosTareas['0']['value']['1']['value']);
+                $raw->setMonth($meses[$datosTareas['0']['value']['1']['value']]);
                 //dia
                 $raw->setDay((int) $datosTareas['0']['value']['2']['value']);
                 //OtraPoblacion
