@@ -336,8 +336,6 @@ class TestaTraw
         $reader->setHeaderOffset(0); // Indicar que la primera línea es la cabecera
         
         $registros = $reader->getRecords();
-
-        dump($registros);
            
         $lote = 20;
         $i = 0;
