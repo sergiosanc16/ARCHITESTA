@@ -434,12 +434,12 @@ class TestaTraw
                 $em->persist($raw);
             }
                     
-            if (($i % $lote) === 0) {
+            if ((($i % $lote) === 0) or count($registros) < 20 ) {
                 $em->flush();
                 $em->clear();
             }
             $i++;
-            }
+        }
         $em->flush();
         $em->clear();
         return $i;
