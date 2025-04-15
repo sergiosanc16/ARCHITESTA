@@ -405,7 +405,7 @@ class TestaTraw
                             break;
                         case 'T17':
                             if($datosTareas[$i]['value']['0']['label'] =='Otros'){
-                                dump($datosTareas[$i++]['value']);
+                                dump($datosTareas[++$i]['value']);
                                 //$raw->setDocumentType($datosTareas[$i++]['value']);
                             } else {
                                 $raw->setDocumentType($datosTareas[$i]['value']['0']['label']);
