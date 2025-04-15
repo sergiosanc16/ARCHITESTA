@@ -346,7 +346,7 @@ class TestaTraw
 
         foreach ($registros as $indice => $registro) {
 
-            unset($raw);
+            $raw = new TestaTraw();
 
             $raw->setClassificationId($registro['classification_id']);
 
