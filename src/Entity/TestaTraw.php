@@ -338,7 +338,7 @@ class TestaTraw
            
         $lote = 20;
         $i = 0;
-
+        $segOtor=FALSE;
         $raw = new TestaTraw();
 
         foreach ($registros as $indice => $registro) {
@@ -406,6 +406,7 @@ class TestaTraw
                             }
                             break;
                         case 'T20':
+                            $segOtor=TRUE;
                             if($datosTareas[$i]['value']=='Yes'){
                                 $raw->setSecondGrantor(TRUE);
                                 $raw->setSecondGrantorName($datosTareas[$i++]['value']);
@@ -422,6 +423,10 @@ class TestaTraw
                 $datosFoto = json_decode($registro['subject_data'], True);
                 $idFoto = (int) $registro['subject_ids'];
                 $raw->setFilename($datosFoto[$idFoto]['Filename']);
+                if(!$segOtor){
+                    $raw->setSecondGrantor(FALSE);
+                    $raw->setSecondGrantorName("Ningun@");
+                }
 
                 dump($raw);
                         
