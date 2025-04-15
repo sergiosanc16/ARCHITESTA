@@ -346,6 +346,8 @@ class TestaTraw
 
         foreach ($registros as $indice => $registro) {
 
+            unset($raw);
+
             $raw->setClassificationId($registro['classification_id']);
 
             $datosTareas = json_decode($registro['annotations'], True);
