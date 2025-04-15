@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}TestaTtestaotorgante{% endblock %}
+
+{% block body %}
+    <h1>TestaTtestaotorgante</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ testa_ttestaotorgante.id }}</td>
+            </tr>
+            <tr>
+                <th>Num_orden</th>
+                <td>{{ testa_ttestaotorgante.numOrden }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_testa_ttestaotorgante_index') }}">back to list</a>
+
+    <a href="{{ path('app_testa_ttestaotorgante_edit', {'id': testa_ttestaotorgante.id}) }}">edit</a>
+
+    {{ include('testa_ttestaotorgante/_delete_form.html.twig') }}
+{% endblock %}
