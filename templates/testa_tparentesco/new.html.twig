@@ -1,11 +1,12 @@
-{% extends 'base.html.twig' %}
+{% extends 'baseDatatable.html.twig' %}
 
-{% block title %}New TestaTparentesco{% endblock %}
+{% block title %}Nuevo Parentesco{% endblock %}
+{% set id_tabla = 'Parentesco' %}
+{% set muestraMenu = true %}
+{% set pathIndex =  path('app_testa_tparentesco_index') %}
 
 {% block body %}
-    <h1>Create new TestaTparentesco</h1>
-
+    <h1>Nuevo Parentesco</h1>
     {{ include('testa_tparentesco/_form.html.twig') }}
-
-    <a href="{{ path('app_testa_tparentesco_index') }}">back to list</a>
+    <br>
 {% endblock %}

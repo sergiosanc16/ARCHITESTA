@@ -1,35 +1,53 @@
-{% extends 'base.html.twig' %}
+{% extends 'baseDatatable.html.twig' %}
 
-{% block title %}TestaTimagen index{% endblock %}
+
+{% set id_tabla = 'imagen' %}
+{% set nuevo = path('app_testa_timagen_new') %}
+{% set muestraMenu = true %}
+
+{% block title %}{{id_tabla}} Indice{% endblock %}
+
+{% block javascripts %}
+{% endblock %}
 
 {% block body %}
-    <h1>TestaTimagen index</h1>
 
-    <table class="table">
+<h2>Listado de Imágenes</h2>
+    {% if nuevo|default(null) %}
+    <div class="float-right">
+    <div class="btn-group mr-2 btn-group-sm" role="group"  title="Nuevo Registro" >
+            <button type="button" class="btn boton  mr-2 btn-group-sm" role="button" onclick="location.href='{{  nuevo }}'"><i class="fa fa-plus-square"></i> Nuevo Registro</button>
+        </div>
+    </div>
+    {% endif %}
+    <table id="{{id_tabla}}" class="table table-striped table-bordered table-sm  ">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>Des_imagen</th>
-                <th>actions</th>
+                <th width="5%">Id</th>
+                <th>Imagen</th>
+                <th width="10%">Acciones</th>
             </tr>
         </thead>
         <tbody>
-        {% for testa_timagen in testa_timagens %}
+            {% for testa_timagen in testa_timagens %}
             <tr>
                 <td>{{ testa_timagen.id }}</td>
                 <td>{{ testa_timagen.desImagen }}</td>
                 <td>
-                    <a href="{{ path('app_testa_timagen_show', {'id': testa_timagen.id}) }}">show</a>
-                    <a href="{{ path('app_testa_timagen_edit', {'id': testa_timagen.id}) }}">edit</a>
+                    <a href="{{ path('app_testa_timagen_show', {'id': testa_timagen.id}) }}" title="Mostrar Registro"><img  width="30px"   src="{{ asset('img/mostrar.png') }}"></a>
+                    <a href="{{ path('app_testa_timagen_edit', {'id': testa_timagen.id}) }}" title="Editar Registro"><img  width="30px"  src="{{ asset('img/editar.png') }}"></a>
                 </td>
             </tr>
-        {% else %}
+            {% else %}
             <tr>
-                <td colspan="3">no records found</td>
+                <td colspan="3">No se han encontrado registros</td>
             </tr>
-        {% endfor %}
+            {% endfor %}
         </tbody>
     </table>
-
-    <a href="{{ path('app_testa_timagen_new') }}">Create new</a>
+    {% if nuevo|default(null) %}
+      <div class="btn-group mr-2 btn-group-sm" role="group"  title="Nuevo Registro" >
+            <button type="button" class="btn boton {{app.session.get('estilo')}} mr-2 btn-group-sm" role="button" onclick="location.href='{{  nuevo }}'"><i class="fa fa-plus-square"></i> Nuevo Registro</button>
+        </div>
+    {% endif %}
 {% endblock %}

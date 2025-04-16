@@ -1,34 +1,51 @@
 {% extends 'base.html.twig' %}
+{% set muestraMenu = true %}
 
-{% block title %}Hello HomePageController!{% endblock %}
+{% block title %}ArchiTesta. Testamentos de la Región de Murcia{% endblock %}
 
  {% block stylesheets %}
  		    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-            <link rel="stylesheet" type="text/css"  href={{ asset('recursos/mybootstrap/css/homepage.css') }}>
+            <link rel="stylesheet" type="text/css"  href={{ asset('css/inicio.css') }}>
 {% endblock %}
+
+
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
 
-<div>
-    <ul class="navbar">
-        <li><a href="{{path('app_homepage')}}"> Pantalla principal</a></li>
-        <li><a href="{{path('app_testa_timagen_index')}}"> Imagenes</a></li>
-        <li><a href="{{path('app_testa_tnotario_index')}}"> Notario</a></li>
-        <li><a href="{{path('app_testa_toficio_index')}}"> oficio</a></li>
-        <li><a href="{{path('app_testa_totorgante_index')}}"> Otorgante</a></li>
-        <li><a href="{{path('app_testa_tparentesco_index')}}"> Parentesco</a></li>
-        <li><a href="{{path('app_testa_tpoblacion_index')}}"> Poblacion</a></li>
-        <li><a href="{{path('app_testa_ttestamento_index')}}"> Testamento</a></li>
-        <li><a href="{{path('app_testa_ttestaotorgante_index')}}"> Otorgantes de un testamento</a></li>
-        {% if user %}
-            {% if is_granted('ROLE_ADMIN') %}
-                <li><a href="{{path('app_user_index')}}"> Lista de usuarios</a></li>
-            {% endif %}
-        {% endif %}
+    <div class="row align-items-center">
+        <div class="col-10 col-sm-6 mx-auto">
+            <div class="card card-opaca" >
+                <div class="card-body ">
+                            <div>
+                                    <span><img src={{ asset('img/testahorizontal.png') }} width="100%"></span>
+                            </div>
 
-    </ul>
-</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row align-items-center">
+        <div class="col-9 mx-auto">
+            <div class="card lema  bg-transparent" >
+                <div class="card-body">
+                <h2>Gestión Abierta de Testamentos Históricos de la Región de Murcia</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row align-items-center">
+        <div class="col-9 mx-auto">
+            <div class="card lema bg-transparent" >
+                <div class="card-body">
+                    <img src={{ asset('img/filigrana01.png') }}  height="50" class="d-inline-block align-top" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
 {% endblock %}

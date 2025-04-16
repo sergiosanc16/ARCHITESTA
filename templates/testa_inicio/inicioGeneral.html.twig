@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+{% set muestraMenu = false %}
+
+{% block title %}Bokloi. Reseñas Bibliográficas{% endblock %}
+
+ {% block stylesheets %}
+ 		    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+            <link rel="stylesheet" type="text/css"  href={{ asset('css/general.css') }}>
+{% endblock %}
+
+
+{% block body %}
+
+    {% include 'menuGeneral.php' %}
+    <div class="row align-items-center">
+        <div class="col-10 col-sm-6 mx-auto">
+            <div class="card card-opaca" >
+                <div class="card-body ">
+                            <div>
+                                    <span><img src={{ asset('img/bklhorizontal.png') }} width="100%"></span>
+                            </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row align-items-center">
+        <div class="col-9 mx-auto">
+            <div class="card lema  bg-transparent" >
+                <div class="card-body">
+                <h2>Reseñas inteligentes para lectores inquietos</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row align-items-center">
+        <div class="col-9 mx-auto">
+            <div class="card lema bg-transparent" >
+                <div class="card-body">
+                    <img src={{ asset('img/filigrana01blanca.png') }}  height="50" class="d-inline-block align-top" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+
+  <footer class="footer">
+      <div class="container">
+        <span>Foto de Suzy Hazelwood en Pexels.</span> BOKLOI 2021 © 
+      </div>
+    </footer>
+
+
+
+{% endblock %}

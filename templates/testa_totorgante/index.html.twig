@@ -1,18 +1,34 @@
-{% extends 'base.html.twig' %}
+{% extends 'baseDatatable.html.twig' %}
 
-{% block title %}TestaTotorgante index{% endblock %}
+
+{% set id_tabla = 'Otorgante' %}
+{% set nuevo = path('app_testa_totorgante_new') %}
+{% set muestraMenu = true %}
+
+{% block title %}{{id_tabla}} Indice{% endblock %}
+
+{% block javascripts %}
+{% endblock %}
 
 {% block body %}
-    <h1>TestaTotorgante index</h1>
 
-    <table class="table">
+<h2>Listado de Otorgantes</h2>
+    {% if nuevo|default(null) %}
+    <div class="float-right">
+    <div class="btn-group mr-2 btn-group-sm" role="group"  title="Nuevo Registro" >
+            <button type="button" class="btn boton  mr-2 btn-group-sm" role="button" onclick="location.href='{{  nuevo }}'"><i class="fa fa-plus-square"></i> Nuevo Registro</button>
+        </div>
+    </div>
+    {% endif %}
+    <table id="{{id_tabla}}" class="table table-striped table-bordered table-sm  ">
         <thead>
             <tr>
-                <th>Id</th>
+                <th width="5%">Id</th>
                 <th>Nombre</th>
                 <th>Apellido1</th>
                 <th>Apellido2</th>
-                <th>actions</th>
+                <th>Oficio</th>
+                <th width="5%">Acciones</th>
             </tr>
         </thead>
         <tbody>
@@ -22,18 +38,22 @@
                 <td>{{ testa_totorgante.nombre }}</td>
                 <td>{{ testa_totorgante.apellido1 }}</td>
                 <td>{{ testa_totorgante.apellido2 }}</td>
+                <td>{{ testa_totorgante.IdOficio }}</td>
                 <td>
-                    <a href="{{ path('app_testa_totorgante_show', {'id': testa_totorgante.id}) }}">show</a>
-                    <a href="{{ path('app_testa_totorgante_edit', {'id': testa_totorgante.id}) }}">edit</a>
-                </td>
+                    <a href="{{ path('app_testa_totorgante_show', {'id': testa_totorgante.id}) }}" title="Mostrar Registro"><img  width="30px"   src="{{ asset('img/mostrar.png') }}"></a>
+                    <a href="{{ path('app_testa_totorgante_edit', {'id': testa_totorgante.id}) }}" title="Editar Registro"><img  width="30px"  src="{{ asset('img/editar.png') }}"></a>
+                </td>                 
             </tr>
         {% else %}
             <tr>
-                <td colspan="5">no records found</td>
+                <td colspan="6">No se han encontrado registros</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
-
-    <a href="{{ path('app_testa_totorgante_new') }}">Create new</a>
+    {% if nuevo|default(null) %}
+      <div class="btn-group mr-2 btn-group-sm" role="group"  title="Nuevo Registro" >
+            <button type="button" class="btn boton  mr-2 btn-group-sm" role="button" onclick="location.href='{{  nuevo }}'"><i class="fa fa-plus-square"></i> Nuevo Registro</button>
+        </div>
+    {% endif %}
 {% endblock %}

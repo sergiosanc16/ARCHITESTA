@@ -1,14 +1,21 @@
-{% extends 'base.html.twig' %}
+{% extends 'baseDatatable.html.twig' %}
 
-{% block title %}TestaTotorgante{% endblock %}
+{% set id_tabla = 'Otorgante' %}
+{% set muestraMenu = true %}
+{% set pathIndex =  path('app_testa_totorgante_index') %}
+{% set pathEdit =  path('app_testa_totorgante_edit', {'id': testa_totorgante.id}) %}
+{% set includeDelete =  'testa_totorgante/_delete_form.html.twig' %}
+
+{% block title %}Otorgantes{% endblock %}
 
 {% block body %}
-    <h1>TestaTotorgante</h1>
 
-    <table class="table">
+    <h1>Otorgante</h1>
+
+    <table class="table  container fondoclaro">
         <tbody>
             <tr>
-                <th>Id</th>
+                <th width="10%">Id</th>
                 <td>{{ testa_totorgante.id }}</td>
             </tr>
             <tr>
@@ -23,12 +30,10 @@
                 <th>Apellido2</th>
                 <td>{{ testa_totorgante.apellido2 }}</td>
             </tr>
+            <tr>
+                <th>Oficio</th>
+                <td>{{ testa_totorgante.IdOficio }}</td>
+            </tr>
         </tbody>
     </table>
-
-    <a href="{{ path('app_testa_totorgante_index') }}">back to list</a>
-
-    <a href="{{ path('app_testa_totorgante_edit', {'id': testa_totorgante.id}) }}">edit</a>
-
-    {{ include('testa_totorgante/_delete_form.html.twig') }}
 {% endblock %}

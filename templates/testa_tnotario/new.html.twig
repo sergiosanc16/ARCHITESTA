@@ -1,11 +1,12 @@
-{% extends 'base.html.twig' %}
+{% extends 'baseDatatable.html.twig' %}
 
-{% block title %}New TestaTnotario{% endblock %}
+{% block title %}Nuevo Notario{% endblock %}
+{% set id_tabla = 'notario' %}
+{% set muestraMenu = true %}
+{% set pathIndex =  path('app_testa_tnotario_index') %}
 
 {% block body %}
-    <h1>Create new TestaTnotario</h1>
-
+    <h1>Nuevo Notario</h1>
     {{ include('testa_tnotario/_form.html.twig') }}
-
-    <a href="{{ path('app_testa_tnotario_index') }}">back to list</a>
+    <br>
 {% endblock %}
