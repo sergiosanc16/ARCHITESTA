@@ -419,10 +419,10 @@ class TestaTraw
                             $segOtor=TRUE;
                             if($datosTareas[$i]['value']=='Yes'){
                                 $raw->setSecondGrantor(TRUE);
-                                $raw->setSecondGrantorName($datosTareas[++$i]['value']);
+                                $raw->setSecondGratorName($datosTareas[++$i]['value']);
                             } else {
                                 $raw->setSecondGrantor(FALSE);
-                                $raw->setSecondGrantorName("Ningun@");
+                                $raw->setSecondGratorName("Ningun@");
                             }
                             break;
                         case 'T22':
