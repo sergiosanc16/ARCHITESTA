@@ -426,7 +426,9 @@ class TestaTraw
                             }
                             break;
                         case 'T22':
-                            $raw->setNotaryName($datosTareas[$i]['value']);
+                            if($datosTareas[$i]['value']!=null){
+                                $raw->setNotaryName($datosTareas[$i]['value']);
+                            }
                             break;
                     }
                 }
