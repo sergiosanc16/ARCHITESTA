@@ -24,61 +24,61 @@ class TestaTraw
     private ?string $classificationId = null;
 
     #[ORM\Column]
-    private ?int $year = null;
+    private ?int $year = 0;
 
     #[ORM\Column]
-    private ?string $month = null;
+    private ?string $month = 'Ninguno';
 
     #[ORM\Column]
-    private ?int $day = null;
+    private ?int $day = 0;
 
-    #[ORM\Column(nullable: true)]
-    private ?bool $otherPopulation = null;
+    #[ORM\Column]
+    private ?bool $otherPopulation = FALSE;
 
-    #[ORM\Column(length: 255,nullable: true)]
-    private ?string $populationName = null;
+    #[ORM\Column(length: 255)]
+    private ?string $populationName = 'Ninguna';
 
-    #[ORM\Column(length: 255,nullable: true)]
-    private ?string $grantorSurname1 = null;
+    #[ORM\Column(length: 255)]
+    private ?string $grantorSurname1 = 'Ninguno';
 
-    #[ORM\Column(length: 255,nullable: true)]
-    private ?string $gratorSurname2 = null;
+    #[ORM\Column(length: 255)]
+    private ?string $gratorSurname2 = 'Ninguno';
 
-    #[ORM\Column(length: 255,nullable: true)]
-    private ?string $grantorName = null;
+    #[ORM\Column(length: 255)]
+    private ?string $grantorName = 'Ninguno';
 
-    #[ORM\Column(nullable: true)]
-    private ?bool $officeMentioned = null;
+    #[ORM\Column]
+    private ?bool $officeMentioned = FALSE;
 
-    #[ORM\Column(length: 255,nullable: true)]
-    private ?string $grantorOffice = null;
+    #[ORM\Column(length: 255)]
+    private ?string $grantorOffice = 'Ninguno';
 
-    #[ORM\Column(nullable: true)]
-    private ?bool $relationshipMentioned = null;
+    #[ORM\Column]
+    private ?bool $relationshipMentioned = FALSE;
 
-    #[ORM\Column(length: 255,nullable: true)]
-    private ?string $grantorRelationship = null;
+    #[ORM\Column(length: 255)]
+    private ?string $grantorRelationship = 'Ninguna';
 
-    #[ORM\Column(length: 255,nullable: true)]
-    private ?string $documentType = null;
+    #[ORM\Column(length: 255)]
+    private ?string $documentType = 'Ninguno';
 
-    #[ORM\Column(length: 255,nullable: true)]
-    private ?string $notaryName = null;
+    #[ORM\Column(length: 255)]
+    private ?string $notaryName = 'Ningun@';
 
-    #[ORM\Column(nullable: true)]
-    private ?int $protocolNumber = null;
+    #[ORM\Column]
+    private ?int $protocolNumber = 0;
 
-    #[ORM\Column(nullable: true)]
-    private ?int $folioNumber = null;
+    #[ORM\Column]
+    private ?int $folioNumber = 0;
 
-    #[ORM\Column(nullable: true)]
-    private ?bool $secondGrantor = null;
+    #[ORM\Column]
+    private ?bool $secondGrantor = FALSE;
 
-    #[ORM\Column(length: 255,nullable: true)]
-    private ?string $secondGrantorName = null;
+    #[ORM\Column(length: 255)]
+    private ?string $secondGrantorName = 'Ninguno';
 
-    #[ORM\Column(length: 255,nullable: true)]
-    private ?string $filename = null;
+    #[ORM\Column(length: 255)]
+    private ?string $filename = 'Ninguno';
 
     public function getId(): ?int
     {
@@ -426,7 +426,6 @@ class TestaTraw
                             break;
                     }
                 }
-                //comprobar si el campo es null o si lo es setearlo a false o ningnuno
 
                 $datosFoto = json_decode($registro['subject_data'], True);
                 $idFoto = (int) $registro['subject_ids'];
