@@ -419,7 +419,7 @@ class TestaTraw
                             $segOtor=TRUE;
                             if($datosTareas[$i]['value']=='Yes'){
                                 $raw->setSecondGrantor(TRUE);
-                                $raw->setSecondGrantorName($datosTareas[++$i]['value']);
+                                $raw->setSecondGrantorName($datosTareas[++$i]['value'][2]['value']);
                             } else {
                                 $raw->setSecondGrantor(FALSE);
                                 $raw->setSecondGrantorName("Ningun@");
