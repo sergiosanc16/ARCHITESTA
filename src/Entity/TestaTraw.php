@@ -407,10 +407,18 @@ class TestaTraw
                             }
                             break;
                         case 'T17':
-                            if($datosTareas[$i]['value']['0']['label'] =='Otros'){
-                                $raw->setDocumentType($datosTareas[++$i]['value']);
-                            } else {
-                                $raw->setDocumentType($datosTareas[$i]['value']['0']['label']);
+                            if(array_key_exists('label',$datosTareas[$i]['value']['0'])){
+                                if($datosTareas[$i]['value']['0']['label'] =='Otros'){
+                                    $raw->setDocumentType($datosTareas[++$i]['value']);
+                                } else {
+                                    $raw->setDocumentType($datosTareas[$i]['value']['0']['label']);
+                                }
+                            }else{
+                                if($datosTareas[$i]['value']['0']['value'] =='Otros'){
+                                    $raw->setDocumentType($datosTareas[++$i]['value']);
+                                } else {
+                                    $raw->setDocumentType($datosTareas[$i]['value']['0']['label']);
+                                }
                             }
                             break;
                         case 'T20':
