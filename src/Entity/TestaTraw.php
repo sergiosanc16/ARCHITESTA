@@ -421,9 +421,10 @@ class TestaTraw
                                 $raw->setSecondGrantor(TRUE);
                                 if(gettype($datosTareas[++$i]['value'])=='array'){
                                     $raw->setSecondGrantorName($datosTareas[$i]['value']['2']['value']);
+                                }else{
+                                    $raw->setSecondGrantorName($datosTareas[$i]['value']);
                                 }
-                                $i--;
-                                $raw->setSecondGrantorName($datosTareas[++$i]['value']);
+                                
                                 
                             } else {
                                 $raw->setSecondGrantor(FALSE);
