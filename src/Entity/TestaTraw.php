@@ -449,8 +449,8 @@ class TestaTraw
                 if($raw->getGrantorSurname1()==null){
                     $raw->setGrantorSurname1('Ninguno');
                 }
-                if($raw->getGrantorSurname2()==null){
-                    $raw->setGrantorSurname2('Ninguno');
+                if($raw->getGratorSurname2()==null){
+                    $raw->setGratorSurname2('Ninguno');
                 }
                 if($raw->isOfficeMentioned()==null){
                     $raw->setOfficeMentioned(FALSE);
