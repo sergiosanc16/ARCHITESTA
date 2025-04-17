@@ -336,8 +336,6 @@ class TestaTraw
         $reader->setHeaderOffset(0); // Indicar que la primera línea es la cabecera
         
         $registros = $reader->getRecords();
-
-        dump($registros);
            
         $lote = 20;
         $i = 0;
@@ -414,11 +412,7 @@ class TestaTraw
                                     $raw->setDocumentType($datosTareas[$i]['value']['0']['label']);
                                 }
                             }else{
-                                if($datosTareas[$i]['value']['0']['value'] =='Otros'){
-                                    $raw->setDocumentType($datosTareas[++$i]['value']);
-                                } else {
-                                    $raw->setDocumentType($datosTareas[$i]['value']['0']['label']);
-                                }
+                                $raw->setDocumentType('Ninguno');
                             }
                             break;
                         case 'T20':
