@@ -230,7 +230,6 @@ class CsvUploadService{
         $otorgante->setIdOficio($oficio);
 
         $testamento = new testaTtestamento();
-        $testamento->setId($raw->getClassificationId());
         $testamento->setAnno($raw->getYear());
         $testamento->setMes($raw->getMonth());
         $testamento->setDia($raw->GetDay());
