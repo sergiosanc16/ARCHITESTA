@@ -149,12 +149,12 @@ class TestaTtestamento
         return $this;
     }
 
-    public function getNumFolio(): ?TestaTpoblacion
+    public function getNumFolio(): ?int
     {
         return $this->num_folio;
     }
 
-    public function setNumFolio(?TestaTpoblacion $num_folio): static
+    public function setNumFolio(?int $num_folio): static
     {
         $this->num_folio = $num_folio;
 
