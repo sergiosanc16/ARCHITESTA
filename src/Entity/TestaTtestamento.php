@@ -89,12 +89,12 @@ class TestaTtestamento
         return $this;
     }
 
-    public function getMes(): ?int
+    public function getMes(): ?string
     {
         return $this->mes;
     }
 
-    public function setMes(int $mes): static
+    public function setMes(string $mes): static
     {
         $this->mes = $mes;
 
