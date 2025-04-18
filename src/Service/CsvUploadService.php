@@ -210,7 +210,7 @@ class CsvUploadService{
         return $i;
     }
 
-    public function cargaEntidades(Boolean $ilegible,TestaTraw $raw,EntityManagerInterface $em):void
+    public static function cargaEntidades(Boolean $ilegible,TestaTraw $raw,EntityManagerInterface $em):void
     {
         //carga de entidades
         $imagen = new TestaTimagen();
