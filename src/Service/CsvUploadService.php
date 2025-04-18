@@ -231,6 +231,8 @@ class CsvUploadService{
                 $otorgante->setApellido1($raw->getGrantorSurname1());
                 $otorgante->setApellido2($raw->getGratorSurname2());
                 $otorgante->setIdOficio($oficio);
+                $em->persist($pobalcion);
+                $em->flush();
 
                 $testamento = new testaTtestamento();
                 $testamento->setAnno($raw->getYear());
