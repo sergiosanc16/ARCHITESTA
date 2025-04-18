@@ -195,25 +195,7 @@ class CsvUploadService{
                     $raw->setSecondGrantor(FALSE);
                     $raw->setSecondGrantorName("Ningun@");
                 }
-                $this->cargaEntidades($ilegible,$raw,$em);
-                $em->persist($raw);
-
-            }
-            if ((($i % $lote) === 0)) {
-                $em->flush();
-                $em->clear();
-            }
-            $i++;
-        }
-        $em->flush();
-        $em->clear();
-        return $i;
-    }
-
-    public static function cargaEntidades(Boolean $ilegible,TestaTraw $raw,EntityManagerInterface $em):void
-    {
-        //carga de entidades
-        $imagen = new TestaTimagen();
+                $imagen = new TestaTimagen();
         $imagen->setId($raw->getClassificationId());
         $imagen->setDesImagen($raw->getFilename());
         $em->persist($imagen);
@@ -272,7 +254,18 @@ class CsvUploadService{
             $testaOtorgante->addIdOtorgante($segOtorgante);
         }
         $em->persist($testaOtorgante);
+                $em->persist($raw);
 
+            }
+            if ((($i % $lote) === 0)) {
+                $em->flush();
+                $em->clear();
+            }
+            $i++;
+        }
+        $em->flush();
+        $em->clear();
+        return $i;
     }
 
 }
