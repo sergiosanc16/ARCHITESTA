@@ -24,7 +24,7 @@ final class CsvUploadController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            $i = TestaTraw::cargaCSV($form, $em);
+            $i = CsvUploadService::cargaCSV($form, $em);
 
             $this->addFlash('success', "Se importaron {$i} registros");
         }
