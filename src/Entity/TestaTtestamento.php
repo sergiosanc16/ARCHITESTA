@@ -19,8 +19,8 @@ class TestaTtestamento
     #[ORM\Column(type: Types::SMALLINT)]
     private ?int $anno = null;
 
-    #[ORM\Column(type: Types::SMALLINT)]
-    private ?int $mes = null;
+    #[ORM\Column]
+    private ?string $mes = null;
 
     #[ORM\Column(type: Types::SMALLINT)]
     private ?int $dia = null;
