@@ -36,10 +36,12 @@ class CsvUploadService{
         $i = 0;
         $segOtor=FALSE;
         $raw = new TestaTraw();
+        $ilegible = FALSE;
 
         foreach ($registros as $indice => $registro) {
 
             $raw = new TestaTraw();
+            $ilegible = FALSE;
 
             $raw->setClassificationId($registro['classification_id']);
 
