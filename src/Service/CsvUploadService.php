@@ -250,7 +250,7 @@ class CsvUploadService{
         $testaOtorgante->setIdTestamento($testamento);
         $testaOtorgante->addIdOtorgante($otorgante);
         if($raw->isSecondGrantor()){
-            $segOtororgante = new TestaTotorgante();
+            $segOtorgante = new TestaTotorgante();
             $segOtorgante->setNombre($raw->getSecondGrantorName());
             $segOtorgante->setApellido1($raw->getSecondGrantorName());
             $segOtorgante->setApellido2($raw->getSecondGrantorName());
