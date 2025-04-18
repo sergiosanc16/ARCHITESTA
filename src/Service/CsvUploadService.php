@@ -237,7 +237,7 @@ class CsvUploadService{
         $testamento->setDia($raw->GetDay());
         $testamento->setMancomunado($raw->isSecondGrantor());
         $testamento->setTextoIlegible($ilegible);
-        $testamento->setNumProtocol($raw->getProtocoloNumber());
+        $testamento->setNumProtocolo($raw->getProtocolNumber());
         $testamento->setNumFolio($raw->getFolioNumber());
         $testamento->setIdPoblacion($pobalcion);
         $testamento->setIdNotario($notario);
