@@ -251,12 +251,11 @@ class CsvUploadService{
                     $segOtorgante->setApellido1($raw->getSecondGrantorName());
                     $segOtorgante->setApellido2($raw->getSecondGrantorName());
                     $segOtorgante->setIdOficio($oficio);
+                    $em->persist($segOtorgante);
                     $testaOtorgante->addIdOtorgante($segOtorgante);
                 }
                 $testaOtorgante->setNumOrden(1);
                 $em->persist($testaOtorgante);
-                $em->flush();
-                $em->commit();
 
                 $em->persist($raw);
 
