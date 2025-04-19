@@ -16,14 +16,14 @@ class TestaTtestaotorgante
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
+    #[ORM\OneToOne(cascade: ['persist', 'remove'], targetEntity: TestaTtestamento::class, inversedBy: 'testaOtorgantes')]
     #[ORM\JoinColumn(name: "id_testamento", referencedColumnName: "id", nullable: false)]
     private ?TestaTtestamento $id_testamento = null;
 
     /**
      * @var Collection<int, TestaTotorgante>
      */
-    #[ORM\ManyToMany(targetEntity: TestaTotorgante::class, inversedBy: 'testaTtestaotorgantes')]
+    #[ORM\ManyToMany(targetEntity: TestaTotorgante::class, inversedBy: 'testaTtestaotorgantes',  mappedBy: 'id_otorgante')]
     private Collection $id_otorgante;
 
     #[ORM\Column(type: Types::SMALLINT)]
