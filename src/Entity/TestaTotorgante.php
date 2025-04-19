@@ -31,11 +31,6 @@ class TestaTotorgante
     #[ORM\ManyToOne(targetEntity: TestaTtestaotorgante::class, mappedBy: 'id_otorgante')]
     private ?TestaTtestaotorgante $testaTtestaotorgantes;
 
-    public function __construct()
-    {
-        $this->testaTtestaotorgantes = new ArrayCollection();
-    }
-
     public function getId(): ?int
     {
         return $this->id;
