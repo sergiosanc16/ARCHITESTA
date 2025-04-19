@@ -1,0 +1,16 @@
+controllers:
+    resource:
+        path: ../../src/Controller/
+        namespace: App\Controller
+    type: attribute
+
+kernel:
+    resource: App\Kernel
+    type: attribute
+    
+phpmyadmin:
+  path: /phpmyadmin
+  controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController::urlRedirectAction
+  defaults:
+    path: 'https://hosting11.dnspropio.com:8443/phpMyAdmin/index.php?db=ARCHITESTA'  # Ajusta la URL
+    permanent: true

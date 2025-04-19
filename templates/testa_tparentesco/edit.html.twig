@@ -1,0 +1,15 @@
+
+{% extends 'baseDatatable.html.twig' %}
+
+{% block title %}Edita Parentesco{% endblock %}
+
+{% set id_tabla = 'Parentesco' %}
+{% set muestraMenu = true %}
+{% set pathIndex =  path('app_testa_tparentesco_index') %}
+{% set includeDelete =  'testa_tparentesco/_delete_form.html.twig' %}
+{% block body %}
+    <h1>Edita Parentesco</h1>
+
+    {{ include('testa_tparentesco/_form.html.twig', {'button_label': 'Actualizar'}) }}
+    <br>
+{% endblock %}
