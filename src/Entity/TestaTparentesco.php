@@ -18,16 +18,8 @@ class TestaTparentesco
     #[ORM\Column(length: 100)]
     private ?string $des_parentesco = null;
 
-    /**
-     * @var Collection<int, TestaTtestamento>
-     */
-    #[ORM\ManyToMany(targetEntity: TestaTtestamento::class, mappedBy: 'id_parentesco')]
-    private Collection $testaTtestamentos;
-
-    public function __construct()
-    {
-        $this->testaTtestamentos = new ArrayCollection();
-    }
+    #[ORM\OneToOne(targetEntity: TestaTtestamento::class, mappedBy: 'id_parentesco')]
+    private ?TestaTtestamento $testaTtestamentos;
 
     public function getId(): ?int
     {
@@ -53,29 +45,14 @@ class TestaTparentesco
         return $this;
     }
 
-    /**
-     * @return Collection<int, TestaTtestamento>
-     */
-    public function getTestaTtestamentos(): Collection
+    public function getTestaTtestamentos(): ?TestaTtestamento
     {
         return $this->testaTtestamentos;
     }
 
-    public function addTestaTtestamento(TestaTtestamento $testaTtestamento): static
+    public function setTestaTtestamento(TestaTtestamento $testaTtestamento): static
     {
-        if (!$this->testaTtestamentos->contains($testaTtestamento)) {
-            $this->testaTtestamentos->add($testaTtestamento);
-            $testaTtestamento->addIdParentesco($this);
-        }
-
-        return $this;
-    }
-
-    public function removeTestaTtestamento(TestaTtestamento $testaTtestamento): static
-    {
-        if ($this->testaTtestamentos->removeElement($testaTtestamento)) {
-            $testaTtestamento->removeIdParentesco($this);
-        }
+        $this->testaTtestamentos = $testaTtestamento;
 
         return $this;
     }

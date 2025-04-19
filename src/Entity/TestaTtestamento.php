@@ -45,7 +45,7 @@ class TestaTtestamento
     #[ORM\JoinColumn(name: "id_notario", referencedColumnName: "id")]
     private ?TestaTnotario $id_notario = null;
 
-    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
+    #[ORM\OneToOne(cascade: ['persist', 'remove'], targetEntity:'TestaTparentesco')]
     #[ORM\JoinColumn(name: "id_parentesco", referencedColumnName: "id")]
     private ?TestaTparentesco $id_parentesco = null;
 
@@ -172,7 +172,7 @@ class TestaTtestamento
 
     public function setIdParentesco(TestaTparentesco $idParentesco): static
     {        
-        $this->id_parentesco = $idParentesco;
+        $this->id_notario = $id_notario;
 
         return $this;
     }
