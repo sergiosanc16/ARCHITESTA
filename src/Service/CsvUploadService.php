@@ -239,8 +239,9 @@ class CsvUploadService{
                     $segOtorgante->setIdOficio($oficio);
                     $em->persist($segOtorgante);
                     $em->flush();
+                    dump($segOtorgante);
+
                 }
-                dump($segOtorgante);
 
 
                 $testamento = new testaTtestamento();
