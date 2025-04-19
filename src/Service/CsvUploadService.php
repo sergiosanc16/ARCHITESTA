@@ -227,6 +227,7 @@ class CsvUploadService{
                 $otorgante->setApellido2($raw->getGratorSurname2());
                 $otorgante->setIdOficio($oficio);
                 $em->persist($otorgante);
+                dump($otorgante);
                 $em->flush();
 
                 if($raw->isSecondGrantor()){
@@ -260,6 +261,8 @@ class CsvUploadService{
                     $testaOtorgante->addIdOtorgante($segOtorgante);
                 }
                 $testaOtorgante->setNumOrden(1);
+                dump($testaOtorgante);
+
                 $em->persist($testaOtorgante);
 
                 $em->persist($raw);
