@@ -258,8 +258,10 @@ class CsvUploadService{
                 $testaOtorgante->addIdOtorgante($otorgante);
                 if($raw->isSecondGrantor()){
                     $testaOtorgante->addIdOtorgante($segOtorgante);
+                    $segOtorgante->addTestaTtestaotorgante($testaOtorgante);
                 }
                 $testaOtorgante->setNumOrden(1);
+                $otorgante->addTestaTtestaotorgante($testaOtorgante);
                 $em->persist($testaOtorgante);
 
                 $em->persist($raw);

@@ -70,6 +70,8 @@ class TestaTtestaotorgante
     {
         if (!$this->id_otorgante->contains($idOtorgante)) {
             $this->id_otorgante->add($idOtorgante);
+            $idOtorgante->addTestaTtestaotorgante($this);
+
         }
 
         return $this;
