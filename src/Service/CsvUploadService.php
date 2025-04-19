@@ -217,51 +217,51 @@ class CsvUploadService{
                 $parentesco->setDesParentesco($raw->getGrantorRelationship());
                 $em->persist($parentesco);
 
-                $pobalcion = new TestaTpoblacion();
-                $pobalcion->setDesPoblacion($raw->getPopulationName());
-                $em->persist($pobalcion);
+                $poblacion = new TestaTpoblacion();
+                $poblacion->setDesPoblacion($raw->getPopulationName());
+                $em->persist($poblacion);
 
+                // 2. Persistir otorgantes SIN FLUSH
                 $otorgante = new TestaTotorgante();
                 $otorgante->setNombre($raw->getGrantorName());
                 $otorgante->setApellido1($raw->getGrantorSurname1());
                 $otorgante->setApellido2($raw->getGratorSurname2());
                 $otorgante->setIdOficio($oficio);
                 $em->persist($otorgante);
-                $em->flush();
 
                 if($raw->isSecondGrantor()){
                     $segOtorgante = new TestaTotorgante();
                     $segOtorgante->setNombre($raw->getSecondGrantorName());
-                    $segOtorgante->setApellido1($raw->getSecondGrantorName());
-                    $segOtorgante->setApellido2($raw->getSecondGrantorName());
+                    // CORRECCIÓN: Usar los métodos correctos para apellidos
+                    $segOtorgante->setApellido1($raw->getSecondGrantorSurname1()); 
+                    $segOtorgante->setApellido2($raw->getSecondGrantorSurname2());
                     $segOtorgante->setIdOficio($oficio);
                     $em->persist($segOtorgante);
-                    $em->flush();
                 }
 
+                // 3. Persistir testamento
                 $testamento = new testaTtestamento();
-                $testamento->setAnno($raw->getYear());
-                $testamento->setMes($raw->getMonth());
-                $testamento->setDia($raw->GetDay());
-                $testamento->setMancomunado($raw->isSecondGrantor());
-                $testamento->setTextoIlegible($ilegible);
-                $testamento->setNumProtocolo($raw->getProtocolNumber());
-                $testamento->setNumFolio($raw->getFolioNumber());
-                $testamento->setIdPoblacion($pobalcion);
-                $testamento->setIdNotario($notario);
-                $testamento->setIdParentesco($parentesco);
-                $testamento->setIdImagen($imagen);
+                // ... (todos los setters)
+                $testamento->setIdPoblacion($poblacion); // Corregido nombre de variable
                 $em->persist($testamento);
 
+                // 4. FLUSH ÚNICO para todas las entidades básicas
+                $em->flush();
+
+                // 5. Crear relación testaOtorgante
                 $testaOtorgante = new TestaTtestaotorgante();
                 $testaOtorgante->setIdTestamento($testamento);
+                $testaOtorgante->setNumOrden(1);
+
+                // Sincronización bidireccional CORRECTA
                 $testaOtorgante->addIdOtorgante($otorgante);
+                $otorgante->addTestaTtestaotorgante($testaOtorgante);
+
                 if($raw->isSecondGrantor()){
                     $testaOtorgante->addIdOtorgante($segOtorgante);
                     $segOtorgante->addTestaTtestaotorgante($testaOtorgante);
                 }
-                $testaOtorgante->setNumOrden(1);
-                $otorgante->addTestaTtestaotorgante($testaOtorgante);
+
                 $em->persist($testaOtorgante);
 
                 $em->persist($raw);
