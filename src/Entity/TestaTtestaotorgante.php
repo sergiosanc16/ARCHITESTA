@@ -24,6 +24,7 @@ class TestaTtestaotorgante
      * @var Collection<int, TestaTotorgante>
      */
     #[ORM\ManyToMany(targetEntity: TestaTotorgante::class, inversedBy: 'testaTtestaotorgantes')]
+    #[ORM\JoinColumn(name: "id_otorgante", referencedColumnName: "id")]
     private Collection $id_otorgante;
 
     #[ORM\Column(type: Types::SMALLINT)]
