@@ -239,13 +239,20 @@ class CsvUploadService{
                     $em->persist($segOtorgante);
                 }
 
-                // 3. Persistir testamento
                 $testamento = new testaTtestamento();
-                // ... (todos los setters)
-                $testamento->setIdPoblacion($poblacion); // Corregido nombre de variable
+                $testamento->setAnno($raw->getYear());
+                $testamento->setMes($raw->getMonth());
+                $testamento->setDia($raw->GetDay());
+                $testamento->setMancomunado($raw->isSecondGrantor());
+                $testamento->setTextoIlegible($ilegible);
+                $testamento->setNumProtocolo($raw->getProtocolNumber());
+                $testamento->setNumFolio($raw->getFolioNumber());
+                $testamento->setIdPoblacion($pobalcion);
+                $testamento->setIdNotario($notario);
+                $testamento->setIdParentesco($parentesco);
+                $testamento->setIdImagen($imagen);
                 $em->persist($testamento);
 
-                // 4. FLUSH ÚNICO para todas las entidades básicas
                 $em->flush();
 
                 // 5. Crear relación testaOtorgante
