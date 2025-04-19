@@ -47,7 +47,7 @@ class CsvUploadService{
 
             $datosTareas = json_decode($registro['annotations'], True);
             if ($datosTareas) {
-                dump($datosTareas);
+                //dump($datosTareas);
                 //año
                 $raw->setYear((int) $datosTareas['0']['value']['0']['value']);
                 //mes
@@ -240,6 +240,8 @@ class CsvUploadService{
                     $em->persist($segOtorgante);
                     $em->flush();
                 }
+                dump($segOtorgante);
+
 
                 $testamento = new testaTtestamento();
                 $testamento->setAnno($raw->getYear());
