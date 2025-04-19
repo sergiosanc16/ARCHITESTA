@@ -253,6 +253,7 @@ class CsvUploadService{
                     $segOtorgante->setIdOficio($oficio);
                     $testaOtorgante->addIdOtorgante($segOtorgante);
                 }
+                $testaOtorgante->setNumOrden(1);
                 $em->persist($testaOtorgante);
                 $em->flush();
                 $em->commit();
