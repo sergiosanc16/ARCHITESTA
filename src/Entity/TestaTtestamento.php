@@ -53,11 +53,6 @@ class TestaTtestamento
     #[ORM\JoinColumn(name: "id_imagen", referencedColumnName: "id")]
     private ?TestaTimagen $id_imagen = null;
 
-    public function __construct()
-    {
-        $this->id_parentesco = new ArrayCollection();
-    }
-
     public function getId(): ?int
     {
         return $this->id;
@@ -170,29 +165,18 @@ class TestaTtestamento
         return $this;
     }
 
-    /**
-     * @return Collection<int, TestaTparentesco>
-     */
-    public function getIdParentesco(): Collection
+    public function getIdParentesco(): ?TestaTparentesco
     {
         return $this->id_parentesco;
     }
 
-    public function addIdParentesco(TestaTparentesco $idParentesco): static
-    {
-        if (!$this->id_parentesco->contains($idParentesco)) {
-            $this->id_parentesco->add($idParentesco);
-        }
+    public function setIdParentesco(TestaTparentesco $idParentesco): static
+    {        
+        $this->id_parentesco = $idParentesco;
 
         return $this;
     }
 
-    public function removeIdParentesco(TestaTparentesco $idParentesco): static
-    {
-        $this->id_parentesco->removeElement($idParentesco);
-
-        return $this;
-    }
 
     public function getIdImagen(): ?TestaTimagen
     {

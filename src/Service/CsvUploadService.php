@@ -238,7 +238,7 @@ class CsvUploadService{
                 $testamento->setNumFolio($raw->getFolioNumber());
                 $testamento->setIdPoblacion($pobalcion);
                 $testamento->setIdNotario($notario);
-                $testamento->addIdParentesco($parentesco);
+                $testamento->setIdParentesco($parentesco);
                 $testamento->setIdImagen($imagen);
                 $em->persist($testamento);
 
