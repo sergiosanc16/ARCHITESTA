@@ -28,7 +28,7 @@ class TestaTotorgante
     #[ORM\JoinColumn(name: "id_oficio", referencedColumnName: "id", nullable: false)]
     private ?TestaToficio $id_oficio = null;
 
-    #[ORM\ManyToOne(targetEntity: TestaTtestaotorgante::class, mappedBy: 'id_otorgante')]
+    #[ORM\ManyToOne(targetEntity: TestaTtestaotorgante::class)]
     private ?TestaTtestaotorgante $testaTtestaotorgantes;
 
     public function getId(): ?int
