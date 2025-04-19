@@ -172,7 +172,7 @@ class TestaTtestamento
 
     public function setIdParentesco(TestaTparentesco $idParentesco): static
     {        
-        $this->id_notario = $id_notario;
+        $this->id_parentesco = $idParentesco;
 
         return $this;
     }
