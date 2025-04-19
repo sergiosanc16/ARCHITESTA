@@ -227,6 +227,15 @@ class CsvUploadService{
                 $otorgante->setApellido2($raw->getGratorSurname2());
                 $otorgante->setIdOficio($oficio);
                 $em->persist($otorgante);
+                if($raw->isSecondGrantor()){
+                    $segOtorgante = new TestaTotorgante();
+                    $segOtorgante->setNombre($raw->getSecondGrantorName());
+                    $segOtorgante->setApellido1($raw->getSecondGrantorName());
+                    $segOtorgante->setApellido2($raw->getSecondGrantorName());
+                    $segOtorgante->setIdOficio($oficio);
+                    $em->persist($segOtorgante);
+                }
+                $em->flush();
 
                 $testamento = new testaTtestamento();
                 $testamento->setAnno($raw->getYear());
@@ -246,12 +255,6 @@ class CsvUploadService{
                 $testaOtorgante->setIdTestamento($testamento);
                 $testaOtorgante->addIdOtorgante($otorgante);
                 if($raw->isSecondGrantor()){
-                    $segOtorgante = new TestaTotorgante();
-                    $segOtorgante->setNombre($raw->getSecondGrantorName());
-                    $segOtorgante->setApellido1($raw->getSecondGrantorName());
-                    $segOtorgante->setApellido2($raw->getSecondGrantorName());
-                    $segOtorgante->setIdOficio($oficio);
-                    $em->persist($segOtorgante);
                     $testaOtorgante->addIdOtorgante($segOtorgante);
                 }
                 $testaOtorgante->setNumOrden(1);
