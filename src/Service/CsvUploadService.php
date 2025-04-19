@@ -227,8 +227,9 @@ class CsvUploadService{
                 $otorgante->setApellido2($raw->getGratorSurname2());
                 $otorgante->setIdOficio($oficio);
                 $em->persist($otorgante);
-                dump($otorgante);
                 $em->flush();
+
+                dump($otorgante);
 
                 if($raw->isSecondGrantor()){
                     $segOtorgante = new TestaTotorgante();
