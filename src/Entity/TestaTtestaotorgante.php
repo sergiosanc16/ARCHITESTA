@@ -23,7 +23,7 @@ class TestaTtestaotorgante
     /**
      * @var Collection<int, TestaTotorgante>
      */
-    #[ORM\OneToMany(targetEntity: TestaTotorgante::class, inversedBy: 'testaTtestaotorgantes')]
+    #[ORM\OneToMany(targetEntity: TestaTotorgante::class)]
     private Collection $id_otorgante;
 
     #[ORM\Column(type: Types::SMALLINT)]
