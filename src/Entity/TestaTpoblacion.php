@@ -24,16 +24,10 @@ class TestaTpoblacion
     #[ORM\OneToMany(targetEntity: TestaTtestamento::class, mappedBy: 'id_poblacion')]
     private Collection $testaTtestamentos;
 
-    /**
-     * @var Collection<int, TestaTtestamento>
-     */
-    #[ORM\OneToMany(targetEntity: TestaTtestamento::class, mappedBy: 'num_folio')]
-    private Collection $borrar;
 
     public function __construct()
     {
         $this->testaTtestamentos = new ArrayCollection();
-        $this->borrar = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -84,36 +78,6 @@ class TestaTpoblacion
             // set the owning side to null (unless already changed)
             if ($testaTtestamento->getIdPoblacion() === $this) {
                 $testaTtestamento->setIdPoblacion(null);
-            }
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, TestaTtestamento>
-     */
-    public function getBorrar(): Collection
-    {
-        return $this->borrar;
-    }
-
-    public function addBorrar(TestaTtestamento $borrar): static
-    {
-        if (!$this->borrar->contains($borrar)) {
-            $this->borrar->add($borrar);
-            $borrar->setNumFolio($this);
-        }
-
-        return $this;
-    }
-
-    public function removeBorrar(TestaTtestamento $borrar): static
-    {
-        if ($this->borrar->removeElement($borrar)) {
-            // set the owning side to null (unless already changed)
-            if ($borrar->getNumFolio() === $this) {
-                $borrar->setNumFolio(null);
             }
         }
 
