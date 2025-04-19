@@ -28,11 +28,8 @@ class TestaTotorgante
     #[ORM\JoinColumn(name: "id_oficio", referencedColumnName: "id", nullable: false)]
     private ?TestaToficio $id_oficio = null;
 
-    /**
-     * @var Collection<int, TestaTtestaotorgante>
-     */
-    #[ORM\ManyToMany(targetEntity: TestaTtestaotorgante::class, mappedBy: 'id_otorgante')]
-    private Collection $testaTtestaotorgantes;
+    #[ORM\ManyToOne(targetEntity: TestaTtestaotorgante::class, mappedBy: 'id_otorgante')]
+    private ?TestaTtestaotorgante $testaTtestaotorgantes;
 
     public function __construct()
     {
@@ -99,29 +96,15 @@ class TestaTotorgante
         return $this;
     }
 
-    /**
-     * @return Collection<int, TestaTtestaotorgante>
-     */
-    public function getTestaTtestaotorgantes(): Collection
+
+    public function getTestaTtestaotorgantes(): ?TestaTtestaotorgante
     {
         return $this->testaTtestaotorgantes;
     }
 
-    public function addTestaTtestaotorgante(TestaTtestaotorgante $testaTtestaotorgante): static
+    public function setTestaTtestaotorgante(TestaTtestaotorgante $testaTtestaotorgante): static
     {
-        if (!$this->testaTtestaotorgantes->contains($testaTtestaotorgante)) {
-            $this->testaTtestaotorgantes->add($testaTtestaotorgante);
-            $testaTtestaotorgante->addIdOtorgante($this);
-        }
-
-        return $this;
-    }
-
-    public function removeTestaTtestaotorgante(TestaTtestaotorgante $testaTtestaotorgante): static
-    {
-        if ($this->testaTtestaotorgantes->removeElement($testaTtestaotorgante)) {
-            $testaTtestaotorgante->removeIdOtorgante($this);
-        }
+        $this->testaTtestaotorgantes = $testaTtestaotorgante;
 
         return $this;
     }
