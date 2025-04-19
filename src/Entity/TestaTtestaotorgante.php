@@ -24,6 +24,11 @@ class TestaTtestaotorgante
      * @var Collection<int, TestaTotorgante>
      */
     #[ORM\OneToMany(targetEntity: TestaTotorgante::class)]
+    #[ORM\JoinTable(
+        name: 'testa_ttestaotorgante_otorgante',
+        joinColumns:        [ new ORM\JoinColumn(name: 'ttestaotorgante_id', referencedColumnName: 'id', onDelete: 'CASCADE') ],
+        inverseJoinColumns: [ new ORM\JoinColumn(name: 'otorgante_id',         referencedColumnName: 'id', onDelete: 'CASCADE') ]
+    )]
     private Collection $id_otorgante;
 
     #[ORM\Column(type: Types::SMALLINT)]
