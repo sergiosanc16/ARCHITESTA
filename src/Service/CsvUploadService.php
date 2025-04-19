@@ -217,26 +217,26 @@ class CsvUploadService{
                 $parentesco->setDesParentesco($raw->getGrantorRelationship());
                 $em->persist($parentesco);
 
-                $poblacion = new TestaTpoblacion();
-                $poblacion->setDesPoblacion($raw->getPopulationName());
-                $em->persist($poblacion);
+                $pobalcion = new TestaTpoblacion();
+                $pobalcion->setDesPoblacion($raw->getPopulationName());
+                $em->persist($pobalcion);
 
-                // 2. Persistir otorgantes SIN FLUSH
                 $otorgante = new TestaTotorgante();
                 $otorgante->setNombre($raw->getGrantorName());
                 $otorgante->setApellido1($raw->getGrantorSurname1());
                 $otorgante->setApellido2($raw->getGratorSurname2());
                 $otorgante->setIdOficio($oficio);
                 $em->persist($otorgante);
+                $em->flush();
 
                 if($raw->isSecondGrantor()){
                     $segOtorgante = new TestaTotorgante();
                     $segOtorgante->setNombre($raw->getSecondGrantorName());
-                    // CORRECCIÓN: Usar los métodos correctos para apellidos
-                    $segOtorgante->setApellido1($raw->getSecondGrantorSurname1()); 
-                    $segOtorgante->setApellido2($raw->getSecondGrantorSurname2());
+                    $segOtorgante->setApellido1($raw->getSecondGrantorName());
+                    $segOtorgante->setApellido2($raw->getSecondGrantorName());
                     $segOtorgante->setIdOficio($oficio);
                     $em->persist($segOtorgante);
+                    $em->flush();
                 }
 
                 $testamento = new testaTtestamento();
@@ -247,7 +247,7 @@ class CsvUploadService{
                 $testamento->setTextoIlegible($ilegible);
                 $testamento->setNumProtocolo($raw->getProtocolNumber());
                 $testamento->setNumFolio($raw->getFolioNumber());
-                $testamento->setIdPoblacion($poblacion);
+                $testamento->setIdPoblacion($pobalcion);
                 $testamento->setIdNotario($notario);
                 $testamento->setIdParentesco($parentesco);
                 $testamento->setIdImagen($imagen);
