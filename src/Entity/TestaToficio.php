@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\TestaToficioRepository;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: TestaToficioRepository::class)]
@@ -23,7 +24,7 @@ class TestaToficio
 
     public function __construct()
     {
-        $this->otorgantes = new Collection();
+        $this->otorgantes = new ArrayCollection();
     }
 
     public function getId(): ?int
