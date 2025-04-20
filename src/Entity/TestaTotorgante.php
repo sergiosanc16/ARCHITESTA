@@ -24,7 +24,7 @@ class TestaTotorgante
     #[ORM\Column(length: 100)]
     private ?string $apellido2 = null;
 
-    #[ORM\ManyToOne(cascade: ['persist', 'remove'], inversedBy: 'otorgantes')]
+    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
     #[ORM\JoinColumn(name: "id_oficio", referencedColumnName: "id", nullable: false)]
     private ?TestaToficio $id_oficio = null;
 

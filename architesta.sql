@@ -36,7 +36,7 @@ CREATE TABLE `doctrine_migration_versions` (
 
 LOCK TABLES `doctrine_migration_versions` WRITE;
 /*!40000 ALTER TABLE `doctrine_migration_versions` DISABLE KEYS */;
-INSERT INTO `doctrine_migration_versions` VALUES ('DoctrineMigrations\\Version20250215105054','2025-03-31 17:03:35',21),('DoctrineMigrations\\Version20250225091614',NULL,NULL),('DoctrineMigrations\\Version20250225155912',NULL,NULL),('DoctrineMigrations\\Version20250225182836',NULL,NULL),('DoctrineMigrations\\Version20250331165156',NULL,NULL),('DoctrineMigrations\\Version20250331170511','2025-03-31 17:05:13',248);
+INSERT INTO `doctrine_migration_versions` VALUES ('DoctrineMigrations\\Version20250215105054','2025-03-31 17:03:35',21),('DoctrineMigrations\\Version20250225091614',NULL,NULL),('DoctrineMigrations\\Version20250225155912',NULL,NULL),('DoctrineMigrations\\Version20250225182836',NULL,NULL),('DoctrineMigrations\\Version20250331165156',NULL,NULL),('DoctrineMigrations\\Version20250331170511','2025-03-31 17:05:13',248),('DoctrineMigrations\\Version20250420092052','2025-04-20 09:21:22',100);
 /*!40000 ALTER TABLE `doctrine_migration_versions` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -183,7 +183,7 @@ CREATE TABLE `testa_totorgante` (
   `apellido1` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
   `apellido2` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `UNIQ_D19B56A51DA84AFB` (`id_oficio`),
+  KEY `IDX_D19B56A51DA84AFB` (`id_oficio`),
   CONSTRAINT `FK_D19B56A51DA84AFB` FOREIGN KEY (`id_oficio`) REFERENCES `testa_toficio` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -442,4 +442,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-04-20  0:41:11
+-- Dump completed on 2025-04-20 11:23:31

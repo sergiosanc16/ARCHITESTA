@@ -15,12 +15,7 @@ class TestaToficio
 
     #[ORM\Column(length: 100)]
     private ?string $des_oficio = null;
-
-    /**
-     * @var Collection<int, TestaTotorgante>
-     */
-    #[ORM\OneToMany(mappedBy: 'oficio', targetEntity: TestaTotorgante::class)]
-    private Collection $otorgantes;
+    
 
     public function getId(): ?int
     {
@@ -43,29 +38,6 @@ class TestaToficio
     {
         $this->des_oficio = $des_oficio;
 
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, TestaTotorgante>
-     */
-    public function getIdOtorgante(): Collection
-    {
-        return $this->otorgantes;
-    }
-
-    public function addIdOtorgante(TestaTotorgante $idOtorgante): static
-    {
-        if (!$this->otorgantes->contains($idOtorgante)) {
-            $this->otorgantes->add($idOtorgante);
-        }
-
-        return $this;
-    }
-
-    public function removeIdOtorgante(TestaTotorgante $idOtorgante): static
-    {
-        $this->otorgantes->removeElement($idOtorgante);
         return $this;
     }
 }
