@@ -73,4 +73,10 @@ class TestaToficio
 
         return $this;
     }
+
+    public function __toString(): string
+    {
+        return $this->des_oficio;
+    }
+
 }
