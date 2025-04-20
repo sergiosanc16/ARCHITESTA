@@ -36,7 +36,7 @@ CREATE TABLE `doctrine_migration_versions` (
 
 LOCK TABLES `doctrine_migration_versions` WRITE;
 /*!40000 ALTER TABLE `doctrine_migration_versions` DISABLE KEYS */;
-INSERT INTO `doctrine_migration_versions` VALUES ('DoctrineMigrations\\Version20250215105054','2025-03-31 17:03:35',21),('DoctrineMigrations\\Version20250225091614',NULL,NULL),('DoctrineMigrations\\Version20250225155912',NULL,NULL),('DoctrineMigrations\\Version20250225182836',NULL,NULL),('DoctrineMigrations\\Version20250331165156',NULL,NULL),('DoctrineMigrations\\Version20250331170511','2025-03-31 17:05:13',248),('DoctrineMigrations\\Version20250420092052','2025-04-20 09:21:22',100),('DoctrineMigrations\\Version20250420095349',NULL,NULL);
+INSERT INTO `doctrine_migration_versions` VALUES ('DoctrineMigrations\\Version20250215105054','2025-03-31 17:03:35',21),('DoctrineMigrations\\Version20250225091614',NULL,NULL),('DoctrineMigrations\\Version20250225155912',NULL,NULL),('DoctrineMigrations\\Version20250225182836',NULL,NULL),('DoctrineMigrations\\Version20250331165156',NULL,NULL),('DoctrineMigrations\\Version20250331170511','2025-03-31 17:05:13',248),('DoctrineMigrations\\Version20250420092052','2025-04-20 09:21:22',100),('DoctrineMigrations\\Version20250420095349',NULL,NULL),('DoctrineMigrations\\Version20250420152449','2025-04-20 15:24:51',207);
 /*!40000 ALTER TABLE `doctrine_migration_versions` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -182,9 +182,12 @@ CREATE TABLE `testa_totorgante` (
   `nombre` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
   `apellido1` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
   `apellido2` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `testa_ttestaotorgantes_id` int NOT NULL,
   PRIMARY KEY (`id`),
   KEY `IDX_D19B56A51DA84AFB` (`id_oficio`),
-  CONSTRAINT `FK_D19B56A51DA84AFB` FOREIGN KEY (`id_oficio`) REFERENCES `testa_toficio` (`id`)
+  KEY `IDX_D19B56A5BD2DC423` (`testa_ttestaotorgantes_id`),
+  CONSTRAINT `FK_D19B56A51DA84AFB` FOREIGN KEY (`id_oficio`) REFERENCES `testa_toficio` (`id`),
+  CONSTRAINT `FK_D19B56A5BD2DC423` FOREIGN KEY (`testa_ttestaotorgantes_id`) REFERENCES `testa_ttestaotorgante` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -195,33 +198,6 @@ CREATE TABLE `testa_totorgante` (
 LOCK TABLES `testa_totorgante` WRITE;
 /*!40000 ALTER TABLE `testa_totorgante` DISABLE KEYS */;
 /*!40000 ALTER TABLE `testa_totorgante` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `testa_totorgante_testa_ttestaotorgante`
---
-
-DROP TABLE IF EXISTS `testa_totorgante_testa_ttestaotorgante`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `testa_totorgante_testa_ttestaotorgante` (
-  `testa_totorgante_id` int NOT NULL,
-  `testa_ttestaotorgante_id` int NOT NULL,
-  PRIMARY KEY (`testa_totorgante_id`,`testa_ttestaotorgante_id`),
-  KEY `IDX_AE8C0ADE32CEEA74` (`testa_totorgante_id`),
-  KEY `IDX_AE8C0ADE59A61DFE` (`testa_ttestaotorgante_id`),
-  CONSTRAINT `FK_AE8C0ADE32CEEA74` FOREIGN KEY (`testa_totorgante_id`) REFERENCES `testa_totorgante` (`id`) ON DELETE CASCADE,
-  CONSTRAINT `FK_AE8C0ADE59A61DFE` FOREIGN KEY (`testa_ttestaotorgante_id`) REFERENCES `testa_ttestaotorgante` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `testa_totorgante_testa_ttestaotorgante`
---
-
-LOCK TABLES `testa_totorgante_testa_ttestaotorgante` WRITE;
-/*!40000 ALTER TABLE `testa_totorgante_testa_ttestaotorgante` DISABLE KEYS */;
-/*!40000 ALTER TABLE `testa_totorgante_testa_ttestaotorgante` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -380,33 +356,6 @@ LOCK TABLES `testa_ttestaotorgante` WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `testa_ttestaotorgante_testa_totorgante`
---
-
-DROP TABLE IF EXISTS `testa_ttestaotorgante_testa_totorgante`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `testa_ttestaotorgante_testa_totorgante` (
-  `testa_ttestaotorgante_id` int NOT NULL,
-  `testa_totorgante_id` int NOT NULL,
-  PRIMARY KEY (`testa_ttestaotorgante_id`,`testa_totorgante_id`),
-  KEY `IDX_577FA3459A61DFE` (`testa_ttestaotorgante_id`),
-  KEY `IDX_577FA3432CEEA74` (`testa_totorgante_id`),
-  CONSTRAINT `FK_577FA3432CEEA74` FOREIGN KEY (`testa_totorgante_id`) REFERENCES `testa_totorgante` (`id`) ON DELETE CASCADE,
-  CONSTRAINT `FK_577FA3459A61DFE` FOREIGN KEY (`testa_ttestaotorgante_id`) REFERENCES `testa_ttestaotorgante` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `testa_ttestaotorgante_testa_totorgante`
---
-
-LOCK TABLES `testa_ttestaotorgante_testa_totorgante` WRITE;
-/*!40000 ALTER TABLE `testa_ttestaotorgante_testa_totorgante` DISABLE KEYS */;
-/*!40000 ALTER TABLE `testa_ttestaotorgante_testa_totorgante` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `testa_tuser`
 --
 
@@ -442,4 +391,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-04-20 13:04:06
+-- Dump completed on 2025-04-20 17:48:32
