@@ -233,7 +233,6 @@ class CsvUploadService{
                     $segOtorgante->setApellido1($raw->getSecondGrantorName());
                     $segOtorgante->setApellido2($raw->getSecondGrantorName());
                     $segOtorgante->setIdOficio($oficio);
-                    dump($segOtorgante);
                 }
 
                 $testamento = new testaTtestamento();
@@ -260,10 +259,10 @@ class CsvUploadService{
                     $segOtorgante->setTestaTtestaotorgante($testaOtorgante);
                     $em->persist($segOtorgante);
                 }
-                $em->flush();
                 $testaOtorgante->setNumOrden(1);
 
                 $em->persist($testaOtorgante);
+                $em->flush();
 
                 $em->persist($raw);
 
