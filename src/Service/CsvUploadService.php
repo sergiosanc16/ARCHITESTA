@@ -214,7 +214,7 @@ class CsvUploadService{
                 $otorgante->setApellido1($raw->getGrantorSurname1());
                 $otorgante->setApellido2($raw->getGratorSurname2());
 
-                $oficio = $em->getRepository(TestaToficio::class)->find($raw->getGrantorOffice());
+                $oficio = $em->getRepository(TestaToficio::class)->findOneBy(['des_oficio' => $raw->getGrantorOffice()]);
                 if ($oficio==null){
                     $oficio = new TestaToficio();
                     $oficio->setDesOficio($raw->getGrantorOffice());
