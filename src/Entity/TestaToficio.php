@@ -23,7 +23,7 @@ class TestaToficio
 
     public function __construct()
     {
-        $this->otorgantes = new ArrayCollection();
+        $this->otorgantes = new Collection();
     }
 
     public function getId(): ?int
