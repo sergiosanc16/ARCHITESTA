@@ -231,13 +231,13 @@ class CsvUploadService{
                 $parentesco->setDesParentesco($raw->getGrantorRelationship());
                 $em->persist($parentesco);
 
-                $pobalcion = $em->getRepository(TestaToficio::class)->findOneBy(['des_oficio' => $raw->getGrantorOffice()]);
+                $pobalcion = $em->getRepository(TestaTpoblacion::class)->findOneBy(['des_poblacion' => $raw->getPopulationName()]);
                 if($pobalcion==null){
                     $pobalcion = new TestaTpoblacion();
                     $pobalcion->setDesPoblacion($raw->getPopulationName());
                     $em->persist($pobalcion);
                 }
-                
+
                 if($raw->isSecondGrantor()){
                     $segOtorgante = new TestaTotorgante();
                     $segOtorgante->setNombre($raw->getSecondGrantorName());
