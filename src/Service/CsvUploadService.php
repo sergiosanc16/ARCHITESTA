@@ -209,10 +209,23 @@ class CsvUploadService{
                 $notario->setDesNotario($raw->getNotaryName());
                 $em->persist($notario);
 
-                $oficio = new TestaToficio();
-                $oficio->setDesOficio($raw->getGrantorOffice());
-                $em->persist($oficio);
+                $otorgante = new TestaTotorgante();
+                $otorgante->setNombre($raw->getGrantorName());
+                $otorgante->setApellido1($raw->getGrantorSurname1());
+                $otorgante->setApellido2($raw->getGratorSurname2());
+                $otorgante->setIdOficio($oficio);
 
+                $oficio = $em->getRepository(TestaToficio::class)->find($raw->getGrantorOffice());
+                if ($oficio==null){
+                    $oficio = new TestaToficio();
+                    $oficio->setDesOficio($raw->getGrantorOffice());
+                    $oficio->addIdOtorgante($otorgante);
+                    $em->persist($oficio);
+                } else{
+                    $oficio->addIdOtorgante($otorgante);
+                    $em->persist($oficio);
+                }
+                
                 $parentesco = new TestaTparentesco();
                 $parentesco->setDesParentesco($raw->getGrantorRelationship());
                 $em->persist($parentesco);
@@ -220,12 +233,6 @@ class CsvUploadService{
                 $pobalcion = new TestaTpoblacion();
                 $pobalcion->setDesPoblacion($raw->getPopulationName());
                 $em->persist($pobalcion);
-
-                $otorgante = new TestaTotorgante();
-                $otorgante->setNombre($raw->getGrantorName());
-                $otorgante->setApellido1($raw->getGrantorSurname1());
-                $otorgante->setApellido2($raw->getGratorSurname2());
-                $otorgante->setIdOficio($oficio);
 
                 if($raw->isSecondGrantor()){
                     $segOtorgante = new TestaTotorgante();
