@@ -19,9 +19,7 @@ final class Version20250420095349 extends AbstractMigration
 
     public function up(Schema $schema): void
     {
-        $this->addSql(
-            'ALTER TABLE testa_totorgante DROP INDEX UNIQ_D19B56A51DA84AFB'
-        );
+        
     }
 
     public function down(Schema $schema): void

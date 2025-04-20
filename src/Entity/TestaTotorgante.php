@@ -24,8 +24,9 @@ class TestaTotorgante
     #[ORM\Column(length: 100)]
     private ?string $apellido2 = null;
 
-    #[ORM\ManyToOne(targetEntity: TestaToficio::class, inversedBy: 'otorgantes')]
-    #[ORM\JoinColumn(name: 'id_oficio', nullable: false)]
+    
+    #[ORM\ManyToOne(targetEntity: TestaToficio::class, inversedBy: 'id_otorgante')]
+    #[ORM\JoinColumn(name: 'id_oficio', referencedColumnName: 'id', nullable: false)]
     private ?TestaToficio $id_oficio = null;
 
     #[ORM\ManyToMany(targetEntity: TestaTtestaotorgante::class)]
