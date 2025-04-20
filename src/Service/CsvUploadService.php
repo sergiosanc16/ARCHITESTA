@@ -213,19 +213,20 @@ class CsvUploadService{
                 $otorgante->setNombre($raw->getGrantorName());
                 $otorgante->setApellido1($raw->getGrantorSurname1());
                 $otorgante->setApellido2($raw->getGratorSurname2());
-                $otorgante->setIdOficio($oficio);
 
                 $oficio = $em->getRepository(TestaToficio::class)->find($raw->getGrantorOffice());
                 if ($oficio==null){
                     $oficio = new TestaToficio();
                     $oficio->setDesOficio($raw->getGrantorOffice());
                     $oficio->addIdOtorgante($otorgante);
+                    $otorgante->setIdOficio($oficio);
                     $em->persist($oficio);
                 } else{
                     $oficio->addIdOtorgante($otorgante);
+                    $otorgante->setIdOficio($oficio);
                     $em->persist($oficio);
                 }
-                
+
                 $parentesco = new TestaTparentesco();
                 $parentesco->setDesParentesco($raw->getGrantorRelationship());
                 $em->persist($parentesco);
