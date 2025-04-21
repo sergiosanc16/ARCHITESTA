@@ -24,20 +24,14 @@ class TestaTotorgante
     #[ORM\Column(length: 100)]
     private ?string $apellido2 = null;
 
-    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
-    #[ORM\JoinColumn(name: "id_oficio", referencedColumnName: "id", nullable: false)]
+    
+    #[ORM\ManyToOne(targetEntity: TestaToficio::class, inversedBy: 'id')]
+    #[ORM\JoinColumn(name: 'id_oficio', referencedColumnName: 'id', nullable: false)]
     private ?TestaToficio $id_oficio = null;
 
-    /**
-     * @var Collection<int, TestaTtestaotorgante>
-     */
-    #[ORM\ManyToMany(targetEntity: TestaTtestaotorgante::class, mappedBy: 'id_otorgante')]
-    private Collection $testaTtestaotorgantes;
-
-    public function __construct()
-    {
-        $this->testaTtestaotorgantes = new ArrayCollection();
-    }
+    #[ORM\ManyToOne(targetEntity: TestaTtestaotorgante::class,inversedBy: 'id_otorgante')]
+    #[ORM\JoinColumn(referencedColumnName: 'id', nullable: false)]
+    private ?TestaTtestaotorgante $testaTtestaotorgantes;
 
     public function getId(): ?int
     {
@@ -99,29 +93,15 @@ class TestaTotorgante
         return $this;
     }
 
-    /**
-     * @return Collection<int, TestaTtestaotorgante>
-     */
-    public function getTestaTtestaotorgantes(): Collection
+
+    public function getTestaTtestaotorgantes(): ?TestaTtestaotorgante
     {
         return $this->testaTtestaotorgantes;
     }
 
-    public function addTestaTtestaotorgante(TestaTtestaotorgante $testaTtestaotorgante): static
+    public function setTestaTtestaotorgante(TestaTtestaotorgante $testaTtestaotorgante): static
     {
-        if (!$this->testaTtestaotorgantes->contains($testaTtestaotorgante)) {
-            $this->testaTtestaotorgantes->add($testaTtestaotorgante);
-            $testaTtestaotorgante->addIdOtorgante($this);
-        }
-
-        return $this;
-    }
-
-    public function removeTestaTtestaotorgante(TestaTtestaotorgante $testaTtestaotorgante): static
-    {
-        if ($this->testaTtestaotorgantes->removeElement($testaTtestaotorgante)) {
-            $testaTtestaotorgante->removeIdOtorgante($this);
-        }
+        $this->testaTtestaotorgantes = $testaTtestaotorgante;
 
         return $this;
     }

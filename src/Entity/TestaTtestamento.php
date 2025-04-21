@@ -45,9 +45,9 @@ class TestaTtestamento
     #[ORM\JoinColumn(name: "id_notario", referencedColumnName: "id")]
     private ?TestaTnotario $id_notario = null;
 
-    #[ORM\OneToOne(targetEntity: TestaTparentesco::class, inversedBy: 'testamento')]
-    #[ORM\JoinColumn(name: 'id_parentesco', referencedColumnName: 'id')]
-    private ?TestaTparentesco $parentesco = null;
+    #[ORM\OneToOne(cascade: ['persist', 'remove'], targetEntity:'TestaTparentesco',inversedBy: 'testaTtestamentos')]
+    #[ORM\JoinColumn(name: "id_parentesco", referencedColumnName: "id")]
+    private ?TestaTparentesco $id_parentesco = null;
 
     #[ORM\OneToOne(cascade: ['persist', 'remove'])]
     #[ORM\JoinColumn(name: "id_imagen", referencedColumnName: "id")]

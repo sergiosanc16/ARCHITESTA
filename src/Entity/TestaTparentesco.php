@@ -18,8 +18,8 @@ class TestaTparentesco
     #[ORM\Column(length: 100)]
     private ?string $des_parentesco = null;
 
-    #[ORM\OneToOne(mappedBy: 'parentesco', targetEntity: TestaTtestamento::class)]
-    private ?TestaTtestamento $testamento = null;
+    #[ORM\OneToOne(targetEntity: TestaTtestamento::class, mappedBy: 'id_parentesco',cascade: ['persist', 'remove'])]
+    private ?TestaTtestamento $testaTtestamentos;
 
     public function getId(): ?int
     {
