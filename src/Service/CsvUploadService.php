@@ -242,7 +242,7 @@ class CsvUploadService{
                 }
 
                 $parentesco = $em->getRepository(TestaTparentesco::class)->findOneBy(['des_parentesco' => $raw->getGrantorRelationship()]); 
-                if($parentesco){
+                if($parentesco==null){
                     $parentesco = new TestaTparentesco();
                     $parentesco->setDesParentesco($raw->getGrantorRelationship());
                     $em->persist($parentesco);
