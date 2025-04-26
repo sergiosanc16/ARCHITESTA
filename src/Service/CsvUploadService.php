@@ -38,12 +38,29 @@ class CsvUploadService{
         fwrite($csvTemp, $tratamiento);
         rewind($csvTemp);
 
-        $reader = Reader::createFromStream($csvTemp);
-        $reader->setDelimiter(',');
-        $reader->setEnclosure('"');
-        $reader->setEscape('\\');
-        $reader->setHeaderOffset(0);
+        $campos = fgetcsv($csvTemp, 0, ',', '"');
         
+        list(
+            $classificationId,
+            $userName,
+            $userId,
+            $userIp,
+            $workflowId,
+            $workflowName,
+            $workflowVersion,
+            $createdAtRaw,
+            $goldStandardRaw,
+            $expertRaw,
+            $metadataJson,
+            $annotationsJson,
+            $subjectDataJson,
+            $subjectIdsRaw
+        ) = $campos;
+
+        $annotations = json_decode($annotationsJson, true);
+
+        dump($annotations);
+          
         $registros = $reader->getRecords();
 
         //dump($registros);
