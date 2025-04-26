@@ -55,7 +55,7 @@ class CsvUploadService{
             $datosTareas = json_decode($tratamiento, true);
 
             if ($datosTareas) {
-                //dump($datosTareas);
+                dump($datosTareas);
                 //año
                 $raw->setYear((int) $datosTareas['0']['value']['0']['value']);
                 //mes
@@ -291,7 +291,7 @@ class CsvUploadService{
                     $testaOtorSeg->setNumOrden(2);
                     $em->persist($testaOtorSeg);
                 }
-                
+
                 $em->persist($raw);
 
             }
