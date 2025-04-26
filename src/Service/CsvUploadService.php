@@ -46,7 +46,7 @@ class CsvUploadService{
             $raw->setClassificationId($registro['classification_id']);
 
             $tratamiento = $registro['annotations'];
-            dump($tratamiento);
+            dump($registro);
             $tratamiento = preg_replace('/""/', '"', $tratamiento);
             dump($tratamiento);
             $tratamiento = preg_replace('/;{10,}/', '', $tratamiento);
