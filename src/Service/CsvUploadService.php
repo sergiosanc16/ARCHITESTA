@@ -148,8 +148,8 @@ class CsvUploadService{
                     }
                 }
                 $ficheroFoto = json_decode($campos['26'], true);
+                dump($ficheroFoto);
                 $raw->setFilename($ficheroFoto['Filename']  );
-              
 
                 if($raw->getYear()==null){
                     $raw->setYear(0);
