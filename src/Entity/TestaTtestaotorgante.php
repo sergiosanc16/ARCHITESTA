@@ -21,8 +21,8 @@ class TestaTtestaotorgante
     private ?TestaTtestamento $id_testamento = null;
 
 
-    #[ORM\OneToOne(mappedBy: 'testaTtestaotorgantes',targetEntity: TestaTotorgante::class,cascade: ['persist', 'remove'])]
-    private Collection $id_otorgante;
+    #[ORM\OneToOne(mappedBy: 'testaTtestaotorgantes',cascade: ['persist', 'remove'])]
+    private TestaTotorgante $id_otorgante;
 
     #[ORM\Column(type: Types::SMALLINT)]
     private ?int $num_orden = null;
@@ -52,7 +52,7 @@ class TestaTtestaotorgante
         return $this;
     }
 
-    public function getIdOtorgante(): Collection
+    public function getIdOtorgante(): TestaTotorgante
     {
         return $this->id_otorgante;
     }
