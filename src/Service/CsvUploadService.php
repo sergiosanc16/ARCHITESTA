@@ -34,7 +34,7 @@ class CsvUploadService{
         fwrite($csvTemp, $tratamiento);
         rewind($csvTemp);
 
-        $reader = Reader::createFromPath($csvTemp);
+        $reader = Reader::createFromStream($csvTemp);
         $reader->setDelimiter(',');
         $reader->setEnclosure('"');
         $reader->setEscape('\\');
