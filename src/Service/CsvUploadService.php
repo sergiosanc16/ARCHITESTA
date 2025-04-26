@@ -39,22 +39,18 @@ class CsvUploadService{
         rewind($csvTemp);
 
         $campos = fgetcsv($csvTemp,0, ',', '"');
-        $campos = fgetcsv($csvTemp,0, ',', '"');
-        dump($campos);
-
-        $annotations = json_decode($campos['25'], true);
-
-        dump($annotations);
-
-        //dump($registros);
-           
         $lote = 20;
         $i = 0;
         $segOtor=FALSE;
         $raw = new TestaTraw();
         $ilegible = FALSE;
 
-        foreach ($registros as $indice => $registro) {
+        while(($campos = fgetcsv($csvTemp,0, ',', '"'))!== false){
+            dump($campos);
+            $annotations = json_decode($campos['25'], true);
+            dump($annotations);
+        
+        //foreach ($registros as $indice => $registro) {
 
             $raw = new TestaTraw();
             $ilegible = FALSE;
