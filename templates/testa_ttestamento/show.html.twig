@@ -1,0 +1,46 @@
+{% extends 'baseDatatable.html.twig' %}
+
+{% block title %}TestaTtestamento{% endblock %}
+
+{% block body %}
+    <h1>TestaTtestamento</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ testa_ttestamento.id }}</td>
+            </tr>
+            <tr>
+                <th>Anno</th>
+                <td>{{ testa_ttestamento.anno }}</td>
+            </tr>
+            <tr>
+                <th>Mes</th>
+                <td>{{ testa_ttestamento.mes }}</td>
+            </tr>
+            <tr>
+                <th>Dia</th>
+                <td>{{ testa_ttestamento.dia }}</td>
+            </tr>
+            <tr>
+                <th>Mancomunado</th>
+                <td>{{ testa_ttestamento.mancomunado ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>Textoilegible</th>
+                <td>{{ testa_ttestamento.textoilegible ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>Num_protocolo</th>
+                <td>{{ testa_ttestamento.numProtocolo }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_testa_ttestamento_index') }}">back to list</a>
+
+    <a href="{{ path('app_testa_ttestamento_edit', {'id': testa_ttestamento.id}) }}">edit</a>
+
+    {{ include('testa_ttestamento/_delete_form.html.twig') }}
+{% endblock %}
