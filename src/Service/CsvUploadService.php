@@ -56,7 +56,7 @@ class CsvUploadService{
             $ilegible = FALSE;
             $raw->setClassificationId($registro['classification_id']);
             $datosTareas = json_decode($registro['annotations'], true);
-            dump($datosTareas);
+            dump($registro);
 
             if ($datosTareas) {
                 //año
