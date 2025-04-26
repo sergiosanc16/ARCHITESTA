@@ -24,14 +24,9 @@ class TestaTotorgante
     #[ORM\Column(length: 100)]
     private ?string $apellido2 = null;
 
-    
     #[ORM\ManyToOne(targetEntity: TestaToficio::class, inversedBy: 'id')]
     #[ORM\JoinColumn(name: 'id_oficio', referencedColumnName: 'id', nullable: false)]
     private ?TestaToficio $id_oficio = null;
-
-    #[ORM\ManyToOne(targetEntity: TestaTtestaotorgante::class,inversedBy: 'id_otorgante')]
-    #[ORM\JoinColumn(referencedColumnName: 'id', nullable: false)]
-    private ?TestaTtestaotorgante $testaTtestaotorgantes;
 
     public function getId(): ?int
     {
@@ -89,19 +84,6 @@ class TestaTotorgante
     public function setIdOficio(TestaToficio $id_oficio): static
     {
         $this->id_oficio = $id_oficio;
-
-        return $this;
-    }
-
-
-    public function getTestaTtestaotorgantes(): ?TestaTtestaotorgante
-    {
-        return $this->testaTtestaotorgantes;
-    }
-
-    public function setTestaTtestaotorgante(TestaTtestaotorgante $testaTtestaotorgante): static
-    {
-        $this->testaTtestaotorgantes = $testaTtestaotorgante;
 
         return $this;
     }

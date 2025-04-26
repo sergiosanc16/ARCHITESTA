@@ -20,19 +20,13 @@ class TestaTtestaotorgante
     #[ORM\JoinColumn(name: "id_testamento", referencedColumnName: "id", nullable: false)]
     private ?TestaTtestamento $id_testamento = null;
 
-    /**
-     * @var Collection<int, TestaTotorgante>
-     */
-    #[ORM\OneToMany(mappedBy: 'testaTtestaotorgantes',targetEntity: TestaTotorgante::class,cascade: ['persist', 'remove'])]
+
+    #[ORM\OneToOne(mappedBy: 'testaTtestaotorgantes',targetEntity: TestaTotorgante::class,cascade: ['persist', 'remove'])]
     private Collection $id_otorgante;
 
     #[ORM\Column(type: Types::SMALLINT)]
     private ?int $num_orden = null;
 
-    public function __construct()
-    {
-        $this->id_otorgante = new ArrayCollection();
-    }
 
     public function getId(): ?int
     {
@@ -58,28 +52,14 @@ class TestaTtestaotorgante
         return $this;
     }
 
-    /**
-     * @return Collection<int, TestaTotorgante>
-     */
     public function getIdOtorgante(): Collection
     {
         return $this->id_otorgante;
     }
 
-    public function addIdOtorgante(TestaTotorgante $idOtorgante): static
+    public function setIdOtorgante(TestaTotorgante $idOtorgante): static
     {
-        if (!$this->id_otorgante->contains($idOtorgante)) {
-            $this->id_otorgante->add($idOtorgante);
-            $idOtorgante->addTestaTtestaotorgante($this);
-
-        }
-
-        return $this;
-    }
-
-    public function removeIdOtorgante(TestaTotorgante $idOtorgante): static
-    {
-        $this->id_otorgante->removeElement($idOtorgante);
+        $this->id_otorgante = $idOtorgante;
 
         return $this;
     }

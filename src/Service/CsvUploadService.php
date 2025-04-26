@@ -45,7 +45,15 @@ class CsvUploadService{
 
             $raw->setClassificationId($registro['classification_id']);
 
-            $datosTareas = json_decode($registro['annotations'], True);
+            $tratamiento = $registro['annotations'];
+            $tratamiento = preg_replace('/""/', '"', $tratamiento);
+            $tratamiento = preg_replace('/;{10,}/', '', $tratamiento);
+            $tratamiento = preg_replace('/^"(.*)"$/', '$1', $tratamiento);
+            $tratamiento = preg_replace('/\(Windows NT 10\.0"; Win64;" x64\)/', '(Windows NT 10.0; Win64; x64)', $tratamiento);
+            $tratamiento = preg_replace('/(\d{4}-\d{2}-\d{2})T(\d{2}:\d{2}:\d{2})/', '$1 $2', $tratamiento);
+
+            $datosTareas = json_decode($tratamiento, true);
+
             if ($datosTareas) {
                 //dump($datosTareas);
                 //año
@@ -201,13 +209,19 @@ class CsvUploadService{
                     $raw->setSecondGrantorName("Ningun@");
                 }
 
-                $imagen = new TestaTimagen();
-                $imagen->setDesImagen($raw->getFilename());
-                $em->persist($imagen);
+                $imagen = $em->getRepository(TestaTimagen::class)->findOneBy(['des_imagen' => $raw->getFilename()]);
+                if($imagen){
+                    $imagen = new TestaTimagen();
+                    $imagen->setDesImagen($raw->getFilename());
+                    $em->persist($imagen);
+                }
 
-                $notario = new TestaTnotario();
-                $notario->setDesNotario($raw->getNotaryName());
-                $em->persist($notario);
+                $notario = $em->getRepository(TestaTnotario::class)->findOneBy(['des_notario' => $raw->getNotaryName()]);
+                if($notario==null){
+                    $notario = new TestaTnotario();
+                    $notario->setDesNotario($raw->getNotaryName());
+                    $em->persist($notario);
+                }
 
                 $otorgante = new TestaTotorgante();
                 $otorgante->setNombre($raw->getGrantorName());
@@ -227,9 +241,12 @@ class CsvUploadService{
                     $em->persist($oficio);
                 }
 
-                $parentesco = new TestaTparentesco();
-                $parentesco->setDesParentesco($raw->getGrantorRelationship());
-                $em->persist($parentesco);
+                $parentesco = $em->getRepository(TestaTparentesco::class)->findOneBy(['des_parentesco' => $raw->getGrantorRelationship()]); 
+                if($parentesco){
+                    $parentesco = new TestaTparentesco();
+                    $parentesco->setDesParentesco($raw->getGrantorRelationship());
+                    $em->persist($parentesco);
+                }
 
                 $pobalcion = $em->getRepository(TestaTpoblacion::class)->findOneBy(['des_poblacion' => $raw->getPopulationName()]);
                 if($pobalcion==null){
@@ -244,6 +261,7 @@ class CsvUploadService{
                     $segOtorgante->setApellido1($raw->getSecondGrantorName());
                     $segOtorgante->setApellido2($raw->getSecondGrantorName());
                     $segOtorgante->setIdOficio($oficio);
+                    $em->persist($segOtorgante);
                 }
 
                 $testamento = new testaTtestamento();
@@ -260,27 +278,20 @@ class CsvUploadService{
                 $testamento->setIdImagen($imagen);
                 $em->persist($testamento);
 
-                $em->flush();
-
-                // 5. Crear relación testaOtorgante
                 $testaOtorgante = new TestaTtestaotorgante();
                 $testaOtorgante->setIdTestamento($testamento);
+                $testaOtorgante->setIdOtorgante($otorgante);
                 $testaOtorgante->setNumOrden(1);
-
-                // Sincronización bidireccional CORRECTA
-                $testaOtorgante->addIdOtorgante($otorgante);
-                $otorgante->setTestaTtestaotorgante($testaOtorgante);
-                $em->persist($otorgante);
-                if($raw->isSecondGrantor()){
-                    $testaOtorgante->addIdOtorgante($segOtorgante);
-                    $segOtorgante->setTestaTtestaotorgante($testaOtorgante);
-                    $em->persist($segOtorgante);
-                }
-                $testaOtorgante->setNumOrden(1);
-
                 $em->persist($testaOtorgante);
-                $em->flush();
-
+                
+                if($raw->isSecondGrantor()){
+                    $testaOtorSeg = new TestaTtestaotorgante();
+                    $testaOtorSeg->setIdTestamento($testamento);
+                    $testaOtorSeg->setIdOtorgante($segOtorgante);
+                    $testaOtorSeg->setNumOrden(2);
+                    $em->persist($testaOtorSeg);
+                }
+                
                 $em->persist($raw);
 
             }
@@ -294,5 +305,5 @@ class CsvUploadService{
         $em->clear();
         return $i;
     }
-
+    
 }
