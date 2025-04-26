@@ -23,8 +23,18 @@ class CsvUploadService{
     public static function cargaCSV(Form $form, EntityManagerInterface $em): int
     {
         $uploadedFile = $form->get('csv_file')->getData();
+        $tratamiento = file_get_contents($uploadedFile->getPathname());
 
-        $reader = Reader::createFromPath($uploadedFile->getPathname(), 'r');
+        $tratamiento = preg_replace('/""/', '"', $tratamiento);
+        $tratamiento = preg_replace('/;{10,}/', '', $tratamiento);
+        $tratamiento = preg_replace('/^"(.*)"$/', '$1', $tratamiento);
+        $tratamiento = preg_replace('/\(Windows NT 10\.0"; Win64;" x64\)/', '(Windows NT 10.0; Win64; x64)', $tratamiento);
+        $tratamiento = preg_replace('/(\d{4}-\d{2}-\d{2})T(\d{2}:\d{2}:\d{2})/', '$1 $2', $tratamiento);
+        $csvTemp = fopen('php://temp', 'r+');
+        fwrite($csvTemp, $tratamiento);
+        rewind($csvTemp);
+
+        $reader = Reader::createFromPath($csvTemp, 'r');
         $reader->setDelimiter(',');
         $reader->setEnclosure('"');
         $reader->setEscape('\\');
@@ -32,7 +42,7 @@ class CsvUploadService{
         
         $registros = $reader->getRecords();
 
-        dump($reader);
+        dump($registros);
            
         $lote = 20;
         $i = 0;
@@ -44,23 +54,8 @@ class CsvUploadService{
 
             $raw = new TestaTraw();
             $ilegible = FALSE;
-
             $raw->setClassificationId($registro['classification_id']);
-
-            $tratamiento = $registro;
-            dump($registro);
-            $tratamiento = preg_replace('/""/', '"', $tratamiento);
-            dump($tratamiento);
-            $tratamiento = preg_replace('/;{10,}/', '', $tratamiento);
-            dump($tratamiento);
-            $tratamiento = preg_replace('/^"(.*)"$/', '$1', $tratamiento);
-            dump($tratamiento);
-            $tratamiento = preg_replace('/\(Windows NT 10\.0"; Win64;" x64\)/', '(Windows NT 10.0; Win64; x64)', $tratamiento);
-            dump($tratamiento);
-            $tratamiento = preg_replace('/(\d{4}-\d{2}-\d{2})T(\d{2}:\d{2}:\d{2})/', '$1 $2', $tratamiento);
-            dump($tratamiento);
-
-            $datosTareas = json_decode($tratamiento, true);
+            $datosTareas = json_decode($registro['annotations'], true);
 
             if ($datosTareas) {
                 dump($tratamiento);
