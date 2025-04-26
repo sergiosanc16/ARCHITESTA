@@ -55,7 +55,7 @@ class CsvUploadService{
             $datosTareas = json_decode($tratamiento, true);
 
             if ($datosTareas) {
-                dump($datosTareas);
+                dump($tratamiento);
                 //año
                 $raw->setYear((int) $datosTareas['0']['value']['0']['value']);
                 //mes
