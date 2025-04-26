@@ -42,7 +42,7 @@ class CsvUploadService{
         
         $registros = $reader->getRecords();
 
-        dump($registros);
+        dump($reader);
            
         $lote = 20;
         $i = 0;
