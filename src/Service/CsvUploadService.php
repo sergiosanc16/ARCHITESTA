@@ -147,6 +147,10 @@ class CsvUploadService{
                             }
                     }
                 }
+                $ficheroFoto = json_decode($campos['26'], true);
+                $raw->setFilename($ficheroFoto['Filename']  );
+              
+
                 if($raw->getYear()==null){
                     $raw->setYear(0);
                 }
@@ -198,9 +202,6 @@ class CsvUploadService{
                 if($raw->getFilename()==null){
                     $raw->setFilename('Ninguno');
                 }
-                $datosFoto = json_decode($registro['subject_data'], True);
-                $idFoto = (int) $registro['subject_ids'];
-                $raw->setFilename($datosFoto[$idFoto]['Filename']);
 
                 if(!$segOtor){
                     $raw->setSecondGrantor(FALSE);
