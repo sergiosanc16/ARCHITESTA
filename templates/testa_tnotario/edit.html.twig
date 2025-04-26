@@ -1,0 +1,14 @@
+{% extends 'baseDatatable.html.twig' %}
+
+{% block title %}Edita Notario{% endblock %}
+
+{% set id_tabla = 'notario' %}
+{% set muestraMenu = true %}
+{% set pathIndex =  path('app_testa_tnotario_index') %}
+{% set includeDelete =  'testa_tnotario/_delete_form.html.twig' %}
+{% block body %}
+    <h1>Edita Notario</h1>
+
+    {{ include('testa_tnotario/_form.html.twig', {'button_label': 'Actualizar'}) }}
+    <br>
+{% endblock %}

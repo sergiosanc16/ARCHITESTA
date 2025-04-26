@@ -1,0 +1,39 @@
+{% extends 'baseDatatable.html.twig' %}
+
+{% set id_tabla = 'Otorgante' %}
+{% set muestraMenu = true %}
+{% set pathIndex =  path('app_testa_totorgante_index') %}
+{% set pathEdit =  path('app_testa_totorgante_edit', {'id': testa_totorgante.id}) %}
+{% set includeDelete =  'testa_totorgante/_delete_form.html.twig' %}
+
+{% block title %}Otorgantes{% endblock %}
+
+{% block body %}
+
+    <h1>Otorgante</h1>
+
+    <table class="table  container fondoclaro">
+        <tbody>
+            <tr>
+                <th width="10%">Id</th>
+                <td>{{ testa_totorgante.id }}</td>
+            </tr>
+            <tr>
+                <th>Nombre</th>
+                <td>{{ testa_totorgante.nombre }}</td>
+            </tr>
+            <tr>
+                <th>Apellido1</th>
+                <td>{{ testa_totorgante.apellido1 }}</td>
+            </tr>
+            <tr>
+                <th>Apellido2</th>
+                <td>{{ testa_totorgante.apellido2 }}</td>
+            </tr>
+            <tr>
+                <th>Oficio</th>
+                <td>{{ testa_totorgante.IdOficio }}</td>
+            </tr>
+        </tbody>
+    </table>
+{% endblock %}
