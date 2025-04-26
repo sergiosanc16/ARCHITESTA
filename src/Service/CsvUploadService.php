@@ -38,7 +38,8 @@ class CsvUploadService{
         fwrite($csvTemp, $tratamiento);
         rewind($csvTemp);
 
-        $campos = fgetcsv($csvTemp, ',', '"');
+        $campos = fgetcsv($csvTemp,0, ',', '"');
+        dump($campos);
         
         list(
             $classificationId,
@@ -60,8 +61,6 @@ class CsvUploadService{
         $annotations = json_decode($annotationsJson, true);
 
         dump($annotations);
-          
-        $registros = $reader->getRecords();
 
         //dump($registros);
            
