@@ -25,12 +25,14 @@ class CsvUploadService{
         $uploadedFile = $form->get('csv_file')->getData();
         $tratamiento = file_get_contents($uploadedFile->getPathname());
 
-        $tratamiento = preg_replace('/""/', '"', $tratamiento);
-        $tratamiento = preg_replace('/;{10,}/', '', $tratamiento);
-        $tratamiento = preg_replace('/^"(.*)"$/', '$1', $tratamiento);
-        $tratamiento = preg_replace('/\(Windows NT 10\.0"; Win64;" x64\)/', '(Windows NT 10.0; Win64; x64)', $tratamiento);
-        $tratamiento = preg_replace('/(\d{4}-\d{2}-\d{2})T(\d{2}:\d{2}:\d{2})/', '$1 $2', $tratamiento);
-        $tratamiento = preg_replace('/(KHTML), (like Gecko)/', '$1 $2', $tratamiento);
+        $tratamiento = preg_replace('/^"/', '', $tratamiento);
+        $tratamiento = preg_replace('/";+;$/', '', $tratamiento);
+        $tratamiento = preg_replace('/^((?:[^,]*,){5})([^,]*)(,)/', '$1"$2"$3', $tratamiento);
+        $tratamiento = preg_replace('/"{4}/', '""', $tratamiento);
+        $tratamiento = preg_replace('/,""(\{)/', ',"$1', $tratamiento); 
+        $tratamiento = preg_replace('/(\})""(,)/', '$1"$2', $tratamiento);
+        $tratamiento = preg_replace('/,""(\[)/', ',"$1', $tratamiento);
+        $tratamiento = preg_replace('/(\])""(,)/', '$1"$2', $tratamiento);
 
         $csvTemp = fopen('php://temp', 'r+');
         fwrite($csvTemp, $tratamiento);
@@ -44,7 +46,7 @@ class CsvUploadService{
         
         $registros = $reader->getRecords();
 
-        dump($registros);
+        //dump($registros);
            
         $lote = 20;
         $i = 0;
