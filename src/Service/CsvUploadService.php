@@ -28,9 +28,11 @@ class CsvUploadService{
         $reader->setDelimiter(',');
         $reader->setEnclosure('"');
         $reader->setEscape('\\');
-        $reader->setHeaderOffset(0); // Indicar que la primera línea es la cabecera
+        $reader->setHeaderOffset(0);
         
         $registros = $reader->getRecords();
+
+        dump($reader);
            
         $lote = 20;
         $i = 0;
