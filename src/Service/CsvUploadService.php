@@ -45,18 +45,14 @@ class CsvUploadService{
         $raw = new TestaTraw();
         $ilegible = FALSE;
 
-        while(($campos = fgetcsv($csvTemp,0, ',', '"'))!== false){
+        while(($campos = fgetcsv($csvTemp,0, ',', '"'))!= false){
             dump($campos);
-            $annotations = json_decode($campos['25'], true);
-            dump($annotations);
         
-        //foreach ($registros as $indice => $registro) {
-
             $raw = new TestaTraw();
             $ilegible = FALSE;
-            $raw->setClassificationId($registro['classification_id']);
-            $datosTareas = json_decode($registro['annotations'], true);
-            dump($registro);
+            $raw->setClassificationId($campos['0']);
+            $datosTareas = json_decode($campos['25'], true);
+            dump($datosTareas);
 
             if ($datosTareas) {
                 //año
