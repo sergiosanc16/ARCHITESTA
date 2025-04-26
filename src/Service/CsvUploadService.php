@@ -38,7 +38,7 @@ class CsvUploadService{
         fwrite($csvTemp, $tratamiento);
         rewind($csvTemp);
 
-        $campos = fgetcsv($csvTemp, 0, ',', '"');
+        $campos = fgetcsv($csvTemp, ',', '"');
         
         list(
             $classificationId,
