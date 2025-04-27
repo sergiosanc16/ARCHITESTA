@@ -21,6 +21,7 @@ final class CsvUploadController extends AbstractController
 
         $form = $this->createForm(CsvUploadType::class);
         $form->handleRequest($request);
+        dump($form);
 
         if ($form->isSubmitted() && $form->isValid()) {
 
