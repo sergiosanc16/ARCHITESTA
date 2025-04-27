@@ -215,6 +215,8 @@ class CsvUploadService{
                     $raw->setFilename('Ninguno');
                 }
 
+                $em->persist($raw);
+
                 if(!$segOtor){
                     $raw->setSecondGrantor(FALSE);
                     $raw->setSecondGrantorName("Ningun@");
