@@ -161,7 +161,7 @@ class CsvUploadService{
                 $ficheroFoto = json_decode($campos[$idFichero], true);
                 $idFoto = array_keys($ficheroFoto);
                 dump($ficheroFoto[$idFoto[0]]['Filename'] );
-                $raw->setFilename($ficheroFoto[$idFoto[0]]['Filename']  );
+                $raw->setFilename($ficheroFoto[$idFoto[0]]['Filename'] );
 
                 if($raw->getYear()==null){
                     $raw->setYear(0);
@@ -221,7 +221,7 @@ class CsvUploadService{
                 }
 
                 $imagen = $em->getRepository(TestaTimagen::class)->findOneBy(['des_imagen' => $raw->getFilename()]);
-                if($imagen){
+                if($imagen==null){
                     $imagen = new TestaTimagen();
                     $imagen->setDesImagen($raw->getFilename());
                     $em->persist($imagen);
