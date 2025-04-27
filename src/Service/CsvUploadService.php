@@ -234,24 +234,19 @@ class CsvUploadService{
                     $em->persist($notario);
                 }
 
-                $otorgante = new TestaTotorgante();
-                $otorgante->setNombre($raw->getGrantorName());
-                $otorgante->setApellido1($raw->getGrantorSurname1());
-                $otorgante->setApellido2($raw->getGratorSurname2());
-                $em->persist($otorgante);
-
                 $oficio = $em->getRepository(TestaToficio::class)->findOneBy(['des_oficio' => $raw->getGrantorOffice()]);
                 if ($oficio==null){
                     $oficio = new TestaToficio();
                     $oficio->setDesOficio($raw->getGrantorOffice());
-                    $oficio->addIdOtorgante($otorgante);
-                    $otorgante->setIdOficio($oficio);
-                    $em->persist($oficio);
-                } else{
-                    $oficio->addIdOtorgante($otorgante);
-                    $otorgante->setIdOficio($oficio);
                     $em->persist($oficio);
                 }
+
+                $otorgante = new TestaTotorgante();
+                $otorgante->setNombre($raw->getGrantorName());
+                $otorgante->setApellido1($raw->getGrantorSurname1());
+                $otorgante->setApellido2($raw->getGratorSurname2());
+                $otorgante->setIdOficio($oficio);
+                $em->persist($otorgante);
 
                 $parentesco = $em->getRepository(TestaTparentesco::class)->findOneBy(['des_parentesco' => $raw->getGrantorRelationship()]); 
                 if($parentesco==null){
