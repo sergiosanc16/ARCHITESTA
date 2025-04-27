@@ -15,18 +15,13 @@ class CsvUploadType extends AbstractType
     {
         $builder
         ->add('csv_file', FileType::class, [
-            'constraints' => [
-            new File([
-                'maxSize' => '60M',
-                'mimeTypes' => [
-                    'text/csv',
-                    'text/plain',
-                    'application/vnd.ms-excel',
-                ],
-                'mimeTypesMessage' => 'Por favor sube un fichero CSV válido (hasta 25 MB).',
-        ]),
-    ],
-])
+            'label' => 'Archivo CSV',
+            'mapped' => false,
+            'required' => true,
+            'attr' => [
+                'accept' => '.csv'
+            ]
+        ])
         ->add('submit', SubmitType::class, [
             'label' => 'Subir CSV',
             'attr' => [

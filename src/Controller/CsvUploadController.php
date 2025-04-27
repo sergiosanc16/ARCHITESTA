@@ -21,7 +21,7 @@ final class CsvUploadController extends AbstractController
 
         $form = $this->createForm(CsvUploadType::class);
         $form->handleRequest($request);
-        dump($form->getErrors(true));
+        dump(ini_get('upload_max_filesize'), ini_get('post_max_size'));
         if ($form->isSubmitted() && $form->isValid()) {
             
 
