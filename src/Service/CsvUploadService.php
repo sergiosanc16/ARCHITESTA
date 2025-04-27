@@ -14,9 +14,6 @@ use App\Entity\TestaTparentesco;
 use App\Entity\TestaTpoblacion;
 use App\Entity\TestaTotorgante;
 use App\Entity\TestaTtestaotorgante;
-use League\Csv\Reader;
-use League\Csv\Statement;
-use League\Csv\SyntaxError;
 
 class CsvUploadService{
 
@@ -24,6 +21,7 @@ class CsvUploadService{
     {
         $uploadedFile = $form->get('csv_file')->getData();
         $tratamiento = file_get_contents($uploadedFile->getPathname());
+        dump($tratamiento);
 
         $tratamiento = preg_replace('/^"/', '', $tratamiento);
         $tratamiento = preg_replace('/";+;$/', '', $tratamiento);
@@ -49,6 +47,7 @@ class CsvUploadService{
 
         while(($campos = fgetcsv($csvTemp,0, ',', '"'))!= false){
             $idTask = 0;
+
             foreach($campos as $id => $tarea){
                 if (stripos($tarea,'task')!=FALSE){
                     $idTask = $id;
