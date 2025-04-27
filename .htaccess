@@ -3,6 +3,9 @@
 # mod_rewrite). Additionally, this reduces the matching process for the
 # start page (path "/") because otherwise Apache will apply the rewriting rules
 # to each configured DirectoryIndex file (e.g. index.php, index.html, index.pl).
+php_value upload_max_filesize 60M
+php_value post_max_size      60M
+php_value memory_limit       2G
 DirectoryIndex index.php
 
 # By default, Apache does not evaluate symbolic links if you did not enable this
