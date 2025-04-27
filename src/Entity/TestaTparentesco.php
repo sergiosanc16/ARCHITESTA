@@ -17,10 +17,6 @@ class TestaTparentesco
 
     #[ORM\Column(length: 100)]
     private ?string $des_parentesco = null;
-
-    #[ORM\OneToOne(targetEntity: TestaTtestamento::class, mappedBy: 'id_parentesco',cascade: ['persist', 'remove'])]
-    private ?TestaTtestamento $testaTtestamentos;
-
     public function getId(): ?int
     {
         return $this->id;
@@ -41,18 +37,6 @@ class TestaTparentesco
     public function setDesParentesco(string $des_parentesco): static
     {
         $this->des_parentesco = $des_parentesco;
-
-        return $this;
-    }
-
-    public function getTestaTtestamentos(): ?TestaTtestamento
-    {
-        return $this->testaTtestamentos;
-    }
-
-    public function setTestaTtestamento(TestaTtestamento $testaTtestamento): static
-    {
-        $this->testaTtestamentos = $testaTtestamento;
 
         return $this;
     }

@@ -18,18 +18,6 @@ class TestaTpoblacion
     #[ORM\Column(length: 100)]
     private ?string $des_poblacion = null;
 
-    /**
-     * @var Collection<int, TestaTtestamento>
-     */
-    #[ORM\OneToMany(targetEntity: TestaTtestamento::class, mappedBy: 'id_poblacion')]
-    private Collection $testaTtestamentos;
-
-
-    public function __construct()
-    {
-        $this->testaTtestamentos = new ArrayCollection();
-    }
-
     public function getId(): ?int
     {
         return $this->id;
@@ -50,36 +38,6 @@ class TestaTpoblacion
     public function setDesPoblacion(string $des_poblacion): static
     {
         $this->des_poblacion = $des_poblacion;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, TestaTtestamento>
-     */
-    public function getTestaTtestamentos(): Collection
-    {
-        return $this->testaTtestamentos;
-    }
-
-    public function addTestaTtestamento(TestaTtestamento $testaTtestamento): static
-    {
-        if (!$this->testaTtestamentos->contains($testaTtestamento)) {
-            $this->testaTtestamentos->add($testaTtestamento);
-            $testaTtestamento->setIdPoblacion($this);
-        }
-
-        return $this;
-    }
-
-    public function removeTestaTtestamento(TestaTtestamento $testaTtestamento): static
-    {
-        if ($this->testaTtestamentos->removeElement($testaTtestamento)) {
-            // set the owning side to null (unless already changed)
-            if ($testaTtestamento->getIdPoblacion() === $this) {
-                $testaTtestamento->setIdPoblacion(null);
-            }
-        }
 
         return $this;
     }

@@ -22,6 +22,7 @@ class TestaTtestaotorgante
 
 
     #[ORM\OneToOne(mappedBy: 'testaTtestaotorgantes',cascade: ['persist', 'remove'])]
+    #[ORM\JoinColumn(name: "id_testamento", referencedColumnName: "id", nullable: false)]
     private TestaTotorgante $id_otorgante;
 
     #[ORM\Column(type: Types::SMALLINT)]

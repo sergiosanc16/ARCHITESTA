@@ -37,7 +37,7 @@ class TestaTtestamento
     #[ORM\Column]
     private ?int $num_folio = null;
 
-    #[ORM\ManyToOne(targetEntity:'TestaTpoblacion', inversedBy:'testaTtestamentos')]
+    #[ORM\ManyToOne(targetEntity:'TestaTpoblacion')]
     #[ORM\JoinColumn(name: "id_poblacion", referencedColumnName: "id")]
     private ?TestaTpoblacion $id_poblacion = null;
 
@@ -45,11 +45,11 @@ class TestaTtestamento
     #[ORM\JoinColumn(name: "id_notario", referencedColumnName: "id")]
     private ?TestaTnotario $id_notario = null;
 
-    #[ORM\OneToOne(cascade: ['persist', 'remove'], targetEntity:'TestaTparentesco',inversedBy: 'testaTtestamentos')]
+    #[ORM\OneToOne(cascade: ['persist', 'remove'], targetEntity:'TestaTparentesco')]
     #[ORM\JoinColumn(name: "id_parentesco", referencedColumnName: "id")]
     private ?TestaTparentesco $id_parentesco = null;
 
-    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
+    #[ORM\OneToOne(cascade: ['persist', 'remove'], targetEntity:'TestaTparentesco')]
     #[ORM\JoinColumn(name: "id_imagen", referencedColumnName: "id")]
     private ?TestaTimagen $id_imagen = null;
 
