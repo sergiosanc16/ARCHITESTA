@@ -20,7 +20,8 @@ class TestaTtestaotorgante
     #[ORM\JoinColumn(name: "id_testamento", referencedColumnName: "id", nullable: false)]
     private ?TestaTtestamento $id_testamento = null;
 
-    #[ORM\OneToOne(mappedBy: 'testaTtestaotorgantes',cascade: ['persist', 'remove'])]
+    #[ORM\OneToOne(targetEntity: TestaTotorgante::class,cascade: ['persist', 'remove'])]
+    #[ORM\JoinColumn(name: 'id_otorgante', referencedColumnName: 'id')]
     private TestaTotorgante $id_otorgante;
 
     #[ORM\Column(type: Types::SMALLINT)]

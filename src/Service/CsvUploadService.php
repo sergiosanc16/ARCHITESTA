@@ -247,7 +247,6 @@ class CsvUploadService{
                 $otorgante->setApellido2($raw->getGratorSurname2());
                 $otorgante->setIdOficio($oficio);
                 $em->persist($otorgante);
-                $em->flush();
 
                 $parentesco = $em->getRepository(TestaTparentesco::class)->findOneBy(['des_parentesco' => $raw->getGrantorRelationship()]); 
                 if($parentesco==null){
