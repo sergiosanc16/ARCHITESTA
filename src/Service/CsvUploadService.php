@@ -160,7 +160,7 @@ class CsvUploadService{
                 $idFichero = strval(++$idFichero);
                 $ficheroFoto = json_decode($campos[$idFichero], true);
                 $idFoto = array_keys($ficheroFoto);
-                dump($ficheroFoto);
+                dump($ficheroFoto[$idFoto[0]]['Filename'] );
                 $raw->setFilename($ficheroFoto[$idFoto[0]]['Filename']  );
 
                 if($raw->getYear()==null){
