@@ -42,7 +42,7 @@ class CsvUploadService{
         $campos = fgetcsv($csvTemp,0, ',', '"');
 
         $lote = 20;
-        $flsuh = 0;
+        $flush = 0;
         $raw = new TestaTraw();
         $segOtor=FALSE;
         $ilegible = FALSE;
