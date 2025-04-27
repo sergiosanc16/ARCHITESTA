@@ -49,7 +49,7 @@ class TestaTtestamento
     #[ORM\JoinColumn(name: "id_parentesco", referencedColumnName: "id")]
     private ?TestaTparentesco $id_parentesco = null;
 
-    #[ORM\OneToOne(cascade: ['persist', 'remove'], targetEntity:'TestaTparentesco')]
+    #[ORM\OneToOne(cascade: ['persist', 'remove'], targetEntity:'TestaTimagen')]
     #[ORM\JoinColumn(name: "id_imagen", referencedColumnName: "id")]
     private ?TestaTimagen $id_imagen = null;
 
