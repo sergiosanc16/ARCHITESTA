@@ -42,7 +42,7 @@ class CsvUploadService{
         $campos = fgetcsv($csvTemp,0, ',', '"');
 
         $lote = 20;
-        $i = 0;
+        $flsuh = 0;
         $raw = new TestaTraw();
         $segOtor=FALSE;
         $ilegible = FALSE;
@@ -303,18 +303,16 @@ class CsvUploadService{
                     $em->persist($testaOtorSeg);
                 }
 
-                $em->persist($raw);
-
             }
-            if ((($i % $lote) === 0)) {
+            if ((($flush % $lote) === 0)) {
                 $em->flush();
                 $em->clear();
             }
-            $i++;
+            $flush++;
         }
         $em->flush();
         $em->clear();
-        return $i;
+        return $flush;
     }
     
 }
