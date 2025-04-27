@@ -38,20 +38,29 @@ class CsvUploadService{
         fwrite($csvTemp, $tratamiento);
         rewind($csvTemp);
 
+        //Eliminar cabecera
         $campos = fgetcsv($csvTemp,0, ',', '"');
+
         $lote = 20;
         $i = 0;
-        $segOtor=FALSE;
         $raw = new TestaTraw();
+        $segOtor=FALSE;
         $ilegible = FALSE;
 
         while(($campos = fgetcsv($csvTemp,0, ',', '"'))!= false){
+            $idTask = 0;
+            foreach($campos as $id => $tarea){
+                if (stripos($tarea,'task')!=FALSE){
+                    $idTask = $id;
+                    break;
+                }
+            }
             dump($campos);
         
             $raw = new TestaTraw();
             $ilegible = FALSE;
             $raw->setClassificationId($campos['0']);
-            $datosTareas = json_decode($campos['25'], true);
+            $datosTareas = json_decode($campos[$idTask], true);
             dump($datosTareas);
 
             if ($datosTareas) {
@@ -147,7 +156,9 @@ class CsvUploadService{
                             }
                     }
                 }
-                $ficheroFoto = json_decode($campos['26'], true);
+                $idFichero = intval($idTask);
+                $idFichero = strval(++$idFichero);
+                $ficheroFoto = json_decode($campos[$idFichero], true);
                 $idFoto = array_keys($ficheroFoto);
                 dump($ficheroFoto);
                 $raw->setFilename($ficheroFoto[$idFoto[0]]['Filename']  );
