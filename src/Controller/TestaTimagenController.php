@@ -3,8 +3,10 @@
 namespace App\Controller;
 
 use App\Entity\TestaTimagen;
+use App\Entity\TestaVimagen;
 use App\Form\TestaTimagenType;
 use App\Repository\TestaTimagenRepository;
+use App\Repository\TestaVimagenRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -15,10 +17,10 @@ use Symfony\Component\Routing\Attribute\Route;
 final class TestaTimagenController extends AbstractController
 {
     #[Route(name: 'app_testa_timagen_index', methods: ['GET'])]
-    public function index(TestaTimagenRepository $testaTimagenRepository): Response
+    public function index(TestaVimagenRepository $testaVimagenRepository): Response
     {
         return $this->render('testa_timagen/index.html.twig', [
-            'testa_timagens' => $testaTimagenRepository->findAll(),
+            'testa_timagens' => $testaVimagenRepository->findAll(),
         ]);
     }
 
