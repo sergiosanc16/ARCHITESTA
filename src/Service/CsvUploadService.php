@@ -19,11 +19,8 @@ class CsvUploadService{
 
     public static function cargaCSV(Form $form, EntityManagerInterface $em): int
     {
-        dump('Prueba');
         $uploadedFile = $form->get('csv_file')->getData();
-        dump($uploadedFile);
         $tratamiento = file_get_contents($uploadedFile->getPathname());
-        dump($tratamiento);
 
         $tratamiento = preg_replace('/^"/', '', $tratamiento);
         $tratamiento = preg_replace('/";+;$/', '', $tratamiento);
