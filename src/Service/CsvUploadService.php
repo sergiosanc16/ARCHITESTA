@@ -56,7 +56,6 @@ class CsvUploadService{
                     break;
                 }
             }
-            dump($campos);
         
             $raw = new TestaTraw();
             $ilegible = FALSE;
