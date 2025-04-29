@@ -82,8 +82,17 @@ class TestaTtestamento
     public function getNotario(): ?TestaTnotario { return $this->notario; }
     public function setNotario(?TestaTnotario $notario): self { $this->notario = $notario; return $this; }
 
-    public function getImagen(): ?TestaTimagen { return $this->imagen; }
-    public function setImagen(?TestaTimagen $imagen): self { $this->imagen = $imagen; return $this; }
+    public function getIdParentesco(): ?TestaTparentesco
+    {
+        return $this->id_parentesco;
+    }
+
+    public function setIdParentesco(TestaTparentesco $idParentesco): static
+    {        
+        $this->id_parentesco = $idParentesco;
+
+        return $this;
+    }
 
     public function getParentesco(): ?TestaTparentesco { return $this->parentesco; }
     public function setParentesco(?TestaTparentesco $parentesco): self { $this->parentesco = $parentesco; return $this; }
@@ -92,6 +101,11 @@ class TestaTtestamento
 
         // to show the name of the Category in the select 
 
+        return $this;
+    }
+
+    public function __toString(){ 
+        // to show the name of the Category in the select 
         return $this->id.'-'.$this->dia.'/'.$this->mes.'/'.$this->anno; 
-    }  
+    } 
 }
