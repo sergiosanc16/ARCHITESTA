@@ -2,22 +2,22 @@
 
 namespace App\Repository;
 
-use App\Entity\TestaTtestaotorgante;
+use App\Entity\TestaTotorgante;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @extends ServiceEntityRepository<TestaTtestaotorgante>
+ * @extends ServiceEntityRepository<TestaTotorgante>
  */
-class TestaTtestaotorganteRepository extends ServiceEntityRepository
+class TestaTotorganteRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, TestaTtestaotorgante::class);
+        parent::__construct($registry, TestaTotorgante::class);
     }
 
     //    /**
-    //     * @return TestaTtestaotorgante[] Returns an array of TestaTtestaotorgante objects
+    //     * @return TestaTotorgante[] Returns an array of TestaTotorgante objects
     //     */
     //    public function findByExampleField($value): array
     //    {
@@ -31,7 +31,7 @@ class TestaTtestaotorganteRepository extends ServiceEntityRepository
     //        ;
     //    }
 
-    //    public function findOneBySomeField($value): ?TestaTtestaotorgante
+    //    public function findOneBySomeField($value): ?TestaTotorgante
     //    {
     //        return $this->createQueryBuilder('t')
     //            ->andWhere('t.exampleField = :val')
@@ -40,16 +40,4 @@ class TestaTtestaotorganteRepository extends ServiceEntityRepository
     //            ->getOneOrNullResult()
     //        ;
     //    }
-
-    public function OtorgantesTestamento(int $id_testamento): array
-        {
-            return $this->createQueryBuilder('t')
-                ->andWhere('t.testamento = :val')
-                ->setParameter('val', $id_testamento)
-                ->orderBy('t.num_orden', 'ASC')
-                ->getQuery()
-                ->getResult()
-            ;
-        }
-
 }

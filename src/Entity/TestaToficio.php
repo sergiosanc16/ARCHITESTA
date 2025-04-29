@@ -3,8 +3,6 @@
 namespace App\Entity;
 
 use App\Repository\TestaToficioRepository;
-use Doctrine\Common\Collections\Collection;
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: TestaToficioRepository::class)]
@@ -41,10 +39,15 @@ class TestaToficio
 
         return $this;
     }
+    public function __toString(){ 
 
-    public function __toString(): string
-    {
-        return $this->des_oficio;
-    }
+        // to show the name of the Category in the select 
 
+        return $this->des_oficio; 
+
+        // to show the id of the Category in the select 
+
+        // return $this->id; 
+
+}     
 }

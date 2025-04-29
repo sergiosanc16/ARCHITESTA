@@ -1,6 +1,13 @@
-{% extends 'base.html.twig' %}
+{% extends 'baseDatatable.html.twig' %}
 
-{% block title %}Hello CsvUploadController!{% endblock %}
+
+{% set id_tabla = 'csv' %}
+{% set muestraMenu = true %}
+
+{% block title %}{{id_tabla}} Manejo{% endblock %}
+
+{% block javascripts %}
+{% endblock %}
 
 {% block body %}
 <style>
@@ -8,7 +15,7 @@
     .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
 </style>
 
-    <h1>Subir Archivo CSV</h1>
+    <h1>Cargar CSV</h1>
     
     <div class="card">
         <div class="card-body">
@@ -22,8 +29,4 @@
                     </div>
                 </div>
                 
-                {{ form_widget(form.submit) }}
-            {{ form_end(form) }}
-        </div>
-    </div>
-{% endblock %}
+                {{ form_widg

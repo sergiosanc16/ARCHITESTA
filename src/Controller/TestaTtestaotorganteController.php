@@ -45,6 +45,7 @@ final class TestaTtestaotorganteController extends AbstractController
     #[Route('/{id}', name: 'app_testa_ttestaotorgante_show', methods: ['GET'])]
     public function show(TestaTtestaotorgante $testaTtestaotorgante): Response
     {
+
         return $this->render('testa_ttestaotorgante/show.html.twig', [
             'testa_ttestaotorgante' => $testaTtestaotorgante,
         ]);

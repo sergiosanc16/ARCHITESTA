@@ -15,11 +15,12 @@ class TestaTparentescoType extends AbstractType
     {
         $builder
             ->add('des_parentesco')
-            ->add('testaTtestamentos', EntityType::class, [
+ /*           ->add('testaTtestamentos', EntityType::class, [
                 'class' => TestaTtestamento::class,
                 'choice_label' => 'id',
                 'multiple' => true,
             ])
+                */
         ;
     }
 

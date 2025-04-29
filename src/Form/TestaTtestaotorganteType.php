@@ -16,13 +16,13 @@ class TestaTtestaotorganteType extends AbstractType
     {
         $builder
             ->add('num_orden')
-            ->add('id_testamento', EntityType::class, [
+            ->add('testamento', EntityType::class, [
                 'class' => TestaTtestamento::class,
-                'choice_label' => 'id',
+
             ])
-            ->add('id_otorgante', EntityType::class, [
+            ->add('otorgante', EntityType::class, [
                 'class' => TestaTotorgante::class,
-                'choice_label' => 'id',
+
             ])
         ;
     }

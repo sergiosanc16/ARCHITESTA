@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\TestaTimagen;
 use App\Entity\TestaTnotario;
 use App\Entity\TestaTparentesco;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use App\Entity\TestaTpoblacion;
 use App\Entity\TestaTtestamento;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -13,34 +14,39 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class TestaTtestamentoType extends AbstractType
-{
+{ 
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('id')
             ->add('anno')
             ->add('mes')
             ->add('dia')
-            ->add('mancomunado')
-            ->add('textoilegible')
+            ->add('mancomunado', CheckboxType::class, [
+                'label'    => '¿Mancomunado?',
+                'required' => false,
+            ])            
+            ->add('textoilegible', CheckboxType::class, [
+                'label'    => '¿Texto ilegible?',
+                'required' => false,
+            ])            
             ->add('num_protocolo')
             ->add('num_folio')
-            ->add('id_poblacion', EntityType::class, [
+            ->add('poblacion', EntityType::class, [
                 'class' => TestaTpoblacion::class,
-                'choice_label' => 'id',
+                'choice_label' => 'des_poblacion',
             ])
-            ->add('id_notario', EntityType::class, [
+            ->add('notario', EntityType::class, [
                 'class' => TestaTnotario::class,
-                'choice_label' => 'id',
+                'choice_label' => 'des_notario',
             ])
-            ->add('id_parentesco', EntityType::class, [
+            ->add('parentesco', EntityType::class, [
                 'class' => TestaTparentesco::class,
-                'choice_label' => 'id',
-                'multiple' => true,
+                'choice_label' => 'des_parentesco',
             ])
-            ->add('id_imagen', EntityType::class, [
+                
+            ->add('imagen', EntityType::class, [
                 'class' => TestaTimagen::class,
-                'choice_label' => 'id',
+                'choice_label' => 'des_imagen',
             ])
         ;
     }

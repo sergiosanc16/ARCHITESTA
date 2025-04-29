@@ -3,76 +3,67 @@
 namespace App\Entity;
 
 use App\Repository\TestaTtestaotorganteRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
-use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: TestaTtestaotorganteRepository::class)]
+#[ORM\Table(name: 'testa_ttestaotorgante')]
 class TestaTtestaotorgante
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
-    #[ORM\Column]
+    #[ORM\Column(type: 'integer')]
     private ?int $id = null;
 
-    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
-    #[ORM\JoinColumn(name: "id_testamento", referencedColumnName: "id", nullable: false)]
-    private ?TestaTtestamento $id_testamento = null;
+    #[ORM\ManyToOne(targetEntity: TestaTtestamento::class)]
+    #[ORM\JoinColumn(name: 'ID_TESTAMENTO', referencedColumnName: 'id', nullable: false)]
+    private ?TestaTtestamento $testamento = null;
 
-    #[ORM\OneToOne(targetEntity: TestaTotorgante::class,cascade: ['persist', 'remove'])]
-    #[ORM\JoinColumn(name: 'id_otorgante', referencedColumnName: 'id')]
-    private TestaTotorgante $id_otorgante;
+    #[ORM\ManyToOne(targetEntity: TestaTotorgante::class)]
+    #[ORM\JoinColumn(name: 'ID_OTORGANTE', referencedColumnName: 'id', nullable: false)]
+    private ?TestaTotorgante $otorgante = null;
 
-    #[ORM\Column(type: Types::SMALLINT)]
-    private ?int $num_orden = null;
+    #[ORM\Column(type: 'smallint', options: ['unsigned' => true, 'default' => 1])]
+    private int $num_orden = 1;
 
+    // Getters y setters
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function setId(int $id): static
+    public function getTestamento(): ?TestaTtestamento
     {
-        $this->id = $id;
+        return $this->testamento;
+    }
 
+    public function setTestamento(TestaTtestamento $testamento): self
+    {
+        $this->testamento = $testamento;
         return $this;
     }
 
-    public function getIdTestamento(): ?TestaTtestamento
+    public function getOtorgante(): ?TestaTotorgante
     {
-        return $this->id_testamento;
+        return $this->otorgante;
     }
 
-    public function setIdTestamento(?TestaTtestamento $id_testamento): static
+    public function setOtorgante(TestaTotorgante $otorgante): self
     {
-        $this->id_testamento = $id_testamento;
-
+        $this->otorgante = $otorgante;
         return $this;
     }
 
-    public function getIdOtorgante(): TestaTotorgante
-    {
-        return $this->id_otorgante;
-    }
-
-    public function setIdOtorgante(TestaTotorgante $idOtorgante): static
-    {
-        $this->id_otorgante = $idOtorgante;
-
-        return $this;
-    }
-
-    public function getNumOrden(): ?int
+    public function getNumOrden(): int
     {
         return $this->num_orden;
     }
 
-    public function setNumOrden(int $num_orden): static
+    public function setNumOrden(int $num_orden): self
     {
         $this->num_orden = $num_orden;
-
         return $this;
     }
+
+ 
 }

@@ -25,6 +25,7 @@
             <tr>
                 <th width="5%">Id</th>
                 <th>Imagen</th>
+                <th>Num Testamentos Asociados</th>
                 <th width="10%">Acciones</th>
             </tr>
         </thead>
@@ -32,8 +33,16 @@
             {% for testa_timagen in testa_timagens %}
             <tr>
                 <td>{{ testa_timagen.id }}</td>
-                <td>{{ testa_timagen.desImagen }}</td>
                 <td>
+                    {% if asset_exists('img/fichas/'~ testa_timagen.desImagen) %}
+                        <a href="{{ '/img/fichas/'~ testa_timagen.desImagen }}"> {{ testa_timagen.desImagen }}</a> 
+                    {% else %}
+                        {{ testa_timagen.desImagen }}
+                    {% endif %}
+                </td>
+                <td>{{ testa_timagen.numTestamento }}</td>
+                <td>
+                    <a href="{{ path('app_testa_ttestamento_imagen_index', {'id_imagen': testa_timagen.id}) }}" title="Mostrar Testamento"><img  width="30px"   src="{{ asset('img/testamento.png') }}"></a>
                     <a href="{{ path('app_testa_timagen_show', {'id': testa_timagen.id}) }}" title="Mostrar Registro"><img  width="30px"   src="{{ asset('img/mostrar.png') }}"></a>
                     <a href="{{ path('app_testa_timagen_edit', {'id': testa_timagen.id}) }}" title="Editar Registro"><img  width="30px"  src="{{ asset('img/editar.png') }}"></a>
                 </td>
