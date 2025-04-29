@@ -14,13 +14,13 @@ class TestaTtestamento
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(type: Types::SMALLINT)]
+    #[ORM\Column]
     private ?int $anno = null;
 
     #[ORM\Column]
     private ?string $mes = null;
 
-    #[ORM\Column(type: Types::SMALLINT)]
+    #[ORM\Column]
     private ?int $dia = null;
 
     #[ORM\Column]
