@@ -25,8 +25,12 @@
                     {{ form_widget(form.csv_file) }}
                     {{ form_errors(form.csv_file) }}
                     <div class="form-text">
-                        Formatos aceptados: .csv (Tamaño máximo: 1MB)
+                        Formatos aceptados: .csv 
                     </div>
                 </div>
                 
-                {{ form_widg
+                 {{ form_widget(form.submit) }}
+            {{ form_end(form) }}
+        </div>
+    </div>
+{% endblock %}
