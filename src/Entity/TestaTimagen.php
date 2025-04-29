@@ -16,6 +16,10 @@ class TestaTimagen
     #[ORM\Column(length: 100)]
     private ?string $des_imagen = null;
 
+    function __construct() {
+        
+    }
+
     public function getId(): ?int
     {
         return $this->id;

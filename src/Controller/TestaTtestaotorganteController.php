@@ -3,8 +3,10 @@
 namespace App\Controller;
 
 use App\Entity\TestaTtestaotorgante;
+use App\Entity\TestaVtestaotorgante;
 use App\Form\TestaTtestaotorganteType;
 use App\Repository\TestaTtestaotorganteRepository;
+use App\Repository\TestaVtestaotorganteRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -15,7 +17,7 @@ use Symfony\Component\Routing\Attribute\Route;
 final class TestaTtestaotorganteController extends AbstractController
 {
     #[Route(name: 'app_testa_ttestaotorgante_index', methods: ['GET'])]
-    public function index(TestaTtestaotorganteRepository $testaTtestaotorganteRepository): Response
+    public function index(TestaVtestaotorganteRepository $testaTtestaotorganteRepository): Response
     {
         return $this->render('testa_ttestaotorgante/index.html.twig', [
             'testa_ttestaotorgantes' => $testaTtestaotorganteRepository->findAll(),

@@ -3,8 +3,10 @@
 namespace App\Controller;
 
 use App\Entity\TestaTnotario;
+use App\Entity\TestaVnotario;
 use App\Form\TestaTnotarioType;
 use App\Repository\TestaTnotarioRepository;
+use App\Repository\TestaVnotarioRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -15,7 +17,7 @@ use Symfony\Component\Routing\Attribute\Route;
 final class TestaTnotarioController extends AbstractController
 {
     #[Route(name: 'app_testa_tnotario_index', methods: ['GET'])]
-    public function index(TestaTnotarioRepository $testaTnotarioRepository): Response
+    public function index(TestaVnotarioRepository $testaTnotarioRepository): Response
     {
         return $this->render('testa_tnotario/index.html.twig', [
             'testa_tnotarios' => $testaTnotarioRepository->findAll(),
