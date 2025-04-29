@@ -24,9 +24,10 @@ class TestaTnotario
     #[ORM\OneToMany(targetEntity: TestaTtestamento::class, mappedBy: 'id_notario')]
     private Collection $testaTtestamentos;
 
-    public function __construct()
+    public function __construct(string $des_notario)
     {
         $this->testaTtestamentos = new ArrayCollection();
+        $this->des_notario = $des_notario;
     }
 
     public function getId(): ?int
@@ -82,4 +83,9 @@ class TestaTnotario
 
         return $this;
     }
+
+    public function __toString(){ 
+        // to show the name of the Category in the select 
+        return $this->des_notario; 
+    } 
 }

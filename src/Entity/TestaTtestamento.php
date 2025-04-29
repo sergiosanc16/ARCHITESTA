@@ -177,7 +177,6 @@ class TestaTtestamento
         return $this;
     }
 
-
     public function getIdImagen(): ?TestaTimagen
     {
         return $this->id_imagen;
@@ -189,4 +188,9 @@ class TestaTtestamento
 
         return $this;
     }
+
+    public function __toString(){ 
+        // to show the name of the Category in the select 
+        return $this->id.'-'.$this->dia.'/'.$this->mes.'/'.$this->anno; 
+    } 
 }

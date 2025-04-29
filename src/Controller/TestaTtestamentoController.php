@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\TestaTtestamento;
 use App\Form\TestaTtestamentoType;
 use App\Repository\TestaTtestamentoRepository;
+use App\Repository\TestaTtestaotorganteRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -21,6 +22,23 @@ final class TestaTtestamentoController extends AbstractController
             'testa_ttestamentos' => $testaTtestamentoRepository->findAll(),
         ]);
     }
+
+    #[Route('/{id_imagen}/indeximagen',name: 'app_testa_ttestamento_imagen_index', methods: ['GET'])]
+    public function indeximagen(TestaTtestamentoRepository $testaTtestamentoRepository, $id_imagen): Response
+    {
+        return $this->render('testa_ttestamento/index.html.twig', [
+            'testa_ttestamentos' => $testaTtestamentoRepository->findTestaImagen($id_imagen),
+        ]);
+    }
+
+    #[Route('/{id_notario}/indexnotario',name: 'app_testa_ttestamento_notario_index', methods: ['GET'])]
+    public function indexnotario(TestaTtestamentoRepository $testaTtestamentoRepository, $id_notario): Response
+    {
+        return $this->render('testa_ttestamento/index.html.twig', [
+            'testa_ttestamentos' => $testaTtestamentoRepository->findTestaNotario($id_notario),
+        ]);
+    }
+
 
     #[Route('/new', name: 'app_testa_ttestamento_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
@@ -43,10 +61,14 @@ final class TestaTtestamentoController extends AbstractController
     }
 
     #[Route('/{id}', name: 'app_testa_ttestamento_show', methods: ['GET'])]
-    public function show(TestaTtestamento $testaTtestamento): Response
+    public function show(TestaTtestamento $testaTtestamento, 
+                         TestaTtestaotorganteRepository $TestaTtestaotorganteRepository,
+                            $id): Response
     {
+        $otorgantes = $TestaTtestaotorganteRepository->OtorgantesTestamento($id);
         return $this->render('testa_ttestamento/show.html.twig', [
             'testa_ttestamento' => $testaTtestamento,
+            'otorgantes'        => $otorgantes,
         ]);
     }
 
