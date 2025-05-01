@@ -18,7 +18,7 @@ class TestaTtestamento
     #[ORM\Column(type: 'smallint')]
     private int $anno;
 
-    #[ORM\Column(type: 'varchar')]
+    #[ORM\Column(type: 'string')]
     private string $mes;
 
     #[ORM\Column(type: 'smallint')]
