@@ -54,13 +54,12 @@ class CsvUploadService{
                 }
             }
         
-            $raw = new TestaTraw();
             $ilegible = FALSE;
+            $raw = new TestaTraw();
             $raw->setClassificationId($campos['0']);
             $datosTareas = json_decode($campos[$idTask], true);
-            if($datosTareas!=null){
-                dump($campos);
-                dump($datosTareas);
+            if($datosTareas===null){
+                dump(json_last_error_msg());
             }
 
             if ($datosTareas) {
