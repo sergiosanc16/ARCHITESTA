@@ -20,48 +20,89 @@ class CsvUploadService{
     public static function cargaCSV(Form $form, EntityManagerInterface $em): int
     {
         $uploadedFile = $form->get('csv_file')->getData();
-        $tratamiento = file_get_contents($uploadedFile->getPathname());
+$tratamiento   = file_get_contents($uploadedFile->getPathname());
 
-        $tratamiento = preg_replace('/^"/', '', $tratamiento);
-        $tratamiento = preg_replace('/";+;$/', '', $tratamiento);
-        $tratamiento = preg_replace('/^((?:[^,]*,){5})([^,]*)(,)/', '$1"$2"$3', $tratamiento);
-        $tratamiento = preg_replace('/"{4}/', '""', $tratamiento);
-        $tratamiento = preg_replace('/,""(\{)/', ',"$1', $tratamiento); 
-        $tratamiento = preg_replace('/(\})""(,)/', '$1"$2', $tratamiento);
-        $tratamiento = preg_replace('/,""(\[)/', ',"$1', $tratamiento);
-        $tratamiento = preg_replace('/(\])""(,)/', '$1"$2', $tratamiento);
+/* ------------------------------------------------------------------
+   2.  Normaliza el CSV EXACTAMENTE igual que antes (tus preg_replace)
+   ------------------------------------------------------------------ */
+$tratamiento = preg_replace('/^"/',              '',  $tratamiento);
+$tratamiento = preg_replace('/";+;$/',           '',  $tratamiento);
+$tratamiento = preg_replace('/^((?:[^,]*,){5})([^,]*)(,)/', '$1"$2"$3', $tratamiento);
+$tratamiento = preg_replace('/"{4}/',            '""', $tratamiento);
+$tratamiento = preg_replace('/,""(\{)/',         ',"$1', $tratamiento); 
+$tratamiento = preg_replace('/(\})""(,)/',       '$1"$2', $tratamiento);
+$tratamiento = preg_replace('/,""(\[)/',         ',"$1', $tratamiento);
+$tratamiento = preg_replace('/(\])""(,)/',       '$1"$2', $tratamiento);
 
-        $csvTemp = fopen('php://temp', 'r+');
-        fwrite($csvTemp, $tratamiento);
-        rewind($csvTemp);
+/* ------------------------------------------------------------------
+   3.  Prepara el CSV para fgetcsv()
+   ------------------------------------------------------------------ */
+$csvTemp = fopen('php://temp', 'r+');
+fwrite($csvTemp, $tratamiento);
+rewind($csvTemp);
 
-        //Eliminar cabecera
-        $campos = fgetcsv($csvTemp,0, ',', '"');
+/* ------------------------------------------------------------------
+   4.  Descarta la cabecera
+   ------------------------------------------------------------------ */
+fgetcsv($csvTemp, 0, ',', '"');
 
-        $lote = 20;
-        $flush = 0;
-        $raw = new TestaTraw();
-        $segOtor=FALSE;
-        $ilegible = FALSE;
+/* ------------------------------------------------------------------
+   5.  Recorre cada fila
+   ------------------------------------------------------------------ */
+$lote   = 20;
+$flush  = 0;
 
-        while(($campos = fgetcsv($csvTemp,0, ',', '"'))!= false){
-            $idTask = 0;
+while (($campos = fgetcsv($csvTemp, 0, ',', '"')) !== false) {
 
-            foreach($campos as $id => $tarea){
-                if (stripos($tarea,'task')!=FALSE){
-                    $idTask = $id;
-                    break;
-                }
-            }
-        
-            $ilegible = FALSE;
-            $raw = new TestaTraw();
-            $raw->setClassificationId($campos['0']);
-            try {
-                $datosTareas = json_decode($campos[$idTask], true, 512, JSON_THROW_ON_ERROR | JSON_INVALID_UTF8_SUBSTITUTE);
-            } catch (JsonException $e) {
-                exit("JSON inválido: ".$e->getMessage());
-            }
+    /* 5.1 Localiza el campo que contiene las tasks ----------------- */
+    $idTask = array_search(true, array_map(
+        static fn($t) => stripos($t, 'task') !== false, $campos
+    ));
+
+    // Si no se encuentra el campo con "task", continúa con la siguiente fila
+    if ($idTask === false) {
+        continue;
+    }
+
+    /* 5.2 Limpieza mínima del JSON crudo --------------------------- */
+    $raw = $campos[$idTask] ?? '';
+
+    // Elimina comillas doble o simple que envuelvan toda la cadena
+    if ($raw !== '' && ($raw[0] === '"' || $raw[0] === "'")
+        && $raw[0] === $raw[strlen($raw) - 1]) {
+        $raw = substr($raw, 1, -1);          // descarta 1ª y última comilla
+        $raw = str_replace('""', '"', $raw); // desdobla "" a "
+    }
+
+    // Quita posible BOM UTF-8
+    $raw = preg_replace('/^\xEF\xBB\xBF/', '', $raw);
+
+    // Elimina caracteres de control no imprimibles
+    $raw = preg_replace('/[[:^print:]\s]/u', '', $raw);
+
+    // Descarta strings vacíos
+    if (trim($raw) === '') {
+        continue;
+    }
+
+    /* 5.3 Valida con json_validate() si tu PHP ≥ 8.3 --------------- */
+    if (function_exists('json_validate') && !json_validate($raw, JSON_INVALID_UTF8_SUBSTITUTE)) {
+        continue;            // JSON inválido → ignora la fila o notifícala
+    }
+
+    /* 5.4 Intenta la decodificación con excepciones ---------------- */
+    try {
+        $datosTareas = json_decode(
+            $raw,
+            true,
+            512,
+            JSON_THROW_ON_ERROR | JSON_INVALID_UTF8_SUBSTITUTE
+        );
+    } catch (\JsonException $e) {
+        // Si quieres loggear el error para auditoría:
+        error_log('Fila JSON inválida: '.$e->getMessage().' ➜ '.$raw);
+        continue;            // ignora la fila y pasa a la siguiente
+    }
 
             if ($datosTareas) {
                 //año
