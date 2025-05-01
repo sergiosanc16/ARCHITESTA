@@ -58,7 +58,7 @@ class CsvUploadService{
             $raw = new TestaTraw();
             $raw->setClassificationId($campos['0']);
             $datosTareas = json_decode($campos[$idTask], true);
-            if($datosTareas===null){
+            if($datosTareas==null){
                 echo "Longitud: ".strlen($datosTareas).PHP_EOL;
                 echo "Primeros 20 bytes: ".bin2hex(substr($datosTareas, 0, 20)).PHP_EOL;
                 echo "Últimos 20  bytes: ".bin2hex(substr($datosTareas, -20)).PHP_EOL;
