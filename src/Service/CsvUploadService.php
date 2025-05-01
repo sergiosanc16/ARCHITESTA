@@ -57,7 +57,7 @@ class CsvUploadService{
             $ilegible = FALSE;
             $raw = new TestaTraw();
             $raw->setClassificationId($campos['0']);
-            $datosTareas = json_decode($campos[$idTask], true);
+            $datosTareas = json_decode($campos[$idTask], true, 512, JSON_THROW_ON_ERROR);
             if($datosTareas===null){
                 dump(bin2hex(substr($datosTareas, 0, 20)));
                 dump(bin2hex(substr($datosTareas, -20)));
