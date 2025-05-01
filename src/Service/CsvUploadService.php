@@ -59,7 +59,8 @@ class CsvUploadService{
             $raw->setClassificationId($campos['0']);
             $datosTareas = json_decode($campos[$idTask], true);
             if($datosTareas===null){
-                dump(json_last_error_msg());
+                dump(bin2hex(substr($json, 0, 20)));
+                dump(bin2hex(substr($json, -20)));
             }
 
             if ($datosTareas) {
