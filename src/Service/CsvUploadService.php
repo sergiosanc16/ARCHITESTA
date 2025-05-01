@@ -219,6 +219,8 @@ class CsvUploadService{
                 }
                 $em->persist($raw);
 
+                dump($raw);
+
                 
                 $imagen = $em->getRepository(TestaTimagen::class)->findOneBy(['des_imagen' => $raw->getFilename()]);
                 if($imagen==null){
@@ -238,7 +240,8 @@ class CsvUploadService{
                     $em->persist($oficio);
                 }
 
-                $otorgante = new TestaTotorgante($raw->getGrantorName(),$raw->getGrantorSurname1(),$raw->getGratorSurname2(),$oficio);
+                $otorgante = new TestaTotorgante($raw->getGrantorName(),$raw->getGrantorSurname1(),
+                                                $raw->getGratorSurname2(),$oficio);
                 $em->persist($otorgante);
 
                 $parentesco = $em->getRepository(TestaTparentesco::class)->findOneBy(['des_parentesco' => $raw->getGrantorRelationship()]); 
@@ -254,7 +257,8 @@ class CsvUploadService{
                 }
 
                 if($raw->isSecondGrantor()){
-                    $segOtorgante = new TestaTotorgante($raw->getSecondGrantorName(),$raw->getSecondGrantorName(), $raw->getSecondGrantorName(), $oficio);
+                    $segOtorgante = new TestaTotorgante($raw->getSecondGrantorName(),
+                                                        $raw->getSecondGrantorName(), $raw->getSecondGrantorName(), $oficio);
                     $em->persist($segOtorgante);
                 }
 
