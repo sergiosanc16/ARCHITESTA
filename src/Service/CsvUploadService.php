@@ -58,7 +58,7 @@ class CsvUploadService{
             $raw = new TestaTraw();
             $raw->setClassificationId($campos['0']);
             try {
-                $datosTareas = json_decode($json, true, 512, JSON_THROW_ON_ERROR | JSON_INVALID_UTF8_SUBSTITUTE);
+                $datosTareas = json_decode($campos[$idTask], true, 512, JSON_THROW_ON_ERROR | JSON_INVALID_UTF8_SUBSTITUTE);
             } catch (JsonException $e) {
                 exit("JSON inválido: ".$e->getMessage());
             }
