@@ -1,0 +1,37 @@
+{% extends 'baseDatatable.html.twig' %}
+
+{% set id_tabla = 'Testamento' %}
+{% set muestraMenu = true %}
+{% set pathIndex =  path('app_testa_ttestamento_index') %}
+{% set pathEdit =  path('app_testa_ttestamento_edit', {'id': testa_ttestamento.id}) %}
+{% set includeDelete =  'testa_ttestamento/_delete_form.html.twig' %}
+
+{% block title %}testamento{% endblock %}
+
+{% block body %}
+
+    <h1>Testamento</h1>
+
+    <table class="table  container fondoclaro">
+        <tbody>
+            <tr>
+                <td>
+                    <table>
+                        </tbody>
+                            <tr>                
+                                <td width="50%">
+                                    <img  width="100%"   src="{{ asset('img/fichas/'~ testa_ttestamento.imagen) }}">            
+                                
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    Otorgantes
+                                </th>
+                            </tr>
+                            {% for  otorgante in otorgantes %}
+                            <tr>
+                                <td>
+                                    {{ otorgante.numOrden }} {{ otorgante.otorgante }}
+                                </td>          
+            
