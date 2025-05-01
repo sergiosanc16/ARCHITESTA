@@ -58,8 +58,10 @@ class CsvUploadService{
             $ilegible = FALSE;
             $raw->setClassificationId($campos['0']);
             $datosTareas = json_decode($campos[$idTask], true);
-            dump($campos);
-            dump($datosTareas);
+            if($datosTareas!=null){
+                dump($campos);
+                dump($datosTareas);
+            }
 
             if ($datosTareas) {
                 //año
