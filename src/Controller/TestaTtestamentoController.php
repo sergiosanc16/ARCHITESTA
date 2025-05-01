@@ -6,6 +6,7 @@ use App\Entity\TestaTtestamento;
 use App\Form\TestaTtestamentoType;
 use App\Repository\TestaTtestamentoRepository;
 use App\Repository\TestaTtestaotorganteRepository;
+use App\Repository\TestaVtestaotorganteRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -38,6 +39,15 @@ final class TestaTtestamentoController extends AbstractController
             'testa_ttestamentos' => $testaTtestamentoRepository->findTestaNotario($id_notario),
         ]);
     }
+
+    #[Route('/otorgante/{id_otorgante}/indexotorgante',name: 'app_testa_ttestamento_otorgante_index', methods: ['GET'])]
+    public function indexotorgante(TestaVtestaotorganteRepository $testaVtestaotorganteRepository, $id_otorgante): Response
+    {
+        return $this->render('testa_ttestamento/index.html.twig', [
+            'testa_ttestamentos' => $testaVtestaotorganteRepository->findByIdOtorgante($id_otorgante),
+        ]);
+    }
+
 
 
     #[Route('/new', name: 'app_testa_ttestamento_new', methods: ['GET', 'POST'])]
