@@ -58,6 +58,7 @@ class CsvUploadService{
             $ilegible = FALSE;
             $raw->setClassificationId($campos['0']);
             $datosTareas = json_decode($campos[$idTask], true);
+            dump($campos);
             dump($datosTareas);
 
             if ($datosTareas) {
@@ -140,15 +141,8 @@ class CsvUploadService{
                                 $raw->setSecondGrantorName("Ningun@");
                             }
                             break;
-                        case 'T21':
-                            if($datosTareas[$i]['value']!=null){
-                                dump($datosTareas[$i]['value']);
-                                $raw->setNotaryName($datosTareas[$i]['value']);
-                            }
-                            break;
                         case 'T22':
                             if($datosTareas[$i]['value']!=null){
-                                dump($datosTareas[$i]['value']);
                                 $raw->setNotaryName($datosTareas[$i]['value']);
                             }
                             break;
