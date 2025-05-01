@@ -18,7 +18,7 @@ class TestaTparentesco
     #[ORM\Column(length: 100)]
     private ?string $des_parentesco = null;
 
-    function __construct() {
+    function __construct(string $des_parentesco) {
         $this->des_parentesco = $des_parentesco;
     }
 
