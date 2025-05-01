@@ -58,8 +58,6 @@ class CsvUploadService{
             $ilegible = FALSE;
             $raw->setClassificationId($campos['0']);
             $datosTareas = json_decode($campos[$idTask], true);
-            dump($idTask);
-            dump($campos);
             dump($datosTareas);
 
             if ($datosTareas) {
@@ -142,8 +140,15 @@ class CsvUploadService{
                                 $raw->setSecondGrantorName("Ningun@");
                             }
                             break;
+                        case 'T21':
+                            if($datosTareas[$i]['value']!=null){
+                                dump($datosTareas[$i]['value']);
+                                $raw->setNotaryName($datosTareas[$i]['value']);
+                            }
+                            break;
                         case 'T22':
                             if($datosTareas[$i]['value']!=null){
+                                dump($datosTareas[$i]['value']);
                                 $raw->setNotaryName($datosTareas[$i]['value']);
                             }
                             break;
@@ -159,7 +164,6 @@ class CsvUploadService{
                 $idFichero = strval(++$idFichero);
                 $ficheroFoto = json_decode($campos[$idFichero], true);
                 $idFoto = array_keys($ficheroFoto);
-                dump($ficheroFoto[$idFoto[0]]['Filename'] );
                 $raw->setFilename($ficheroFoto[$idFoto[0]]['Filename'] );
 
                 if($raw->getYear()==null){
@@ -219,8 +223,6 @@ class CsvUploadService{
                 }
                 $em->persist($raw);
 
-                dump($raw);
-
                 
                 $imagen = $em->getRepository(TestaTimagen::class)->findOneBy(['des_imagen' => $raw->getFilename()]);
                 if($imagen==null){
@@ -243,7 +245,6 @@ class CsvUploadService{
                 $otorgante = new TestaTotorgante($raw->getGrantorName(),$raw->getGrantorSurname1(),
                                                 $raw->getGratorSurname2(),$oficio);
                 $em->persist($otorgante);
-                dump($otorgante);
 
                 $parentesco = $em->getRepository(TestaTparentesco::class)->findOneBy(['des_parentesco' => $raw->getGrantorRelationship()]); 
                 if($parentesco==null){
