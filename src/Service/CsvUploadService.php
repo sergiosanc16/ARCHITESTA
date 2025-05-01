@@ -213,90 +213,61 @@ class CsvUploadService{
                 if($raw->getFilename()==null){
                     $raw->setFilename('Ninguno');
                 }
-
-                $em->persist($raw);
-
                 if(!$segOtor){
                     $raw->setSecondGrantor(FALSE);
                     $raw->setSecondGrantorName("Ningun@");
                 }
+                $em->persist($raw);
 
+                
                 $imagen = $em->getRepository(TestaTimagen::class)->findOneBy(['des_imagen' => $raw->getFilename()]);
                 if($imagen==null){
-                    $imagen = new TestaTimagen();
-                    $imagen->setDesImagen($raw->getFilename());
+                    $imagen = new TestaTimagen($raw->getFilename());
                     $em->persist($imagen);
                 }
 
                 $notario = $em->getRepository(TestaTnotario::class)->findOneBy(['des_notario' => $raw->getNotaryName()]);
                 if($notario==null){
-                    $notario = new TestaTnotario();
-                    $notario->setDesNotario($raw->getNotaryName());
+                    $notario = new TestaTnotario($raw->getNotaryName());
                     $em->persist($notario);
                 }
 
                 $oficio = $em->getRepository(TestaToficio::class)->findOneBy(['des_oficio' => $raw->getGrantorOffice()]);
                 if ($oficio==null){
-                    $oficio = new TestaToficio();
-                    $oficio->setDesOficio($raw->getGrantorOffice());
+                    $oficio = new TestaToficio($raw->getGrantorOffice());
                     $em->persist($oficio);
                 }
 
-                $otorgante = new TestaTotorgante();
-                $otorgante->setNombre($raw->getGrantorName());
-                $otorgante->setApellido1($raw->getGrantorSurname1());
-                $otorgante->setApellido2($raw->getGratorSurname2());
-                $otorgante->setIdOficio($oficio);
+                $otorgante = new TestaTotorgante($raw->getGrantorName(),$raw->getGrantorSurname1(),$raw->getGratorSurname2(),$oficio);
                 $em->persist($otorgante);
 
                 $parentesco = $em->getRepository(TestaTparentesco::class)->findOneBy(['des_parentesco' => $raw->getGrantorRelationship()]); 
                 if($parentesco==null){
-                    $parentesco = new TestaTparentesco();
-                    $parentesco->setDesParentesco($raw->getGrantorRelationship());
+                    $parentesco = new TestaTparentesco($raw->getGrantorRelationship());
                     $em->persist($parentesco);
                 }
 
                 $pobalcion = $em->getRepository(TestaTpoblacion::class)->findOneBy(['des_poblacion' => $raw->getPopulationName()]);
                 if($pobalcion==null){
-                    $pobalcion = new TestaTpoblacion();
-                    $pobalcion->setDesPoblacion($raw->getPopulationName());
+                    $pobalcion = new TestaTpoblacion($raw->getPopulationName());
                     $em->persist($pobalcion);
                 }
 
                 if($raw->isSecondGrantor()){
-                    $segOtorgante = new TestaTotorgante();
-                    $segOtorgante->setNombre($raw->getSecondGrantorName());
-                    $segOtorgante->setApellido1($raw->getSecondGrantorName());
-                    $segOtorgante->setApellido2($raw->getSecondGrantorName());
-                    $segOtorgante->setIdOficio($oficio);
+                    $segOtorgante = new TestaTotorgante($raw->getSecondGrantorName(),$raw->getSecondGrantorName(), $raw->getSecondGrantorName(), $oficio);
                     $em->persist($segOtorgante);
                 }
 
-                $testamento = new testaTtestamento();
-                $testamento->setAnno($raw->getYear());
-                $testamento->setMes($raw->getMonth());
-                $testamento->setDia($raw->GetDay());
-                $testamento->setMancomunado($raw->isSecondGrantor());
-                $testamento->setTextoIlegible($ilegible);
-                $testamento->setNumProtocolo($raw->getProtocolNumber());
-                $testamento->setNumFolio($raw->getFolioNumber());
-                $testamento->setIdPoblacion($pobalcion);
-                $testamento->setIdNotario($notario);
-                $testamento->setIdParentesco($parentesco);
-                $testamento->setIdImagen($imagen);
+                $testamento = new testaTtestamento($raw->getYear(), $raw->getMonth(), $raw->GetDay(), $raw->isSecondGrantor(),
+                                                   $ilegible, $raw->getProtocolNumber(), $raw->getFolioNumber(), $poblacion,
+                                                   $notario, $parentesco, $imagen);
                 $em->persist($testamento);
 
-                $testaOtorgante = new TestaTtestaotorgante();
-                $testaOtorgante->setTestamento($testamento);
-                $testaOtorgante->setOtorgante($otorgante);
-                $testaOtorgante->setNumOrden(1);
+                $testaOtorgante = new TestaTtestaotorgante($testamento, $otorgante, 1);
                 $em->persist($testaOtorgante);
                 
                 if($raw->isSecondGrantor()){
-                    $testaOtorSeg = new TestaTtestaotorgante();
-                    $testaOtorSeg->setTestamento($testamento);
-                    $testaOtorSeg->setOtorgante($segOtorgante);
-                    $testaOtorSeg->setNumOrden(2);
+                    $testaOtorSeg = new TestaTtestaotorgante($testamento, $otorgante, 2);
                     $em->persist($testaOtorSeg);
                 }
 

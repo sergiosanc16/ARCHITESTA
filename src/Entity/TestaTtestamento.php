@@ -19,7 +19,7 @@ class TestaTtestamento
     private int $anno;
 
     #[ORM\Column(type: 'varchar')]
-    private int $mes;
+    private string $mes;
 
     #[ORM\Column(type: 'smallint')]
     private int $dia;
@@ -51,6 +51,22 @@ class TestaTtestamento
     #[ORM\ManyToOne(targetEntity: TestaTparentesco::class)]
     #[ORM\JoinColumn(name: 'id_parentesco', referencedColumnName: 'id', nullable: true)]
     private ?TestaTparentesco $parentesco = null;
+
+    function __construct(int $anno, string $mes, int $dia, bool $mancomunado, bool $textoilegible,
+                         int $num_protocolo, int $num_folio, TestaTpoblacion $poblacion,
+                         TestaTnotario $notario, TestaTimagen $imagen, TestaTparentesco $parentesco) {
+        $this->anno = $anno;
+        $this->mes = $mes;
+        $this->dia = $dia;
+        $this->mancomunado = $mancomunado;
+        $this->textoilegible = $textoilegible;
+        $this->num_protocolo = $num_protocolo;
+        $this->num_folio = $num_folio;
+        $this->poblacion = $poblacion;
+        $this->notario = $notario;
+        $this->imagen = $imagen;
+        $this->parentesco = $parentesco;
+    }
 
     // Getters y setters...
 

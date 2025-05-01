@@ -16,6 +16,10 @@ class TestaToficio
     #[ORM\Column(length: 100)]
     private ?string $des_oficio = null;
 
+    function __construct(string $des_oficio) {
+        $this->des_oficio = $des_oficio;
+    }
+
     public function getId(): ?int
     {
         return $this->id;
@@ -40,14 +44,9 @@ class TestaToficio
         return $this;
     }
     public function __toString(){ 
-
         // to show the name of the Category in the select 
-
         return $this->des_oficio; 
-
         // to show the id of the Category in the select 
-
         // return $this->id; 
-
-}     
+    }     
 }

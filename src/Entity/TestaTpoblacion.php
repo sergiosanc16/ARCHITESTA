@@ -18,6 +18,10 @@ class TestaTpoblacion
     #[ORM\Column(length: 100)]
     private ?string $des_poblacion = null;
 
+    function __construct() {
+        $this->des_poblacion = $des_poblacion;
+    }
+
     public function getId(): ?int
     {
         return $this->id;

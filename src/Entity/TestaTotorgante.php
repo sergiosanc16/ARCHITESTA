@@ -28,6 +28,13 @@ class TestaTotorgante
     #[ORM\JoinColumn(name: 'id_oficio', referencedColumnName: 'id', nullable: false)]
     private ?TestaToficio $id_oficio = null;
 
+    function __construct(string $nombre, string $apellido1, string $apellido2, TestaToficio $id_oficio) {
+        $this->nombre = $nombre;
+        $this->apellido2 = $apellido1;
+        $this->apellido2 = $apellido2;
+        $this->id_oficio = $id_oficio;
+    }
+
     public function getId(): ?int
     {
         return $this->id;

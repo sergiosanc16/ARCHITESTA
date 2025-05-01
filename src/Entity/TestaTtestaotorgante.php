@@ -25,8 +25,13 @@ class TestaTtestaotorgante
     #[ORM\Column(type: 'smallint', options: ['unsigned' => true, 'default' => 1])]
     private int $num_orden = 1;
 
-    // Getters y setters
+    function __construct(TestaTtestamento $testamento, TestaTotorgante $otorgante, int $numorden) {
+        $this->testamento = $testamento;
+        $this->otorgante = $otorgante;
+        $this->num_orden = $numorden;
+    }
 
+    // Getters y setters
     public function getId(): ?int
     {
         return $this->id;
