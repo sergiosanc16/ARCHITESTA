@@ -259,7 +259,7 @@ class CsvUploadService{
                 }
 
                 $testamento = new testaTtestamento($raw->getYear(), $raw->getMonth(), $raw->GetDay(), $raw->isSecondGrantor(),
-                                                   $ilegible, $raw->getProtocolNumber(), $raw->getFolioNumber(), $poblacion,
+                                                   $ilegible, $raw->getProtocolNumber(), $raw->getFolioNumber(), $pobalcion,
                                                    $notario, $parentesco, $imagen);
                 $em->persist($testamento);
 
