@@ -30,7 +30,7 @@ class TestaTotorgante
 
     function __construct(string $nombre, string $apellido1, string $apellido2, TestaToficio $id_oficio) {
         $this->nombre = $nombre;
-        $this->apellido2 = $apellido1;
+        $this->apellido1 = $apellido1;
         $this->apellido2 = $apellido2;
         $this->id_oficio = $id_oficio;
     }
