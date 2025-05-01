@@ -18,7 +18,7 @@ class TestaTpoblacion
     #[ORM\Column(length: 100)]
     private ?string $des_poblacion = null;
 
-    function __construct() {
+    function __construct(string $des_poblacion) {
         $this->des_poblacion = $des_poblacion;
     }
 
