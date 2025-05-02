@@ -43,9 +43,9 @@ class CsvUploadService{
         $raw = new TestaTraw();
         $segOtor=FALSE;
         $ilegible = FALSE;
+        $idTask = 0;
 
         while(($campos = fgetcsv($csvTemp,0, ',', '"'))!= false){
-            $idTask = 0;
 
             foreach($campos as $id => $tarea){
                 if (stripos($tarea,'task')!=FALSE){
@@ -57,11 +57,10 @@ class CsvUploadService{
             $ilegible = FALSE;
             $raw = new TestaTraw();
             $raw->setClassificationId($campos['0']);
-            $json = $campos[$idTask] ?? '';
+            /* $json = $campos[$idTask];
 
 
-            if ($json !== '' && ($json[0] === '"' || $json[0] === "'")
-                && $json[0] === $json[strlen($json) - 1]) {
+            if (($json[0] === '"') && $json[0] === $json[strlen($json) - 1]) {
                 $json = substr($json, 1, -1);          // descarta 1ª y última comilla
                 $json = str_replace('""', '"', $json); // desdobla "" a "
             }
@@ -77,12 +76,10 @@ class CsvUploadService{
                 continue;
             }
 
-            /* 5.3 Valida con json_validate() si tu PHP ≥ 8.3 --------------- */
-            if (function_exists('json_validate') && !json_validate($json, JSON_INVALID_UTF8_SUBSTITUTE)) {
+            if (!json_validate($json, JSON_INVALID_UTF8_SUBSTITUTE)) {
                 continue;            // JSON inválido → ignora la fila o notifícala
             }
 
-            /* 5.4 Intenta la decodificación con excepciones ---------------- */
             try {
                 $datosTareas = json_decode(
                     $json,
@@ -93,8 +90,9 @@ class CsvUploadService{
             } catch (\JsonException $e) {
                 // Si quieres loggear el error para auditoría:
                 error_log('Fila JSON inválida: '.$e->getMessage().' ➜ '.$json);
-                continue;            // ignora la fila y pasa a la siguiente
-            }
+                continue;           
+            } 
+            */
 
 
             $datosTareas = json_decode($campos[$idTask], true);
