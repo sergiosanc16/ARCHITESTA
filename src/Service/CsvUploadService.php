@@ -179,7 +179,7 @@ class CsvUploadService{
                                 $raw->setSecondGrantorName("Ningun@");
                             }
                             break;
-                        case 'T22':
+                        case 'T21':
                             if($datosTareas[$i]['value']!=null){
                                 $raw->setNotaryName($datosTareas[$i]['value']);
                             }
