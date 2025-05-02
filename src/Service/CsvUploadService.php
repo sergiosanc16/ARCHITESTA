@@ -96,8 +96,6 @@ class CsvUploadService{
 
 
             $datosTareas = json_decode($campos[$idTask], true);
-            dump($campos);
-            dump($datosTareas);
 
             if ($datosTareas) {
                 //año
