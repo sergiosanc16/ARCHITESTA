@@ -11,6 +11,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use App\Entity\TestaTraw;
 use App\Service\CsvUploadService;
 use App\Form\CsvUploadType;
+use App\Form\ValidacionType;
 
 final class CsvUploadController extends AbstractController
 {
@@ -20,6 +21,7 @@ final class CsvUploadController extends AbstractController
     {
 
         $form = $this->createForm(CsvUploadType::class);
+        $formVal = $this->createForm(ValidacionType::class);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -28,10 +30,16 @@ final class CsvUploadController extends AbstractController
 
             $this->addFlash('success', "Se importaron {$i} registros");
         }
+
+        if ($formVal->isSubmitted() && $formVal->isValid()) {
+            ValidacionTestamentos::validacion($formVal, $em);
+        }
+
             
         return $this->render('csv_upload/index.html.twig', [
             'controller_name' => 'CsvUploadController',
             'form' => $form,
+            'formVal' => $formVal
         ]);
     }
 }

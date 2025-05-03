@@ -29,8 +29,17 @@
                     </div>
                 </div>
                 
-                 {{ form_widget(form.submit) }}
+                 {{ form_widget(form.submit_csv) }}
             {{ form_end(form) }}
+
+            {{ form_start(formVal) }}
+                <div class="mb-3">
+                    {{ form_label(foto.csv_file) }}
+                    {{ form_widget(foto.csv_file) }}
+                </div>
+                {{ form_widget(formVal.validar) }}
+            {{ form_start(formVal) }}
+    
         </div>
     </div>
 {% endblock %}

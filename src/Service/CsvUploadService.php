@@ -57,44 +57,6 @@ class CsvUploadService{
             $ilegible = FALSE;
             $raw = new TestaTraw();
             $raw->setClassificationId($campos['0']);
-            /* $json = $campos[$idTask];
-
-
-            if (($json[0] === '"') && $json[0] === $json[strlen($json) - 1]) {
-                $json = substr($json, 1, -1);          // descarta 1ª y última comilla
-                $json = str_replace('""', '"', $json); // desdobla "" a "
-            }
-
-            // Quita posible BOM UTF-8
-            $json = preg_replace('/^\xEF\xBB\xBF/', '', $json);
-
-            // Elimina caracteres de control no imprimibles
-            $json = preg_replace('/[[:^print:]\s]/u', '', $json);
-
-            // Descarta strings vacíos
-            if (trim($json) === '') {
-                continue;
-            }
-
-            if (!json_validate($json, JSON_INVALID_UTF8_SUBSTITUTE)) {
-                continue;            // JSON inválido → ignora la fila o notifícala
-            }
-
-            try {
-                $datosTareas = json_decode(
-                    $json,
-                    true,
-                    512,
-                    JSON_THROW_ON_ERROR | JSON_INVALID_UTF8_SUBSTITUTE
-                );
-            } catch (\JsonException $e) {
-                // Si quieres loggear el error para auditoría:
-                error_log('Fila JSON inválida: '.$e->getMessage().' ➜ '.$json);
-                continue;           
-            } 
-            */
-
-
             $datosTareas = json_decode($campos[$idTask], true);
 
             if ($datosTareas) {
