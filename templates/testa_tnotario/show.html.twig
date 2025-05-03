@@ -1,0 +1,27 @@
+{% extends 'baseDatatable.html.twig' %}
+
+{% set id_tabla = 'notario' %}
+{% set muestraMenu = true %}
+{% set pathIndex =  path('app_testa_tnotario_index') %}
+{% set pathEdit =  path('app_testa_tnotario_edit', {'id': testa_tnotario.id}) %}
+{% set includeDelete =  'testa_tnotario/_delete_form.html.twig' %}
+
+{% block title %}Notarios{% endblock %}
+
+{% block body %}
+
+    <h1>Notario</h1>
+
+    <table class="table  container fondoclaro">
+        <tbody>
+            <tr>
+                <th width="10%">Id</th>
+                <td>{{ testa_tnotario.id }}</td>
+            </tr>
+            <tr>
+                <th>Imagen</th>
+                <td>{{ testa_tnotario.desNotario }}</td>
+            </tr>
+        </tbody>
+    </table>
+{% endblock %}

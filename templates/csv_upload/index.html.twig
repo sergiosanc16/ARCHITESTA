@@ -1,0 +1,45 @@
+{% extends 'baseDatatable.html.twig' %}
+
+
+{% set id_tabla = 'csv' %}
+{% set muestraMenu = true %}
+
+{% block title %}{{id_tabla}} Manejo{% endblock %}
+
+{% block javascripts %}
+{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+    <h1>Cargar CSV</h1>
+    
+    <div class="card">
+        <div class="card-body">
+            {{ form_start(form) }}
+                <div class="mb-3">
+                    {{ form_label(form.csv_file) }}
+                    {{ form_widget(form.csv_file) }}
+                    {{ form_errors(form.csv_file) }}
+                    <div class="form-text">
+                        Formatos aceptados: .csv 
+                    </div>
+                </div>
+                
+                 {{ form_widget(form.submit_csv) }}
+            {{ form_end(form) }}
+
+            {{ form_start(formVal) }}
+                <div class="mb-3">
+                    {{ form_label(foto.csv_file) }}
+                    {{ form_widget(foto.csv_file) }}
+                </div>
+                {{ form_widget(formVal.validar) }}
+            {{ form_start(formVal) }}
+    
+        </div>
+    </div>
+{% endblock %}
