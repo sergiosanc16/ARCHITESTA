@@ -15,7 +15,7 @@ class ValidacionTestamentos{
     public static function validacion(Form $form, EntityManagerInterface $em){
 
         //Seleccionar de la base de datos 3 registros por filename
-        $fotos = $em->getRepository(TestaTtestamentoRepository::class)->findTestaImagen($form->get('foto')->getData());
+        $fotos = $em->getRepository(TestaTtestamento::class)->findTestaImagen($form->get('foto')->getData());
 
         dump($fotos);
 
