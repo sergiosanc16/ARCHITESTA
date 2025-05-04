@@ -23,6 +23,7 @@ final class CsvUploadController extends AbstractController
         $form = $this->createForm(CsvUploadType::class);
         $formVal = $this->createForm(ValidacionType::class);
         $form->handleRequest($request);
+        $formVal->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
 
