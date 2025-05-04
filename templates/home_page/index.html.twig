@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+{% set muestraMenu = true %}
+
+{% block title %}ArchiTesta. Testamentos de la Región de Murcia{% endblock %}
+
+ {% block stylesheets %}
+ 		    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+            <link rel="stylesheet" type="text/css"  href={{ asset('css/inicio.css') }}>
+{% endblock %}
+
+
+{% block body %}
+
+    <div class="row align-items-center">
+        <div class="col-10 col-sm-6 mx-auto">
+            <div class="card card-opaca" >
+                <div class="card-body ">
+                            <div>
+                                    <span><img src={{ asset('img/testahorizontal.png') }} width="100%"></span>
+                            </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row align-items-center">
+        <div class="col-9 mx-auto">
+            <div class="card lema  bg-transparent" >
+                <div class="card-body">
+                <h2>Gestión Abierta de Testamentos Históricos de la Región de Murcia</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row align-items-center">
+        <div class="col-9 mx-auto">
+            <div class="card lema bg-transparent" >
+                <div class="card-body">
+                    <img src={{ asset('img/filigrana01.png') }}  height="50" class="d-inline-block align-top" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+{% endblock %}
