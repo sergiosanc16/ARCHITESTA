@@ -108,9 +108,9 @@ class ValidacionTestamentos{
             }
             //comparar des de poblacion
             $pPoblacion = 0;
-            $pob1 = strtoupper($validaciones[0]->getIdTestamento()()->getPoblacion()->getDesPoblacion());
-            $pob2 = strtoupper($validaciones[1]->getIdTestamento()()->getPoblacion()->getDesPoblacion());
-            $pob3 = strtoupper($validaciones[2]->getIdTestamento()()->getPoblacion()->getDesPoblacion());
+            $pob1 = strtoupper($validaciones[0]->getIdTestamento()->getPoblacion()->getDesPoblacion());
+            $pob2 = strtoupper($validaciones[1]->getIdTestamento()->getPoblacion()->getDesPoblacion());
+            $pob3 = strtoupper($validaciones[2]->getIdTestamento()->getPoblacion()->getDesPoblacion());
             similar_text($pob1, $pob2, $p1);
             similar_text($pob1, $pob3, $p2);
             similar_text($pob2, $pob3, $p3);
@@ -118,9 +118,9 @@ class ValidacionTestamentos{
 
             //comparar nombre de notario
             $pNotario = 0;
-            $not1 = strtoupper($validaciones[0]->getIdTestamento()()->getNotario()->getDesNotario());
-            $not2 = strtoupper($validaciones[1]->getIdTestamento()()->getNotario()->getDesNotario());
-            $not3 = strtoupper($validaciones[2]->getIdTestamento()()->getNotario()->getDesNotario());
+            $not1 = strtoupper($validaciones[0]->getIdTestamento()->getNotario()->getDesNotario());
+            $not2 = strtoupper($validaciones[1]->getIdTestamento()->getNotario()->getDesNotario());
+            $not3 = strtoupper($validaciones[2]->getIdTestamento()->getNotario()->getDesNotario());
             similar_text($not1, $not2, $p1);
             similar_text($not1, $not3, $p2);
             similar_text($not2, $not3, $p3);
@@ -128,9 +128,9 @@ class ValidacionTestamentos{
 
             //comparar des_parentesco
             $pParentesco = 0;
-            $par1 = strtoupper($validaciones[0]->getIdTestamento()()->getParentesco()->getDesParentesco());
-            $par2 = strtoupper($validaciones[1]->getIdTestamento()()->getParentesco()->getDesParentesco());
-            $par3 = strtoupper($validaciones[2]->getIdTestamento()()->getParentesco()->getDesParentesco());
+            $par1 = strtoupper($validaciones[0]->getIdTestamento()->getParentesco()->getDesParentesco());
+            $par2 = strtoupper($validaciones[1]->getIdTestamento()->getParentesco()->getDesParentesco());
+            $par3 = strtoupper($validaciones[2]->getIdTestamento()->getParentesco()->getDesParentesco());
             similar_text($par1, $par2, $p1);
             similar_text($par1, $par3, $p2);
             similar_text($par2, $par3, $p3);
