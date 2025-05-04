@@ -19,7 +19,7 @@ class ValidacionTestamentos{
         $fotos = $em->getRepository(TestaTtestamento::class)->findTestaImagen($form->get('foto')->getData());
 
         dump($fotos);
-
+        dump(count($fotos));
         $validaciones = [];
         $size = count($fotos);
         if($size>=3){
