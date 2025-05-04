@@ -17,14 +17,15 @@ class ValidacionTestamentos{
         //Seleccionar de la base de datos 3 registros por filename
         $fotos = $em->getRepository(TestaTtestamento::class)->findTestaImagen($form->get('foto')->getData());
 
-        dump($fotos);
 
         $validaciones = array();
         if(count($fotos)>=3){
             for($i=0; $i<count($fotos);$i++){
                 $validaciones[$i] = new TestaTValidacion($fotos[$i]);
             }
-        }        
+        }
+        dump($validaciones);
+
         //comparar anno
         $pAnno = 0;
         if(($validaciones[0]->getIdTestamento->getAnno() == $validaciones[1]->getIdTestamento->getAnno()) &&
