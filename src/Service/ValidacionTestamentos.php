@@ -16,6 +16,9 @@ class ValidacionTestamentos{
 
         //Seleccionar de la base de datos 3 registros por filename
         $fotos = $em->getRepository(TestaTtestamentoRepository::class)->findTestaImagen($form->get('foto')->getData());
+
+        dump($fotos);
+
         $validaciones = array();
         if(count($fotos)>=3){
             for($i=0; $i<count($fotos);$i++){
