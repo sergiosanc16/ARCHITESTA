@@ -8,6 +8,7 @@ use Doctrine\DBAL\Types\Types;
 use App\Entity\TestaTraw;
 use App\Entity\TestaTtestamento;
 use App\Entity\TestaTValidacion;
+use App\Entity\TestaTimagen;
 use App\Repository\TestaTtestamentoRepository;
 
 class ValidacionTestamentos{
