@@ -18,10 +18,11 @@ class ValidacionTestamentos{
         $fotos = $em->getRepository(TestaTtestamento::class)->findTestaImagen($form->get('foto')->getData());
 
 
-        $validaciones = array();
+        $validaciones = [];
         if(count($fotos)>=3){
             for($i=0; $i<count($fotos);$i++){
                 $validaciones[$i] = new TestaTValidacion($fotos[$i]);
+                dump($validaciones[$i]);
             }
         }
         dump($validaciones);
