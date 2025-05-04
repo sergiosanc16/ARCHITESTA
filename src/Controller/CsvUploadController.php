@@ -27,16 +27,14 @@ final class CsvUploadController extends AbstractController
         $formVal->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
             $i = CsvUploadService::cargaCSV($form, $em);
-
             $this->addFlash('success', "Se importaron {$i} registros");
         }
 
         if ($formVal->isSubmitted() && $formVal->isValid()) {
-            ValidacionTestamentos::validacion($formVal, $em);
+            $mensjVal = ValidacionTestamentos::validacion($formVal, $em);
+            $this->addFlash('info', $mensjVal);
         }
-
             
         return $this->render('csv_upload/index.html.twig', [
             'controller_name' => 'CsvUploadController',

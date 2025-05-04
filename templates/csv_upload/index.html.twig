@@ -29,7 +29,7 @@
                     </div>
                 </div>
                 
-                 {{ form_widget(form.submit_csv) }}
+                {{ form_widget(form.submit_csv) }}
             {{ form_end(form) }}
         </div>
         <div class="card-body">
@@ -42,6 +42,13 @@
                 {{ form_widget(formVal.validar) }}
             {{ form_end(formVal) }}
     
+        </div>
+        <div class="card-body">
+            {% for message in app.flashes('message') %}
+                <div class="alert alert-info">
+                    {{ message }}
+                </div>
+            {% endfor %}
         </div>
     </div>
 {% endblock %}
