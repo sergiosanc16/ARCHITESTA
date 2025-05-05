@@ -33,7 +33,7 @@ final class CsvUploadController extends AbstractController
 
         if ($formVal->isSubmitted() && $formVal->isValid()) {
             $mensjVal = ValidacionTestamentos::validacion($formVal, $em);
-            $this->addFlash('info', $mensjVal);
+            $this->addFlash('success', $mensjVal);
         }
             
         return $this->render('csv_upload/index.html.twig', [
