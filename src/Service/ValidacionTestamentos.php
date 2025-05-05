@@ -21,6 +21,8 @@ class ValidacionTestamentos{
 
         $validaciones = [];
         $size = count($fotos);
+        dump($fotos);
+        dump(count($fotos));
         if($size>=3){
             for($i=0; $i<$size;$i++){
                 $validaciones[$i] = new TestaTValidacion($fotos[$i]);
