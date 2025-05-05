@@ -15,14 +15,10 @@ class ValidacionTestamentos{
 
     public static function validacion(Form $form, EntityManagerInterface $em): string
     {
-
         //Seleccionar de la base de datos 3 registros por filename
         $idFoto = $em->getRepository(TestaTimagen::class)->findOneBy(['des_imagen' => $form->get('foto')->getData()]);
-
         $fotos = $em->getRepository(TestaTtestamento::class)->findTestaImagen($idFoto);
 
-        dump($fotos);
-        dump(count($fotos));
         $validaciones = [];
         $size = count($fotos);
         if($size>=3){
@@ -36,10 +32,10 @@ class ValidacionTestamentos{
             //comparar anno
             $pAnno = 0;
             if(($validaciones[0]->getIdTestamento()->getAnno() == $validaciones[1]->getIdTestamento()->getAnno()) &&
-            ($validaciones[0]->getIdTestamento()->getAnno() == $validaciones[2]->getIdTestamento()->getAnno())){
+               ($validaciones[0]->getIdTestamento()->getAnno() == $validaciones[2]->getIdTestamento()->getAnno())){
                     $pAnno = 100;
             } else if($validaciones[1]->getIdTestamento()->getAnno() == $validaciones[2]->getIdTestamento()->getAnno() ||
-                    $validaciones[0]->getIdTestamento()->getAnno() == $validaciones[2]->getIdTestamento()->getAnno()){
+                      $validaciones[0]->getIdTestamento()->getAnno() == $validaciones[2]->getIdTestamento()->getAnno()){
                     $pAnno = 66;
             } else {
                 $pAnno = 33;
@@ -57,10 +53,10 @@ class ValidacionTestamentos{
             //comparar dia
             $pDia = 0;
             if(($validaciones[0]->getIdTestamento()->getDia() == $validaciones[1]->getIdTestamento()->getDia()) &&
-            ($validaciones[0]->getIdTestamento()->getDia() == $validaciones[2]->getIdTestamento()->getDia())){
+               ($validaciones[0]->getIdTestamento()->getDia() == $validaciones[2]->getIdTestamento()->getDia())){
                     $pDia = 100;
             } else if($validaciones[1]->getIdTestamento()->getDia() == $validaciones[2]->getIdTestamento()->getDia() ||
-                    $validaciones[0]->getIdTestamento()->getDia() == $validaciones[2]->getIdTestamento()->getDia()){
+                      $validaciones[0]->getIdTestamento()->getDia() == $validaciones[2]->getIdTestamento()->getDia()){
                     $pDia = 66;
             } else {
                 $pDia = 33;
@@ -68,10 +64,10 @@ class ValidacionTestamentos{
             //comparar mancomunado
             $pMancomunado = 0;
             if(($validaciones[0]->getIdTestamento()->isMancomunado() == $validaciones[1]->getIdTestamento()->isMancomunado()) &&
-            ($validaciones[0]->getIdTestamento()->isMancomunado() == $validaciones[2]->getIdTestamento()->isMancomunado())){
+               ($validaciones[0]->getIdTestamento()->isMancomunado() == $validaciones[2]->getIdTestamento()->isMancomunado())){
                     $pMancomunado = 100;
             } else if($validaciones[1]->getIdTestamento()->isMancomunado() == $validaciones[2]->getIdTestamento()->isMancomunado() ||
-                    $validaciones[0]->getIdTestamento()->isMancomunado() == $validaciones[2]->getIdTestamento()->isMancomunado()){
+                      $validaciones[0]->getIdTestamento()->isMancomunado() == $validaciones[2]->getIdTestamento()->isMancomunado()){
                     $pMancomunado = 66;
             } else {
                 $pMancomunado = 33;
@@ -79,10 +75,10 @@ class ValidacionTestamentos{
             //comparar textoilegible
             $pIlegible = 0;
             if(($validaciones[0]->getIdTestamento()->isTextoilegible() == $validaciones[1]->getIdTestamento()->isTextoilegible()) &&
-            ($validaciones[0]->getIdTestamento()->isTextoilegible() == $validaciones[2]->getIdTestamento()->isTextoilegible())){
+               ($validaciones[0]->getIdTestamento()->isTextoilegible() == $validaciones[2]->getIdTestamento()->isTextoilegible())){
                     $pIlegible = 100;
             } else if($validaciones[1]->getIdTestamento()->isTextoilegible() == $validaciones[2]->getIdTestamento()->isTextoilegible() ||
-                    $validaciones[0]->getIdTestamento()->isTextoilegible() == $validaciones[2]->getIdTestamento()->isTextoilegible()){
+                      $validaciones[0]->getIdTestamento()->isTextoilegible() == $validaciones[2]->getIdTestamento()->isTextoilegible()){
                     $pIlegible = 66;
             } else {
                 $pIlegible = 33;
@@ -90,10 +86,10 @@ class ValidacionTestamentos{
             //comparar num_protocolo
             $pProtocolo = 0;
             if(($validaciones[0]->getIdTestamento()->getNumProtocolo() == $validaciones[1]->getIdTestamento()->getNumProtocolo()) &&
-            ($validaciones[0]->getIdTestamento()->getNumProtocolo() == $validaciones[2]->getIdTestamento()->getNumProtocolo())){
+               ($validaciones[0]->getIdTestamento()->getNumProtocolo() == $validaciones[2]->getIdTestamento()->getNumProtocolo())){
                     $pProtocolo = 100;
             } else if($validaciones[1]->getIdTestamento()->getNumProtocolo() == $validaciones[2]->getIdTestamento()->getNumProtocolo() ||
-                    $validaciones[0]->getIdTestamento()->getNumProtocolo() == $validaciones[2]->getIdTestamento()->getNumProtocolo()){
+                      $validaciones[0]->getIdTestamento()->getNumProtocolo() == $validaciones[2]->getIdTestamento()->getNumProtocolo()){
                     $pProtocolo = 66;
             } else {
                 $pProtocolo = 33;
@@ -101,10 +97,10 @@ class ValidacionTestamentos{
             //comparar num_folio
             $pFolio = 0;
             if(($validaciones[0]->getIdTestamento()->getNumFolio() == $validaciones[1]->getIdTestamento()->getNumFolio()) &&
-            ($validaciones[0]->getIdTestamento()->getNumFolio() == $validaciones[2]->getIdTestamento()->getNumFolio())){
+               ($validaciones[0]->getIdTestamento()->getNumFolio() == $validaciones[2]->getIdTestamento()->getNumFolio())){
                     $pFolio = 100;
             } else if($validaciones[1]->getIdTestamento()->getNumFolio() == $validaciones[2]->getIdTestamento()->getNumFolio() ||
-                    $validaciones[0]->getIdTestamento()->getNumFolio() == $validaciones[2]->getIdTestamento()->getNumFolio()){
+                      $validaciones[0]->getIdTestamento()->getNumFolio() == $validaciones[2]->getIdTestamento()->getNumFolio()){
                     $pFolio = 66;
             } else {
                 $pFolio = 33;
@@ -139,7 +135,9 @@ class ValidacionTestamentos{
             similar_text($par2, $par3, $p3);
             $pParentesco = ($p1+$p2+$p3)/3;
 
-            $pMedio = ($pAnno + $pMes + $pDia + $pMancomunado + $pIlegible + $pProtocolo + $pFolio + $pPoblacion + $pNotario + $pParentesco) / 10;
+            $pMedio = ($pAnno + $pMes + $pDia + $pMancomunado + 
+                       $pIlegible + $pProtocolo + $pFolio + 
+                       $pPoblacion + $pNotario + $pParentesco) / 10;
             for($i=0; $i<$size;$i++){
                 $validaciones[$i]->setNumValidacion($pMedio);
                 $em->persist($validaciones[$i]);
