@@ -44,8 +44,8 @@
     
         </div>
         <div class="card-body">
-            {% for message in app.flashes('message') %}
-                <div class="alert alert-info">
+            {% for message in app.flashes('notice') %}
+                <div class="flash-notice">
                     {{ message }}
                 </div>
             {% endfor %}
