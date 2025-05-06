@@ -1,4 +1,20 @@
 {{ form_start(form) }}
 <div class="container">
     <div class="row">
-        {{ form_label(form.testamento, 'Testamento:',{'label_attr': {'cl
+        {{ form_label(form.testamento, 'Testamento:',{'label_attr': {'class':'col-md-2'}}) }}
+        {{ form_widget(form.testamento,{'attr': {'class':'col-md-8'}}) }}
+    </div>
+    <div class="row">
+        {{ form_label(form.otorgante, 'Otorgante:',{'label_attr': {'class':'col-md-2'}}) }}
+        {{ form_widget(form.otorgante,{'attr': {'class':'col-md-8'}}) }}
+    </div>
+    <div class="row">
+        {{ form_label(form.num_orden, 'Orden:',{'label_attr': {'class':'col-md-2'}}) }}
+        {{ form_widget(form.num_orden,{'attr': {'class':'col-md-8'}}) }}
+    </div>
+
+<div class="btn-group mr-2 btn-group-sm" role="group"  title="Grabar Registro" >
+    <button type="submit" class="btn boton mr-2 btn-group-sm" role="button"><i class="fa fa-paste"></i> Grabar</button>
+</div>
+</div>
+{{ form_end(form) }}

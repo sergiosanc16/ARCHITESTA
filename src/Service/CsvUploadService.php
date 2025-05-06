@@ -162,7 +162,7 @@ class CsvUploadService{
                     $raw->setYear(0);
                 }
                 if($raw->getMonth()==null){
-                    $raw->setMonth('Ninguno');
+                    $raw->setMonth('Ningun@');
                 }
                 if($raw->getDay()==null){
                     $raw->setDay(0);
@@ -171,10 +171,10 @@ class CsvUploadService{
                     $raw->setOtherPopulation(FALSE);
                 }
                 if($raw->getPopulationName()==null){
-                    $raw->setPopulationName('Ninguna');
+                    $raw->setPopulationName('Ningun@');
                 }
                 if($raw->getGrantorName()==null){
-                    $raw->setPopulationName('Ninguna');
+                    $raw->setPopulationName('Ningun@');
                 }
                 if($raw->getGrantorSurname1()==null){
                     $raw->setGrantorSurname1('Ninguno');
@@ -186,16 +186,16 @@ class CsvUploadService{
                     $raw->setOfficeMentioned(FALSE);
                 }
                 if($raw->getGrantorOffice()==null){
-                    $raw->setGrantorOffice('Ninguno');
+                    $raw->setGrantorOffice('Ningun@');
                 }
                 if($raw->isRelationshipMentioned()==null){
                     $raw->setRelationshipMentioned(FALSE);
                 }
                 if($raw->getGrantorRelationship()==null){
-                    $raw->setGrantorRelationship('Ninguno');
+                    $raw->setGrantorRelationship('Ningun@');
                 }
                 if($raw->getDocumentType()==null){
-                    $raw->setDocumentType('Ninguno');
+                    $raw->setDocumentType('Ningun@');
                 }
                 if($raw->getNotaryName()==null){
                     $raw->setNotaryName('Notari@');
@@ -207,7 +207,7 @@ class CsvUploadService{
                     $raw->setFolioNumber('0');
                 }
                 if($raw->getFilename()==null){
-                    $raw->setFilename('Ninguno');
+                    $raw->setFilename('Ningun@');
                 }
                 if(!$segOtor){
                     $raw->setSecondGrantor(FALSE);

@@ -32,6 +32,66 @@
                             {% for  otorgante in otorgantes %}
                             <tr>
                                 <td>
-                                    {{ otorgante.numOrden }} {{ otorgante.otorgante }}
+                                    {{ otorgante.numOrden }} {{ otorgante.otorgante }} <a href="{{ path('app_testa_totorgante_show', {'id': otorgante.otorgante.id}) }}" title="Mostrar Otorgante"><img  width="30px"   src="{{ asset('img/ojo.png') }}"></a> 
                                 </td>          
-            
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </td>    
+                <td>
+                    <table>
+                        </tbody>
+
+                            <tr>
+                                <th width="15%">Id</th>
+                                <td>{{ testa_ttestamento.id }}</td>
+                            </tr>
+                            <tr>
+                                <th>Año</th>
+                                <td>{{ testa_ttestamento.anno }}</td>
+                            </tr>
+                            <tr>
+                                <th>Mes</th>
+                                <td>{{ testa_ttestamento.mes }}</td>
+                            </tr>
+                            <tr>
+                                <th>Dia</th>
+                                <td>{{ testa_ttestamento.dia }}</td>
+                            </tr>
+                            <tr>
+                                <th>Mancomunado</th>
+                                <td>{{ testa_ttestamento.mancomunado ? 'Si' : 'No' }}</td>
+                            </tr>
+                            <tr>
+                                <th>Texto ilegible</th>
+                                <td>{{ testa_ttestamento.textoilegible ? 'No' : 'No' }}</td>
+                            </tr>
+                            <tr>
+                                <th>Num protocolo</th>
+                                <td>{{ testa_ttestamento.numProtocolo }}</td>
+                            </tr>
+                            <tr>
+                                <th>Num folio</th>
+                                <td>{{ testa_ttestamento.numFolio }}</td>
+                            </tr>
+                            <tr>
+                                <th>Notario</th>
+                                <td>{{ testa_ttestamento.notario }}</td>
+                            </tr>
+                            <tr>
+                                <th>Población</th>
+                                <td>{{ testa_ttestamento.poblacion }}</td>
+                            </tr>
+                            <tr>
+                                <th>Parentesco</th>
+                                <td>{{ testa_ttestamento.parentesco }}</td>
+                            </tr>
+
+                       </tbody>
+                   </table>       
+                </td>
+            </tr>
+        </tbody>
+    </table>
+{% endblock %}

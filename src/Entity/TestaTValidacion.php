@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\TestaTValidacionRepository;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: TestaTValidacionRepository::class)]
@@ -19,6 +20,9 @@ class TestaTValidacion
 
     #[ORM\Column]
     private ?int $num_validacion = null;
+
+    #[ORM\Column(type: Types::ARRAY)]
+    private array $validaciones = [];
 
     function __construct(TestaTtestamento $id_testamento) {
         $this->id_testamento = $id_testamento;
@@ -57,6 +61,18 @@ class TestaTValidacion
     public function setNumValidacion(int $num_validacion): static
     {
         $this->num_validacion = $num_validacion;
+
+        return $this;
+    }
+
+    public function getValidaciones(): array
+    {
+        return $this->validaciones;
+    }
+
+    public function setValidaciones(array $validaciones): static
+    {
+        $this->validaciones = $validaciones;
 
         return $this;
     }

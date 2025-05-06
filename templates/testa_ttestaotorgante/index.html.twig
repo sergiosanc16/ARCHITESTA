@@ -31,4 +31,28 @@
             </tr>
         </thead>
         <tbody>
-        {% for testa_ttestaotorgante in testa_t
+        {% for testa_ttestaotorgante in testa_ttestaotorgantes %}
+            <tr>
+                <td>{{ testa_ttestaotorgante.id }}</td>
+                <td>{{ testa_ttestaotorgante.numOrden }}</td>
+                <td>{{ testa_ttestaotorgante.testamento }}</td>
+                <td>{{ testa_ttestaotorgante.otorgante }}</td>
+                <td>
+                    <a href="{{ path('app_testa_ttestamento_show', {'id': testa_ttestaotorgante.testamento.id}) }}" title="Mostrar Testamento"><img  width="30px"   src="{{ asset('img/testamento.png') }}"></a>
+                    <a href="{{ path('app_testa_ttestaotorgante_show', {'id': testa_ttestaotorgante.id}) }}" title="Mostrar Registro"><img  width="30px"   src="{{ asset('img/mostrar.png') }}"></a>
+                    <a href="{{ path('app_testa_ttestaotorgante_edit', {'id': testa_ttestaotorgante.id}) }}" title="Editar Registro"><img  width="30px"  src="{{ asset('img/editar.png') }}"></a>
+                </td> 
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">No se han encontrado registros</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    {% if nuevo|default(null) %}
+      <div class="btn-group mr-2 btn-group-sm" role="group"  title="Nuevo Registro" >
+            <button type="button" class="btn boton {{app.session.get('estilo')}} mr-2 btn-group-sm" role="button" onclick="location.href='{{  nuevo }}'"><i class="fa fa-plus-square"></i> Nuevo Registro</button>
+        </div>
+    {% endif %}
+{% endblock %}

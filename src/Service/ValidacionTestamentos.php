@@ -140,8 +140,23 @@ class ValidacionTestamentos{
             $pMedio = ($pAnno + $pMes + $pDia + $pMancomunado + 
                        $pIlegible + $pProtocolo + $pFolio + 
                        $pPoblacion + $pNotario + $pParentesco) / 10;
+
+            $valMedios = array(
+                                "anno" => $pAnno,
+                                "mes" => $pMes,
+                                "dia" => $pDia,
+                                "mancomunado" => $pMancomunado,
+                                "ilegible" => $pIlegible,
+                                "protocolo" => $pProtocolo,
+                                "folio" => $pFolio,
+                                "poblacion" => $pPoblacion,
+                                "notario" => $pNotario,
+                                "parentesco" => $pParentesco,
+            );
+                       
             for($i=0; $i<$size;$i++){
                 $validaciones[$i]->setNumValidacion($pMedio);
+                $validaciones[$i]->setValidaciones($valMedios);
                 $em->persist($validaciones[$i]);
             }
 
