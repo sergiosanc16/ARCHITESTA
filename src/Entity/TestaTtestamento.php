@@ -45,7 +45,7 @@ class TestaTtestamento
     private ?TestaTnotario $notario = null;
 
     #[ORM\OneToOne(targetEntity: TestaTimagen::class)]
-    #[ORM\JoinColumn(name: 'id_imagen', referencedColumnName: 'id', unique: true, nullable: true)]
+    #[ORM\JoinColumn(name: 'id_imagen', referencedColumnName: 'id', nullable: true)]
     private ?TestaTimagen $imagen = null;
 
     #[ORM\ManyToOne(targetEntity: TestaTparentesco::class)]
