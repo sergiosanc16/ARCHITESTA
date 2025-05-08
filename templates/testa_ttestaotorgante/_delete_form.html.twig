@@ -1,3 +1,0 @@
-<form method="post" action="{{ path('app_testa_ttestaotorgante_delete', {'id': testa_ttestaotorgante.id}) }}" onsubmit="return confirm('¿Estás segur@ de borrar este registro?');">
-    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ testa_ttestaotorgante.id) }}">
-    <button type="submit" class="btn boton  mr-2 btn
