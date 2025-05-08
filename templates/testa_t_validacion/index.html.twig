@@ -1,0 +1,37 @@
+{% extends 'baseDatatable.html.twig' %}
+
+{% block title %}TestaTValidacion index{% endblock %}
+
+{% block body %}
+    <h1>TestaTValidacion index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Num_validacion</th>
+                <th>Validaciones</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for testa_t_validacion in testa_t_validacions %}
+            <tr>
+                <td>{{ testa_t_validacion.id }}</td>
+                <td>{{ testa_t_validacion.numValidacion }}</td>
+                <td>{{ testa_t_validacion.validaciones ? testa_t_validacion.validaciones|join(', ') : '' }}</td>
+                <td>
+                    <a href="{{ path('app_testa_t_validacion_show', {'id': testa_t_validacion.id}) }}">show</a>
+                    <a href="{{ path('app_testa_t_validacion_edit', {'id': testa_t_validacion.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_testa_t_validacion_new') }}">Create new</a>
+{% endblock %}

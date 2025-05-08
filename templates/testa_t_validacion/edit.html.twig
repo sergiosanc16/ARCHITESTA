@@ -1,0 +1,13 @@
+{% extends 'baseDatatable.html.twig' %}
+
+{% block title %}Edit TestaTValidacion{% endblock %}
+
+{% block body %}
+    <h1>Edit TestaTValidacion</h1>
+
+    {{ include('testa_t_validacion/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_testa_t_validacion_index') }}">back to list</a>
+
+    {{ include('testa_t_validacion/_delete_form.html.twig') }}
+{% endblock %}

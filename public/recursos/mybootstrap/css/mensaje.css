@@ -1,0 +1,92 @@
+/*
+Al cuerpo de la
+pagina se aplica el tamaño de fuente
+ 
+body{
+	font-size: 12px;
+}
+*/
+html,body{
+	height: 100%;
+	width: 100%;
+  }
+  body{
+	font-size: 12px;
+	/* The image used */
+	background-image: url(../img/fondohtml.png) ;
+	/* Full height */
+	height: 100%;
+	/* Center and scale the image nicely */
+	background-position: center center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	position: relative;
+/*	overflow: hidden; */
+
+   }
+ 
+.titulo {
+	font-family: 'Quattrocento';
+	font-weight: bold;
+
+	font-size: 128px;
+	color: brown;
+}
+
+.subtitulo {
+	font-family: 'Quattrocento';
+	font-weight: bold;
+
+	font-size: 60px;
+	color: brown;
+}
+
+
+.texto {
+	font-family: 'Quattrocento';
+	font-weight:lighter;
+
+	font-size: 40px;
+	color:crimson;
+}
+
+.formulario {
+	font-family: 'Quattrocento';
+	font-weight:lighter;
+
+	font-size: 20px;
+	color:crimson;
+}
+
+/**
+ * En las siguientes lineas
+ * se define el diseño adaptable, para que
+ * se muestre en los dispositivos móviles
+ */
+
+/******************************************/
+/***    DISEÑO PARA MOVILES 320        ****/
+/******************************************/
+@media only screen and (max-width:500px){
+.contenedor{
+	width: 100%;
+	height: auto;
+	margin: 0px;
+}
+.titulo {
+	font-family: 'Quattrocento';
+	font-weight: bold;
+
+	font-size: 60px;
+	color: brown;
+}
+
+.subtitulo {
+	font-family: 'Quattrocento';
+	font-weight: bold;
+
+	font-size: 30px;
+	color: brown;
+}
+
+
