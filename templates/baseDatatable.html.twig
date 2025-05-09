@@ -66,76 +66,76 @@
                         "previous": "<<"
                     }
                 },
-        dom: 'lBfrtip',
+                dom: 'lBfrtip',
 
-        buttons: [ 
-            {extend: 'excelHtml5', autoFilter: true, sheetName: 'Exported data',className: 'boton'},  
-            {extend: 'copyHtml5',className: 'boton'},
-            {extend: 'csvHtml5', className: 'boton'},
-            {extend: 'pdfHtml5', className: 'boton'},
+                buttons: [ 
+                    {extend: 'excelHtml5', autoFilter: true, sheetName: 'Exported data',className: 'boton'},  
+                    {extend: 'copyHtml5',className: 'boton'},
+                    {extend: 'csvHtml5', className: 'boton'},
+                    {extend: 'pdfHtml5', className: 'boton'},
 
-        ],
+                ],
 
 
-        initComplete: function () {
-            this.api().columns().every( function () {
-                var column = this;
-                if ($(column.footer()).text() != "" && $(column.footer()).text() != "-"  && $(column.footer()).text().substring(0,2) != "@@" ) {
-                    	
-                    var select = $('<select><option value="">Muestra todos</option></select>')
-//                    var select = $('<select><option value=""></option></select>')
-                        .appendTo( $(column.footer()).empty() )
-                        .on( 'change', function () {
-                            var val = $.fn.dataTable.util.escapeRegex(
-                                $(this).val()
-                            );
-    
-                            column
-                                .search( val ? '^'+val+'$' : '', true, false )
-                                .draw();
-                        } );
-                    
-                    column.data().unique().sort().each( function ( d, j ) {
-                //     alert( $(column.header()).text() );
-                        if (d.length >50 ) {
-                            var valor = d.substring(0,50)+'...';
+                initComplete: function () {
+                    this.api().columns().every( function () {
+                        var column = this;
+                        if ($(column.footer()).text() != "" && $(column.footer()).text() != "-"  && $(column.footer()).text().substring(0,2) != "@@" ) {
+                                
+                            var select = $('<select><option value="">Muestra todos</option></select>')
+        //                    var select = $('<select><option value=""></option></select>')
+                                .appendTo( $(column.footer()).empty() )
+                                .on( 'change', function () {
+                                    var val = $.fn.dataTable.util.escapeRegex(
+                                        $(this).val()
+                                    );
+            
+                                    column
+                                        .search( val ? '^'+val+'$' : '', true, false )
+                                        .draw();
+                                } );
+                            
+                            column.data().unique().sort().each( function ( d, j ) {
+                        //     alert( $(column.header()).text() );
+                                if (d.length >50 ) {
+                                    var valor = d.substring(0,50)+'...';
+                                }
+                                else var valor=d;
+                                select.append( '<option value="'+d+'">'+valor+'</option>' )
+                            } );
+                        }   
+                        else {
+                            if ($(column.footer()).text() == "") {
+                            var boton = $('<button type="button" class="btn btn-outline-dark btn-sm ">Recarga</button>')
+                                    .appendTo( $(column.footer()).empty() )
+                                    .on( 'click', function() {
+        //                                 tabla.search('').columns().search('').draw('');
+                                location.reload();
+                                    }
+
+                                    );  
+                            } else
+                            if ($(column.footer()).text().substring(0,2) == "@@") {
+                                    var titulo = $(column.footer()).text().substring(2);
+                                
+                                    var entrada = $('<input type="text" placeholder="Filtrar '+titulo+'" />')
+                                    .appendTo( $(column.footer()).empty() )
+                                    .on( 'keyup change', function () {
+                                        var val =
+                                        $(this).val()
+                                    column
+                                        .search( val)
+                                        .draw();
+                                    }
+                                    );
+                            }
+                            else {
+                                $('').appendTo( $(column.footer()).empty());
+                            }
                         }
-                        else var valor=d;
-                        select.append( '<option value="'+d+'">'+valor+'</option>' )
+
                     } );
-                }   
-                else {
-                    if ($(column.footer()).text() == "") {
-                    var boton = $('<button type="button" class="btn btn-outline-dark btn-sm ">Recarga</button>')
-                            .appendTo( $(column.footer()).empty() )
-                            .on( 'click', function() {
-//                                 tabla.search('').columns().search('').draw('');
-                          location.reload();
-                            }
-
-                            );  
-                    } else
-                    if ($(column.footer()).text().substring(0,2) == "@@") {
-                            var titulo = $(column.footer()).text().substring(2);
-                           
-                            var entrada = $('<input type="text" placeholder="Filtrar '+titulo+'" />')
-                            .appendTo( $(column.footer()).empty() )
-                            .on( 'keyup change', function () {
-                                 var val =
-                                $(this).val()
-                            column
-                                .search( val)
-                                .draw();
-                            }
-                            );
-                    }
-                    else {
-                        $('').appendTo( $(column.footer()).empty());
-                    }
                 }
-
-            } );
-        }
                 });
             } );  
         </script>

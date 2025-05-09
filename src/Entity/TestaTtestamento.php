@@ -67,6 +67,9 @@ class TestaTtestamento
         $this->imagen = $imagen;
         $this->parentesco = $parentesco;
     }
+    function __construct(){
+        
+    }
 
     // Getters y setters...
 
