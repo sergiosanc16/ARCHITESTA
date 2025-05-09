@@ -10,7 +10,7 @@ use Symfony\Component\Mime\Address;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Entity\TestaTraw;
 use App\Service\CsvUploadService;
-use App\Service\validacionTestamentos;
+use App\Service\ValidacionTestamentos;
 use App\Form\CsvUploadType;
 use App\Form\validacionType;
 
@@ -32,7 +32,7 @@ final class CsvUploadController extends AbstractController
         }
 
         if ($formVal->isSubmitted() && $formVal->isValid()) {
-            $mensjVal = validacionTestamentos::validacion($formVal, $em);
+            $mensjVal = ValidacionTestamentos::validacion($formVal, $em);
             $this->addFlash('success', $mensjVal);
         }
             

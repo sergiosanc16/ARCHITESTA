@@ -11,7 +11,7 @@ use App\Entity\TestaTvalidacion;
 use App\Entity\TestaTimagen;
 use App\Repository\TestaTtestamentoRepository;
 
-class validacionTestamentos{
+class ValidacionTestamentos{
 
     public static function validacion(Form $form, EntityManagerInterface $em): string
     {
