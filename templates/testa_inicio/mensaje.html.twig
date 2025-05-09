@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+{% set muestraMenu = false %}
+
+{% block stylesheets %}
+    {#{{ encore_entry_link_tags('app') }}#}
+    <link rel="stylesheet" type="text/css"  href={{ asset('css/mensaje.css') }}>
+
+{% endblock %}
+
+{% block javascripts %}
+{% endblock %}
+
+{% block body %}
+
+<div class="contenedor">
+  <div class="row">
+    <div class="col-4 ">
+        <img src={{ asset('img/quatrochincheta.png') }} width="100%">
+    </div>
+    <div class="col-8">
+        <div class="row">
+          <div class="col-3 ">
+              <img src={{ asset('img/advertencia.png') }} width="100%">
+          </div>
+          <div class="col-9">
+           <p class="titulo">Oyeeeee!!!!  </p>
+          </div>
+        </div> 
+           <p class="texto">{{mensaje}}</p>
+        <button type="button" class="btn btn-danger" onClick="history.go(-1);">Pulsa aqui para volver atrás</button>
+    </div>
+
+  </div>
+</div>
+{% endblock %}
+

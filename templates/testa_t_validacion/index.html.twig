@@ -1,0 +1,52 @@
+{% extends 'baseDatatable.html.twig' %}
+
+{% set id_tabla = 'validacion' %}
+{% set nuevo = path('app_testa_t_validacion_new') %}
+{% set muestraMenu = true %}
+
+{% block title %}{{id_tabla}} Indice{% endblock %}
+
+{% block body %}
+    <h2>Listado de Validaciones</h2>
+    {% if nuevo|default(null) %}
+    <div class="float-right">
+    <div class="btn-group mr-2 btn-group-sm" role="group"  title="Nuevo Registro" >
+            <button type="button" class="btn boton  mr-2 btn-group-sm" role="button" onclick="location.href='{{  nuevo }}'"><i class="fa fa-plus-square"></i> Nuevo Registro</button>
+        </div>
+    </div>
+    {% endif %}
+
+    <table id="{{id_tabla}}" class="table table-striped table-bordered table-sm  ">
+        <thead>
+            <tr>
+                <th width="5%">Id</th>
+                <th>Num_validacion</th>
+                <th>Validaciones</th>
+                <th width="10%">actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for testa_t_validacion in testa_t_validacions %}
+            <tr>
+                <td>{{ testa_t_validacion.id }}</td>
+                <td>{{ testa_t_validacion.numValidacion }}</td>
+                <td>{{ testa_t_validacion.validaciones ? testa_t_validacion.validaciones|join(', ') : '' }}</td>
+                <td>
+                    <a href="{{ path('app_testa_t_validacion_show', {'id': testa_t_validacion.id}) }}" title="Mostrar Registro"><img  width="30px"   src="{{ asset('img/mostrar.png') }}"></a>
+                    <a href="{{ path('app_testa_t_validacion_edit', {'id': testa_t_validacion.id}) }}" title="Editar Registro"><img  width="30px"  src="{{ asset('img/editar.png') }}"></a>
+                
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    {% if nuevo|default(null) %}
+      <div class="btn-group mr-2 btn-group-sm" role="group"  title="Nuevo Registro" >
+            <button type="button" class="btn boton {{app.session.get('estilo')}} mr-2 btn-group-sm" role="button" onclick="location.href='{{  nuevo }}'"><i class="fa fa-plus-square"></i> Nuevo Registro</button>
+        </div>
+    {% endif %}
+{% endblock %}

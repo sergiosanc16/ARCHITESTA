@@ -1,0 +1,27 @@
+{% extends 'baseDatatable.html.twig' %}
+
+{% set id_tabla = 'componente' %}
+{% set muestraMenu = true %}
+{% set pathIndex =  path('app_testa_timagen_index') %}
+{% set pathEdit =  path('app_testa_timagen_edit', {'id': testa_timagen.id}) %}
+{% set includeDelete =  'testa_timagen/_delete_form.html.twig' %}
+
+{% block title %}Imágenes{% endblock %}
+
+{% block body %}
+
+    <h1>Imagen</h1>
+
+    <table class="table  container fondoclaro">
+        <tbody>
+            <tr>
+                <th width="10%">Id</th>
+                <td>{{ testa_timagen.id }}</td>
+            </tr>
+            <tr>
+                <th>Imagen</th>
+                <td>{{ testa_timagen.desImagen }}</td>
+            </tr>
+        </tbody>
+    </table>
+{% endblock %}

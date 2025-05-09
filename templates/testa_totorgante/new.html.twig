@@ -1,0 +1,12 @@
+{% extends 'baseDatatable.html.twig' %}
+
+{% block title %}Nuevo Otorgante{% endblock %}
+{% set id_tabla = 'Otorgante' %}
+{% set muestraMenu = true %}
+{% set pathIndex =  path('app_testa_totorgante_index') %}
+
+{% block body %}
+    <h1>Nuevo Otorgante</h1>
+    {{ include('testa_totorgante/_form.html.twig') }}
+    <br>
+{% endblock %}
