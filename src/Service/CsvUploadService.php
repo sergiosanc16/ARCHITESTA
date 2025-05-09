@@ -76,7 +76,7 @@ class CsvUploadService{
                                 $raw->setPopulationName($datosTareas[++$i]['value']);
                             } else {
                                 $raw->setOtherPopulation(False);
-                                $raw->setPopulationName('Ninguna');
+                                $raw->setPopulationName('Ningun@');
                             }
                             break;
                         case 'T6':
@@ -90,7 +90,7 @@ class CsvUploadService{
                                 $raw->setGrantorOffice($datosTareas[++$i]['value']);
                             } else {
                                 $raw->setOfficeMentioned(False);
-                                $raw->setGrantorOffice('Ninguna');
+                                $raw->setGrantorOffice('Ningun@');
                             }
                             break;
                         case 'T12':
@@ -110,7 +110,7 @@ class CsvUploadService{
                                 $raw->setGrantorRelationship($datosTareas[++$i]['value']);
                             } else {
                                 $raw->setRelationshipMentioned(False);
-                                $raw->setGrantorRelationship('Ninguna');
+                                $raw->setGrantorRelationship('Ningun@');
                             }
                             break;
                         case 'T17':
@@ -121,7 +121,7 @@ class CsvUploadService{
                                     $raw->setDocumentType($datosTareas[$i]['value']['0']['label']);
                                 }
                             }else{
-                                $raw->setDocumentType('Ninguno');
+                                $raw->setDocumentType('Ningun@');
                             }
                             break;
                         case 'T20':
@@ -177,10 +177,10 @@ class CsvUploadService{
                     $raw->setPopulationName('Ningun@');
                 }
                 if($raw->getGrantorSurname1()==null){
-                    $raw->setGrantorSurname1('Ninguno');
+                    $raw->setGrantorSurname1('Ningun@');
                 }
                 if($raw->getGratorSurname2()==null){
-                    $raw->setGratorSurname2('Ninguno');
+                    $raw->setGratorSurname2('Ningun@');
                 }
                 if($raw->isOfficeMentioned()==null){
                     $raw->setOfficeMentioned(FALSE);
