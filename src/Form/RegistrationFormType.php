@@ -34,7 +34,6 @@ class RegistrationFormType extends AbstractType
             'attr' => [
                 'class' => 'form-control',
                 'placeholder' => 'Contraseña',
-                'autocomplete' => 'new-password',
             ],
             'row_attr' => ['class' => 'input-group input-group-lg mb-3'],
             'constraints' => [
@@ -44,13 +43,13 @@ class RegistrationFormType extends AbstractType
                 new Length([
                     'min' => 6,
                     'minMessage' => 'La contraseña debe tener al menos {{ limit }} caracteres',
-                    'max' => 4096,
+                    'max' => 16,
                 ]),
             ],
         ])
         ->add('agreeTerms', CheckboxType::class, [
             'mapped' => false,
-            'label' => 'Aceptar términos',
+            'label' => '    Aceptar términos',
             'constraints' => [
                 new IsTrue([
                     'message' => 'Debes aceptar los términos.',
