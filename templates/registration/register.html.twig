@@ -27,34 +27,13 @@
         {{ form_errors(registrationForm) }}
 
         {{ form_start(registrationForm) }}
-        <div class="ContentForm">
-            <form  method="post">
-
-                <div class="input-group input-group-lg">
-                    <span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-envelope"></i></span>
-                    <input type="email" value="{{ last_username }}" name="_username" id="username" class="form-control" autocomplete="email" required autofocus>
-                </div>
-                <br>
-                <div class="input-group input-group-lg">
-                    <span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-lock"></i></span>
-                    <input type="password" name="_password" id="password" class="form-control" autocomplete="current-password" required>
-
-                    <input type="hidden" name="_csrf_token"
-                        value="{{ csrf_token('authenticate') }}">
-                </div>
-                <br>
-                {{ form_row(registrationForm.agreeTerms) }}
-                <input type="hidden" name="_target_path" value="{{ path('app_homepage') }}">
-                <br>
-                <button class="btn btn-lg btn-warning btn-block btn-signin" id="IngresoLog" type="submit">Entrar</button>
-            </form>
-        </div>
-        {{ form_end(registrationForm) }}
-        
             {{ form_row(registrationForm.email) }}
             {{ form_row(registrationForm.plainPassword, {
                 label: 'Password'
             }) }}
+            {{ form_row(registrationForm.agreeTerms) }}
+            <input type="hidden" name="_target_path" value="{{ path('app_homepage') }}">
             <button type="submit" class="btn">Register</button>
+        {{ form_end(registrationForm) }}
     </div> 
 {% endblock %}

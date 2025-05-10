@@ -17,33 +17,44 @@ class RegistrationFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('email')
-            ->add('agreeTerms', CheckboxType::class, [
-                'mapped' => false,
-                'constraints' => [
-                    new IsTrue([
-                        'message' => 'You should agree to our terms.',
-                    ]),
-                ],
-            ])
-            ->add('plainPassword', PasswordType::class, [
-                // instead of being set onto the object directly,
-                // this is read and encoded in the controller
-                'mapped' => false,
-                'attr' => ['autocomplete' => 'new-password'],
-                'constraints' => [
-                    new NotBlank([
-                        'message' => 'Please enter a password',
-                    ]),
-                    new Length([
-                        'min' => 6,
-                        'minMessage' => 'Your password should be at least {{ limit }} characters',
-                        // max length allowed by Symfony for security reasons
-                        'max' => 4096,
-                    ]),
-                ],
-            ])
-        ;
+        ->add('email', EmailType::class, [
+            'label' => false,
+            'attr' => [
+                'class' => 'form-control',
+                'placeholder' => 'Correo electrónico',
+                'autocomplete' => 'email',
+            ],
+            'row_attr' => ['class' => 'input-group input-group-lg mb-3'],
+        ])
+        ->add('plainPassword', PasswordType::class, [
+            'label' => false,
+            'mapped' => false,
+            'attr' => [
+                'class' => 'form-control',
+                'placeholder' => 'Contraseña',
+                'autocomplete' => 'new-password',
+            ],
+            'row_attr' => ['class' => 'input-group input-group-lg mb-3'],
+            'constraints' => [
+                new NotBlank([
+                    'message' => 'Por favor ingrese una contraseña',
+                ]),
+                new Length([
+                    'min' => 6,
+                    'minMessage' => 'La contraseña debe tener al menos {{ limit }} caracteres',
+                    'max' => 4096,
+                ]),
+            ],
+        ])
+        ->add('agreeTerms', CheckboxType::class, [
+            'mapped' => false,
+            'label' => 'Aceptar términos',
+            'constraints' => [
+                new IsTrue([
+                    'message' => 'Debes aceptar los términos.',
+                ]),
+            ],
+        ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void
