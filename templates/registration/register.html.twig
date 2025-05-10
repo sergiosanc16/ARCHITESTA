@@ -27,11 +27,19 @@
         {{ form_errors(registrationForm) }}
 
         {{ form_start(registrationForm) }}
-            {{ form_row(registrationForm.email) }}
-            {{ form_row(registrationForm.plainPassword, {
-                label: 'Password'
-            }) }}
-            {{ form_row(registrationForm.agreeTerms) }}
+            <div class="input-group input-group-lg mb-3">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+                {{ form_widget(form.email) }}
+            </div>
+
+            <div class="input-group input-group-lg mb-3">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                {{ form_widget(form.plainPassword) }}
+            </div>
+
+            <div class="form-group">
+                {{ form_row(form.agreeTerms) }}
+            </div>
             <input type="hidden" name="_target_path" value="{{ path('app_homepage') }}">
             <button type="submit" class="btn btn-warning btn-lg w-100">Registrar</button>
             <p class="login-card-footer-text"> &nbsp;</p>
