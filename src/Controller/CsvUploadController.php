@@ -12,7 +12,7 @@ use App\Entity\TestaTraw;
 use App\Service\CsvUploadService;
 use App\Service\ValidacionTestamentos;
 use App\Form\CsvUploadType;
-use App\Form\validacionType;
+use App\Form\ValidacionType;
 
 final class CsvUploadController extends AbstractController
 {
@@ -22,7 +22,7 @@ final class CsvUploadController extends AbstractController
     {
 
         $form = $this->createForm(CsvUploadType::class);
-        $formVal = $this->createForm(validacionType::class);
+        $formVal = $this->createForm(ValidacionType::class);
         $form->handleRequest($request);
         $formVal->handleRequest($request);
 

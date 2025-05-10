@@ -42,6 +42,8 @@
             </div>
             <input type="hidden" name="_target_path" value="{{ path('app_homepage') }}">
             <button type="submit" class="btn btn-warning btn-lg w-100">Registrar</button>
+            <br>
+            <p class="login-card-footer-text">¿Ya tienes una cuenta? <a href="{{ path('app_register') }}" class="text-reset"><b>Regístrate aquí</b></a></p>                
             <p class="login-card-footer-text"> &nbsp;</p>
         {{ form_end(registrationForm) }}
     </div> 
