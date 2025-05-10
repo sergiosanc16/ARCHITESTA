@@ -24,7 +24,6 @@ class RegistrationFormType extends AbstractType
             'attr' => [
                 'class' => 'form-control',
                 'placeholder' => 'Correo electrónico',
-                'autocomplete' => 'email',
             ],
             'row_attr' => ['class' => 'input-group input-group-lg mb-3'],
         ])
