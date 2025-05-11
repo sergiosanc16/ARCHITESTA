@@ -12,5 +12,43 @@ class TestaVtestavalidacionRepository extends ServiceEntityRepository
         parent::__construct($registry, TestaVtestavalidacion::class);
     }
 
-    // Aquí puedes añadir métodos personalizados de consulta
+   public function findByIdOtorgante(int $idOtorgante): array
+    {
+        return $this->createQueryBuilder('t')
+            ->andWhere('t.idOtorgante = :idOtorgante')
+            ->setParameter('idOtorgante', $idOtorgante)
+            ->orderBy('t.id', 'ASC')
+            ->getQuery()
+            ->getResult();
+    }
+
+        public function findTestaNotario($id_notario): array
+        {
+            return $this->createQueryBuilder('t')
+                ->andWhere('t.notario = :val')
+                ->setParameter('val', $id_notario)
+                ->getQuery()
+                ->getResult()
+            ;
+        }   
+        
+        public function findTestaImagen($id_imagen): array
+        {
+            return $this->createQueryBuilder('t')
+                ->andWhere('t.imagen = :val')
+                ->setParameter('val', $id_imagen)
+                ->getQuery()
+                ->getResult()
+            ;
+        }
+        // número de testamentos con una imagen
+        public function countTestaImagen($id_imagen): int
+        {
+            return (int) $this->createQueryBuilder('t')
+                ->select('COUNT(t.id)')  // O el campo ID o el que sea tu clave primaria
+                ->andWhere('t.imagen = :val')
+                ->setParameter('val', $id_imagen)
+                ->getQuery()
+                ->getSingleScalarResult();
+        }        
 }

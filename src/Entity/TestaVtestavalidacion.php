@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\TestaVtestavalidacionRepository;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: TestaVtestavalidacionRepository::class)]
@@ -17,8 +18,8 @@ class TestaVtestavalidacion
     #[ORM\Column(nullable: true)]
     private ?int $numValidacion = null;
 
-    #[ORM\Column(type: 'text', nullable: true)]
-    private ?string $validaciones = null;
+    #[ORM\Column(type: Types::ARRAY)]
+    private ?array $validaciones = [];
 
     #[ORM\Column]
     private int $idTestamento;
@@ -187,6 +188,46 @@ class TestaVtestavalidacion
         return $this; 
     }
 
+    public function getIdTestamento(): int 
+    { 
+        return $this->idTestamento; 
+    }
+    public function setIdTestamento(int $idTestamento): self 
+    { 
+        $this->idTestamento = $idTestamento; 
+        return $this; 
+    }
+
+    public function getNombre(): ? string 
+    { 
+        return $this->nombre; 
+    }
+    public function setNombre(string $nombre): self 
+    { 
+        $this->nombre = $nombre; 
+        return $this; 
+    }
+
+    public function getApellido1(): ? string 
+    { 
+        return $this->apellido1; 
+    }
+    public function setApellido1(string $apellido1): self 
+    { 
+        $this->apellido1 = $apellido1; 
+        return $this; 
+    }
+
+    public function getApellido2(): ? string 
+    { 
+        return $this->apellido2; 
+    }
+    public function setApellido2(string $apellido2): self 
+    { 
+        $this->apellido2 = $apellido2; 
+        return $this; 
+    }
+
     public function getPoblacion(): ?TestaTpoblacion 
     { 
         return $this->poblacion; 
@@ -226,7 +267,17 @@ class TestaVtestavalidacion
         $this->parentesco = $parentesco;
         return $this;
     }
+    
+    public function getValidaciones(): ?array
+    {
+        return $this->validaciones;
+    }
+    public function setValidaciones(?array $validaciones): static
+    {
+        $this->validaciones = $validaciones;
 
+        return $this;
+    }
     public function __toString(){ 
 
         // to show the name of the Category in the select 

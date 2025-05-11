@@ -21,6 +21,7 @@
           <a class="dropdown-item" href="{{path('app_testa_tpoblacion_index')}}">Poblacion</a>
           <a class="dropdown-item" href="{{path('app_testa_ttestamento_index')}}">Testamento</a>
           <a class="dropdown-item" href="{{path('app_testa_ttestaotorgante_index')}}">Otorgantes de un testamento</a>
+          <a class="dropdown-item" href="{{path('app_testa_t_validacion_index')}}">Validaciones</a>
         </div>
       </li>
 

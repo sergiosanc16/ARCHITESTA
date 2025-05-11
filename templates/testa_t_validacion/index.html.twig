@@ -20,7 +20,8 @@
         <thead>
             <tr>
                 <th width="5%">Id</th>
-                <th>Num_validacion</th>
+                <th>Testamento</th>
+                <th>Num. validacion</th>
                 <th>Validaciones</th>
                 <th width="10%">actions</th>
             </tr>
@@ -29,6 +30,7 @@
         {% for testa_t_validacion in testa_t_validacions %}
             <tr>
                 <td>{{ testa_t_validacion.id }}</td>
+                <td>{{ testa_t_validacion.idTestamento }}</td>
                 <td>{{ testa_t_validacion.numValidacion }}</td>
                 <td>{{ testa_t_validacion.validaciones ? testa_t_validacion.validaciones|join(', ') : '' }}</td>
                 <td>

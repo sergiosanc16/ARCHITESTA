@@ -16,28 +16,14 @@ class TestaTvalidacionRepository extends ServiceEntityRepository
         parent::__construct($registry, TestaTvalidacion::class);
     }
 
-    //    /**
-    //     * @return TestaTvalidacion[] Returns an array of TestaTvalidacion objects
-    //     */
-    //    public function findByExampleField($value): array
-    //    {
-    //        return $this->createQueryBuilder('t')
-    //            ->andWhere('t.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->orderBy('t.id', 'ASC')
-    //            ->setMaxResults(10)
-    //            ->getQuery()
-    //            ->getResult()
-    //        ;
-    //    }
+   public function findByIdtestamento(int $idTestamento): array
+    {
+        return $this->createQueryBuilder('t')
+            ->andWhere('t.id_testamento = :idTestamento')
+            ->setParameter('idTestamento', $idTestamento)
+            ->orderBy('t.id', 'ASC')
+            ->getQuery()
+            ->getResult();
+    }        
 
-    //    public function findOneBySomeField($value): ?TestaTvalidacion
-    //    {
-    //        return $this->createQueryBuilder('t')
-    //            ->andWhere('t.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->getQuery()
-    //            ->getOneOrNullResult()
-    //        ;
-    //    }
 }

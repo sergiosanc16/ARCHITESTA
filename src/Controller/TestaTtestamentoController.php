@@ -8,6 +8,7 @@ use App\Repository\TestaTtestamentoRepository;
 use App\Repository\TestaTtestaotorganteRepository;
 use App\Repository\TestaVtestaotorganteRepository;
 use App\Repository\TestaVtestavalidacionRepository;
+use App\Repository\TestaTvalidacionRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -26,7 +27,7 @@ final class TestaTtestamentoController extends AbstractController
     }
 
     #[Route('/{id_imagen}/indeximagen',name: 'app_testa_ttestamento_imagen_index', methods: ['GET'])]
-    public function indeximagen(TestaTtestamentoRepository $testaTtestamentoRepository, $id_imagen): Response
+    public function indeximagen(TestaVtestavalidacionRepository $testaTtestamentoRepository, $id_imagen): Response
     {
         return $this->render('testa_ttestamento/index.html.twig', [
             'testa_ttestamentos' => $testaTtestamentoRepository->findTestaImagen($id_imagen),
@@ -34,7 +35,7 @@ final class TestaTtestamentoController extends AbstractController
     }
 
     #[Route('/{id_notario}/indexnotario',name: 'app_testa_ttestamento_notario_index', methods: ['GET'])]
-    public function indexnotario(TestaTtestamentoRepository $testaTtestamentoRepository, $id_notario): Response
+    public function indexnotario(TestaVtestavalidacionRepository $testaTtestamentoRepository, $id_notario): Response
     {
         return $this->render('testa_ttestamento/index.html.twig', [
             'testa_ttestamentos' => $testaTtestamentoRepository->findTestaNotario($id_notario),
@@ -42,7 +43,7 @@ final class TestaTtestamentoController extends AbstractController
     }
 
     #[Route('/otorgante/{id_otorgante}/indexotorgante',name: 'app_testa_ttestamento_otorgante_index', methods: ['GET'])]
-    public function indexotorgante(TestaVtestaotorganteRepository $testaVtestaotorganteRepository, $id_otorgante): Response
+    public function indexotorgante(TestaVtestavalidacionRepository $testaVtestaotorganteRepository, $id_otorgante): Response
     {
         return $this->render('testa_ttestamento/index.html.twig', [
             'testa_ttestamentos' => $testaVtestaotorganteRepository->findByIdOtorgante($id_otorgante),
@@ -74,12 +75,15 @@ final class TestaTtestamentoController extends AbstractController
     #[Route('/{id}', name: 'app_testa_ttestamento_show', methods: ['GET'])]
     public function show(TestaTtestamento $testaTtestamento, 
                          TestaTtestaotorganteRepository $TestaTtestaotorganteRepository,
+                         TestaTvalidacionRepository $TestaTvalidacionRepository,
                             $id): Response
     {
         $otorgantes = $TestaTtestaotorganteRepository->OtorgantesTestamento($id);
+        $validaciones = $TestaTvalidacionRepository->findByIdtestamento($id);
         return $this->render('testa_ttestamento/show.html.twig', [
             'testa_ttestamento' => $testaTtestamento,
             'otorgantes'        => $otorgantes,
+            'validaciones'      => $validaciones,
         ]);
     }
 

@@ -3,8 +3,10 @@
 namespace App\Controller;
 
 use App\Entity\TestaTvalidacion;
+use App\Entity\TestaVtestavalidacion;
 use App\Form\TestaTvalidacionType;
 use App\Repository\TestaTvalidacionRepository;
+use App\Repository\TestaVtestavalidacionRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -43,7 +45,7 @@ final class TestaTvalidacionController extends AbstractController
     }
 
     #[Route('/{id}', name: 'app_testa_t_validacion_show', methods: ['GET'])]
-    public function show(TestaTvalidacion $testaTvalidacion): Response
+    public function show(TestaVtestavalidacion $testaTvalidacion): Response
     {
         return $this->render('testa_t_validacion/show.html.twig', [
             'testa_t_validacion' => $testaTvalidacion,

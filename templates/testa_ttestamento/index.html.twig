@@ -27,9 +27,10 @@
                 <th width="5%">Año</th>
                 <th width="5%">Mes</th>
                 <th width="5%">Dia</th>
-                <th>¿Mancomunado?</th>
+                <th>¿Mancom?</th>
                 <th width="5%">¿Ilegible?</th>
                 <th>Num protocolo</th>
+                <th>Otorgante</th>
                 <th>Notario</th>
                 <th>Población</th>
                 <th>Validacion</th>
@@ -41,13 +42,14 @@
         <tbody>
         {% for testa_ttestamento in testa_ttestamentos %}
             <tr>
-                <td>{{ testa_ttestamento.id }}</td>
+                <td>{{ testa_ttestamento.idTestamento }}</td>
                 <td>{{ testa_ttestamento.anno }}</td>
                 <td>{{ testa_ttestamento.mes }}</td>
                 <td>{{ testa_ttestamento.dia }}</td>
                 <td>{{ testa_ttestamento.mancomunado ? 'Si' : 'No' }}</td>
                 <td>{{ testa_ttestamento.textoilegible ? 'Si' : 'No' }}</td>
                 <td>{{ testa_ttestamento.numProtocolo }}</td>
+                <td>{{ testa_ttestamento.nombre }} {{ testa_ttestamento.apellido1 }} {{ testa_ttestamento.apellido2 }}</td>
                 <td>{{ testa_ttestamento.notario }}</td>
                 <td>{{ testa_ttestamento.poblacion }}</td>
                 <td>{{ testa_ttestamento.numValidacion }}</td>
@@ -59,8 +61,8 @@
                         {{ testa_ttestamento.imagen }}
                     {% endif %}                
                 <td>
-                    <a href="{{ path('app_testa_ttestamento_show', {'id': testa_ttestamento.id}) }}" title="Mostrar Registro"><img  width="30px"   src="{{ asset('img/mostrar.png') }}"></a>
-                    <a href="{{ path('app_testa_ttestamento_edit', {'id': testa_ttestamento.id}) }}" title="Editar Registro"><img  width="30px"  src="{{ asset('img/editar.png') }}"></a>
+                    <a href="{{ path('app_testa_ttestamento_show', {'id': testa_ttestamento.idTestamento}) }}" title="Mostrar Registro"><img  width="30px"   src="{{ asset('img/mostrar.png') }}"></a>
+                    <a href="{{ path('app_testa_ttestamento_edit', {'id': testa_ttestamento.idTestamento}) }}" title="Editar Registro"><img  width="30px"  src="{{ asset('img/editar.png') }}"></a>
                 </td>                    
             </tr>
         {% else %}

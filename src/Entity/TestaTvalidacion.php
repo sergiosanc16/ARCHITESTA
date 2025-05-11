@@ -53,24 +53,24 @@ class TestaTvalidacion
         return $this;
     }
 
-    public function getNumvalidacion(): ?int
+    public function getNumValidacion(): ?int
     {
         return $this->num_validacion;
     }
 
-    public function setNumvalidacion(int $num_validacion): static
+    public function setNumValidacion(int $num_validacion): static
     {
         $this->num_validacion = $num_validacion;
 
         return $this;
     }
 
-    public function getvalidaciones(): array
+    public function getValidaciones(): array
     {
         return $this->validaciones;
     }
 
-    public function setvalidaciones(array $validaciones): static
+    public function setValidaciones(array $validaciones): static
     {
         $this->validaciones = $validaciones;
 
