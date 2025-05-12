@@ -16,7 +16,7 @@ class TestaTvalidacionRepository extends ServiceEntityRepository
         parent::__construct($registry, TestaTvalidacion::class);
     }
 
-   public function findByIdtestamento(int $idTestamento): array
+   public function findByIdtestamento(int $idTestamento): TestaTvalidacion
     {
         return $this->createQueryBuilder('t')
             ->andWhere('t.id_testamento = :idTestamento')
