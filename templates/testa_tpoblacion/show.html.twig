@@ -1,0 +1,27 @@
+{% extends 'baseDatatable.html.twig' %}
+
+{% set id_tabla = 'Población' %}
+{% set muestraMenu = true %}
+{% set pathIndex =  path('app_testa_tpoblacion_index') %}
+{% set pathEdit =  path('app_testa_tpoblacion_edit', {'id': testa_tpoblacion.id}) %}
+{% set includeDelete =  'testa_tpoblacion/_delete_form.html.twig' %}
+
+{% block title %}Población{% endblock %}
+
+{% block body %}
+
+    <h1>Población</h1>
+
+    <table class="table  container fondoclaro">
+        <tbody>
+            <tr>
+                <th width="10%">Id</th>
+                <td>{{ testa_tpoblacion.id }}</td>
+            </tr>
+            <tr>
+                <th>Población</th>
+                <td>{{ testa_tpoblacion.desPoblacion }}</td>
+            </tr>
+        </tbody>
+    </table>
+{% endblock %}

@@ -1,0 +1,201 @@
+{% extends 'baseDatatable.html.twig' %}
+
+{% set id_tabla = 'Testamento' %}
+{% set muestraMenu = true %}
+{% set pathIndex =  path('app_testa_ttestamento_index') %}
+{% set pathEdit =  path('app_testa_ttestamento_edit', {'id': testa_ttestamento.id}) %}
+{% set includeDelete =  'testa_ttestamento/_delete_form.html.twig' %}
+
+{% block title %}testamento{% endblock %}
+
+{% block body %}
+
+    <h1>Testamento: Id {{ testa_ttestamento.id }}</h1>
+
+    <table class="table  container fondoclaro">
+        <tbody>
+            <tr>
+                <td>
+                    <table>
+                        </tbody>
+                            <tr>                
+                                <td width="50%">
+                                    <img  width="100%"   src="{{ asset('img/fichas/'~ testa_ttestamento.imagen) }}">            
+                                
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    Otorgantes
+                                </th>
+                            </tr>
+                            {% for  otorgante in otorgantes %}
+                            <tr>
+                                <td>
+                                    {{ otorgante.numOrden }} {{ otorgante.otorgante }} <a href="{{ path('app_testa_totorgante_show', {'id': otorgante.otorgante.id}) }}" title="Mostrar Otorgante"><img  width="30px"   src="{{ asset('img/ojo.png') }}"></a> 
+                                </td>          
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </td>    
+                <td>
+                    <table>
+                        </tbody>
+
+                            <tr>
+                                <th width="15%"></th>
+                                <th>Índice Validación: {{validaciones[0].numValidacion|default('-')}}</th>
+                                <th></th>
+                                <th width="5%">Val</th>
+                            </tr>
+                            <tr>
+                                {% set variable = validaciones[0].validaciones.anno|default('0') %}
+                                {% if variable>=90 %}
+                                    {% set fichero='verde.png' %}
+                                {% elseif  variable >=70 and variable < 90 %}
+                                    {% set fichero='amarillo.png' %}
+                                {% else %}
+                                    {% set fichero='rojo.png' %}
+                                {% endif %}
+
+                                <th>Año</th>
+                                <td>{{ testa_ttestamento.anno }}</td>
+                                <td><img  width="30px"   src="{{ asset('img/'~ fichero) }}"></td>
+                                <td>{{ validaciones[0].validaciones.anno|default('-')|number_format(2) }}</td>
+
+                            </tr>
+                            <tr>
+                                {% set variable = validaciones[0].validaciones.mes|default('0') %}
+                                {% if variable>=90 %}
+                                    {% set fichero='verde.png' %}
+                                {% elseif  variable >=70 and variable < 90 %}
+                                    {% set fichero='amarillo.png' %}
+                                {% else %}
+                                    {% set fichero='rojo.png' %}
+                                {% endif %}
+                                <th>Mes</th>
+                                <td>{{ testa_ttestamento.mes }}</td>
+                                <td><img  width="30px"   src="{{ asset('img/'~ fichero) }}"></td>
+                                <td>{{ validaciones[0].validaciones.mes|default('-')|number_format(2) }}</td>
+                            </tr>
+                            <tr>
+                                {% set variable = validaciones[0].validaciones.dia|default('0') %}
+                                {% if variable>=90 %}
+                                    {% set fichero='verde.png' %}
+                                {% elseif  variable >=70 and variable < 90 %}
+                                    {% set fichero='amarillo.png' %}
+                                {% else %}
+                                    {% set fichero='rojo.png' %}
+                                {% endif %}
+                                <th>Dia</th>
+                                <td>{{ testa_ttestamento.dia }}</td>
+                                <td><img  width="30px"   src="{{ asset('img/'~ fichero) }}"></td>
+                                <td>{{ validaciones[0].validaciones.dia|default('-')|number_format(2) }}</td>
+                            </tr>
+                            <tr>
+                                {% set variable = validaciones[0].validaciones.mancomunado|default('0') %}
+                                {% if variable>=90 %}
+                                    {% set fichero='verde.png' %}
+                                {% elseif  variable >=70 and variable < 90 %}
+                                    {% set fichero='amarillo.png' %}
+                                {% else %}
+                                    {% set fichero='rojo.png' %}
+                                {% endif %}
+                                <th>Mancomunado</th>
+                                <td>{{ testa_ttestamento.mancomunado ? 'Si' : 'No' }}</td>
+                                <td><img  width="30px"   src="{{ asset('img/'~ fichero) }}"></td>
+                                <td>{{ validaciones[0].validaciones.mancomunado|default('-')|number_format(2) }}</td>
+                            </tr>
+                            <tr>
+                                {% set variable = validaciones[0].validaciones.ilegible|default('0') %}
+                                {% if variable>=90 %}
+                                    {% set fichero='verde.png' %}
+                                {% elseif  variable >=70 and variable < 90 %}
+                                    {% set fichero='amarillo.png' %}
+                                {% else %}
+                                    {% set fichero='rojo.png' %}
+                                {% endif %}
+                                <th>Texto ilegible</th>
+                                <td>{{ testa_ttestamento.textoilegible ? 'No' : 'No' }}</td>
+                                <td><img  width="30px"   src="{{ asset('img/'~ fichero) }}"></td>
+                                <td>{{ validaciones[0].validaciones.ilegible|default('-')|number_format(2) }}</td>
+                            </tr>
+                            <tr>
+                                {% set variable = validaciones[0].validaciones.protocolo|default('0') %}
+                                {% if variable>=90 %}
+                                    {% set fichero='verde.png' %}
+                                {% elseif  variable >=70 and variable < 90 %}
+                                    {% set fichero='amarillo.png' %}
+                                {% else %}
+                                    {% set fichero='rojo.png' %}
+                                {% endif %}
+                                <th>Num protocolo</th>
+                                <td>{{ testa_ttestamento.numProtocolo }}</td>
+                                <td><img  width="30px"   src="{{ asset('img/'~ fichero) }}"></td>
+                                <td>{{ validaciones[0].validaciones.protocolo|default('-')|number_format(2) }}</td>
+                            </tr>
+                            <tr>
+                                {% set variable = validaciones[0].validaciones.folio|default('0') %}
+                                {% if variable>=90 %}
+                                    {% set fichero='verde.png' %}
+                                {% elseif  variable >=70 and variable < 90 %}
+                                    {% set fichero='amarillo.png' %}
+                                {% else %}
+                                    {% set fichero='rojo.png' %}
+                                {% endif %}
+                                <th>Num folio</th>
+                                <td>{{ testa_ttestamento.numFolio }}</td>
+                                <td><img  width="30px"   src="{{ asset('img/'~ fichero) }}"></td>
+                                <td>{{ validaciones[0].validaciones.folio|default('-')|number_format(2) }}</td>
+                            </tr>
+                            <tr>
+                                {% set variable = validaciones[0].validaciones.notario|default('0') %}
+                                {% if variable>=90 %}
+                                    {% set fichero='verde.png' %}
+                                {% elseif  variable >=70 and variable < 90 %}
+                                    {% set fichero='amarillo.png' %}
+                                {% else %}
+                                    {% set fichero='rojo.png' %}
+                                {% endif %}
+                                <th>Notario</th>
+                                <td>{{ testa_ttestamento.notario }}</td>
+                                <td><img  width="30px"   src="{{ asset('img/'~ fichero) }}"></td>
+                                <td>{{ validaciones[0].validaciones.notario|default('-')|number_format(2) }}</td>
+                            </tr>
+                            <tr>
+                                {% set variable = validaciones[0].validaciones.poblacion|default('0') %}
+                                {% if variable>=90 %}
+                                    {% set fichero='verde.png' %}
+                                {% elseif  variable >=70 and variable < 90 %}
+                                    {% set fichero='amarillo.png' %}
+                                {% else %}
+                                    {% set fichero='rojo.png' %}
+                                {% endif %}
+                                <th>Población</th>
+                                <td>{{ testa_ttestamento.poblacion }}</td>
+                                <td><img  width="30px"   src="{{ asset('img/'~ fichero) }}"></td>
+                                <td>{{ validaciones[0].validaciones.poblacion|default('-')|number_format(2) }}</td>
+                            </tr>
+                            <tr>
+                                {% set variable = validaciones[0].validaciones.parentesco|default('0') %}
+                                {% if variable>=90 %}
+                                    {% set fichero='verde.png' %}
+                                {% elseif  variable >=70 and variable < 90 %}
+                                    {% set fichero='amarillo.png' %}
+                                {% else %}
+                                    {% set fichero='rojo.png' %}
+                                {% endif %}
+                                <th>Parentesco</th>
+                                <td>{{ testa_ttestamento.parentesco }}</td>
+                                <td><img  width="30px"   src="{{ asset('img/'~ fichero) }}"></td>
+                                <td>{{ validaciones[0].validaciones.parentesco|default('-')|number_format(2) }}</td>
+                            </tr>
+
+                       </tbody>
+                   </table>       
+                </td>
+            </tr>
+        </tbody>
+    </table>
+{% endblock %}
