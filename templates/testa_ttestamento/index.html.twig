@@ -1,0 +1,80 @@
+{% extends 'baseDatatable.html.twig' %}
+
+
+{% set id_tabla = 'testamento' %}
+{% set nuevo = path('app_testa_ttestamento_new') %}
+{% set muestraMenu = true %}
+
+{% block title %}{{id_tabla}} Indice{% endblock %}
+
+{% block javascripts %}
+{% endblock %}
+
+{% block body %}
+
+<h2>Listado de testamentos</h2>
+    {% if nuevo|default(null) %}
+    <div class="float-right">
+    <div class="btn-group mr-2 btn-group-sm" role="group"  title="Nuevo Registro" >
+            <button type="button" class="btn boton  mr-2 btn-group-sm" role="button" onclick="location.href='{{  nuevo }}'"><i class="fa fa-plus-square"></i> Nuevo Registro</button>
+        </div>
+    </div>
+    {% endif %}
+    <table id="{{id_tabla}}" class="table table-striped table-bordered table-sm  ">  
+        <thead>
+            <tr>
+                <th width="5%">Id</th>
+                <th width="5%">Año</th>
+                <th width="5%">Mes</th>
+                <th width="5%">Dia</th>
+                <th>¿Mancom?</th>
+                <th width="5%">¿Ilegible?</th>
+                <th>Num protocolo</th>
+                <th>Otorgante</th>
+                <th>Notario</th>
+                <th>Población</th>
+                <th>Validacion</th>
+                <th>Imagen</th>
+
+                <th width="5%">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for testa_ttestamento in testa_ttestamentos %}
+            <tr>
+                <td>{{ testa_ttestamento.idTestamento }}</td>
+                <td>{{ testa_ttestamento.anno }}</td>
+                <td>{{ testa_ttestamento.mes }}</td>
+                <td>{{ testa_ttestamento.dia }}</td>
+                <td>{{ testa_ttestamento.mancomunado ? 'Si' : 'No' }}</td>
+                <td>{{ testa_ttestamento.textoilegible ? 'Si' : 'No' }}</td>
+                <td>{{ testa_ttestamento.numProtocolo }}</td>
+                <td>{{ testa_ttestamento.nombre }} {{ testa_ttestamento.apellido1 }} {{ testa_ttestamento.apellido2 }}</td>
+                <td>{{ testa_ttestamento.notario }}</td>
+                <td>{{ testa_ttestamento.poblacion }}</td>
+                <td>{{ testa_ttestamento.numValidacion }}</td>
+
+                <td>
+                    {% if asset_exists('img/fichas/'~ testa_ttestamento.imagen) %}
+                        <a href="{{ '/img/fichas/'~ testa_ttestamento.imagen }}"> {{ testa_ttestamento.imagen }}</a> 
+                    {% else %}
+                        {{ testa_ttestamento.imagen }}
+                    {% endif %}                
+                <td>
+                    <a href="{{ path('app_testa_ttestamento_show', {'id': testa_ttestamento.idTestamento}) }}" title="Mostrar Registro"><img  width="30px"   src="{{ asset('img/mostrar.png') }}"></a>
+                    <a href="{{ path('app_testa_ttestamento_edit', {'id': testa_ttestamento.idTestamento}) }}" title="Editar Registro"><img  width="30px"  src="{{ asset('img/editar.png') }}"></a>
+                </td>                    
+            </tr>
+        {% else %}
+            <tr>
+               <td colspan="11">No se han encontrado registros</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+   {% if nuevo|default(null) %}
+      <div class="btn-group mr-2 btn-group-sm" role="group"  title="Nuevo Registro" >
+            <button type="button" class="btn boton  mr-2 btn-group-sm" role="button" onclick="location.href='{{  nuevo }}'"><i class="fa fa-plus-square"></i> Nuevo Registro</button>
+        </div>
+    {% endif %}
+{% endblock %}

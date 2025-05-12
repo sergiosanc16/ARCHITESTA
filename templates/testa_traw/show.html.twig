@@ -1,0 +1,102 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}TestaTraw{% endblock %}
+
+{% block body %}
+    <h1>TestaTraw</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ testa_traw.id }}</td>
+            </tr>
+            <tr>
+                <th>ClassificationId</th>
+                <td>{{ testa_traw.classificationId }}</td>
+            </tr>
+            <tr>
+                <th>Year</th>
+                <td>{{ testa_traw.year }}</td>
+            </tr>
+            <tr>
+                <th>Month</th>
+                <td>{{ testa_traw.month }}</td>
+            </tr>
+            <tr>
+                <th>Day</th>
+                <td>{{ testa_traw.day }}</td>
+            </tr>
+            <tr>
+                <th>OtherPopulation</th>
+                <td>{{ testa_traw.otherPopulation ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>PopulationName</th>
+                <td>{{ testa_traw.populationName }}</td>
+            </tr>
+            <tr>
+                <th>GrantorSurname1</th>
+                <td>{{ testa_traw.grantorSurname1 }}</td>
+            </tr>
+            <tr>
+                <th>GratorSurname2</th>
+                <td>{{ testa_traw.gratorSurname2 }}</td>
+            </tr>
+            <tr>
+                <th>GrantorName</th>
+                <td>{{ testa_traw.grantorName }}</td>
+            </tr>
+            <tr>
+                <th>OfficeMentioned</th>
+                <td>{{ testa_traw.officeMentioned ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>GrantorOffice</th>
+                <td>{{ testa_traw.grantorOffice }}</td>
+            </tr>
+            <tr>
+                <th>RelationshipMentioned</th>
+                <td>{{ testa_traw.relationshipMentioned ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>GrantorRelationship</th>
+                <td>{{ testa_traw.grantorRelationship }}</td>
+            </tr>
+            <tr>
+                <th>DocumentType</th>
+                <td>{{ testa_traw.documentType }}</td>
+            </tr>
+            <tr>
+                <th>NotaryName</th>
+                <td>{{ testa_traw.notaryName }}</td>
+            </tr>
+            <tr>
+                <th>ProtocolNumber</th>
+                <td>{{ testa_traw.protocolNumber }}</td>
+            </tr>
+            <tr>
+                <th>FolioNumber</th>
+                <td>{{ testa_traw.folioNumber }}</td>
+            </tr>
+            <tr>
+                <th>SecondGrantor</th>
+                <td>{{ testa_traw.secondGrantor ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>SecondGrantorName</th>
+                <td>{{ testa_traw.secondGrantorName }}</td>
+            </tr>
+            <tr>
+                <th>Filename</th>
+                <td>{{ testa_traw.filename }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_testa_traw_index') }}">back to list</a>
+
+    <a href="{{ path('app_testa_traw_edit', {'id': testa_traw.id}) }}">edit</a>
+
+    {{ include('testa_traw/_delete_form.html.twig') }}
+{% endblock %}
