@@ -1,0 +1,12 @@
+{% extends 'baseDatatable.html.twig' %}
+
+{% block title %}Nueva Relación otorgantes{% endblock %}
+{% set id_tabla = 'otorgante' %}
+{% set muestraMenu = true %}
+{% set pathIndex =  path('app_testa_ttestaotorgante_index') %}
+
+{% block body %}
+    <h1>Nueva Relación otorgantes</h1>
+    {{ include('testa_ttestaotorgante/_form.html.twig') }}
+    <br>
+{% endblock %}

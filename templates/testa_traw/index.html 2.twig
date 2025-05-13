@@ -1,0 +1,73 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}TestaTraw index{% endblock %}
+
+{% block body %}
+    <h1>TestaTraw index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>ClassificationId</th>
+                <th>Year</th>
+                <th>Month</th>
+                <th>Day</th>
+                <th>OtherPopulation</th>
+                <th>PopulationName</th>
+                <th>GrantorSurname1</th>
+                <th>GratorSurname2</th>
+                <th>GrantorName</th>
+                <th>OfficeMentioned</th>
+                <th>GrantorOffice</th>
+                <th>RelationshipMentioned</th>
+                <th>GrantorRelationship</th>
+                <th>DocumentType</th>
+                <th>NotaryName</th>
+                <th>ProtocolNumber</th>
+                <th>FolioNumber</th>
+                <th>SecondGrantor</th>
+                <th>SecondGrantorName</th>
+                <th>Filename</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for testa_traw in testa_traws %}
+            <tr>
+                <td>{{ testa_traw.id }}</td>
+                <td>{{ testa_traw.classificationId }}</td>
+                <td>{{ testa_traw.year }}</td>
+                <td>{{ testa_traw.month }}</td>
+                <td>{{ testa_traw.day }}</td>
+                <td>{{ testa_traw.otherPopulation ? 'Yes' : 'No' }}</td>
+                <td>{{ testa_traw.populationName }}</td>
+                <td>{{ testa_traw.grantorSurname1 }}</td>
+                <td>{{ testa_traw.gratorSurname2 }}</td>
+                <td>{{ testa_traw.grantorName }}</td>
+                <td>{{ testa_traw.officeMentioned ? 'Yes' : 'No' }}</td>
+                <td>{{ testa_traw.grantorOffice }}</td>
+                <td>{{ testa_traw.relationshipMentioned ? 'Yes' : 'No' }}</td>
+                <td>{{ testa_traw.grantorRelationship }}</td>
+                <td>{{ testa_traw.documentType }}</td>
+                <td>{{ testa_traw.notaryName }}</td>
+                <td>{{ testa_traw.protocolNumber }}</td>
+                <td>{{ testa_traw.folioNumber }}</td>
+                <td>{{ testa_traw.secondGrantor ? 'Yes' : 'No' }}</td>
+                <td>{{ testa_traw.secondGrantorName }}</td>
+                <td>{{ testa_traw.filename }}</td>
+                <td>
+                    <a href="{{ path('app_testa_traw_show', {'id': testa_traw.id}) }}">show</a>
+                    <a href="{{ path('app_testa_traw_edit', {'id': testa_traw.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="22">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_testa_traw_new') }}">Create new</a>
+{% endblock %}
