@@ -18,11 +18,14 @@ class ValidacionTestamentos{
     public static function validacion(Form $form, EntityManagerInterface $em): string
     {
         //Seleccionar de la base de datos 3 registros por filename
+
+        //Hacer automatico, no recibe de la entrada la imagen
         $idFoto = $em->getRepository(TestaTimagen::class)->findOneBy(['des_imagen' => $form->get('foto')->getData()]);
         $testamentos = $em->getRepository(TestaTtestamento::class)->findTestaImagen($idFoto);
         $size = count($testamentos);
+        $otorgantes=[];
         for($i = 0;$i<$size;$i++){
-            $testaOtorgantes[$i] = $em->getRepository(TestaTtestaotorgante::class)->findBy(["id_testamento"=> $testamentos->getId()]);
+            $otorgantes[$i] = $em->getRepository(TestaTtestaotorgante::class)->findBy(["id_testamento"=> $testamentos->getId()]);
         }
         
 
@@ -34,100 +37,120 @@ class ValidacionTestamentos{
 
             //comparar anno
             $pAnno = 0;
-
-            if(($validaciones[0]->getIdTestamento()->getAnno() == $validaciones[1]->getIdTestamento()->getAnno()) &&
-               ($validaciones[0]->getIdTestamento()->getAnno() == $validaciones[2]->getIdTestamento()->getAnno())){
-                    $pAnno = 100;
-            } else if($validaciones[1]->getIdTestamento()->getAnno() == $validaciones[2]->getIdTestamento()->getAnno() ||
-                      $validaciones[0]->getIdTestamento()->getAnno() == $validaciones[2]->getIdTestamento()->getAnno()){
-                    $pAnno = 66;
-            } else {
-                $pAnno = 33;
+            $aux = 0;
+            for($i = 0;$i<$size-1;$i++){
+                for($j = $i;$j<$size;$j++){
+                    if($validaciones[$i]->getIdTestamento()->getAnno() == $validaciones[$j]->getIdTestamento()->getAnno()){
+                        $aux++;
+                    }
+                }
             }
+            $pAnno = ($aux / (($size * ($size+1))/2))*100;
+
             //comparar mes
             $pMes = 0;
-            $mes1 = strtoupper($validaciones[0]->getIdTestamento()->getMes());
-            $mes2 = strtoupper($validaciones[1]->getIdTestamento()->getMes());
-            $mes3 = strtoupper($validaciones[2]->getIdTestamento()->getMes());
-            similar_text($mes1, $mes2, $p1);
-            similar_text($mes1, $mes3, $p2);
-            similar_text($mes2, $mes3, $p3);
-            $pMes = ($p1+$p2+$p3)/3;
+            $aux = 0;
+            for($i = 0;$i<$size-1;$i++){
+                for($j = $i;$j<$size;$j++){
+                    $p = 0;
+                    $mes1 = strtoupper($validaciones[$i]->getIdTestamento()->getMes());
+                    $mes2 = strtoupper($validaciones[$j]->getIdTestamento()->getMes());
+                    similar_text($mes1, $mes2, $p);
+                    $aux += $p;
+                }
+            }
+            $pMes = ($aux / (($size * (($size+1))/2)*100));;
 
             //comparar dia
             $pDia = 0;
-            if(($validaciones[0]->getIdTestamento()->getDia() == $validaciones[1]->getIdTestamento()->getDia()) &&
-               ($validaciones[0]->getIdTestamento()->getDia() == $validaciones[2]->getIdTestamento()->getDia())){
-                    $pDia = 100;
-            } else if($validaciones[1]->getIdTestamento()->getDia() == $validaciones[2]->getIdTestamento()->getDia() ||
-                      $validaciones[0]->getIdTestamento()->getDia() == $validaciones[2]->getIdTestamento()->getDia()){
-                    $pDia = 66;
-            } else {
-                $pDia = 33;
+            $aux = 0;
+            for($i = 0;$i<$size-1;$i++){
+                for($j = $i;$j<$size;$j++){
+                    if($validaciones[$i]->getIdTestamento()->getDia() == $validaciones[$j]->getIdTestamento()->getDia()){
+                        $aux++;
+                    }
+                }
             }
+            $pDia = ($aux / (($size * ($size+1))/2))*100;
+
             //comparar mancomunado
-            $pMancomunado = 0;
-            if(($validaciones[0]->getIdTestamento()->isMancomunado() == $validaciones[1]->getIdTestamento()->isMancomunado()) &&
-               ($validaciones[0]->getIdTestamento()->isMancomunado() == $validaciones[2]->getIdTestamento()->isMancomunado())){
-                    $pMancomunado = 100;
-            } else if($validaciones[1]->getIdTestamento()->isMancomunado() == $validaciones[2]->getIdTestamento()->isMancomunado() ||
-                      $validaciones[0]->getIdTestamento()->isMancomunado() == $validaciones[2]->getIdTestamento()->isMancomunado()){
-                    $pMancomunado = 66;
-            } else {
-                $pMancomunado = 33;
+
+            $pMancomunadoAnno = 0;
+            $aux = 0;
+            for($i = 0;$i<$size-1;$i++){
+                for($j = $i;$j<$size;$j++){
+                    if($validaciones[$i]->getIdTestamento()->isMancomunado() == $validaciones[$j]->getIdTestamento()->isMancomunado()){
+                        $aux++;
+                    }
+                }
             }
+            $pMancomunado = ($aux / (($size * ($size+1))/2))*100;
+
             //comparar textoilegible
             $pIlegible = 0;
-            if(($validaciones[0]->getIdTestamento()->isTextoilegible() == $validaciones[1]->getIdTestamento()->isTextoilegible()) &&
-               ($validaciones[0]->getIdTestamento()->isTextoilegible() == $validaciones[2]->getIdTestamento()->isTextoilegible())){
-                    $pIlegible = 100;
-            } else if($validaciones[1]->getIdTestamento()->isTextoilegible() == $validaciones[2]->getIdTestamento()->isTextoilegible() ||
-                      $validaciones[0]->getIdTestamento()->isTextoilegible() == $validaciones[2]->getIdTestamento()->isTextoilegible()){
-                    $pIlegible = 66;
-            } else {
-                $pIlegible = 33;
+            $aux = 0;
+            for($i = 0;$i<$size-1;$i++){
+                for($j = $i;$j<$size;$j++){
+                    if($validaciones[$i]->getIdTestamento()->isTextoilegible() == $validaciones[$j]->getIdTestamento()->isTextoilegible()){
+                        $aux++;
+                    }
+                }
             }
+            $pIlegible = ($aux / (($size * ($size+1))/2))*100;
+
             //comparar num_protocolo
             $pProtocolo = 0;
-            if(($validaciones[0]->getIdTestamento()->getNumProtocolo() == $validaciones[1]->getIdTestamento()->getNumProtocolo()) &&
-               ($validaciones[0]->getIdTestamento()->getNumProtocolo() == $validaciones[2]->getIdTestamento()->getNumProtocolo())){
-                    $pProtocolo = 100;
-            } else if($validaciones[1]->getIdTestamento()->getNumProtocolo() == $validaciones[2]->getIdTestamento()->getNumProtocolo() ||
-                      $validaciones[0]->getIdTestamento()->getNumProtocolo() == $validaciones[2]->getIdTestamento()->getNumProtocolo()){
-                    $pProtocolo = 66;
-            } else {
-                $pProtocolo = 33;
+            $aux = 0;
+            for($i = 0;$i<$size-1;$i++){
+                for($j = $i;$j<$size;$j++){
+                    if($validaciones[$i]->getIdTestamento()->getNumProtocolo() == $validaciones[$j]->getIdTestamento()->getNumProtocolo()){
+                        $aux++;
+                    }
+                }
             }
+            $pProtocolo = ($aux / (($size * ($size+1))/2))*100;
+
             //comparar num_folio
             $pFolio = 0;
-            if(($validaciones[0]->getIdTestamento()->getNumFolio() == $validaciones[1]->getIdTestamento()->getNumFolio()) &&
-               ($validaciones[0]->getIdTestamento()->getNumFolio() == $validaciones[2]->getIdTestamento()->getNumFolio())){
-                    $pFolio = 100;
-            } else if($validaciones[1]->getIdTestamento()->getNumFolio() == $validaciones[2]->getIdTestamento()->getNumFolio() ||
-                      $validaciones[0]->getIdTestamento()->getNumFolio() == $validaciones[2]->getIdTestamento()->getNumFolio()){
-                    $pFolio = 66;
-            } else {
-                $pFolio = 33;
+            $aux = 0;
+            for($i = 0;$i<$size-1;$i++){
+                for($j = $i;$j<$size;$j++){
+                    if($validaciones[$i]->getIdTestamento()->getNumFolio() == $validaciones[$j]->getIdTestamento()->getNumFolio()){
+                        $aux++;
+                    }
+                }
             }
+            $pFolio = ($aux / (($size * ($size+1))/2))*100;
+
             //comparar des de poblacion
             $pPoblacion = 0;
-            $pob1 = strtoupper($validaciones[0]->getIdTestamento()->getPoblacion()->getDesPoblacion());
-            $pob2 = strtoupper($validaciones[1]->getIdTestamento()->getPoblacion()->getDesPoblacion());
-            $pob3 = strtoupper($validaciones[2]->getIdTestamento()->getPoblacion()->getDesPoblacion());
-            similar_text($pob1, $pob2, $p1);
-            similar_text($pob1, $pob3, $p2);
-            similar_text($pob2, $pob3, $p3);
-            $pPoblacion = ($p1+$p2+$p3)/3;
+            $aux = 0;
+            for($i = 0;$i<$size-1;$i++){
+                for($j = $i;$j<$size;$j++){
+                    $p = 0;
+                    $pob1 = strtoupper($validaciones[$i]->getIdTestamento()->getPoblacion()->getDesPoblacion());
+                    $pob2 = strtoupper($validaciones[$j]->getIdTestamento()->getPoblacion()->getDesPoblacion());
+                    similar_text($pob1, $pob2, $p);
+                    $aux += $p;
+                }
+            }
+            $pPoblacion = ($aux / (($size * (($size+1))/2)*100));
 
             //comparar nombre de notario
             $pNotario = 0;
-            $not1 = strtoupper($validaciones[0]->getIdTestamento()->getNotario()->getDesNotario());
-            $not2 = strtoupper($validaciones[1]->getIdTestamento()->getNotario()->getDesNotario());
-            $not3 = strtoupper($validaciones[2]->getIdTestamento()->getNotario()->getDesNotario());
-            similar_text($not1, $not2, $p1);
-            similar_text($not1, $not3, $p2);
-            similar_text($not2, $not3, $p3);
-            $pNotario = ($p1+$p2+$p3)/3;
+            $aux = 0;
+            for($i = 0;$i<$size-1;$i++){
+                for($j = $i;$j<$size;$j++){
+                    $p = 0;
+                    $not1 = strtoupper($validaciones[$i]->getIdTestamento()->getNotario()->getDesNotario());
+                    $not2 = strtoupper($validaciones[$j]->getIdTestamento()->getNotario()->getDesNotario());
+                    similar_text($not1, $not2, $p);
+                    $aux += $p;
+                }
+            }
+            $pNotario = ($aux / (($size * (($size+1))/2)*100));
+
+            //comparador de otorgante por todas sus propiedades TODO
 
             //comparar des_parentesco
             // $pParentesco = 0;
