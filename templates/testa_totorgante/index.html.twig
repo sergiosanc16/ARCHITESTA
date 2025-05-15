@@ -12,6 +12,7 @@
 
 {% block body %}
 
+
 <h2>Listado de Otorgantes</h2>
     {% if nuevo|default(null) %}
     <div class="float-right">
@@ -28,6 +29,7 @@
                 <th>Apellido1</th>
                 <th>Apellido2</th>
                 <th>Oficio</th>
+                <th>Parentesco</th>
                 <th width="5%">Acciones</th>
             </tr>
         </thead>
@@ -39,6 +41,7 @@
                 <td>{{ testa_totorgante.apellido1 }}</td>
                 <td>{{ testa_totorgante.apellido2 }}</td>
                 <td>{{ testa_totorgante.IdOficio }}</td>
+                <td>{{ testa_totorgante.parentesco }}</td>
                 <td>
                     <a href="{{ path('app_testa_totorgante_show', {'id': testa_totorgante.id}) }}" title="Mostrar Registro"><img  width="30px"   src="{{ asset('img/mostrar.png') }}"></a>
                     <a href="{{ path('app_testa_totorgante_edit', {'id': testa_totorgante.id}) }}" title="Editar Registro"><img  width="30px"  src="{{ asset('img/editar.png') }}"></a>

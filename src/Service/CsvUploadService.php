@@ -234,10 +234,6 @@ class CsvUploadService{
                     $em->persist($oficio);
                 }
 
-                $otorgante = new TestaTotorgante($raw->getGrantorName(),$raw->getGrantorSurname1(),
-                                                $raw->getGratorSurname2(),$oficio);
-                $em->persist($otorgante);
-
                 $parentesco = $em->getRepository(TestaTparentesco::class)->findOneBy(['des_parentesco' => $raw->getGrantorRelationship()]); 
                 if($parentesco==null){
                     $parentesco = new TestaTparentesco($raw->getGrantorRelationship());
@@ -249,16 +245,19 @@ class CsvUploadService{
                     $pobalcion = new TestaTpoblacion($raw->getPopulationName());
                     $em->persist($pobalcion);
                 }
+                $otorgante = new TestaTotorgante($raw->getGrantorName(),$raw->getGrantorSurname1(),
+                                                $raw->getGratorSurname2(),$oficio, $parentesco );
+                $em->persist($otorgante);
 
                 if($raw->isSecondGrantor()){
-                    $segOtorgante = new TestaTotorgante($raw->getSecondGrantorName(),
-                                                        $raw->getSecondGrantorName(), $raw->getSecondGrantorName(), $oficio);
+                    $segOtorgante = new TestaTotorgante($raw->getSecondGrantorName(),$raw->getSecondGrantorName(), 
+                                                        $raw->getSecondGrantorName(), $oficio, $parentesco);
                     $em->persist($segOtorgante);
                 }
 
                 $testamento = new testaTtestamento($raw->getYear(), $raw->getMonth(), $raw->GetDay(), $raw->isSecondGrantor(),
                                                    $ilegible, $raw->getProtocolNumber(), $raw->getFolioNumber(), $pobalcion,
-                                                   $notario,$imagen, $parentesco );
+                                                   $notario,$imagen);
                 $em->persist($testamento);
 
                 $testaOtorgante = new TestaTtestaotorgante($testamento, $otorgante, 1);

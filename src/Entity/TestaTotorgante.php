@@ -28,18 +28,24 @@ class TestaTotorgante
     #[ORM\JoinColumn(name: 'id_oficio', referencedColumnName: 'id', nullable: false)]
     private ?TestaToficio $id_oficio = null;
 
-    function __construct(string $nombre, string $apellido1, string $apellido2, TestaToficio $id_oficio) {
+
+    #[ORM\ManyToOne(targetEntity: TestaTparentesco::class)]
+    #[ORM\JoinColumn(name: 'id_parentesco', referencedColumnName: 'id', nullable: true)]
+    private ?TestaTparentesco $parentesco = null;
+
+    function __construct(string $nombre, string $apellido1, string $apellido2, TestaToficio $id_oficio, TestaTparentesco $parentesco) {
         $this->nombre = $nombre;
         $this->apellido1 = $apellido1;
         $this->apellido2 = $apellido2;
         $this->id_oficio = $id_oficio;
+
+        $this->parentesco = $parentesco;
     }
 
     public function getId(): ?int
     {
         return $this->id;
     }
-
     public function setId(int $id): static
     {
         $this->id = $id;
@@ -51,7 +57,6 @@ class TestaTotorgante
     {
         return $this->nombre;
     }
-
     public function setNombre(string $nombre): static
     {
         $this->nombre = $nombre;
@@ -63,7 +68,6 @@ class TestaTotorgante
     {
         return $this->apellido1;
     }
-
     public function setApellido1(string $apellido1): static
     {
         $this->apellido1 = $apellido1;
@@ -75,7 +79,6 @@ class TestaTotorgante
     {
         return $this->apellido2;
     }
-
     public function setApellido2(string $apellido2): static
     {
         $this->apellido2 = $apellido2;
@@ -87,13 +90,23 @@ class TestaTotorgante
     {
         return $this->id_oficio;
     }
-
     public function setIdOficio(TestaToficio $id_oficio): static
     {
         $this->id_oficio = $id_oficio;
 
         return $this;
     }
+
+    public function getParentesco(): ?TestaTparentesco 
+    { 
+        return $this->parentesco;
+    }
+    public function setParentesco(?TestaTparentesco $parentesco): self 
+    { 
+        $this->parentesco = $parentesco;
+        return $this;
+    }
+
     public function __toString(){ 
         // to show the name of the Category in the select 
         return $this->nombre.' '.$this->apellido1.' '.$this->apellido2; 

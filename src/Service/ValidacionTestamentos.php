@@ -9,6 +9,8 @@ use App\Entity\TestaTraw;
 use App\Entity\TestaTtestamento;
 use App\Entity\TestaTvalidacion;
 use App\Entity\TestaTimagen;
+use App\Entity\TestaTotorgante;
+use App\Entity\TestaTtestaotorgante;
 use App\Repository\TestaTtestamentoRepository;
 
 class ValidacionTestamentos{
@@ -17,22 +19,22 @@ class ValidacionTestamentos{
     {
         //Seleccionar de la base de datos 3 registros por filename
         $idFoto = $em->getRepository(TestaTimagen::class)->findOneBy(['des_imagen' => $form->get('foto')->getData()]);
-        $fotos = $em->getRepository(TestaTtestamento::class)->findTestaImagen($idFoto);
+        $testamentos = $em->getRepository(TestaTtestamento::class)->findTestaImagen($idFoto);
+        $size = count($testamentos);
+        for($i = 0;$i<$size;$i++){
+            $testaOtorgantes[$i] = $em->getRepository(TestaTtestaotorgante::class)->findBy(["id_testamento"=> $testamentos->getId()]);
+        }
+        
 
         $validaciones = [];
-        $size = count($fotos);
-        dump($fotos);
-        dump(count($fotos));
         if($size>=3){
             for($i=0; $i<$size;$i++){
-                $validaciones[$i] = new TestaTvalidacion($fotos[$i]);
-                dump($validaciones[$i]);
+                $validaciones[$i] = new TestaTvalidacion($testamentos[$i]);
             }
-        
-            dump($validaciones);
 
             //comparar anno
             $pAnno = 0;
+
             if(($validaciones[0]->getIdTestamento()->getAnno() == $validaciones[1]->getIdTestamento()->getAnno()) &&
                ($validaciones[0]->getIdTestamento()->getAnno() == $validaciones[2]->getIdTestamento()->getAnno())){
                     $pAnno = 100;
@@ -128,18 +130,18 @@ class ValidacionTestamentos{
             $pNotario = ($p1+$p2+$p3)/3;
 
             //comparar des_parentesco
-            $pParentesco = 0;
-            $par1 = strtoupper($validaciones[0]->getIdTestamento()->getParentesco()->getDesParentesco());
-            $par2 = strtoupper($validaciones[1]->getIdTestamento()->getParentesco()->getDesParentesco());
-            $par3 = strtoupper($validaciones[2]->getIdTestamento()->getParentesco()->getDesParentesco());
-            similar_text($par1, $par2, $p1);
-            similar_text($par1, $par3, $p2);
-            similar_text($par2, $par3, $p3);
-            $pParentesco = ($p1+$p2+$p3)/3;
+            // $pParentesco = 0;
+            // $par1 = strtoupper($validaciones[0]->getIdTestamento()->getParentesco()->getDesParentesco());
+            // $par2 = strtoupper($validaciones[1]->getIdTestamento()->getParentesco()->getDesParentesco());
+            // $par3 = strtoupper($validaciones[2]->getIdTestamento()->getParentesco()->getDesParentesco());
+            // similar_text($par1, $par2, $p1);
+            // similar_text($par1, $par3, $p2);
+            // similar_text($par2, $par3, $p3);
+            // $pParentesco = ($p1+$p2+$p3)/3;
 
             $pMedio = ($pAnno + $pMes + $pDia + $pMancomunado + 
                        $pIlegible + $pProtocolo + $pFolio + 
-                       $pPoblacion + $pNotario + $pParentesco) / 10;
+                       $pPoblacion + $pNotario /*+ $pParentesco*/) / 10;
 
             $valMedios = array(
                                 "anno" => $pAnno,
@@ -151,7 +153,7 @@ class ValidacionTestamentos{
                                 "folio" => $pFolio,
                                 "poblacion" => $pPoblacion,
                                 "notario" => $pNotario,
-                                "parentesco" => $pParentesco,
+                                // "parentesco" => $pParentesco,
             );
                        
             for($i=0; $i<$size;$i++){

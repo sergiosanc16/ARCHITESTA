@@ -48,13 +48,10 @@ class TestaTtestamento
     #[ORM\JoinColumn(name: 'id_imagen', referencedColumnName: 'id', nullable: true)]
     private ?TestaTimagen $imagen = null;
 
-    #[ORM\ManyToOne(targetEntity: TestaTparentesco::class)]
-    #[ORM\JoinColumn(name: 'id_parentesco', referencedColumnName: 'id', nullable: true)]
-    private ?TestaTparentesco $parentesco = null;
 
     function __construct(int $anno, string $mes, int $dia, bool $mancomunado, bool $textoilegible,
                          int $num_protocolo, int $num_folio, TestaTpoblacion $poblacion,
-                         TestaTnotario $notario, TestaTimagen $imagen, TestaTparentesco $parentesco) {
+                         TestaTnotario $notario, TestaTimagen $imagen) {
         $this->anno = $anno;
         $this->mes = $mes;
         $this->dia = $dia;
@@ -65,7 +62,6 @@ class TestaTtestamento
         $this->poblacion = $poblacion;
         $this->notario = $notario;
         $this->imagen = $imagen;
-        $this->parentesco = $parentesco;
     }
 
     // Getters y setters...
@@ -173,16 +169,6 @@ class TestaTtestamento
     { 
         $this->imagen = $imagen;
         return $this; 
-    }
-
-    public function getParentesco(): ?TestaTparentesco 
-    { 
-        return $this->parentesco;
-    }
-    public function setParentesco(?TestaTparentesco $parentesco): self 
-    { 
-        $this->parentesco = $parentesco;
-        return $this;
     }
 
     public function __toString(){ 
