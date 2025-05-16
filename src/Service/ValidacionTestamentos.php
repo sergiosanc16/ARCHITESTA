@@ -192,7 +192,6 @@ class ValidacionTestamentos{
             }
             $pOtorgante = ($pNom + $pAp1 + $pAp2 + $pOfi + $pPar) / ($count * 5);
 
-
             $pMedio = ($pAnno + $pMes + $pDia + $pMancomunado + 
                        $pIlegible + $pProtocolo + $pFolio + 
                        $pPoblacion + $pNotario + $pOtorgante) / 10;
@@ -207,7 +206,7 @@ class ValidacionTestamentos{
                                 "folio" => $pFolio,
                                 "poblacion" => $pPoblacion,
                                 "notario" => $pNotario,
-                                "notario" => $pOtorgante,
+                                "otorgante" => $pOtorgante,
                                 // "parentesco" => $pParentesco,
             );
                        
