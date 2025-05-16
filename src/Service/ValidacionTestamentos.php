@@ -25,10 +25,10 @@ class ValidacionTestamentos{
         $size = count($testamentos);
         $otorgantes=[];
         for($i = 0;$i<$size;$i++){
-            $otorgantes[$i] = $em->getRepository(TestaTtestaotorgante::class)->findBy(["id_testamento"=> $testamentos->getId()]);
+            $otorgantes[$i] = $em->getRepository(TestaTtestaotorgante::class)->findBy(["id_testamento"=> $testamentos[$i]->getId()]);
         }
+        dump($otorgantes);
         
-
         $validaciones = [];
         if($size>=3){
             for($i=0; $i<$size;$i++){
@@ -151,20 +151,51 @@ class ValidacionTestamentos{
             $pNotario = ($aux / (($size * (($size+1))/2)*100));
 
             //comparador de otorgante por todas sus propiedades TODO
+            $pNom = 0;
+            $pAp1 = 0;
+            $pAp2 = 0;
+            $pOfi = 0;
+            $pPar = 0;
+            $count = 0;
+            for($i=0;$i< count($otorgantes);$i++ ){
+                for($j=$i;$j<count($otorgantes);$j++){
+                    for($t=0;$t<count($otorgantes[$i]);$t++){
+                        $count++;
+                        $pAux=0;
+                        //nombre
+                        $nom1 = strtoupper($otorgante[$i][$t]->getOtorgante()->getNombre());
+                        $nom2 = strtoupper($otorgante[$i][$t]->getOtorgante()->getNombre());
+                        similar_text($nom1, $nom2, $pAux);
+                        $pNom += $pAux;
+                        //apellido1
+                        $ap11 = strtoupper($otorgante[$i][$t]->getOtorgante()->getApellido1());
+                        $ap12 = strtoupper($otorgante[$i][$t]->getOtorgante()->getApellido1());
+                        similar_text($ap11, $ap12, $pAux);
+                        $pAp1 += $pAux;
+                        //apellid2
+                        $ap21 = strtoupper($otorgante[$i][$t]->getOtorgante()->getApellido2());
+                        $ap22 = strtoupper($otorgante[$i][$t]->getOtorgante()->getApellido2());
+                        similar_text($ap21, $ap22, $pAux);
+                        $pAp2 += $pAux;
+                        //oficio
+                        $ofi1 = strtoupper($otorgante[$i][$t]->getOtorgante()->getIdOficio()->getDesOficio());
+                        $ofi2 = strtoupper($otorgante[$i][$t]->getOtorgante()->getIdOficio()->getDesOficio());
+                        similar_text($ofi1, $ofi2, $pAux);
+                        $pOfi += $pAux;
+                        //parentesco
+                        $par1 = strtoupper($otorgante[$i][$t]->getOtorgante()->getParentesco()->getDesParentesco());
+                        $par2 = strtoupper($otorgante[$i][$t]->getOtorgante()->getParentesco()->getDesParentesco());
+                        similar_text($par1, $par2, $pAux);
+                        $pPar += $pAux;
+                    }
+                }
+            }
+            $pOtorgante = ($pNom + $pAp1 + $pAp2 + $pOfi + $pPar) / ($count * 5);
 
-            //comparar des_parentesco
-            // $pParentesco = 0;
-            // $par1 = strtoupper($validaciones[0]->getIdTestamento()->getParentesco()->getDesParentesco());
-            // $par2 = strtoupper($validaciones[1]->getIdTestamento()->getParentesco()->getDesParentesco());
-            // $par3 = strtoupper($validaciones[2]->getIdTestamento()->getParentesco()->getDesParentesco());
-            // similar_text($par1, $par2, $p1);
-            // similar_text($par1, $par3, $p2);
-            // similar_text($par2, $par3, $p3);
-            // $pParentesco = ($p1+$p2+$p3)/3;
 
             $pMedio = ($pAnno + $pMes + $pDia + $pMancomunado + 
                        $pIlegible + $pProtocolo + $pFolio + 
-                       $pPoblacion + $pNotario /*+ $pParentesco*/) / 10;
+                       $pPoblacion + $pNotario + $pOtorgante) / 10;
 
             $valMedios = array(
                                 "anno" => $pAnno,
@@ -176,6 +207,7 @@ class ValidacionTestamentos{
                                 "folio" => $pFolio,
                                 "poblacion" => $pPoblacion,
                                 "notario" => $pNotario,
+                                "notario" => $pOtorgante,
                                 // "parentesco" => $pParentesco,
             );
                        
