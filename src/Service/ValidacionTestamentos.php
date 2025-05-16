@@ -46,7 +46,7 @@ class ValidacionTestamentos{
                         }
                     }
                 }
-                $pAnno = ($aux / (($size * ($size+1))/2))*100;
+                $pAnno = ($aux / ($size * ($size+1))/2);
 
                 //comparar mes
                 $pMes = 0;
@@ -60,7 +60,7 @@ class ValidacionTestamentos{
                         $aux += $p;
                     }
                 }
-                $pMes = ($aux / (($size * (($size+1))/2)*100));;
+                $pMes = ($aux / ($size * (($size+1))/2));;
 
                 //comparar dia
                 $pDia = 0;
@@ -135,7 +135,7 @@ class ValidacionTestamentos{
                         $aux += $p;
                     }
                 }
-                $pPoblacion = ($aux / (($size * (($size+1))/2)*100));
+                $pPoblacion = ($aux / (($size * (($size+1))/2)));
 
                 //comparar nombre de notario
                 $pNotario = 0;
@@ -149,7 +149,7 @@ class ValidacionTestamentos{
                         $aux += $p;
                     }
                 }
-                $pNotario = ($aux / (($size * (($size+1))/2)*100));
+                $pNotario = ($aux / ($size * (($size+1))/2));
 
                 //comparador de otorgante por todas sus propiedades TODO
                 $pNom = 0;
