@@ -163,28 +163,28 @@ class ValidacionTestamentos{
                         $count++;
                         $pAux=0;
                         //nombre
-                        $nom1 = strtoupper($otorgante[$i][$t]->getOtorgante()->getNombre());
-                        $nom2 = strtoupper($otorgante[$i][$t]->getOtorgante()->getNombre());
+                        $nom1 = strtoupper($otorgantes[$i][$t]->getOtorgante()->getNombre());
+                        $nom2 = strtoupper($otorgantes[$i][$t]->getOtorgante()->getNombre());
                         similar_text($nom1, $nom2, $pAux);
                         $pNom += $pAux;
                         //apellido1
-                        $ap11 = strtoupper($otorgante[$i][$t]->getOtorgante()->getApellido1());
-                        $ap12 = strtoupper($otorgante[$i][$t]->getOtorgante()->getApellido1());
+                        $ap11 = strtoupper($otorgantes[$i][$t]->getOtorgante()->getApellido1());
+                        $ap12 = strtoupper($otorgantes[$i][$t]->getOtorgante()->getApellido1());
                         similar_text($ap11, $ap12, $pAux);
                         $pAp1 += $pAux;
                         //apellid2
-                        $ap21 = strtoupper($otorgante[$i][$t]->getOtorgante()->getApellido2());
-                        $ap22 = strtoupper($otorgante[$i][$t]->getOtorgante()->getApellido2());
+                        $ap21 = strtoupper($otorgantes[$i][$t]->getOtorgante()->getApellido2());
+                        $ap22 = strtoupper($otorgantes[$i][$t]->getOtorgante()->getApellido2());
                         similar_text($ap21, $ap22, $pAux);
                         $pAp2 += $pAux;
                         //oficio
-                        $ofi1 = strtoupper($otorgante[$i][$t]->getOtorgante()->getIdOficio()->getDesOficio());
-                        $ofi2 = strtoupper($otorgante[$i][$t]->getOtorgante()->getIdOficio()->getDesOficio());
+                        $ofi1 = strtoupper($otorgantes[$i][$t]->getOtorgante()->getIdOficio()->getDesOficio());
+                        $ofi2 = strtoupper($otorgantes[$i][$t]->getOtorgante()->getIdOficio()->getDesOficio());
                         similar_text($ofi1, $ofi2, $pAux);
                         $pOfi += $pAux;
                         //parentesco
-                        $par1 = strtoupper($otorgante[$i][$t]->getOtorgante()->getParentesco()->getDesParentesco());
-                        $par2 = strtoupper($otorgante[$i][$t]->getOtorgante()->getParentesco()->getDesParentesco());
+                        $par1 = strtoupper($otorgantes[$i][$t]->getOtorgante()->getParentesco()->getDesParentesco());
+                        $par2 = strtoupper($otorgantes[$i][$t]->getOtorgante()->getParentesco()->getDesParentesco());
                         similar_text($par1, $par2, $pAux);
                         $pPar += $pAux;
                     }
