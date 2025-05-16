@@ -25,7 +25,7 @@ class ValidacionTestamentos{
         $size = count($testamentos);
         $otorgantes=[];
         for($i = 0;$i<$size;$i++){
-            $otorgantes[$i] = $em->getRepository(TestaTtestaotorgante::class)->findBy(["id_testamento"=> $testamentos[$i]->getId()]);
+            $otorgantes[$i] = $em->getRepository(TestaTtestaotorgante::class)->findBy(['ID_TESTAMENTO' => $testamentos[$i]->getId()]);
         }
         dump($otorgantes);
         
