@@ -22,7 +22,7 @@ class ValidacionTestamentos{
         $fotos = $em->getRepository(TestaTimagen::class)->findAll();
         $testTotal = 0;
         $flush = 0;
-        $lote = 0;
+        $lote = 20;
         foreach($fotos as $idFoto){
             $testamentos = $em->getRepository(TestaTtestamento::class)->findTestaImagen($idFoto);
             $size = count($testamentos);
