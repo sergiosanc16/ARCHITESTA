@@ -214,7 +214,6 @@ class CsvUploadService{
                     $raw->setSecondGrantorName("Ningun@");
                 }
                 $em->persist($raw);
-
                 
                 $imagen = $em->getRepository(TestaTimagen::class)->findOneBy(['des_imagen' => $raw->getFilename()]);
                 if($imagen==null){
@@ -245,6 +244,7 @@ class CsvUploadService{
                     $pobalcion = new TestaTpoblacion($raw->getPopulationName());
                     $em->persist($pobalcion);
                 }
+
                 $otorgante = new TestaTotorgante($raw->getGrantorName(),$raw->getGrantorSurname1(),
                                                 $raw->getGratorSurname2(),$oficio, $parentesco );
                 $em->persist($otorgante);
@@ -273,6 +273,7 @@ class CsvUploadService{
                 $em->flush();
                 $em->clear();
             }
+            
             $flush++;
         }
         $em->flush();

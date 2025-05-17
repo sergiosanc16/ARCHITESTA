@@ -21,6 +21,8 @@ class ValidacionTestamentos{
         //Hacer automatico, no recibe de la entrada la imagen
         $fotos = $em->getRepository(TestaTimagen::class)->findAll();
         $testTotal = 0;
+        $flush = 0;
+        $lote = 0;
         foreach($fotos as $idFoto){
             $testamentos = $em->getRepository(TestaTtestamento::class)->findTestaImagen($idFoto);
             $size = count($testamentos);
@@ -33,6 +35,8 @@ class ValidacionTestamentos{
             $validaciones = [];
             if($size>=3){
                 for($i=0; $i<$size;$i++){
+                    $testamentos[$i]->setEstadoValidacion('A');
+                    $em->persist($testamentos[$i]);
                     $validaciones[$i] = new TestaTvalidacion($testamentos[$i]);
                 }
 
@@ -208,7 +212,6 @@ class ValidacionTestamentos{
                                     "poblacion" => $pPoblacion,
                                     "notario" => $pNotario,
                                     "otorgante" => $pOtorgante,
-                                    // "parentesco" => $pParentesco,
                 );
                         
                 for($i=0; $i<$size;$i++){
@@ -216,10 +219,17 @@ class ValidacionTestamentos{
                     $validaciones[$i]->setvalidaciones($valMedios);
                     $em->persist($validaciones[$i]);
                 }
-
-                $em->flush();
+                if ((($flush % $lote) === 0)) {
+                    $em->flush();
+                    $em->clear();
+                }
+            
+                $flush++;
             }
         }
+        $em->flush();
+        $em->clear();
+                
         return "Se han validado $testTotal testamentos";
     }
 }

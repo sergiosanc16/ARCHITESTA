@@ -48,6 +48,9 @@ class TestaTtestamento
     #[ORM\JoinColumn(name: 'id_imagen', referencedColumnName: 'id', nullable: true)]
     private ?TestaTimagen $imagen = null;
 
+    #[ORM\Column(length: 1)]
+    private ?string $estado_validacion = null;
+
 
     function __construct(int $anno, string $mes, int $dia, bool $mancomunado, bool $textoilegible,
                          int $num_protocolo, int $num_folio, TestaTpoblacion $poblacion,
@@ -62,6 +65,7 @@ class TestaTtestamento
         $this->poblacion = $poblacion;
         $this->notario = $notario;
         $this->imagen = $imagen;
+        $this->estado_validacion = 'N';
     }
 
     // Getters y setters...
@@ -176,5 +180,17 @@ class TestaTtestamento
         // to show the name of the Category in the select 
 
         return $this->id.'-'.$this->dia.'/'.$this->mes.'/'.$this->anno; 
+    }
+
+    public function getEstadoValidacion(): ?string
+    {
+        return $this->estado_validacion;
+    }
+
+    public function setEstadoValidacion(string $estado_validacion): static
+    {
+        $this->estado_validacion = $estado_validacion;
+
+        return $this;
     }  
 }

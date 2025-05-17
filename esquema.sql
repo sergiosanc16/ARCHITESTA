@@ -216,6 +216,7 @@ CREATE TABLE `testa_ttestamento` (
   `textoilegible` tinyint(1) NOT NULL,
   `num_protocolo` int NOT NULL,
   `num_folio` int NOT NULL,
+  `estado_validacion` varchar(1) COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `UNIQ_393EEADA52E675E` (`id_imagen`),
   KEY `IDX_393EEAD7EE3862E` (`id_poblacion`),
@@ -401,4 +402,4 @@ CREATE TABLE `testa_vtestavalidacion` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-05-15  9:39:02
+-- Dump completed on 2025-05-17  9:27:43
