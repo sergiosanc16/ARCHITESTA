@@ -121,8 +121,8 @@ return static function (ContainerConfigurator $container) {
         ->set('validate_request_listener', ValidateRequestListener::class)
             ->tag('kernel.event_subscriber')
 
-        ->set('disallow_search_engine_index_response_listener', DisallowRobotsIndexingListener::class)
-            ->tag('kernel.event_subscriber')
+       // ->set('disallow_search_engine_index_response_listener', DisallowRobotsIndexingListener::class)
+       //     ->tag('kernel.event_subscriber')
 
         ->set('error_controller', ErrorController::class)
             ->public()

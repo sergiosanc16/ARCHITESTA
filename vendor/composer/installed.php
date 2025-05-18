@@ -3,7 +3,7 @@
         'name' => '__root__',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => '5a7cb72374e32fdf41b9d19e4124cf9752f99e87',
+        'reference' => '0d092f2a76475b7d13a75d8e6ef071ffc3c10d4a',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -13,7 +13,7 @@
         '__root__' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => '5a7cb72374e32fdf41b9d19e4124cf9752f99e87',
+            'reference' => '0d092f2a76475b7d13a75d8e6ef071ffc3c10d4a',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
@@ -961,6 +961,15 @@
             'install_path' => __DIR__ . '/../symfony/phpunit-bridge',
             'aliases' => array(),
             'dev_requirement' => true,
+        ),
+        'symfony/polyfill-apcu' => array(
+            'pretty_version' => 'v1.32.0',
+            'version' => '1.32.0.0',
+            'reference' => '9cba05c714911d416f478a74d1758865f7373c3f',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../symfony/polyfill-apcu',
+            'aliases' => array(),
+            'dev_requirement' => false,
         ),
         'symfony/polyfill-ctype' => array(
             'dev_requirement' => false,
