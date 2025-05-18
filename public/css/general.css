@@ -140,3 +140,14 @@ tfoot input {
 .fondoclaro th {
   background-color: rgb(246, 189, 119);  
 }
+
+.tabla-scroll {
+  overflow-x: auto;
+  width: 100%;
+}
+
+.tabla-scroll table {
+  width: max-content;
+  min-width: 100%;
+  border-collapse: collapse;
+}
