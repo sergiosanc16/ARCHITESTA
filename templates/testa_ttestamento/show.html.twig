@@ -186,8 +186,6 @@
                                 {% else %}
                                     {% set fichero='rojo.png' %}
                                 {% endif %}
-                                <th>Parentesco</th>
-                                <td>{{ testa_ttestamento.parentesco }}</td>
                                 <td><img  width="30px"   src="{{ asset('img/'~ fichero) }}"></td>
                                 <td>{{ validaciones[0].validaciones.parentesco|default('-')|number_format(2) }}</td>
                             </tr>

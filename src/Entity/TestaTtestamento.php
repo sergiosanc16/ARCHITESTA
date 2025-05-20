@@ -51,10 +51,13 @@ class TestaTtestamento
     #[ORM\Column(length: 1)]
     private ?string $estado_validacion = null;
 
+    #[ORM\Column(length: 100)]
+    private ?string $tipo_doc = null;
+
 
     function __construct(int $anno, string $mes, int $dia, bool $mancomunado, bool $textoilegible,
                          int $num_protocolo, int $num_folio, TestaTpoblacion $poblacion,
-                         TestaTnotario $notario, TestaTimagen $imagen) {
+                         TestaTnotario $notario, TestaTimagen $imagen, string $tipo_doc) {
         $this->anno = $anno;
         $this->mes = $mes;
         $this->dia = $dia;
@@ -66,6 +69,7 @@ class TestaTtestamento
         $this->notario = $notario;
         $this->imagen = $imagen;
         $this->estado_validacion = 'N';
+        $this->tipo_doc = $tipo_doc;
     }
 
     // Getters y setters...
@@ -190,6 +194,18 @@ class TestaTtestamento
     public function setEstadoValidacion(string $estado_validacion): static
     {
         $this->estado_validacion = $estado_validacion;
+
+        return $this;
+    }
+
+    public function getTipoDoc(): ?string
+    {
+        return $this->tipo_doc;
+    }
+
+    public function setTipoDoc(string $tipo_doc): static
+    {
+        $this->tipo_doc = $tipo_doc;
 
         return $this;
     }  

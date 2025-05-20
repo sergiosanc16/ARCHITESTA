@@ -23,7 +23,7 @@ class TestaTtestaotorgante
     private ?TestaTotorgante $otorgante = null;
 
     #[ORM\Column(type: 'smallint', options: ['unsigned' => true, 'default' => 1])]
-    private int $num_orden = 1;
+    private int $num_orden = 0;
 
     function __construct(TestaTtestamento $testamento, TestaTotorgante $otorgante, int $numorden) {
         $this->testamento = $testamento;

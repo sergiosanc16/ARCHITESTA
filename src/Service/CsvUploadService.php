@@ -45,6 +45,8 @@ class CsvUploadService{
         $ilegible = FALSE;
         $idTask = 0;
 
+        //realizar aqui las llamadas a sql para traerlo todo de uno y comprobar
+
         while(($campos = fgetcsv($csvTemp,0, ',', '"'))!= false){
 
             foreach($campos as $id => $tarea){
@@ -171,7 +173,7 @@ class CsvUploadService{
                     $raw->setOtherPopulation(FALSE);
                 }
                 if($raw->getPopulationName()==null){
-                    $raw->setPopulationName('Ningun@');
+                    $raw->setPopulationName('Murcia');
                 }
                 if($raw->getGrantorName()==null){
                     $raw->setPopulationName('Ningun@');
@@ -257,7 +259,7 @@ class CsvUploadService{
 
                 $testamento = new testaTtestamento($raw->getYear(), $raw->getMonth(), $raw->GetDay(), $raw->isSecondGrantor(),
                                                    $ilegible, $raw->getProtocolNumber(), $raw->getFolioNumber(), $pobalcion,
-                                                   $notario,$imagen);
+                                                   $notario,$imagen,$raw->getDocumentType());
                 $em->persist($testamento);
 
                 $testaOtorgante = new TestaTtestaotorgante($testamento, $otorgante, 1);

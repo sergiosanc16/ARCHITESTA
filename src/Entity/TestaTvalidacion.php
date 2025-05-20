@@ -27,6 +27,7 @@ class TestaTvalidacion
     function __construct(TestaTtestamento $id_testamento) {
         $this->id_testamento = $id_testamento;
         $this->num_validacion = 0;
+        $this->validaciones = [];
     }
 
     public function getId(): ?int

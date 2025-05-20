@@ -53,9 +53,6 @@ class TestaVtestaotorgante
     #[ORM\Column(name: 'id_imagen', type: 'integer', nullable: true)]
     private ?int $idImagen = null;
 
-    #[ORM\Column(name: 'id_parentesco', type: 'integer', nullable: true)]
-    private ?int $idParentesco = null;
-
     #[ORM\Column(name: 'nombre', type: 'string', length: 100)]
     private string $nombre;
 
@@ -77,8 +74,6 @@ class TestaVtestaotorgante
     #[ORM\Column(name: 'des_imagen', type: 'string', length: 100)]
     private string $desImagen;
 
-    #[ORM\Column(name: 'des_parentesco', type: 'string', length: 100)]
-    private string $desParentesco;
 
     // Getters and Setters
 
@@ -230,17 +225,6 @@ class TestaVtestaotorgante
         return $this;
     }
 
-    public function getIdParentesco(): ?int
-    {
-        return $this->idParentesco;
-    }
-
-    public function setIdParentesco(?int $idParentesco): self
-    {
-        $this->idParentesco = $idParentesco;
-        return $this;
-    }
-
     public function getNombre(): string
     {
         return $this->nombre;
@@ -318,14 +302,4 @@ class TestaVtestaotorgante
         return $this;
     }
 
-    public function getDesParentesco(): string
-    {
-        return $this->desParentesco;
-    }
-
-    public function setDesParentesco(string $desParentesco): self
-    {
-        $this->desParentesco = $desParentesco;
-        return $this;
-    }
 }
