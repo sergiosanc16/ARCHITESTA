@@ -19,23 +19,53 @@
                     <table>
                         </tbody>
                             <tr>                
-                                <td width="50%">
+                                <th width="50%">
+
+                                     <a href="{{ path('app_testa_ttestamento_imagen_index', {'id_imagen': testa_ttestamento.imagen.id}) }}" title="Mostrar Otorgante">{{testa_ttestamento.imagen.id}} - {{testa_ttestamento.imagen}}</a>
                                     <img  width="100%"   src="{{ asset('img/fichas/'~ testa_ttestamento.imagen) }}">            
                                 
+                                </th>
+                            </tr>
+                            <tr>
+                                <td>
+                                <table class="table  container fondoclaro">
+                                        <tr>
+                                            {% set variable = validaciones[0].validaciones.otorgante|default('0') %}
+                                            {% if variable>=90 %}
+                                                {% set fichero='verde.png' %}
+                                            {% elseif  variable >=70 and variable < 90 %}
+                                                {% set fichero='amarillo.png' %}
+                                            {% else %}
+                                                {% set fichero='rojo.png' %}
+                                            {% endif %}
+                                            <th>
+                                                Otorgantes 
+                                            </th>
+                                            <th width="40%">
+                                                <img  width="30px"   src="{{ asset('img/'~ fichero) }}">  {{ validaciones[0].validaciones.otorgante|default('-')|number_format(2) }} 
+                                            </th>
+                                        </tr>
+                                    </table>
                                 </td>
                             </tr>
                             <tr>
-                                <th>
-                                    Otorgantes
-                                </th>
-                            </tr>
-                            {% for  otorgante in otorgantes %}
-                            <tr>
                                 <td>
-                                    {{ otorgante.numOrden }} {{ otorgante.otorgante }} <a href="{{ path('app_testa_totorgante_show', {'id': otorgante.otorgante.id}) }}" title="Mostrar Otorgante"><img  width="30px"   src="{{ asset('img/ojo.png') }}"></a> 
-                                </td>          
+                                    <table>
+                                        <tr>
+                                            <th>Nombre</th>
+                                            <th>Parentesco</th>
+                                            <th>Oficio</th>
+                                        </tr>
+                                        {% for  otorgante in otorgantes %}
+                                        <tr>
+                                            <td> <a href="{{ path('app_testa_totorgante_show', {'id': otorgante.otorgante.id}) }}" title="Mostrar Otorgante">{{ otorgante.numOrden }} {{ otorgante.otorgante }}</a></td>
+                                            <td> {{ otorgante.otorgante.parentesco }}</td>
+                                            <td>{{ otorgante.otorgante.idOficio }}</td>
+                                        </tr>
+                                        {% endfor %}
+                                    </table>
+                                </td>
                             </tr>
-                            {% endfor %}
                         </tbody>
                     </table>
                 </td>    
@@ -177,19 +207,6 @@
                                 <td><img  width="30px"   src="{{ asset('img/'~ fichero) }}"></td>
                                 <td>{{ validaciones[0].validaciones.poblacion|default('-')|number_format(2) }}</td>
                             </tr>
-                            <tr>
-                                {% set variable = validaciones[0].validaciones.parentesco|default('0') %}
-                                {% if variable>=90 %}
-                                    {% set fichero='verde.png' %}
-                                {% elseif  variable >=70 and variable < 90 %}
-                                    {% set fichero='amarillo.png' %}
-                                {% else %}
-                                    {% set fichero='rojo.png' %}
-                                {% endif %}
-                                <td><img  width="30px"   src="{{ asset('img/'~ fichero) }}"></td>
-                                <td>{{ validaciones[0].validaciones.parentesco|default('-')|number_format(2) }}</td>
-                            </tr>
-
                        </tbody>
                    </table>       
                 </td>

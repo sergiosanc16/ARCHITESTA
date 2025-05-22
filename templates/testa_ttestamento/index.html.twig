@@ -24,6 +24,7 @@
         <thead>
             <tr>
                 <th width="5%">Id</th>
+                <th width="5%">Estado</th>
                 <th width="5%">Año</th>
                 <th width="5%">Mes</th>
                 <th width="5%">Dia</th>
@@ -42,7 +43,13 @@
         <tbody>
         {% for testa_ttestamento in testa_ttestamentos %}
             <tr>
-                <td>{{ testa_ttestamento.idTestamento }}</td>
+                <td>{{ testa_ttestamento.idTestamento }} </td>
+                <td>{% if testa_ttestamento.estadoValidacion== "M" %}
+                    <img  width="30px"   src="{{ asset('img/estrella.png') }}">
+                    {% else %}
+                        {{testa_ttestamento.estadoValidacion}}
+                    {% endif %}
+                </td>
                 <td>{{ testa_ttestamento.anno }}</td>
                 <td>{{ testa_ttestamento.mes }}</td>
                 <td>{{ testa_ttestamento.dia }}</td>
@@ -67,7 +74,7 @@
             </tr>
         {% else %}
             <tr>
-            <td colspan="11">No se han encontrado registros</td>
+               <td colspan="11">No se han encontrado registros</td>
             </tr>
         {% endfor %}
         </tbody>

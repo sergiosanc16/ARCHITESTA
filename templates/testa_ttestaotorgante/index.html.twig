@@ -27,6 +27,7 @@
                 <th>Orden</th>
                 <th>Testamento</th>
                 <th>Otorgante</th>
+                <th>Oficio</th>
                 <th width="10%">Acciones</th>
             </tr>
         </thead>
@@ -37,6 +38,7 @@
                 <td>{{ testa_ttestaotorgante.numOrden }}</td>
                 <td>{{ testa_ttestaotorgante.testamento }}</td>
                 <td>{{ testa_ttestaotorgante.otorgante }}</td>
+                <td>{{ testa_ttestaotorgante.otorgante.idOficio }}</td>
                 <td>
                     <a href="{{ path('app_testa_ttestamento_show', {'id': testa_ttestaotorgante.testamento.id}) }}" title="Mostrar Testamento"><img  width="30px"   src="{{ asset('img/testamento.png') }}"></a>
                     <a href="{{ path('app_testa_ttestaotorgante_show', {'id': testa_ttestaotorgante.id}) }}" title="Mostrar Registro"><img  width="30px"   src="{{ asset('img/mostrar.png') }}"></a>

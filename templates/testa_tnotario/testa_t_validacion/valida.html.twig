@@ -1,0 +1,411 @@
+{% extends 'baseDatatable.html.twig' %}
+
+{% set id_tabla = 'validacion' %}
+{% set muestraMenu = true %}
+
+{% block title %}{{id_tabla}} Indice{% endblock %}
+
+{% block body %}
+    <h2>Corección de Validaciones. ID: {{testaTvalidacion.id}}</h2>
+
+
+    {% if nuevo|default(null) %}
+    <div class="float-right">
+    <div class="btn-group mr-2 btn-group-sm" role="group"  title="Nuevo Registro" >
+            <button type="button" class="btn boton  mr-2 btn-group-sm" role="button" onclick="location.href='{{  nuevo }}'"><i class="fa fa-plus-square"></i> Nuevo Registro</button>
+        </div>
+    </div>
+    {% endif %}
+        <form action="{{ path('app_testa_t_validacion_submit') }}" method="post" >
+            <table  class="table table-striped table-bordered table-sm  ">
+                <tr>
+                    <td width="50%" class="text-center">
+                        <img src="{{ asset('img/fichas/'~ testamento.imagen) }}">            
+                    </td>
+                    <td width="40%" class="text-center">
+                            <div class="card text-center bg-warning" >
+                                <div class="card-header">
+                                <h2> Índice Validación</h2>
+                                </div>
+                                <div class="card-body">
+                                    <h1 class="card-title">{{testaTvalidacion.numValidacion}} %</h1>
+                                </div>
+                            </div>
+                    </td>
+                </tr>
+            </table>
+
+            <table  class="table  table-bordered fondoclaro table-sm  ">
+                <thead>
+                    <tr>
+                        <th>Parametro</th>
+                        {% for validacion in validaciones %}
+                            <th> <a href="{{ path('app_testa_ttestamento_show', {'id': validacion.idTestamento}) }}" title="Mostrar Testamento">Testamento Id: {{validacion.idTestamento}} </a></th>
+                        {% endfor %}
+                            <th>
+                                Otros valores
+                            </th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr> 
+                        {% set var_default="" %}   
+                        <th>Año</th>    
+                        {% for validacion in validaciones %}
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="anno" {% if loop.first %} checked {% endif %} value="{{validacion.anno}}">
+                                <label class="form-check-label">{{validacion.anno}} ({{validacion.validaciones.anno}}%) </label>
+                            </div>
+                        </td>
+                        {% set var_default = validacion.anno %}
+                        {% endfor %}
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <div class="input-group">
+                                    <div class="input-group-text">
+                                    <input class="form-check-input mt-0" type="radio"  id="anno_radio" name="anno" value="{{ var_default }}">
+                                    </div>
+                                    <input type="text" id="anno_text" class="form-control aria-label="Text input with radio button" placeholder="{{ var_default }}">
+                                </div> 
+                            </div>
+                        </td>
+                    </tr>
+                                <script>
+                                    const customInputAnno = document.getElementById('anno_text');
+                                    const customRadioAnno = document.getElementById('anno_radio');
+
+                                    customInputAnno.addEventListener('input', () => {
+                                        customRadioAnno.value = customInputAnno.value.trim();
+                                        customInputAnno.placeholder = customInputAnno.value.trim();
+                                    });
+
+                                    customInputAnno.addEventListener('focus', () => {
+                                        customRadioAnno.checked = true;
+                                        customInputAnno.placeholder = customInputAnno.value.trim();
+                                    });
+                                </script>
+
+                    <tr>    
+                        <th>Mes</th>    
+                        {% for validacion in validaciones %}
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="mes"  {% if loop.first %} checked {% endif %} value="{{validacion.mes}}">
+                                <label class="form-check-label">{{validacion.mes}} ({{validacion.validaciones.mes}}%)</label>
+                            </div>
+                        </td>
+                        {% set var_default = validacion.mes %}
+                        {% endfor %}
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <div class="input-group">
+                                    <div class="input-group-text">
+                                    <input class="form-check-input mt-0" type="radio" id="mes_radio" name="mes" value="{{ var_default }}">
+                                    </div>
+                                    <select name="mes_select" id="mes_text" value="01">
+                                            <option value="01" selected>Enero</option>
+                                            <option value="02">Febrero</option>
+                                            <option value="03">Marzo</option>
+                                            <option value="04">Abril</option>
+                                            <option value="05">Mayo</option>
+                                            <option value="06">Junio</option>
+                                            <option value="07">Julio</option>
+                                            <option value="08">Agosto</option>
+                                            <option value="09">Septiembre</option>
+                                            <option value="10">Octubre</option>
+                                            <option value="11">Noviembre</option>
+                                            <option value="12">Diciembre</option>
+                                    </select>                                    
+                                </div> 
+                            </div>
+                        </td>
+                    </tr>
+
+                                <script>
+                                    const customInputMes = document.getElementById('mes_text');
+                                    const customRadioMes = document.getElementById('mes_radio');
+
+                                    customRadioMes.addEventListener('input', () => {
+                                        customRadioMes.value = customInputMes.value;
+                                    });
+
+
+                                    customInputMes.addEventListener('input', () => {
+                                        customRadioMes.value = customInputMes.value;
+                                    });
+
+                                    customInputMes.addEventListener('focus', () => {
+                                        customRadioMes.checked = true;
+                                        customRadioMes.value = customInputMes.value;
+                                    });
+                                </script>
+
+
+                    <tr>    
+                        <th>Dia</th>    
+                        {% for validacion in validaciones %}
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="dia"  {% if loop.first %} checked {% endif %} value="{{validacion.dia}}">
+                                <label class="form-check-label">{{validacion.dia}} ({{validacion.validaciones.dia}}%)</label>
+                            </div>
+                        </td>
+                        {% set var_default = validacion.dia %}
+                        {% endfor %}
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <div class="input-group">
+                                    <div class="input-group-text">
+                                    <input class="form-check-input mt-0" type="radio" id="dia_radio" name="dia" value="{{ var_default }}">
+                                    </div>
+                                    <select name="dia_select" id="dia_text">
+                                        {% for i in 1..31 %}
+                                            <option value="{{ i|format('%02d') }}"  {% if loop.first %} selected {% endif %}>{{ i|format('%02d') }} </option>
+                                        {% endfor %}
+                                    </select>
+                                </div> 
+                            </div>
+                        </td>
+                    </tr>
+                                <script>
+                                    const customInputDia = document.getElementById('dia_text');
+                                    const customRadioDia = document.getElementById('dia_radio');
+
+                                    customRadioDia.addEventListener('input', () => {
+                                        customRadioDia.value = customInputDia.value;
+                                    });
+
+
+                                    customInputDia.addEventListener('input', () => {
+                                        customRadioDia.value = customInputDia.value;
+                                    });
+
+                                    customInputDia.addEventListener('focus', () => {
+                                        customRadioDia.checked = true;
+                                        customRadioDia.value = customInputDia.value;
+                                    });
+                                </script>
+
+                    <tr>    
+                        <th>Mancomunado</th>    
+                        {% for validacion in validaciones %}
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="mancomunado"  {% if loop.first %} checked {% endif %} value="{{ validacion.mancomunado==1 ? 1 : 0 }}">
+                                <label class="form-check-label">{{ validacion.mancomunado==1 ? 'Sí' : 'No' }} ({{validacion.validaciones.mancomunado}}%)</label>
+                                
+                            </div>
+                        </td>
+                        {% set var_default = validacion.mancomunado %}
+                        {% endfor %}
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <div class="input-group">
+                                    <div class="input-group-text">
+                                    <input class="form-check-input mt-0" id="mancomunado_radio" type="radio" name="mancomunado" value="{{ var_default }}">
+                                    </div>
+                                    <select name="mancomunado_select" id="mancomunado_text">
+                                            <option value="1" selected="selected">Sí</option>
+                                            <option value="0">No</option>
+                                    </select>                                    
+                                </div> 
+                            </div>
+                        </td>
+                    </tr>
+
+                                <script>
+                                    const customInputMancomunado = document.getElementById('mancomunado_text');
+                                    const customRadioMancomunado = document.getElementById('mancomunado_radio');
+
+                                    customRadioMancomunado.addEventListener('input', () => {
+                                        customRadioMancomunado.value = customInputMancomunado.value.trim();
+                                    });
+
+                                    customInputMancomunado.addEventListener('input', () => {
+                                        customRadioMancomunado.value = customInputMancomunado.value.trim();
+                                    });
+
+                                    customInputMancomunado.addEventListener('focus', () => {
+                                        customRadioMancomunado.checked = true;
+                                    });
+                                </script>
+
+
+                    <tr>    
+                        <th>Ilegible</th>    
+                        {% for validacion in validaciones %}
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="ilegible"  {% if loop.first %} checked {% endif %} value="{{ validacion.textoilegible==1 ? 1 : 0 }}">
+                                <label class="form-check-label">{{ validacion.textoilegible==1 ? 'Sí' : 'No' }} ({{validacion.validaciones.ilegible}}%)</label>
+                            </div>
+                        </td>
+                        {% set var_default = validacion.textoilegible %}
+                        {% endfor %}
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <div class="input-group">
+                                    <div class="input-group-text">
+                                    <input class="form-check-input mt-0" type="radio" id="ilegible_radio" name="ilegible" value="{{ var_default }}">
+                                    </div>
+                                    <select name="ilegible_select" id="ilegible_text">
+                                            <option value="1" selected="selected">Sí</option>
+                                            <option value="0">No</option>
+                                    </select>                                    
+                                </div> 
+                            </div>
+                        </td>
+                    </tr>
+
+                                <script>
+                                    const customInputIlegible = document.getElementById('ilegible_text');
+                                    const customRadioIlegible = document.getElementById('ilegible_radio');
+
+                                    customRadioIlegible.addEventListener('input', () => {
+                                        customRadioIlegible.value = customInputIlegible.value.trim();
+                                    });
+
+                                    customInputIlegible.addEventListener('input', () => {
+                                        customRadioIlegible.value = customInputIlegible.value.trim();
+                                    });
+
+                                    customInputIlegible.addEventListener('focus', () => {
+                                        customRadioIlegible.checked = true;
+                                    });
+                                </script>
+
+
+
+                    <tr>    
+                        <th>Protocolo</th>    
+                        {% for validacion in validaciones %}
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="protocolo" {% if loop.first %} checked {% endif %} value="{{validacion.numProtocolo}}">
+                                <label class="form-check-label">{{validacion.numProtocolo}} ({{validacion.validaciones.protocolo}}%)</label>
+                            </div>
+                        </td>
+                        {% set var_default = validacion.numProtocolo %}
+                        {% endfor %}
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <div class="input-group">
+                                    <div class="input-group-text">
+                                    <input class="form-check-input mt-0" type="radio" id="protocolo_radio" name="protocolo" value="{{ var_default }}">
+                                    </div>
+                                    <input type="text" id="protocolo_text" class="form-control" aria-label="Text input with radio button" placeholder="{{ var_default }}">
+                                </div> 
+                            </div>
+                        </td>
+                    </tr>
+
+                                <script>
+                                    const customInputProtocolo = document.getElementById('protocolo_text');
+                                    const customRadioProtocolo = document.getElementById('protocolo_radio');
+
+                                    customInputProtocolo.addEventListener('input', () => {
+                                        customRadioProtocolo.value = customInputProtocolo.value.trim();
+                                        customInputProtocolo.placeholder = customInputProtocolo.value.trim();
+                                    });
+
+                                    customInputProtocolo.addEventListener('focus', () => {
+                                        customRadioProtocolo.checked = true;
+                                        customInputProtocolo.placeholder = customInputProtocolo.value.trim();
+                                    });
+                                </script>
+
+
+                    <tr>    
+                        <th>Folio</th>    
+                        {% for validacion in validaciones %}
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="folio" {% if loop.first %} checked {% endif %} value="{{validacion.numFolio}}">
+                                <label class="form-check-label">{{validacion.numFolio}} ({{validacion.validaciones.folio}}%)</label>
+                            </div>
+                        </td>
+                        {% set var_default = validacion.numFolio %}
+                        {% endfor %}
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <div class="input-group">
+                                    <div class="input-group-text">
+                                    <input class="form-check-input mt-0" type="radio" id="folio_radio" name="folio" value="{{ var_default }}">
+                                    </div>
+                                    <input type="text" id="folio_text" class="form-control" aria-label="Text input with radio button" placeholder="{{ var_default }}">
+                                </div> 
+                            </div>
+                        </td>
+                    </tr>
+
+                                <script>
+                                    const customInputFolio = document.getElementById('folio_text');
+                                    const customRadioFolio = document.getElementById('folio_radio');
+
+                                    customInputFolio.addEventListener('input', () => {
+                                        customRadioFolio.value = customInputFolio.value.trim();
+                                        customInputFolio.placeholder = customInputFolio.value.trim();
+                                    });
+
+                                    customInputFolio.addEventListener('focus', () => {
+                                        customRadioFolio.checked = true;
+                                        customInputFolio.placeholder = customInputFolio.value.trim();
+                                    });
+                                </script>
+
+
+                    <tr>    
+                        <th>Poblacion</th>    
+                        {% for validacion in validaciones %}
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="poblacion" {% if loop.first %} checked {% endif %} value="{{validacion.poblacion.id}}">
+                                <label class="form-check-label">
+                                    <a href="{{ path('app_testa_tpoblacion_show', {'id': validacion.poblacion.id}) }}" title="Mostrar Población">{{validacion.poblacion}} </a> ({{validacion.validaciones.poblacion}}%)
+                                </label>
+                            </div>
+                        </td>
+                        {% endfor %}
+                        <td>Para validaciones manuales de población, pincha en el enlace correspondiente </td>
+                    </tr>
+
+                    <tr>    
+                        <th>Notario</th>    
+                        {% for validacion in validaciones %}
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="notario" {% if loop.first %} checked {% endif %} value="{{validacion.notario.id}}">
+                                <label class="form-check-label">
+                                    <a href="{{ path('app_testa_tnotario_show', {'id': validacion.notario.id}) }}" title="Mostrar Notario">{{validacion.notario}} </a> ({{validacion.validaciones.notario}}%)
+                                </label>
+                            </div>
+                        </td>
+                        {% endfor %}
+                        <td>Para validaciones manuales de notario, pincha en el enlace correspondiente</td>
+                    </tr>
+ 
+                    <tr>    
+                        <th>Otorgante / Parentesco / Oficio</th>    
+                        {% for validacion in validaciones %}
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="otorgante" {% if loop.first %} checked {% endif %} value="{{validacion.otorgante.id}}">
+                                <label class="form-check-label">
+                                    <a href="{{ path('app_testa_totorgante_show', {'id': validacion.otorgante.id}) }}" title="Mostrar Otorgante">{{validacion.otorgante}} / {{validacion.parentesco}} / {{validacion.otorgante.idOficio}} </a> ({{validacion.validaciones.otorgante}}%)
+                                </label>
+                            </div>
+                        </td>
+                        {% endfor %}
+                        <td>Para validaciones manuales de otorgantes, pincha en el enlace correspondiente</td>
+                    </tr>
+
+
+
+
+                </tbody>
+            </table>
+                <button type="submit" class="btn boton  mr-2 btn-group-sm" role="button"><i class="fa fa-trash"></i> Enviar</button>
+        </form>
+{% endblock %}
