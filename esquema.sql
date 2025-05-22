@@ -217,6 +217,7 @@ CREATE TABLE `testa_ttestamento` (
   `num_protocolo` int NOT NULL,
   `num_folio` int NOT NULL,
   `estado_validacion` varchar(1) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `tipo_doc` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `UNIQ_393EEADA52E675E` (`id_imagen`),
   KEY `IDX_393EEAD7EE3862E` (`id_poblacion`),
@@ -335,7 +336,6 @@ CREATE TABLE `testa_vtestaotorgante` (
   `id_poblacion` int DEFAULT NULL,
   `id_notario` int DEFAULT NULL,
   `id_imagen` int DEFAULT NULL,
-  `id_parentesco` int DEFAULT NULL,
   `nombre` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
   `apellido1` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
   `apellido2` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -343,7 +343,6 @@ CREATE TABLE `testa_vtestaotorgante` (
   `des_poblacion` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
   `DES_NOTARIO` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL,
   `des_imagen` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `des_parentesco` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -402,4 +401,4 @@ CREATE TABLE `testa_vtestavalidacion` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-05-17  9:27:43
+-- Dump completed on 2025-05-20 23:15:23

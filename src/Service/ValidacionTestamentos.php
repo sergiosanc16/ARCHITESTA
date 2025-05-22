@@ -49,7 +49,7 @@ class ValidacionTestamentos{
                         }
                     }
                 }
-                $pAnno = ($aux / ($size * ($size+1))/2);
+                $pAnno = ($aux / ($size * ($size+1))/2)*100;
 
                 //comparar mes
                 $pMes = 0;
@@ -63,7 +63,7 @@ class ValidacionTestamentos{
                         $aux += $p;
                     }
                 }
-                $pMes = ($aux / ($size * (($size+1))/2))*100;
+                $pMes = ($aux / ($size * (($size+1))/2));
 
                 //comparar dia
                 $pDia = 0;
@@ -138,7 +138,7 @@ class ValidacionTestamentos{
                         $aux += $p;
                     }
                 }
-                $pPoblacion = ($aux / (($size * (($size+1))/2)))*100;
+                $pPoblacion = ($aux / (($size * (($size+1))/2)));
 
                 //comparar nombre de notario
                 $pNotario = 0;
@@ -152,7 +152,21 @@ class ValidacionTestamentos{
                         $aux += $p;
                     }
                 }
-                $pNotario = ($aux / ($size * (($size+1))/2))*100;
+                $pNotario = ($aux / ($size * (($size+1))/2));
+
+                //comparar documento
+                $pDoc = 0;
+                $aux = 0;
+                for($i = 0;$i<$size-1;$i++){
+                    for($j = $i;$j<$size;$j++){
+                        $p = 0;
+                        $not1 = strtoupper($validaciones[$i]->getIdTestamento()->getTipoDoc());
+                        $not2 = strtoupper($validaciones[$j]->getIdTestamento()->getTipoDoc());
+                        similar_text($not1, $not2, $p);
+                        $aux += $p;
+                    }
+                }
+                $pDoc = ($aux / ($size * (($size+1))/2));
 
                 //comparador de otorgante por todas sus propiedades TODO
                 $pNom = 0;
@@ -198,7 +212,7 @@ class ValidacionTestamentos{
 
                 $pMedio = ($pAnno + $pMes + $pDia + $pMancomunado + 
                         $pIlegible + $pProtocolo + $pFolio + 
-                        $pPoblacion + $pNotario + $pOtorgante) / 10;
+                        $pPoblacion + $pNotario + $pOtorgante + $pDoc) / 11;
 
                 $valMedios = array(
                                     "anno" => $pAnno,
@@ -211,6 +225,7 @@ class ValidacionTestamentos{
                                     "poblacion" => $pPoblacion,
                                     "notario" => $pNotario,
                                     "otorgante" => $pOtorgante,
+                                    "documento" => $pDoc
                 );
                         
                 for($i=0; $i<$size;$i++){
