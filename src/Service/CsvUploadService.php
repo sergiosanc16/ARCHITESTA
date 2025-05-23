@@ -257,9 +257,19 @@ class CsvUploadService{
                     $em->persist($segOtorgante);
                 }
 
-                $testamento = new testaTtestamento($raw->getYear(), $raw->getMonth(), $raw->GetDay(), $raw->isSecondGrantor(),
-                                                   $ilegible, $raw->getProtocolNumber(), $raw->getFolioNumber(), $pobalcion,
-                                                   $notario,$imagen,$raw->getDocumentType());
+                $testamento = new testaTtestamento();
+                $testamento->setAnno($raw->getYear());
+                $testamento->setMes($raw->getMonth());
+                $testamento->setDia($raw->GetDay());
+                $testamento->setMancunado($raw->isSecondGrantor());
+                $testamento->setTextoIlegible($ilegible);
+                $testamento->setNumProtocolo($raw->getProtocolNumber());
+                $testamento->setNumFolio($raw->getFolioNumber());
+                $testamento->setPoblacion($pobalcion);
+                $testamento->setNotario($notario);
+                $testamento->setIdImagen($imagen);
+                $testamento->setTipoDoc($raw->getDocumentType());
+                $testamento->setEstadovalidacion('N');
                 $em->persist($testamento);
 
                 $testaOtorgante = new TestaTtestaotorgante($testamento, $otorgante, 1);
