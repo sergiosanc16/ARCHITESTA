@@ -59,7 +59,9 @@ class CsvUploadService{
             $ilegible = FALSE;
             $raw = new TestaTraw();
             $raw->setClassificationId($campos['0']);
-            $datosTareas = json_decode($campos[$idTask], true);
+            $trans = mb_convert_encoding($campos[$idTask], 'UTF-8', 'UTF-8');
+
+            $datosTareas = json_decode($trans, true);
             dump($idTask);
             dump($campos[$idTask]);
             dump($datosTareas);
