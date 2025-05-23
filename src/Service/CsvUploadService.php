@@ -60,6 +60,7 @@ class CsvUploadService{
             $raw = new TestaTraw();
             $raw->setClassificationId($campos['0']);
             $datosTareas = json_decode($campos[$idTask], true);
+            dump($idTask);
             dump($campos);
             dump($datosTareas);
 
