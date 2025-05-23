@@ -312,11 +312,11 @@ class TestaVtestavalidacion
         return $this; 
     }
 
-    public function getTipoDoc(): ?string
+    public function gettipo_doc(): ?string
     {
         return $this->tipo_doc;
     }
-    public function gettipo_doc(string $tipo_doc): self
+    public function setTipoDoc(string $tipo_doc): self
     {
         $this->tipo_doc = $tipo_doc ;
         return $this; 
