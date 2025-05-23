@@ -272,11 +272,17 @@ class CsvUploadService{
                 $testamento->setEstadovalidacion('N');
                 $em->persist($testamento);
 
-                $testaOtorgante = new TestaTtestaotorgante($testamento, $otorgante, 1);
+                $testaOtorgante = new TestaTtestaotorgante();
+                $testaOtorgante->setTestamento($testamento);
+                $testaOtorgante->setOtorgante($otorgante);
+                $testaOtorgante->setNumOrden(1);
                 $em->persist($testaOtorgante);
                 
                 if($raw->isSecondGrantor()){
-                    $testaOtorSeg = new TestaTtestaotorgante($testamento, $otorgante, 2);
+                    $testaOtorSeg = new TestaTtestaotorgante();
+                    $testaOtorSeg->setTestamento($testamento);
+                    $testaOtorSeg->setOtorgante($segOtorgante);
+                    $testaOtorSeg->setNumOrden(2);
                     $em->persist($testaOtorSeg);
                 }
 
