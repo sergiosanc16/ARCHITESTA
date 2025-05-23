@@ -24,9 +24,10 @@ class TestaTparentesco
     #[ORM\ManyToMany(targetEntity: TestaTtestamento::class, mappedBy: 'id_parentesco')]
     private Collection $testaTtestamentos;
 
-    public function __construct()
+    public function __construct(string $desParentesco)
     {
         $this->testaTtestamentos = new ArrayCollection();
+        $this->des_parentesco = $desParentesco;
     }
 
     public function getId(): ?int
