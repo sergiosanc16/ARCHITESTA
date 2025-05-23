@@ -60,6 +60,7 @@ class CsvUploadService{
             $raw = new TestaTraw();
             $raw->setClassificationId($campos['0']);
             $datosTareas = json_decode($campos[$idTask], true);
+            dump($datosTareas);
 
             if ($datosTareas) {
                 //año
@@ -287,14 +288,14 @@ class CsvUploadService{
                     $testaOtorSeg->setNumOrden(2);
                     $em->persist($testaOtorSeg);
                 }
-
+                $flush++;
             }
             if ((($flush % $lote) === 0)) {
                 $em->flush();
                 $em->clear();
             }
             
-            $flush++;
+            
         }
         $em->flush();
         $em->clear();
