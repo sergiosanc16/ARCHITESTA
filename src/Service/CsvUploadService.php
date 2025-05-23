@@ -25,7 +25,7 @@ class CsvUploadService{
         $tratamiento = preg_replace('/^"/', '', $tratamiento);
         $tratamiento = preg_replace('/";+;$/', '', $tratamiento);
         $tratamiento = preg_replace('/^((?:[^,]*,){5})([^,]*)(,)/', '$1"$2"$3', $tratamiento);
-        $tratamiento = preg_replace('/"{4}/', '""', $tratamiento);
+       // $tratamiento = preg_replace('/"{4}/', '""', $tratamiento);
         $tratamiento = preg_replace('/,""(\{)/', ',"$1', $tratamiento); 
         $tratamiento = preg_replace('/(\})""(,)/', '$1"$2', $tratamiento);
         $tratamiento = preg_replace('/,""(\[)/', ',"$1', $tratamiento);
