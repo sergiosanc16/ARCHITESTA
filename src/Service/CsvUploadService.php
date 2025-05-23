@@ -261,7 +261,7 @@ class CsvUploadService{
                 $testamento->setAnno($raw->getYear());
                 $testamento->setMes($raw->getMonth());
                 $testamento->setDia($raw->GetDay());
-                $testamento->setMancunado($raw->isSecondGrantor());
+                $testamento->setMancomunado($raw->isSecondGrantor());
                 $testamento->setTextoIlegible($ilegible);
                 $testamento->setNumProtocolo($raw->getProtocolNumber());
                 $testamento->setNumFolio($raw->getFolioNumber());
