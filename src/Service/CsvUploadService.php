@@ -272,6 +272,8 @@ class CsvUploadService{
                 $testamento->setEstadovalidacion('N');
                 $em->persist($testamento);
 
+                dump($testamento);
+
                 $testaOtorgante = new TestaTtestaotorgante();
                 $testaOtorgante->setTestamento($testamento);
                 $testaOtorgante->setOtorgante($otorgante);
