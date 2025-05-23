@@ -1,0 +1,14 @@
+{% extends 'baseDatatable.html.twig' %}
+
+{% set id_tabla = 'Nuevo Testamento' %}
+{% set muestraMenu = true %}
+
+{% block title %}Validaciones{% endblock %}
+
+
+{% block body %}
+    <h1>Se ha creado el testamento con ID: {{nuevo_testamento.id}}</h1>
+    <br>
+    <h4>Puedes consultarlo pulsando en el siguiente icono: </h4> <a href="{{ path('app_testa_ttestamento_show', {'id': nuevo_testamento.id}) }}" title="Mostrar Registro"><img  width="30px"   src="{{ asset('img/mostrar.png') }}"></a>
+
+{% endblock %}

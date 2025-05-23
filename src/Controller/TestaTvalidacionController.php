@@ -80,4 +80,86 @@ final class TestaTvalidacionController extends AbstractController
 
         return $this->redirectToRoute('app_testa_t_validacion_index', [], Response::HTTP_SEE_OTHER);
     }
+
+ #[Route('/{id}/valida', name: 'app_testa_t_validacion_valida', methods: ['GET'])]
+    public function valida(TestaTvalidacion $testaTvalidacion,
+                            TestaTtestamentoRepository $testaTtestamento,
+                            TestaVtestavalidacionRepository $testaVtestavalidacionRepository): Response
+    {
+        $id_testamento = $testaTvalidacion->getIdTestamento();
+        $testaTtestamento =  $testaTtestamento->find($id_testamento);
+        $id_imagen = $testaTtestamento->getImagen()->getId();
+//        var_dump($id_imagen);
+        $validaciones = $testaVtestavalidacionRepository->findTestaImagen($id_imagen);
+        return $this->render('testa_t_validacion/valida.html.twig', [
+            'testaTvalidacion' => $testaTvalidacion,
+            'validaciones' => $validaciones,
+            'testamento' =>  $testaTtestamento,
+        ]);
+    }
+
+ #[Route('/valida/submit', name: 'app_testa_t_validacion_submit', methods: ['POST'])]
+    public function handleForm(Request $request,
+                            EntityManagerInterface $entityManager): Response
+    {
+        $documento = $request->request->get('documento');
+ //       var_dump($documento);
+        $anno = $request->request->get('anno');
+ //       var_dump($anno);
+        $mes = $request->request->get('mes');
+ //       var_dump($mes);
+        $dia = $request->request->get('dia');
+ //       var_dump($dia);
+        $mancomunado = $request->request->get('mancomunado');
+ //       var_dump($mancomunado);
+        $ilegible = $request->request->get('ilegible');
+ //       var_dump($ilegible);
+        $protocolo = $request->request->get('protocolo');
+ //       var_dump($protocolo);
+        $folio = $request->request->get('folio');
+ //       var_dump($folio);
+        $poblacion = $request->request->get('poblacion');
+ //       var_dump($poblacion);
+        $notario = $request->request->get('notario');
+ //       var_dump($notario);
+        $imagen = $request->request->get('imagen');
+ //       var_dump($imagen);
+
+        $otorgantes = $request->request->all('otorgante');
+//        var_dump($otorgantes);
+        $testaTtestamento = new TestaTtestamento();
+        $testaTtestamento->setTipoDoc($documento);
+        $testaTtestamento->setAnno($anno);
+        $testaTtestamento->setMes($mes);
+        $testaTtestamento->setdia($dia);
+        $testaTtestamento->setMancomunado($mancomunado);
+        $testaTtestamento->setTextoilegible($ilegible);
+        $testaTtestamento->setNumProtocolo($protocolo);
+        $testaTtestamento->setNumFolio($folio);
+        $pobla = $entityManager->getRepository(testaTpoblacion::class)->find($poblacion);
+        $testaTtestamento->setPoblacion($pobla);
+        $nota = $entityManager->getRepository(testaTnotario::class)->find($notario);
+        $testaTtestamento->setNotario($nota);
+        $imag = $entityManager->getRepository(testaTimagen::class)->find($imagen);
+        $testaTtestamento->setImagen($imag);
+        $testaTtestamento->setEstadovalidacion('M');
+        $entityManager->persist($testaTtestamento);
+        $entityManager->flush();        
+
+        for($i=0; $i<count($otorgantes); $i++) {
+        $testaTtestaotorgante = new TestaTtestaotorgante();
+        $testaTtestaotorgante->setTestamento($testaTtestamento);
+        $otor = $entityManager->getRepository(testaTotorgante::class)->find($otorgantes[$i]);
+        $testaTtestaotorgante->setOtorgante($otor);
+        $testaTtestaotorgante->setNumOrden($i+1);
+        $entityManager->persist($testaTtestaotorgante);
+        $entityManager->flush();        
+        }
+
+        // Lógica con el dato recibido, como guardarlo o mostrarlo
+        return $this->render('testa_t_validacion/resultadoValidacion.html.twig', [
+            'nuevo_testamento' =>  $testaTtestamento,
+        ]);
+    }
+
 }

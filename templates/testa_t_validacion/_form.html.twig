@@ -45,6 +45,10 @@
         {{ form_widget(form.validaciones.otorgante,{'attr': {'class':'col-md-8'}}) }}
     </div>
     <div class="row">
+        {{ form_label(form.validaciones.documento, 'Documento:',{'label_attr': {'class':'col-md-2'}}) }}
+        {{ form_widget(form.validaciones.documento,{'attr': {'class':'col-md-8'}}) }}
+    </div>
+    <div class="row">
         {{ form_label(form.id_testamento, 'Testamento:',{'label_attr': {'class':'col-md-2'}}) }}
         {{ form_widget(form.id_testamento,{'attr': {'class':'col-md-8'}}) }}
     </div>

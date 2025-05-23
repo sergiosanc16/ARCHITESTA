@@ -80,6 +80,22 @@
                                 <th width="5%">Val</th>
                             </tr>
                             <tr>
+                                {% set variable = validaciones[0].validaciones.documento|default('0') %}
+                                {% if variable>=90 %}
+                                    {% set fichero='verde.png' %}
+                                {% elseif  variable >=70 and variable < 90 %}
+                                    {% set fichero='amarillo.png' %}
+                                {% else %}
+                                    {% set fichero='rojo.png' %}
+                                {% endif %}
+
+                                <th>Documento</th>
+                                <td>{{ testa_ttestamento.tipoDoc }}</td>
+                                <td><img  width="30px"   src="{{ asset('img/'~ fichero) }}"></td>
+                                <td>{{ validaciones[0].validaciones.documento|default('-')|number_format(2) }}</td>
+
+                            </tr>
+                            <tr>
                                 {% set variable = validaciones[0].validaciones.anno|default('0') %}
                                 {% if variable>=90 %}
                                     {% set fichero='verde.png' %}
@@ -207,6 +223,11 @@
                                 <td><img  width="30px"   src="{{ asset('img/'~ fichero) }}"></td>
                                 <td>{{ validaciones[0].validaciones.poblacion|default('-')|number_format(2) }}</td>
                                 
+                            </tr>
+                            <tr>
+                                {% if validaciones[0].numValidacion|default(0)!=0 %}
+                                <td colspan="2"><a href="{{ path('app_testa_t_validacion_valida', {'id': validaciones[0].id}) }}" title="Reparar Testamento"><img  width="30px"   src="{{ asset('img/reparar.png') }}"></a>Ver/gestionar validaciones</td>
+                                {% endif %}
                             </tr>
                        </tbody>
                    </table>       

@@ -88,6 +88,44 @@
                                     });
                                 </script>
 
+                    <tr> 
+                        {% set var_default="" %}   
+                        <th>Documento</th>    
+                        {% for validacion in validaciones %}
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="documento" {% if loop.first %} checked {% endif %} value="{{validacion.tipo_doc}}">
+                                <label class="form-check-label">{{validacion.tipo_doc}} ({{validacion.validaciones.documento}}%) </label>
+                            </div>
+                        </td>
+                        {% set var_default = validacion.tipo_doc %}
+                        {% endfor %}
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <div class="input-group">
+                                    <div class="input-group-text">
+                                    <input class="form-check-input mt-0" type="radio"  id="documento_radio" name="documento" value="{{ var_default }}">
+                                    </div>
+                                    <input type="text" id="documento_text" class="form-control aria-label="Text input with radio button" placeholder="{{ var_default }}">
+                                </div> 
+                            </div>
+                        </td>
+                    </tr>
+                                <script>
+                                    const customInputDocumento = document.getElementById('documento_text');
+                                    const customRadioDocumento = document.getElementById('documento_radio');
+
+                                    customInputDocumento.addEventListener('input', () => {
+                                        customRadioDocumento.value = customInputDocumento.value.trim();
+                                        customInputDocumento.placeholder = customInputDocumento.value.trim();
+                                    });
+
+                                    customInputDocumento.addEventListener('focus', () => {
+                                        customRadioDocumento.checked = true;
+                                        customInputDocumento.placeholder = customInputDocumento.value.trim();
+                                    });
+                                </script>
+
                     <tr>    
                         <th>Mes</th>    
                         {% for validacion in validaciones %}
