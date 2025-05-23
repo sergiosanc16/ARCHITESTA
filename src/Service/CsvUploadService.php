@@ -267,7 +267,7 @@ class CsvUploadService{
                 $testamento->setNumFolio($raw->getFolioNumber());
                 $testamento->setPoblacion($pobalcion);
                 $testamento->setNotario($notario);
-                $testamento->setIdImagen($imagen);
+                $testamento->setImagen($imagen);
                 $testamento->setTipoDoc($raw->getDocumentType());
                 $testamento->setEstadovalidacion('N');
                 $em->persist($testamento);
