@@ -53,6 +53,9 @@ class TestaTtestamento
     #[ORM\OneToOne(targetEntity: TestaTimagen::class)]
     #[ORM\JoinColumn(name: 'id_imagen', referencedColumnName: 'id', unique: true, nullable: true)]
     private ?TestaTimagen $imagen = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $tipo_doc = null;
 /*
     function __construct(int $anno, string $mes, int $dia, bool $mancomunado, bool $textoilegible,
                          int $num_protocolo, int $num_folio, TestaTpoblacion $poblacion,
@@ -204,5 +207,17 @@ class TestaTtestamento
         // to show the name of the Category in the select 
 
         return $this->id.'-'.$this->dia.'/'.$this->mes.'/'.$this->anno; 
+    }
+
+    public function getTipoDoc(): ?string
+    {
+        return $this->tipo_doc;
+    }
+
+    public function setTipoDoc(string $tipo_doc): static
+    {
+        $this->tipo_doc = $tipo_doc;
+
+        return $this;
     }  
 }

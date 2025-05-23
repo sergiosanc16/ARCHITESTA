@@ -54,6 +54,9 @@ class TestaVtestavalidacion
     #[ORM\Column(type: 'string')]
     private ?string $estadoValidacion=null;
 
+    #[ORM\Column(type: 'string')]
+    private string $tipo_doc;
+
     #[ORM\ManyToOne(targetEntity: TestaTpoblacion::class)]
     #[ORM\JoinColumn(name: 'id_poblacion', referencedColumnName: 'id', nullable: true)]
     private ?TestaTpoblacion $poblacion = null;
@@ -306,6 +309,16 @@ class TestaVtestavalidacion
     public function setEstadoValidacion(string $estadoValidacion ): self 
     { 
         $this->estadoValidacion = $estadoValidacion ;
+        return $this; 
+    }
+
+    public function getTipoDoc(): ?string
+    {
+        return $this->tipo_doc;
+    }
+    public function setTipoDoc(string $tipo_doc): self
+    {
+        $this->tipo_doc = $tipo_doc ;
         return $this; 
     }
 

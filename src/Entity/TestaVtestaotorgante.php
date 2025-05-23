@@ -80,6 +80,9 @@ class TestaVtestaotorgante
     #[ORM\Column(name: 'des_parentesco', type: 'string', length: 100)]
     private string $desParentesco;
 
+    #[ORM\Column(name: 'tipo_doc', type: 'string', length: 255)]
+    private string $tipo_doc;
+
     // Getters and Setters
 
     public function getId(): ?int
@@ -342,6 +345,17 @@ class TestaVtestaotorgante
     public function setDesParentesco(string $desParentesco): self
     {
         $this->desParentesco = $desParentesco;
+        return $this;
+    }
+
+    public function getTipoDoc(): string
+    {
+        return $this->tipo_doc;
+    }
+
+    public function setTipoDoc(string $tipoDoc): self
+    {
+        $this->tipo_doc = $tipoDoc;
         return $this;
     }
 }

@@ -35,6 +35,7 @@
                 <th>Notario</th>
                 <th>Población</th>
                 <th>Validacion</th>
+                <th>Documento</th>
                 <th>Imagen</th>
 
                 <th width="5%">Acciones</th>
@@ -60,6 +61,7 @@
                 <td>{{ testa_ttestamento.notario }}</td>
                 <td>{{ testa_ttestamento.poblacion }}</td>
                 <td>{{ testa_ttestamento.numValidacion }}</td>
+                <td>{{ testa_ttestamento.tipo_doc }}</td>
 
                 <td>
                     {% if asset_exists('img/fichas/'~ testa_ttestamento.imagen) %}
