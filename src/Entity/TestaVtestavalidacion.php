@@ -316,7 +316,7 @@ class TestaVtestavalidacion
     {
         return $this->tipo_doc;
     }
-    public function setTipoDoc(string $tipo_doc): self
+    public function gettipo_doc(string $tipo_doc): self
     {
         $this->tipo_doc = $tipo_doc ;
         return $this; 
