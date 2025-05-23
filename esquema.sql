@@ -31,6 +31,16 @@ CREATE TABLE `doctrine_migration_versions` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Dumping data for table `doctrine_migration_versions`
+--
+
+LOCK TABLES `doctrine_migration_versions` WRITE;
+/*!40000 ALTER TABLE `doctrine_migration_versions` DISABLE KEYS */;
+INSERT INTO `doctrine_migration_versions` VALUES ('DoctrineMigrations\\Version20250215105054','2025-03-31 17:03:35',21),('DoctrineMigrations\\Version20250225091614',NULL,NULL),('DoctrineMigrations\\Version20250225155912',NULL,NULL),('DoctrineMigrations\\Version20250225182836',NULL,NULL),('DoctrineMigrations\\Version20250331165156',NULL,NULL),('DoctrineMigrations\\Version20250331170511','2025-03-31 17:05:13',248),('DoctrineMigrations\\Version20250420092052','2025-04-20 09:21:22',100),('DoctrineMigrations\\Version20250420095349',NULL,NULL),('DoctrineMigrations\\Version20250420152449','2025-04-20 15:24:51',207),('DoctrineMigrations\\Version20250506171229','2025-05-07 15:22:12',124),('DoctrineMigrations\\Version20250515073743','2025-05-15 07:37:54',715),('DoctrineMigrations\\Version20250517072703','2025-05-17 07:27:29',197),('DoctrineMigrations\\Version20250520211458','2025-05-20 21:15:06',116),('DoctrineMigrations\\Version20250523102720','2025-05-23 10:27:25',221);
+/*!40000 ALTER TABLE `doctrine_migration_versions` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `messenger_messages`
 --
 
@@ -53,6 +63,15 @@ CREATE TABLE `messenger_messages` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Dumping data for table `messenger_messages`
+--
+
+LOCK TABLES `messenger_messages` WRITE;
+/*!40000 ALTER TABLE `messenger_messages` DISABLE KEYS */;
+/*!40000 ALTER TABLE `messenger_messages` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `reset_password_request`
 --
 
@@ -73,6 +92,15 @@ CREATE TABLE `reset_password_request` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Dumping data for table `reset_password_request`
+--
+
+LOCK TABLES `reset_password_request` WRITE;
+/*!40000 ALTER TABLE `reset_password_request` DISABLE KEYS */;
+/*!40000 ALTER TABLE `reset_password_request` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `testa_timagen`
 --
 
@@ -85,6 +113,15 @@ CREATE TABLE `testa_timagen` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `testa_timagen`
+--
+
+LOCK TABLES `testa_timagen` WRITE;
+/*!40000 ALTER TABLE `testa_timagen` DISABLE KEYS */;
+/*!40000 ALTER TABLE `testa_timagen` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `testa_tnotario`
@@ -101,6 +138,15 @@ CREATE TABLE `testa_tnotario` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Dumping data for table `testa_tnotario`
+--
+
+LOCK TABLES `testa_tnotario` WRITE;
+/*!40000 ALTER TABLE `testa_tnotario` DISABLE KEYS */;
+/*!40000 ALTER TABLE `testa_tnotario` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `testa_toficio`
 --
 
@@ -113,6 +159,15 @@ CREATE TABLE `testa_toficio` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `testa_toficio`
+--
+
+LOCK TABLES `testa_toficio` WRITE;
+/*!40000 ALTER TABLE `testa_toficio` DISABLE KEYS */;
+/*!40000 ALTER TABLE `testa_toficio` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `testa_totorgante`
@@ -137,6 +192,15 @@ CREATE TABLE `testa_totorgante` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Dumping data for table `testa_totorgante`
+--
+
+LOCK TABLES `testa_totorgante` WRITE;
+/*!40000 ALTER TABLE `testa_totorgante` DISABLE KEYS */;
+/*!40000 ALTER TABLE `testa_totorgante` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `testa_tparentesco`
 --
 
@@ -151,6 +215,15 @@ CREATE TABLE `testa_tparentesco` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Dumping data for table `testa_tparentesco`
+--
+
+LOCK TABLES `testa_tparentesco` WRITE;
+/*!40000 ALTER TABLE `testa_tparentesco` DISABLE KEYS */;
+/*!40000 ALTER TABLE `testa_tparentesco` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `testa_tpoblacion`
 --
 
@@ -163,6 +236,15 @@ CREATE TABLE `testa_tpoblacion` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `testa_tpoblacion`
+--
+
+LOCK TABLES `testa_tpoblacion` WRITE;
+/*!40000 ALTER TABLE `testa_tpoblacion` DISABLE KEYS */;
+/*!40000 ALTER TABLE `testa_tpoblacion` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `testa_traw`
@@ -198,6 +280,15 @@ CREATE TABLE `testa_traw` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Dumping data for table `testa_traw`
+--
+
+LOCK TABLES `testa_traw` WRITE;
+/*!40000 ALTER TABLE `testa_traw` DISABLE KEYS */;
+/*!40000 ALTER TABLE `testa_traw` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `testa_ttestamento`
 --
 
@@ -229,6 +320,15 @@ CREATE TABLE `testa_ttestamento` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Dumping data for table `testa_ttestamento`
+--
+
+LOCK TABLES `testa_ttestamento` WRITE;
+/*!40000 ALTER TABLE `testa_ttestamento` DISABLE KEYS */;
+/*!40000 ALTER TABLE `testa_ttestamento` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `testa_ttestaotorgante`
 --
 
@@ -249,6 +349,15 @@ CREATE TABLE `testa_ttestaotorgante` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Dumping data for table `testa_ttestaotorgante`
+--
+
+LOCK TABLES `testa_ttestaotorgante` WRITE;
+/*!40000 ALTER TABLE `testa_ttestaotorgante` DISABLE KEYS */;
+/*!40000 ALTER TABLE `testa_ttestaotorgante` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `testa_tuser`
 --
 
@@ -265,6 +374,15 @@ CREATE TABLE `testa_tuser` (
   UNIQUE KEY `UNIQ_IDENTIFIER_EMAIL` (`email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `testa_tuser`
+--
+
+LOCK TABLES `testa_tuser` WRITE;
+/*!40000 ALTER TABLE `testa_tuser` DISABLE KEYS */;
+/*!40000 ALTER TABLE `testa_tuser` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `testa_tvalidacion`
@@ -285,6 +403,15 @@ CREATE TABLE `testa_tvalidacion` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Dumping data for table `testa_tvalidacion`
+--
+
+LOCK TABLES `testa_tvalidacion` WRITE;
+/*!40000 ALTER TABLE `testa_tvalidacion` DISABLE KEYS */;
+/*!40000 ALTER TABLE `testa_tvalidacion` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `testa_vimagen`
 --
 
@@ -300,6 +427,15 @@ CREATE TABLE `testa_vimagen` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Dumping data for table `testa_vimagen`
+--
+
+LOCK TABLES `testa_vimagen` WRITE;
+/*!40000 ALTER TABLE `testa_vimagen` DISABLE KEYS */;
+/*!40000 ALTER TABLE `testa_vimagen` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `testa_vnotario`
 --
 
@@ -313,6 +449,15 @@ CREATE TABLE `testa_vnotario` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `testa_vnotario`
+--
+
+LOCK TABLES `testa_vnotario` WRITE;
+/*!40000 ALTER TABLE `testa_vnotario` DISABLE KEYS */;
+/*!40000 ALTER TABLE `testa_vnotario` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `testa_vtestaotorgante`
@@ -349,6 +494,15 @@ CREATE TABLE `testa_vtestaotorgante` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `testa_vtestaotorgante`
+--
+
+LOCK TABLES `testa_vtestaotorgante` WRITE;
+/*!40000 ALTER TABLE `testa_vtestaotorgante` DISABLE KEYS */;
+/*!40000 ALTER TABLE `testa_vtestaotorgante` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `testa_vtestavalidacion`
@@ -398,6 +552,15 @@ CREATE TABLE `testa_vtestavalidacion` (
   CONSTRAINT `FK_50C0613D0553A49` FOREIGN KEY (`id_notario`) REFERENCES `testa_tnotario` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `testa_vtestavalidacion`
+--
+
+LOCK TABLES `testa_vtestavalidacion` WRITE;
+/*!40000 ALTER TABLE `testa_vtestavalidacion` DISABLE KEYS */;
+/*!40000 ALTER TABLE `testa_vtestavalidacion` ENABLE KEYS */;
+UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -408,4 +571,4 @@ CREATE TABLE `testa_vtestavalidacion` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-05-23 12:27:34
+-- Dump completed on 2025-05-23 16:05:33
