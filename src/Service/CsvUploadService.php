@@ -25,7 +25,7 @@ class CsvUploadService{
         $tratamiento = preg_replace('/^"/', '', $tratamiento);
         $tratamiento = preg_replace('/";+;$/', '', $tratamiento);
         $tratamiento = preg_replace('/^((?:[^,]*,){5})([^,]*)(,)/', '$1"$2"$3', $tratamiento);
-       // $tratamiento = preg_replace('/"{4}/', '""', $tratamiento);
+        $tratamiento = preg_replace('/"{4}/', '""', $tratamiento);
         $tratamiento = preg_replace('/,""(\{)/', ',"$1', $tratamiento); 
         $tratamiento = preg_replace('/(\})""(,)/', '$1"$2', $tratamiento);
         $tratamiento = preg_replace('/,""(\[)/', ',"$1', $tratamiento);
@@ -62,9 +62,6 @@ class CsvUploadService{
             $trans = mb_convert_encoding($campos[$idTask], 'UTF-8', 'UTF-8');
 
             $datosTareas = json_decode($trans, true);
-            dump($idTask);
-            dump($campos[$idTask]);
-            dump($datosTareas);
 
             if ($datosTareas) {
                 //año
@@ -276,8 +273,6 @@ class CsvUploadService{
                 $testamento->setTipoDoc($raw->getDocumentType());
                 $testamento->setEstadovalidacion('N');
                 $em->persist($testamento);
-
-                dump($testamento);
 
                 $testaOtorgante = new TestaTtestaotorgante();
                 $testaOtorgante->setTestamento($testamento);
