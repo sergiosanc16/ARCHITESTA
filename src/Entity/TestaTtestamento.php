@@ -36,8 +36,7 @@ class TestaTtestamento
     #[ORM\Column(type: 'integer')]
     private int $num_folio;
 
-    #[ORM\Column(type: 'integer')]
-    private int $id_imagen;
+
 
     #[ORM\Column(type: 'string')]
     private string $estado_validacion;
@@ -149,17 +148,6 @@ class TestaTtestamento
         $this->num_folio = $num_folio; 
         return $this; 
     }
-
-    public function getIdImagen(): int 
-    { 
-        return $this->id_imagen; 
-    }
-    public function setIdImagen(int $id_iamgen): self 
-    { 
-        $this->id_imagen = $id_iamgen; 
-        return $this; 
-    }
-
 
     public function getPoblacion(): ?TestaTpoblacion 
     { 

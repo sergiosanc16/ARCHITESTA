@@ -216,8 +216,8 @@ CREATE TABLE `testa_ttestamento` (
   `textoilegible` tinyint(1) NOT NULL,
   `num_protocolo` int NOT NULL,
   `num_folio` int NOT NULL,
-  `estado_validacion` varchar(1) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `tipo_doc` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `estado_validacion` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `tipo_doc` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `UNIQ_393EEADA52E675E` (`id_imagen`),
   KEY `IDX_393EEAD7EE3862E` (`id_poblacion`),
@@ -343,6 +343,9 @@ CREATE TABLE `testa_vtestaotorgante` (
   `des_poblacion` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
   `DES_NOTARIO` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL,
   `des_imagen` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id_parentesco` int DEFAULT NULL,
+  `des_parentesco` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `tipo_doc` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -380,12 +383,16 @@ CREATE TABLE `testa_vtestavalidacion` (
   `des_notario` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL,
   `des_imagen` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
   `des_parentesco` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `estado_validacion` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `tipo_doc` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `UNIQ_50C0613A52E675E` (`id_imagen`),
   KEY `IDX_50C06137EE3862E` (`id_poblacion`),
   KEY `IDX_50C0613D0553A49` (`id_notario`),
   KEY `IDX_50C06133B94B0C1` (`id_parentesco`),
+  KEY `IDX_50C06136AA21D64` (`id_otorgante`),
   CONSTRAINT `FK_50C06133B94B0C1` FOREIGN KEY (`id_parentesco`) REFERENCES `testa_tparentesco` (`id`),
+  CONSTRAINT `FK_50C06136AA21D64` FOREIGN KEY (`id_otorgante`) REFERENCES `testa_totorgante` (`id`),
   CONSTRAINT `FK_50C06137EE3862E` FOREIGN KEY (`id_poblacion`) REFERENCES `testa_tpoblacion` (`id`),
   CONSTRAINT `FK_50C0613A52E675E` FOREIGN KEY (`id_imagen`) REFERENCES `testa_timagen` (`id`),
   CONSTRAINT `FK_50C0613D0553A49` FOREIGN KEY (`id_notario`) REFERENCES `testa_tnotario` (`id`)
@@ -401,4 +408,4 @@ CREATE TABLE `testa_vtestavalidacion` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-05-20 23:15:23
+-- Dump completed on 2025-05-23 12:27:34
