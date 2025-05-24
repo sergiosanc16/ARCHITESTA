@@ -9,18 +9,22 @@
 {% block javascripts %}
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-            var tipo = document.getElementById('{{ formVal.tipo.vars.id }}');
-            var const fotoContainer = document.getElementById('foto');
+            const tipo = document.getElementById('{{ formVal.tipo.vars.id }}');
+            const foto = document.getElementById('foto');
 
-            function mostar() {
+            function evento() {
                 if (tipo.value == '1') {
-                    fotoContainer.style.display = 'block';
+                    foto.style.display = 'block';
                 } else {
-                    fotoContainer.style.display = 'none';
+                    foto.style.display = 'none';
                 }
             }
-            mostrar();
-            tipoSelect.addEventListener('change', mostrar);
+
+            // Inicializa visibilidad al cargar
+            evento();
+
+            // Reacciona a cambios
+            tipo.addEventListener('change', evento);
         });
     </script>
 {% endblock %}
