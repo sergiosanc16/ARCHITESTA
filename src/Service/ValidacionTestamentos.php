@@ -169,7 +169,7 @@ class ValidacionTestamentos{
                         $aux += $p;
                     }
                 }
-                $pDoc = ($aux / $totalSize)*100;
+                $pDoc = ($aux / $totalSize);
 
                 //comparador de otorgante por todas sus propiedades TODO
                 $pNom = 0;
