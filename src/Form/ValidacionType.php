@@ -26,7 +26,7 @@ class ValidacionType extends AbstractType
                       'class' => 'btn btn-primary mt-3'
                   ]
             ])
-            ->add('attending', ChoiceType::class, [
+            ->add('tipo', ChoiceType::class, [
                 'choices' => [
                     'foto' => 1,
                     'auto' => 2,
