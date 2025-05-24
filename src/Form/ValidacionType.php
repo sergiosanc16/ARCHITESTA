@@ -20,10 +20,30 @@ class ValidacionType extends AbstractType
                   'required' => true,
                  ])
             ->add('validar', SubmitType::class, [
-                'label' => 'Validacion',
-                'attr' => [
-                    'class' => 'btn btn-primary mt-3'
-                ]
+                  'label' => 'Validacion',
+                  'attr' => [
+                      'class' => 'btn btn-primary mt-3'
+                  ]
+            ])
+            ->add('attending', ChoiceType::class, [
+                'choices' => [
+                    'foto' => 1,
+                    'auto' => 2,
+                ],
+                'choice_label' => function ($choice, string $key, mixed $value): TranslatableMessage|string {
+                    if (1 === $choice) {
+                        return 'Validacion por foto';
+                    }
+                    if (2 ===$choice){
+                        return 'Validacion automatica';
+                    }
+
+                    return strtoupper($key);
+
+                    // or if you want to translate some key
+                    //return 'form.choice.'.$key;
+                    //return new TranslatableMessage($key, false === $choice ? [] : ['%status%' => $value], 'store');
+                },
             ])
         ;
     }
