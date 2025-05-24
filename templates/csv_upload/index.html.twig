@@ -61,10 +61,13 @@
                     {{ form_widget(formVal.tipo) }}
                 </div>
                 {{ dump(formVal.tipo.vars.value) }}
-                    <div class="mb-3" id="foto" {% if formVal.tipo.vars.value != 1 %}style="display: none;"{% endif %}>
-                        {{ form_label(formVal.foto) }}
-                        {{ form_widget(formVal.foto) }}
-                        {{ form_errors(formVal.foto) }}
+                    <div class="mb-3" id="foto" 
+                        {% if formVal.tipo.vars.value != 1 %}
+                            style="display: none;"
+                        {% endif %}>
+                            {{ form_label(formVal.foto) }}
+                            {{ form_widget(formVal.foto) }}
+                            {{ form_errors(formVal.foto) }}
                     </div>
                 {% endif %}
                 {{ form_widget(formVal.validar) }}
