@@ -50,6 +50,17 @@ class TestaTtestamentoRepository extends ServiceEntityRepository
                 ->getResult()
             ;
         }
+        public function findTestaImagenNoValidado($id_imagen): array
+        {
+            return $this->createQueryBuilder('t')
+                ->where('t.estado_validacion = :est')
+                ->andWhere('t.imagen = :val')
+                ->setParameter('val', $id_imagen)
+                ->setParameter('est', 'N')
+                ->getQuery()
+                ->getResult()
+            ;
+        }
         // número de testamentos con una imagen
         public function countTestaImagen($id_imagen): int
         {

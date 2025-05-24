@@ -31,7 +31,7 @@ class ValidacionTestamentos{
         $flush = 0;
         $lote = 20;
         foreach($fotos as $idFoto){
-            $testamentos = $em->getRepository(TestaTtestamento::class)->findTestaImagen($idFoto);
+            $testamentos = $em->getRepository(TestaTtestamento::class)->findTestaImagenNoValidado($idFoto);
             $size = count($testamentos);
             $totalSize = 0;
             $auxSize = $size;
@@ -256,6 +256,6 @@ class ValidacionTestamentos{
         $em->flush();
         $em->clear();
                 
-        return "Se han validado $testTotal testamentos";
+        return "Se han validado $flush testamentos";
     }
 }
