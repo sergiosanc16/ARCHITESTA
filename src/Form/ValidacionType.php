@@ -15,8 +15,12 @@ class ValidacionType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
+            ->add('foto', TextType::class, [
+                  'label' => 'Nombre de la imagen del testamento',
+                  'required' => true,
+                 ])
             ->add('validar', SubmitType::class, [
-                'label' => 'Validar',
+                'label' => 'Validacion',
                 'attr' => [
                     'class' => 'btn btn-primary mt-3'
                 ]
