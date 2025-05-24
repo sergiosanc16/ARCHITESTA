@@ -22,7 +22,7 @@ class ValidacionTestamentos{
 
         dump($form->get('tipo')->getData());
         if($form->get('tipo')->getData() == 1){
-            $fotos = $em->getRepository(TestaTimagen::class)->findOneBy(['des_imagen' => $form->get('foto')->getData()]);
+            $fotos = $em->getRepository(TestaTimagen::class)->findBy(['des_imagen' => $form->get('foto')->getData()]);
         } else {
             $fotos = $em->getRepository(TestaTimagen::class)->findAll();
         }
