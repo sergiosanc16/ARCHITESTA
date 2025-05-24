@@ -20,13 +20,13 @@ class ValidacionTestamentos{
 
         //Hacer automatico, no recibe de la entrada la imagen
 
+        dump($form->get('tipo')->getData());
         if($form->get('tipo')->getData() == 1){
             $fotos = $em->getRepository(TestaTimagen::class)->findOneBy(['des_imagen' => $form->get('foto')->getData()]);
         } else {
             $fotos = $em->getRepository(TestaTimagen::class)->findAll();
-
         }
-
+        dump($fotos);
         $testTotal = 0;
         $flush = 0;
         $lote = 20;
