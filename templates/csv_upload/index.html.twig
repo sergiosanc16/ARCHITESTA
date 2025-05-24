@@ -32,6 +32,8 @@
                 {{ form_widget(form.submit_csv) }}
             {{ form_end(form) }}
         </div>
+    </div>
+    <div class="card">    
         <div class="card-body">
             {{ form_start(formVal) }}
                 <div class="mb-3">
@@ -45,7 +47,6 @@
                 </div>
                 {{ form_widget(formVal.validar) }}
             {{ form_end(formVal) }}
-    
         </div>
         <div class="card-body">
             {% for label, messages in app.flashes %}
