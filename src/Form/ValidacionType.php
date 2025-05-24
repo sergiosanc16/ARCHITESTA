@@ -18,7 +18,7 @@ class ValidacionType extends AbstractType
         $builder
             ->add('foto', TextType::class, [
                   'label' => 'Nombre de la imagen del testamento',
-                  'required' => true,
+                  'empty_data' => 'nada',
                  ])
             ->add('validar', SubmitType::class, [
                   'label' => 'Validacion',
@@ -38,12 +38,7 @@ class ValidacionType extends AbstractType
                     if (2 ===$choice){
                         return 'Validacion automatica';
                     }
-
                     return strtoupper($key);
-
-                    // or if you want to translate some key
-                    //return 'form.choice.'.$key;
-                    //return new TranslatableMessage($key, false === $choice ? [] : ['%status%' => $value], 'store');
                 },
             ])
         ;

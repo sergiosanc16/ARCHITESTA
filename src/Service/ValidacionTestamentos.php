@@ -19,7 +19,14 @@ class ValidacionTestamentos{
     {
 
         //Hacer automatico, no recibe de la entrada la imagen
-        $fotos = $em->getRepository(TestaTimagen::class)->findAll();
+
+        if($form->get('tipo')->getData() == 1){
+            $fotos = $em->getRepository(TestaTimagen::class)->findOneBy(['des_imagen' => $form->get('foto')->getData()]);
+        } else {
+            $fotos = $em->getRepository(TestaTimagen::class)->findAll();
+
+        }
+
         $testTotal = 0;
         $flush = 0;
         $lote = 20;
@@ -50,9 +57,11 @@ class ValidacionTestamentos{
                     for($j = $i;$j<$size;$j++){
                         if($validaciones[$i]->getIdTestamento()->getAnno() == $validaciones[$j]->getIdTestamento()->getAnno()){
                             $aux++;
+                            dump($aux);
                         }
                     }
                 }
+                dump($totalSize);
                 $pAnno = ($aux / $totalSize)*100;
 
                 //comparar mes

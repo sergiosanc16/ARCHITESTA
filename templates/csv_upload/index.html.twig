@@ -9,22 +9,18 @@
 {% block javascripts %}
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-            const tipoSelect = document.getElementById('{{ formVal.tipo.vars.id }}');
-            const fotoContainer = document.getElementById('foto');
+            var tipo = document.getElementById('{{ formVal.tipo.vars.id }}');
+            var const fotoContainer = document.getElementById('foto');
 
-            function toggleFotoContainer() {
-                if (tipoSelect.value === '1') {
+            function mostar() {
+                if (tipo.value == '1') {
                     fotoContainer.style.display = 'block';
                 } else {
                     fotoContainer.style.display = 'none';
                 }
             }
-
-            // Inicializa visibilidad al cargar
-            toggleFotoContainer();
-
-            // Reacciona a cambios
-            tipoSelect.addEventListener('change', toggleFotoContainer);
+            mostrar();
+            tipoSelect.addEventListener('change', mostrar);
         });
     </script>
 {% endblock %}
@@ -53,6 +49,7 @@
             {{ form_end(form) }}
         </div>
     </div>
+    <h1>Validacion</h1>
     <div class="card">    
         <div class="card-body">
             {{ form_start(formVal) }}
@@ -60,7 +57,6 @@
                     {{ form_label(formVal.tipo) }}
                     {{ form_widget(formVal.tipo) }}
                 </div>
-                {{ dump(formVal.tipo.vars.value) }}
                     <div class="mb-3" id="foto" 
                         {% if formVal.tipo.vars.value != 1 %}
                             style="display: none;"
@@ -69,7 +65,6 @@
                             {{ form_widget(formVal.foto) }}
                             {{ form_errors(formVal.foto) }}
                     </div>
-                {% endif %}
                 {{ form_widget(formVal.validar) }}
             {{ form_end(formVal) }}
         </div>
