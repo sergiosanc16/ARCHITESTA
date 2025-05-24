@@ -26,9 +26,13 @@ class ValidacionTestamentos{
         foreach($fotos as $idFoto){
             $testamentos = $em->getRepository(TestaTtestamento::class)->findTestaImagen($idFoto);
             $size = count($testamentos);
+            $totalSize = 0;
+            $auxSize = $size;
             $otorgantes=[];
             for($i = 0;$i<$size;$i++){
                 $otorgantes[$i] = $em->getRepository(TestaTtestaotorgante::class)->findBy(['testamento' => $testamentos[$i]->getId()]);
+                $totalSize += $auxSize;
+                $auxSize--;
             }
             
             $validaciones = [];
@@ -49,7 +53,7 @@ class ValidacionTestamentos{
                         }
                     }
                 }
-                $pAnno = ($aux / ($size * ($size+1))/2)*100;
+                $pAnno = ($aux / $totalSize)*100;
 
                 //comparar mes
                 $pMes = 0;
@@ -63,8 +67,7 @@ class ValidacionTestamentos{
                         $aux += $p;
                     }
                 }
-                $pMes = ($aux / ($size * (($size+1))/2));
-
+                $pMes = ($aux / $totalSize);
                 //comparar dia
                 $pDia = 0;
                 $aux = 0;
@@ -75,7 +78,7 @@ class ValidacionTestamentos{
                         }
                     }
                 }
-                $pDia = ($aux / (($size * ($size+1))/2))*100;
+                $pDia = ($aux / $totalSize)*100;
 
                 //comparar mancomunado
 
@@ -88,7 +91,7 @@ class ValidacionTestamentos{
                         }
                     }
                 }
-                $pMancomunado = ($aux / (($size * ($size+1))/2))*100;
+                $pMancomunado = ($aux / $totalSize)*100;
 
                 //comparar textoilegible
                 $pIlegible = 0;
@@ -100,7 +103,7 @@ class ValidacionTestamentos{
                         }
                     }
                 }
-                $pIlegible = ($aux / (($size * ($size+1))/2))*100;
+                $pIlegible = ($aux / $totalSize)*100;
 
                 //comparar num_protocolo
                 $pProtocolo = 0;
@@ -112,7 +115,7 @@ class ValidacionTestamentos{
                         }
                     }
                 }
-                $pProtocolo = ($aux / (($size * ($size+1))/2))*100;
+                $pProtocolo = ($aux / $totalSize)*100;
 
                 //comparar num_folio
                 $pFolio = 0;
@@ -124,7 +127,7 @@ class ValidacionTestamentos{
                         }
                     }
                 }
-                $pFolio = ($aux / (($size * ($size+1))/2))*100;
+                $pFolio = ($aux / $totalSize)*100;
 
                 //comparar des de poblacion
                 $pPoblacion = 0;
@@ -138,7 +141,7 @@ class ValidacionTestamentos{
                         $aux += $p;
                     }
                 }
-                $pPoblacion = ($aux / (($size * (($size+1))/2)));
+                $pPoblacion = ($aux / $totalSize);
 
                 //comparar nombre de notario
                 $pNotario = 0;
@@ -152,7 +155,7 @@ class ValidacionTestamentos{
                         $aux += $p;
                     }
                 }
-                $pNotario = ($aux / ($size * (($size+1))/2));
+                $pNotario = ($aux / $totalSize);
 
                 //comparar documento
                 $pDoc = 0;
@@ -166,7 +169,7 @@ class ValidacionTestamentos{
                         $aux += $p;
                     }
                 }
-                $pDoc = ($aux / ($size * (($size+1))/2));
+                $pDoc = ($aux / $totalSize)*100;
 
                 //comparador de otorgante por todas sus propiedades TODO
                 $pNom = 0;
