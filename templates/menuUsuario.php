@@ -24,24 +24,16 @@
           <a class="dropdown-item" href="{{path('app_testa_t_validacion_index')}}">Validaciones</a>
         </div>
       </li>
-
-
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Utilidades
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="{{path('app_csv_upload')}}">Carga de ficheros csv</a>
-        </div>
-      </li>
-
-
-
-
+      
       <li class="nav-item">
         <a class="nav-link" href="https://www.zooniverse.org/projects/agrmzooniverse/testamentos-de-murcia?language=es" target="_blank">zooniverse.org</a>
       </li>
       {% if is_granted('ROLE_ADMIN') %}
+      <li class="nav-item">
+        <a class="nav-link" href="{{ path('app_csv_upload')}}" role="button">
+            Utilidades
+        </a>
+      </li>
       <li class="nav-item">
         <a class="nav-link" href="{{ path('app_user_index')}}">Gestión de usuarios</a>
       </li>
@@ -49,14 +41,6 @@
       {% endif %}
     </ul>
     <ul class="navbar-nav ml-auto">
-
-        {% if user|default(true) %}
-            {% if is_granted('ROLE_ADMIN') %}
-                <li><a href="{{path('app_user_index')}}"> Lista de usuarios</a></li>
-            {% endif %}
-        {% endif %}
-
-
 
 
 
