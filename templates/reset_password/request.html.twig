@@ -1,22 +1,38 @@
 {% extends 'base.html.twig' %}
 
+{% block stylesheets %}
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+        <!-- vinculo a bootstrap -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <!-- Temas-->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+        <!-- se vincula al hoja de estilo para definir el aspecto del formulario de login-->  
+        <link rel="stylesheet" href={{ asset('css/general.css') }}>
+        <link rel="stylesheet" type="text/css"  href={{ asset('css/login.css') }}>
+
+{% endblock %}
+
 {% block title %}Reset your password{% endblock %}
 
 {% block body %}
     {% for flash_error in app.flashes('reset_password_error') %}
         <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
     {% endfor %}
-    <h1>Reset your password</h1>
-
-    {{ form_start(requestForm) }}
-        {{ form_row(requestForm.email) }}
-        <div>
-            <small>
-                Enter your email address, and we will send you a
-                link to reset your password.
-            </small>
+    <div id="Contenedor">
+        <div class="logocabecera">
+            <span><img src={{ asset('img/testa2.png') }} width="100px"></span>
         </div>
 
-        <button class="btn btn-primary">Send password reset email</button>
-    {{ form_end(requestForm) }}
+
+        {{ form_start(requestForm) }}
+            <div class="input-group input-group-lg mb-3">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+                {{ form_row(requestForm.email) }}
+            </div>
+
+            <button class="btn btn-warning btn-lg w-100">Send password reset email</button>
+        {{ form_end(requestForm) }}
+        <p class="login-card-footer-text"> &nbsp;</p>
+
+    </div>
 {% endblock %}

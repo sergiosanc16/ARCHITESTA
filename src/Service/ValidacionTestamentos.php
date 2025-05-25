@@ -32,9 +32,9 @@ class ValidacionTestamentos{
             $testamentos = $em->getRepository(TestaTtestamento::class)->findTestaImagenNoValidado($idFoto);
             $size = count($testamentos);
             $totalSize = 0;
-            $auxSize = $size;
+            $auxSize = $size - 1;
             $otorgantes=[];
-            for($i = 0;$i<$size-1;$i++){
+            for($i = 0;$i<$size;$i++){
                 $otorgantes[$i] = $em->getRepository(TestaTtestaotorgante::class)->findBy(['testamento' => $testamentos[$i]->getId()]);
                 $totalSize += $auxSize;
                 $auxSize--;

@@ -26,35 +26,36 @@ class RegistrationFormType extends AbstractType
                 'placeholder' => 'Correo electrónico',
             ],
             'row_attr' => ['class' => 'input-group input-group-lg mb-3'],
-        ])
-        ->add('plainPassword', PasswordType::class, [
-            'label' => false,
-            'mapped' => false,
-            'attr' => [
-                'class' => 'form-control',
-                'placeholder' => 'Contraseña',
-            ],
-            'row_attr' => ['class' => 'input-group input-group-lg mb-3'],
-            'constraints' => [
-                new NotBlank([
-                    'message' => 'Por favor ingrese una contraseña',
-                ]),
-                new Length([
-                    'min' => 6,
-                    'minMessage' => 'La contraseña debe tener al menos {{ limit }} caracteres',
-                    'max' => 16,
-                ]),
-            ],
-        ])
-        ->add('agreeTerms', CheckboxType::class, [
-            'mapped' => false,
-            'label' => '    Aceptar términos',
-            'constraints' => [
-                new IsTrue([
-                    'message' => 'Debes aceptar los términos.',
-                ]),
-            ],
-        ]);
+            ])
+            ->add('plainPassword', PasswordType::class, [
+                'label' => false,
+                'mapped' => false,
+                'attr' => [
+                    'class' => 'form-control',
+                    'placeholder' => 'Contraseña',
+                ],
+                'row_attr' => ['class' => 'input-group input-group-lg mb-3'],
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Por favor ingrese una contraseña',
+                    ]),
+                    new Length([
+                        'min' => 6,
+                        'minMessage' => 'La contraseña debe tener al menos {{ limit }} caracteres',
+                        'max' => 16,
+                    ]),
+                ],
+            ])
+            ->add('agreeTerms', CheckboxType::class, [
+                'mapped' => false,
+                'label' => '    Aceptar términos',
+                'constraints' => [
+                    new IsTrue([
+                        'message' => 'Debes aceptar los términos.',
+                    ]),
+                ],
+            ])
+        ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void
