@@ -32,7 +32,6 @@ final class CsvUploadController extends AbstractController
         }
 
         if ($formVal->isSubmitted() && $formVal->isValid()) {
-            dump("entra");
             $mensjVal = ValidacionTestamentos::validacion($formVal, $em);
             $this->addFlash('success', $mensjVal);
         }

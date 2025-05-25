@@ -20,13 +20,11 @@ class ValidacionTestamentos{
 
         //Hacer automatico, no recibe de la entrada la imagen
 
-        dump($form->get('tipo')->getData());
         if($form->get('tipo')->getData() == 1){
             $fotos = $em->getRepository(TestaTimagen::class)->findBy(['des_imagen' => $form->get('foto')->getData()]);
         } else {
             $fotos = $em->getRepository(TestaTimagen::class)->findAll();
         }
-        dump($fotos);
         $testTotal = 0;
         $flush = 0;
         $lote = 20;
@@ -36,7 +34,7 @@ class ValidacionTestamentos{
             $totalSize = 0;
             $auxSize = $size;
             $otorgantes=[];
-            for($i = 0;$i<$size;$i++){
+            for($i = 0;$i<$size-1;$i++){
                 $otorgantes[$i] = $em->getRepository(TestaTtestaotorgante::class)->findBy(['testamento' => $testamentos[$i]->getId()]);
                 $totalSize += $auxSize;
                 $auxSize--;
@@ -57,11 +55,9 @@ class ValidacionTestamentos{
                     for($j = $i;$j<$size;$j++){
                         if($validaciones[$i]->getIdTestamento()->getAnno() == $validaciones[$j]->getIdTestamento()->getAnno()){
                             $aux++;
-                            dump($aux);
                         }
                     }
                 }
-                dump($totalSize);
                 $pAnno = ($aux / $totalSize)*100;
 
                 //comparar mes

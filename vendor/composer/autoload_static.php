@@ -18,8 +18,8 @@ class ComposerStaticInit42eccd852b3b0b576ce2f579862238ae
         'ffecb95d45175fd40f75be8a23b34f90' => __DIR__ . '/..' . '/twig/twig/src/Resources/debug.php',
         'c7baa00073ee9c61edf148c51917cfb4' => __DIR__ . '/..' . '/twig/twig/src/Resources/escaper.php',
         'f844ccf1d25df8663951193c3fc307c8' => __DIR__ . '/..' . '/twig/twig/src/Resources/string_loader.php',
-        'f598d06aa772fa33d905e87be6398fb1' => __DIR__ . '/..' . '/symfony/polyfill-intl-idn/bootstrap.php',
         '2203a247e6fda86070a5e4e07aed533a' => __DIR__ . '/..' . '/symfony/clock/Resources/now.php',
+        'f598d06aa772fa33d905e87be6398fb1' => __DIR__ . '/..' . '/symfony/polyfill-intl-idn/bootstrap.php',
         '9d2b9fc6db0f153a0a149fefb182415e' => __DIR__ . '/..' . '/symfony/polyfill-php84/bootstrap.php',
         '6124b4c8570aa390c21fafd04a26c69f' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/deep_copy.php',
         '6a47392539ca2329373e0d33e1dba053' => __DIR__ . '/..' . '/symfony/polyfill-intl-icu/bootstrap.php',
@@ -124,6 +124,7 @@ class ComposerStaticInit42eccd852b3b0b576ce2f579862238ae
             'Symfony\\Bridge\\Doctrine\\' => 24,
             'SymfonyCasts\\Bundle\\VerifyEmail\\' => 32,
             'SymfonyCasts\\Bundle\\ResetPassword\\' => 34,
+            'Scheb\\TwoFactorBundle\\' => 22,
         ),
         'P' => 
         array (
@@ -508,6 +509,11 @@ class ComposerStaticInit42eccd852b3b0b576ce2f579862238ae
         'SymfonyCasts\\Bundle\\ResetPassword\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfonycasts/reset-password-bundle/src',
+        ),
+        'Scheb\\TwoFactorBundle\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/scheb/2fa-email',
+            1 => __DIR__ . '/..' . '/scheb/2fa-bundle',
         ),
         'Psr\\Log\\' => 
         array (
