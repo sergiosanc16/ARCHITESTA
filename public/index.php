@@ -1,5 +1,5 @@
 <?php
-ini_set('memory_limit', '2G');
+ini_set('memory_limit', '8G');
 ini_set('upload_max_filesize', '60M');
 ini_set('post_max_size', '60M');
 use App\Kernel;
