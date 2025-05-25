@@ -37,8 +37,9 @@
                     <a href="{{ path('app_testa_t_validacion_valida', {'id': testa_t_validacion.id}) }}" title="Reparar Testamento"><img  width="30px"   src="{{ asset('img/reparar.png') }}"></a>
                     <a href="{{ path('app_testa_ttestamento_show', {'id': testa_t_validacion.idTestamento.id}) }}" title="Mostrar Testamento"><img  width="30px"   src="{{ asset('img/testamento.png') }}"></a>
                     <a href="{{ path('app_testa_t_validacion_show', {'id': testa_t_validacion.id}) }}" title="Mostrar Registro"><img  width="30px"   src="{{ asset('img/mostrar.png') }}"></a>
-                    <a href="{{ path('app_testa_t_validacion_edit', {'id': testa_t_validacion.id}) }}" title="Editar Registro"><img  width="30px"  src="{{ asset('img/editar.png') }}"></a>
-                
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <a href="{{ path('app_testa_t_validacion_edit', {'id': testa_t_validacion.id}) }}" title="Editar Registro"><img  width="30px"  src="{{ asset('img/editar.png') }}"></a>
+                    {% endif %}
                 </td>
             </tr>
         {% else %}

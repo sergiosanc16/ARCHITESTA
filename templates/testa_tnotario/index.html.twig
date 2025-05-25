@@ -38,7 +38,9 @@
                 <td>
                     <a href="{{ path('app_testa_ttestamento_notario_index', {'id_notario': testa_tnotario.id}) }}" title="Mostrar Testamento"><img  width="30px"   src="{{ asset('img/testamento.png') }}"></a>
                     <a href="{{ path('app_testa_tnotario_show', {'id': testa_tnotario.id}) }}" title="Mostrar Registro"><img  width="30px"   src="{{ asset('img/mostrar.png') }}"></a>
-                    <a href="{{ path('app_testa_tnotario_edit', {'id': testa_tnotario.id}) }}" title="Editar Registro"><img  width="30px"  src="{{ asset('img/editar.png') }}"></a>
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <a href="{{ path('app_testa_tnotario_edit', {'id': testa_tnotario.id}) }}" title="Editar Registro"><img  width="30px"  src="{{ asset('img/editar.png') }}"></a>
+                    {% endif %}
                 </td> 
             </tr>
         {% else %}

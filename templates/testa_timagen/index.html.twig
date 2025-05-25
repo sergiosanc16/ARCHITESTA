@@ -44,7 +44,9 @@
                 <td>
                     <a href="{{ path('app_testa_ttestamento_imagen_index', {'id_imagen': testa_timagen.id}) }}" title="Mostrar Testamento"><img  width="30px"   src="{{ asset('img/testamento.png') }}"></a>
                     <a href="{{ path('app_testa_timagen_show', {'id': testa_timagen.id}) }}" title="Mostrar Registro"><img  width="30px"   src="{{ asset('img/mostrar.png') }}"></a>
-                    <a href="{{ path('app_testa_timagen_edit', {'id': testa_timagen.id}) }}" title="Editar Registro"><img  width="30px"  src="{{ asset('img/editar.png') }}"></a>
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <a href="{{ path('app_testa_timagen_edit', {'id': testa_timagen.id}) }}" title="Editar Registro"><img  width="30px"  src="{{ asset('img/editar.png') }}"></a>
+                    {% endif %}
                 </td>
             </tr>
             {% else %}

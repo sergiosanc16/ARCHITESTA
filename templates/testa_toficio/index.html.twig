@@ -35,7 +35,9 @@
                 <td>{{ testa_toficio.desOficio }}</td>
                 <td>
                     <a href="{{ path('app_testa_toficio_show', {'id': testa_toficio.id}) }}" title="Mostrar Registro"><img  width="30px"   src="{{ asset('img/mostrar.png') }}"></a>
-                    <a href="{{ path('app_testa_toficio_edit', {'id': testa_toficio.id}) }}" title="Editar Registro"><img  width="30px"  src="{{ asset('img/editar.png') }}"></a>
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <a href="{{ path('app_testa_toficio_edit', {'id': testa_toficio.id}) }}" title="Editar Registro"><img  width="30px"  src="{{ asset('img/editar.png') }}"></a>
+                    {% endif %}
                 </td>                 
             </tr>
         {% else %}
