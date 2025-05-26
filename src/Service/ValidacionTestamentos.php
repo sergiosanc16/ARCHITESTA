@@ -31,6 +31,7 @@ class ValidacionTestamentos{
         foreach($fotos as $idFoto){
             $testamentos = $em->getRepository(TestaTtestamento::class)->findTestaImagenNoValidado($idFoto);
             $size = count($testamentos);
+            dump($size);
             $totalSize = 0;
             $auxSize = $size - 1;
             $otorgantes=[];
@@ -56,11 +57,9 @@ class ValidacionTestamentos{
                     for($j = $i;$j<$size;$j++){
                         if($validaciones[$i]->getIdTestamento()->getAnno() == $validaciones[$j]->getIdTestamento()->getAnno()){
                             $aux++;
-                            dump($aux);
                         }
                     }
                 }
-                dump($aux);
                 $pAnno = ($aux / $totalSize)*100;
 
                 //comparar mes
@@ -76,6 +75,7 @@ class ValidacionTestamentos{
                     }
                 }
                 $pMes = ($aux / $totalSize);
+
                 //comparar dia
                 $pDia = 0;
                 $aux = 0;
@@ -89,7 +89,6 @@ class ValidacionTestamentos{
                 $pDia = ($aux / $totalSize)*100;
 
                 //comparar mancomunado
-
                 $pMancomunadoAnno = 0;
                 $aux = 0;
                 for($i = 0;$i<$size-1;$i++){
@@ -146,7 +145,9 @@ class ValidacionTestamentos{
                         $pob1 = strtoupper($validaciones[$i]->getIdTestamento()->getPoblacion()->getDesPoblacion());
                         $pob2 = strtoupper($validaciones[$j]->getIdTestamento()->getPoblacion()->getDesPoblacion());
                         similar_text($pob1, $pob2, $p);
+                        dump($p);
                         $aux += $p;
+                        dump($aux);
                     }
                 }
                 $pPoblacion = ($aux / $totalSize);
