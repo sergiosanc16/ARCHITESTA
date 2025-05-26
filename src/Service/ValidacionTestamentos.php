@@ -33,13 +33,14 @@ class ValidacionTestamentos{
             $size = count($testamentos);
             $totalSize = 0;
             $auxSize = $size - 1;
+            dump($auxSize);
             $otorgantes=[];
             for($i = 0;$i<$size;$i++){
                 $otorgantes[$i] = $em->getRepository(TestaTtestaotorgante::class)->findBy(['testamento' => $testamentos[$i]->getId()]);
                 $totalSize += $auxSize;
+                dump($totalSize);
                 $auxSize--;
             }
-            dump($testamentos);
             dump($totalSize);
             
             $validaciones = [];
