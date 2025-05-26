@@ -57,7 +57,9 @@ class ValidacionTestamentos{
                 for($i = 0;$i<$size;$i++){
                     for($j = $i;$j<$size;$j++){
                         if($validaciones[$i]->getIdTestamento()->getAnno() == $validaciones[$j]->getIdTestamento()->getAnno()){
+                            dump($aux);
                             $aux++;
+                            dump($aux);
                         }
                     }
                 }
