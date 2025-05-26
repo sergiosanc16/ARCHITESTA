@@ -39,6 +39,7 @@ class ValidacionTestamentos{
                 $totalSize += $auxSize;
                 $auxSize--;
             }
+            dump($totalSize);
             
             $validaciones = [];
             if($size>=3){
@@ -51,13 +52,14 @@ class ValidacionTestamentos{
                 //comparar anno
                 $pAnno = 0;
                 $aux = 0;
-                for($i = 0;$i<$size-1;$i++){
+                for($i = 0;$i<$size;$i++){
                     for($j = $i;$j<$size;$j++){
                         if($validaciones[$i]->getIdTestamento()->getAnno() == $validaciones[$j]->getIdTestamento()->getAnno()){
                             $aux++;
                         }
                     }
                 }
+                dump($aux);
                 $pAnno = ($aux / $totalSize)*100;
 
                 //comparar mes
