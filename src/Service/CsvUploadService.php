@@ -22,14 +22,14 @@ class CsvUploadService{
         $uploadedFile = $form->get('csv_file')->getData();
         $tratamiento = file_get_contents($uploadedFile->getPathname());
 
-        $tratamiento = preg_replace('/^"/', '', $tratamiento);
-        $tratamiento = preg_replace('/";+;$/', '', $tratamiento);
-        $tratamiento = preg_replace('/^((?:[^,]*,){5})([^,]*)(,)/', '$1"$2"$3', $tratamiento);
-        //$tratamiento = preg_replace('/"{4}/', '""', $tratamiento);
-        $tratamiento = preg_replace('/,""(\{)/', ',"$1', $tratamiento); 
-        $tratamiento = preg_replace('/(\})""(,)/', '$1"$2', $tratamiento);
-        $tratamiento = preg_replace('/,""(\[)/', ',"$1', $tratamiento);
-        $tratamiento = preg_replace('/(\])""(,)/', '$1"$2', $tratamiento);
+        // $tratamiento = preg_replace('/^"/', '', $tratamiento);
+        // $tratamiento = preg_replace('/";+;$/', '', $tratamiento);
+        // $tratamiento = preg_replace('/^((?:[^,]*,){5})([^,]*)(,)/', '$1"$2"$3', $tratamiento);
+        // //$tratamiento = preg_replace('/"{4}/', '""', $tratamiento);
+        // $tratamiento = preg_replace('/,""(\{)/', ',"$1', $tratamiento); 
+        // $tratamiento = preg_replace('/(\})""(,)/', '$1"$2', $tratamiento);
+        // $tratamiento = preg_replace('/,""(\[)/', ',"$1', $tratamiento);
+        // $tratamiento = preg_replace('/(\])""(,)/', '$1"$2', $tratamiento);
 
         $csvTemp = fopen('php://temp', 'r+');
         fwrite($csvTemp, $tratamiento);
