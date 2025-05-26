@@ -39,6 +39,7 @@ class ValidacionTestamentos{
                 $totalSize += $auxSize;
                 $auxSize--;
             }
+            dump($testamentos);
             dump($totalSize);
             
             $validaciones = [];
