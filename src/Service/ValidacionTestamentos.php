@@ -53,8 +53,8 @@ class ValidacionTestamentos{
                 //comparar anno
                 $pAnno = 0;
                 $aux = 0;
-                for($i = 0;$i<$size-1;$i++){
-                    for($j = $i;$j<$size;$j++){
+                for($i = 0;$i<$size;$i++){
+                    for($j = $i;$j<$size-1;$j++){
                         if($validaciones[$i]->getIdTestamento()->getAnno() == $validaciones[$j]->getIdTestamento()->getAnno()){
                             $aux++;
                         }
@@ -65,8 +65,8 @@ class ValidacionTestamentos{
                 //comparar mes
                 $pMes = 0;
                 $aux = 0;
-                for($i = 0;$i<$size-1;$i++){
-                    for($j = $i;$j<$size;$j++){
+                for($i = 0;$i<$size;$i++){
+                    for($j = $i;$j<$size-1;$j++){
                         $p = 0;
                         $mes1 = strtoupper($validaciones[$i]->getIdTestamento()->getMes());
                         $mes2 = strtoupper($validaciones[$j]->getIdTestamento()->getMes());
@@ -79,8 +79,8 @@ class ValidacionTestamentos{
                 //comparar dia
                 $pDia = 0;
                 $aux = 0;
-                for($i = 0;$i<$size-1;$i++){
-                    for($j = $i;$j<$size;$j++){
+                for($i = 0;$i<$size;$i++){
+                    for($j = $i;$j<$size-1;$j++){
                         if($validaciones[$i]->getIdTestamento()->getDia() == $validaciones[$j]->getIdTestamento()->getDia()){
                             $aux++;
                         }
@@ -91,8 +91,8 @@ class ValidacionTestamentos{
                 //comparar mancomunado
                 $pMancomunadoAnno = 0;
                 $aux = 0;
-                for($i = 0;$i<$size-1;$i++){
-                    for($j = $i;$j<$size;$j++){
+                for($i = 0;$i<$size;$i++){
+                    for($j = $i;$j<$size-1;$j++){
                         if($validaciones[$i]->getIdTestamento()->isMancomunado() == $validaciones[$j]->getIdTestamento()->isMancomunado()){
                             $aux++;
                         }
@@ -103,8 +103,8 @@ class ValidacionTestamentos{
                 //comparar textoilegible
                 $pIlegible = 0;
                 $aux = 0;
-                for($i = 0;$i<$size-1;$i++){
-                    for($j = $i;$j<$size;$j++){
+                for($i = 0;$i<$size;$i++){
+                    for($j = $i;$j<$size-1;$j++){
                         if($validaciones[$i]->getIdTestamento()->isTextoilegible() == $validaciones[$j]->getIdTestamento()->isTextoilegible()){
                             $aux++;
                         }
@@ -115,7 +115,7 @@ class ValidacionTestamentos{
                 //comparar num_protocolo
                 $pProtocolo = 0;
                 $aux = 0;
-                for($i = 0;$i<$size-1;$i++){
+                for($i = 0;$i<$size;$i++){
                     for($j = $i;$j<$size;$j++){
                         if($validaciones[$i]->getIdTestamento()->getNumProtocolo() == $validaciones[$j]->getIdTestamento()->getNumProtocolo()){
                             $aux++;
@@ -127,8 +127,8 @@ class ValidacionTestamentos{
                 //comparar num_folio
                 $pFolio = 0;
                 $aux = 0;
-                for($i = 0;$i<$size-1;$i++){
-                    for($j = $i;$j<$size;$j++){
+                for($i = 0;$i<$size;$i++){
+                    for($j = $i;$j<$size-1;$j++){
                         if($validaciones[$i]->getIdTestamento()->getNumFolio() == $validaciones[$j]->getIdTestamento()->getNumFolio()){
                             $aux++;
                         }
@@ -139,8 +139,8 @@ class ValidacionTestamentos{
                 //comparar des de poblacion
                 $pPoblacion = 0;
                 $aux = 0;
-                for($i = 0;$i<$size-1;$i++){
-                    for($j = $i;$j<$size;$j++){
+                for($i = 0;$i<$size;$i++){
+                    for($j = $i;$j<$size-1;$j++){
                         $p = 0;
                         $pob1 = strtoupper($validaciones[$i]->getIdTestamento()->getPoblacion()->getDesPoblacion());
                         $pob2 = strtoupper($validaciones[$j]->getIdTestamento()->getPoblacion()->getDesPoblacion());
@@ -155,8 +155,8 @@ class ValidacionTestamentos{
                 //comparar nombre de notario
                 $pNotario = 0;
                 $aux = 0;
-                for($i = 0;$i<$size-1;$i++){
-                    for($j = $i;$j<$size;$j++){
+                for($i = 0;$i<$size;$i++){
+                    for($j = $i;$j<$size-1;$j++){
                         $p = 0;
                         $not1 = strtoupper($validaciones[$i]->getIdTestamento()->getNotario()->getDesNotario());
                         $not2 = strtoupper($validaciones[$j]->getIdTestamento()->getNotario()->getDesNotario());
@@ -169,8 +169,8 @@ class ValidacionTestamentos{
                 //comparar documento
                 $pDoc = 0;
                 $aux = 0;
-                for($i = 0;$i<$size-1;$i++){
-                    for($j = $i;$j<$size;$j++){
+                for($i = 0;$i<$size;$i++){
+                    for($j = $i;$j<$size-1;$j++){
                         $p = 0;
                         $not1 = strtoupper($validaciones[$i]->getIdTestamento()->getTipoDoc());
                         $not2 = strtoupper($validaciones[$j]->getIdTestamento()->getTipoDoc());
