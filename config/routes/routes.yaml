@@ -12,5 +12,5 @@ phpmyadmin:
   path: /phpmyadmin
   controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController::urlRedirectAction
   defaults:
-    path: 'https://hosting11.dnspropio.com:8443/phpMyAdmin/index.php?db=ARCHITESTA'  # Ajusta la URL
+    path: 'https://hosting11.dnspropio.com:8443/phpMyAdmin/index.php?db=ARCHITESTA'
     permanent: true

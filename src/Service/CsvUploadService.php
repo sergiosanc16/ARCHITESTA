@@ -45,8 +45,6 @@ class CsvUploadService{
         $ilegible = FALSE;
         $idTask = 0;
 
-        //realizar aqui las llamadas a sql para traerlo todo de uno y comprobar
-
         while(($campos = fgetcsv($csvTemp,0, ',', '"'))!= false){
 
             foreach($campos as $id => $tarea){
@@ -78,7 +76,7 @@ class CsvUploadService{
                                 $raw->setPopulationName($datosTareas[++$i]['value']);
                             } else {
                                 $raw->setOtherPopulation(False);
-                                $raw->setPopulationName('Ningun@');
+                                $raw->setPopulationName('Murcia');
                             }
                             break;
                         case 'T6':
@@ -286,6 +284,9 @@ class CsvUploadService{
                     $em->persist($testaOtorSeg);
                 }
                 $flush++;
+            } else{
+                dump($campos[$idTask]);
+                dump($datosTareas);
             }
             if ((($flush % $lote) === 0)) {
                 $em->flush();
