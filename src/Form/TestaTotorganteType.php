@@ -22,6 +22,10 @@ class TestaTotorganteType extends AbstractType
                 'class' => TestaToficio::class,
                 'choice_label' => 'des_oficio',
             ])
+            ->add('parentesco', EntityType::class, [
+                'class' => TestaTparentesco::class,
+                'choice_label' => 'des_parentesco',
+            ])
   /*          ->add('testaTtestaotorgantes', EntityType::class, [
                 'class' => TestaTtestaotorgante::class,
                 'choice_label' => 'id',

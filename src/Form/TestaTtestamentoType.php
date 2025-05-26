@@ -38,12 +38,7 @@ class TestaTtestamentoType extends AbstractType
             ->add('notario', EntityType::class, [
                 'class' => TestaTnotario::class,
                 'choice_label' => 'des_notario',
-            ])
-            ->add('parentesco', EntityType::class, [
-                'class' => TestaTparentesco::class,
-                'choice_label' => 'des_parentesco',
-            ])
-                
+            ])  
             ->add('imagen', EntityType::class, [
                 'class' => TestaTimagen::class,
                 'choice_label' => 'des_imagen',
