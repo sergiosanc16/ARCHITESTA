@@ -19,6 +19,7 @@ class ValidacionType extends AbstractType
             ->add('foto', TextType::class, [
                   'label' => 'Nombre de la imagen del testamento',
                   'empty_data' => 'nada',
+                  'required' => false,
                  ])
             ->add('validar', SubmitType::class, [
                   'label' => 'Validacion',
