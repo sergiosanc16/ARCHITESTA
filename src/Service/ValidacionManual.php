@@ -3,7 +3,7 @@ namespace App\Service;
 
 use Symfony\Component\Form\Form;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\ORM\emInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\DBAL\Types\Types;
 use App\Entity\TestaTraw;
@@ -16,7 +16,7 @@ use App\Repository\TestaTtestamentoRepository;
 
 class ValidacionManual{
 
-    public static function validacion(Request $request, EntityManagerInterface $em): TestaTtestamento
+    public static function validacion(Request $request, emInterface $em): TestaTtestamento
     {
 
         $documento = $request->request->get('documento');
@@ -54,26 +54,26 @@ class ValidacionManual{
         $testaTtestamento->setNumProtocolo($protocolo);
         $testaTtestamento->setNumFolio($folio);
 
-        $pobla = $entityManager->getRepository(testaTpoblacion::class)->find($poblacion);
+        $pobla = $em->getRepository(testaTpoblacion::class)->find($poblacion);
         $testaTtestamento->setPoblacion($pobla);
-        $nota = $entityManager->getRepository(testaTnotario::class)->find($notario);
+        $nota = $em->getRepository(testaTnotario::class)->find($notario);
         $testaTtestamento->setNotario($nota);
-        $imag = $entityManager->getRepository(testaTimagen::class)->find($imagen);
+        $imag = $em->getRepository(testaTimagen::class)->find($imagen);
         $testaTtestamento->setImagen($imag);
         $testaTtestamento->setEstadovalidacion('M');
 
-        $entityManager->persist($testaTtestamento);
-        $entityManager->flush();        
+        $em->persist($testaTtestamento);
+        $em->flush();        
 
         for($i=0; $i<count($otorgantes); $i++) {
             $testaTtestaotorgante = new TestaTtestaotorgante();
             $testaTtestaotorgante->setTestamento($testaTtestamento);
-            $otor = $entityManager->getRepository(testaTotorgante::class)->find($otorgantes[$i]);
+            $otor = $em->getRepository(testaTotorgante::class)->find($otorgantes[$i]);
             $testaTtestaotorgante->setOtorgante($otor);
             $testaTtestaotorgante->setNumOrden($i+1);
 
-            $entityManager->persist($testaTtestaotorgante);
-            $entityManager->flush();        
+            $em->persist($testaTtestaotorgante);
+            $em->flush();        
         }
 
         return $testaTtestamento;
