@@ -18,8 +18,6 @@ class ValidacionTestamentos{
     public static function validacion(Form $form, EntityManagerInterface $em): string
     {
 
-        //Hacer automatico, no recibe de la entrada la imagen
-
         if($form->get('tipo')->getData() == 1){
             $fotos = $em->getRepository(TestaTimagen::class)->findBy(['des_imagen' => $form->get('foto')->getData()]);
         } else {
