@@ -17,6 +17,7 @@ use App\Entity\TestaTimagen;
 use App\Entity\TestaTotorgante;
 use App\Entity\TestaTtestaotorgante;
 use App\Entity\TestaTpoblacion;
+use App\Entity\TestaTnotario;
 use App\Repository\TestaTtestamentoRepository;
 
 class ValidacionManual{
