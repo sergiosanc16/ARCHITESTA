@@ -3,7 +3,7 @@ namespace App\Service;
 
 use Symfony\Component\Form\Form;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Doctrine\ORM\emInterface;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\DBAL\Types\Types;
 use App\Entity\TestaTraw;
