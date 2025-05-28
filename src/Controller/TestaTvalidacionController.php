@@ -105,7 +105,7 @@ final class TestaTvalidacionController extends AbstractController
                             EntityManagerInterface $em): Response
     {
 
-        ValidacionManual::validacion($$request, $em);
+        $testaTtestamento = ValidacionManual::validacion($request, $em);
 
         // Lógica con el dato recibido, como guardarlo o mostrarlo
         return $this->render('testa_t_validacion/resultadoValidacion.html.twig', [
