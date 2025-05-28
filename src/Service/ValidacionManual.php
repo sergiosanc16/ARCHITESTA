@@ -16,7 +16,7 @@ use App\Repository\TestaTtestamentoRepository;
 
 class ValidacionManual{
 
-    public static function validacion(Request $request, emInterface $em): TestaTtestamento
+    public static function validacion(Request $request, EntityManagerInterface $em): TestaTtestamento
     {
 
         $documento = $request->request->get('documento');
