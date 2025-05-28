@@ -13,7 +13,7 @@ use App\Entity\TestaTotorgante;
 use App\Entity\TestaTtestaotorgante;
 use App\Repository\TestaTtestamentoRepository;
 
-class ValidacionTestamentos{
+class ValidacionManual{
 
     public static function validacion(Request $request, EntityManagerInterface $em): TestaTtestamento
     {
