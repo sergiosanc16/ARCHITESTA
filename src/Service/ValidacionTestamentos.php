@@ -116,7 +116,7 @@ class ValidacionTestamentos{
                 $pProtocolo = 0;
                 $aux = 0;
                 for($i = 0;$i<$size;$i++){
-                    for($j = $i;$j<$size;$j++){
+                    for($j = $i;$j<$size-1;$j++){
                         if($validaciones[$i]->getIdTestamento()->getNumProtocolo() == $validaciones[$j]->getIdTestamento()->getNumProtocolo()){
                             $aux++;
                         }
