@@ -1,6 +1,10 @@
 <?php
 namespace App\Service;
 
+use App\Entity\TestaVtestavalidacion;
+use App\Form\TestaTvalidacionType;
+use App\Repository\TestaTvalidacionRepository;
+use App\Repository\TestaVtestavalidacionRepository;
 use Symfony\Component\Form\Form;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Doctrine\ORM\EntityManagerInterface;
