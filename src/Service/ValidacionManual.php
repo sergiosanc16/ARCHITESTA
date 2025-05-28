@@ -59,11 +59,11 @@ class ValidacionManual{
         $testaTtestamento->setNumProtocolo($protocolo);
         $testaTtestamento->setNumFolio($folio);
 
-        $pobla = $em->getRepository(testaTpoblacion::class)->find($poblacion);
+        $pobla = $em->getRepository(TestaTpoblacion::class)->find($poblacion);
         $testaTtestamento->setPoblacion($pobla);
-        $nota = $em->getRepository(testaTnotario::class)->find($notario);
+        $nota = $em->getRepository(TestaTnotario::class)->find($notario);
         $testaTtestamento->setNotario($nota);
-        $imag = $em->getRepository(testaTimagen::class)->find($imagen);
+        $imag = $em->getRepository(TestaTimagen::class)->find($imagen);
         $testaTtestamento->setImagen($imag);
         $testaTtestamento->setEstadovalidacion('M');
 
@@ -73,7 +73,7 @@ class ValidacionManual{
         for($i=0; $i<count($otorgantes); $i++) {
             $testaTtestaotorgante = new TestaTtestaotorgante();
             $testaTtestaotorgante->setTestamento($testaTtestamento);
-            $otor = $em->getRepository(testaTotorgante::class)->find($otorgantes[$i]);
+            $otor = $em->getRepository(TestaTotorgante::class)->find($otorgantes[$i]);
             $testaTtestaotorgante->setOtorgante($otor);
             $testaTtestaotorgante->setNumOrden($i+1);
 
