@@ -46,7 +46,10 @@
                 tabla= $('#{{id_tabla}}').DataTable({
                 "pagging": true,
                 "pageLength": 25,
-                ajax: '',
+                ajax: {
+                    url: '{{ path("#{{id_tabla}}_ajax") }}',
+                    type: 'GET'
+                },
                 language: {
                     "decimal": "",
                     "emptyTable": "No hay información",

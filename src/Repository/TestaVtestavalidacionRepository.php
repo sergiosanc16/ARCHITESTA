@@ -50,5 +50,23 @@ class TestaVtestavalidacionRepository extends ServiceEntityRepository
                 ->setParameter('val', $id_imagen)
                 ->getQuery()
                 ->getSingleScalarResult();
-        }        
+        }
+        // query para peticion ajax
+        public function findAjax(int $ini, int $lar): array
+        {
+            return $this->createQueryBuilder('t')
+                ->select('t')  
+                ->setFirstResult($ini)
+                ->setMaxResults($lar)
+                ->getQuery()
+                ->getResult();
+        }
+
+        public function count(): int
+        {
+            return (int) $this->createQueryBuilder('t')
+                ->select('COUNT(t)')
+                ->getQuery()
+                ->getSingleScalarResult();
+        }
 }

@@ -114,4 +114,60 @@ final class TestaTtestamentoController extends AbstractController
 
         return $this->redirectToRoute('app_testa_ttestamento_index', [], Response::HTTP_SEE_OTHER);
     }
+
+    #[Route('/ajax', name: 'testamento_ajax')]
+    public function datatable(Request $request, TestaVtestavalidacionRepository $testaTtestamentoRepository): JsonResponse
+    {
+        $start = $request->query->getInt('start', 0);
+        $length = $request->query->getInt('length', 25);
+
+        $testamentos = $testaTtestamentoRepository->findAjax($start, $length);
+        $test_length = count($testamentos);
+        $total       = $testaTtestamentoRepository->count();
+
+        $data = [];
+        foreach ($testamentos as $t) {
+            $estado = $t->getEstadoValidacion() == "M" 
+                ? '<img width="30px" src="/img/estrella.png">' 
+                : $t->getEstadoValidacion();
+
+            $imagen = $t->getImagen();
+            $imagenHtml = file_exists(__DIR__.'/../../public/img/fichas/'.$imagen)
+                ? "<a href='/img/fichas/$imagen'>$imagen</a>"
+                : $imagen;
+
+            $acciones = "<a href='/testamento/{$t->getIdTestamento()}'><img width='30px' src='/img/mostrar.png'></a>";
+            if ($this->isGranted('ROLE_ADMIN')) {
+                $acciones .= " <a href='/testamento/{$t->getIdTestamento()}/edit'><img width='30px' src='/img/editar.png'></a>";
+            }
+
+            $data[] = [
+                'id' => $t->getIdTestamento(),
+                'estado' => $estado,
+                'anno' => $t->getAnno(),
+                'mes' => $t->getMes(),
+                'dia' => $t->getDia(),
+                'mancomunado' => $t->isMancomunado() ? 'Sí' : 'No',
+                'ilegible' => $t->isTextoilegible() ? 'Sí' : 'No',
+                'numProtocolo' => $t->getNumProtocolo(),
+                'otorgante' => $t->getNombre().' '.$t->getApellido1().' '.$t->getApellido2(),
+                'notario' => $t->getNotario(),
+                'poblacion' => $t->getPoblacion(),
+                'validacion' => $t->getNumValidacion(),
+                'documento' => $t->getTipoDoc(),
+                'imagen' => $imagenHtml,
+                'acciones' => $acciones,
+            ];
+        }
+
+        $json = [
+            'draw' => intval($request->query->get('draw')),
+            'recordsTotal' => intval($total),
+            'recordsFiltered' => $test_length,
+            'data' => $data
+        ];
+
+        return new JsonResponse($json);
+    }
+
 }

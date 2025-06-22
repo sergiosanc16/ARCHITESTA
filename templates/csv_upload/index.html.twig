@@ -6,6 +6,12 @@
 
 {% block title %}{{id_tabla}} Manejo{% endblock %}
 
+ {% block stylesheets %}
+ 		    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+            <link rel="stylesheet" type="text/css"  href={{ asset('css/inicio.css') }}>
+{% endblock %}
+
+
 {% block javascripts %}
     <script>
         document.addEventListener('DOMContentLoaded', function () {
@@ -20,10 +26,8 @@
                 }
             }
 
-            // Inicializa visibilidad al cargar
             evento();
 
-            // Reacciona a cambios
             tipo.addEventListener('change', evento);
         });
     </script>
