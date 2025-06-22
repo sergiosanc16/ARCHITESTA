@@ -123,7 +123,7 @@ final class TestaTtestamentoController extends AbstractController
 
         $testamentos = $testaTtestamentoRepository->findAjax($start, $length);
         $test_length = count($testamentos);
-        $total       = $testaTtestamentoRepository->count();
+        $total       = $testaTtestamentoRepository->countTotal();
 
         $data = [];
         foreach ($testamentos as $t) {

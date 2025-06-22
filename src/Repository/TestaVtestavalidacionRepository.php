@@ -62,7 +62,7 @@ class TestaVtestavalidacionRepository extends ServiceEntityRepository
                 ->getResult();
         }
 
-        public function count(): int
+        public function countTotal(): int
         {
             return (int) $this->createQueryBuilder('t')
                 ->select('COUNT(t)')
