@@ -162,9 +162,9 @@ final class TestaTtestamentoController extends AbstractController
         }
 
         $json = [
-        //     'draw' => intval($request->query->get('draw')),
-        //     'recordsTotal' => intval($total),
-        //     'recordsFiltered' => $test_length,
+            'draw' => intval($request->query->get('draw')),
+            'recordsTotal' => intval($total),
+            'recordsFiltered' => $test_length,
             'data' => $data
         ];
 
