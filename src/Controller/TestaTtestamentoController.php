@@ -162,26 +162,26 @@ final class TestaTtestamentoController extends AbstractController
 
             foreach ($testamentos as $t) {
                 $fila = [
-                    $t->getId(),
-                    $t->getEstadoValidacion() == 'M'
+                    '0'  => $t->getId(),
+                    '1'  => $t->getEstadoValidacion() == 'M'
                         ? '<img width="30" src="/img/estrella.png">'            // estado
                         : $t->getEstadoValidacion(),
-                    $t->getAnno(),
-                    $t->getMes(),
-                    $t->getDia(),
-                    $t->isMancomunado() ? 'Sí' : 'No',
-                    $t->isTextoilegible() ? 'Sí' : 'No',
-                    $t->getNumProtocolo(),
-                    $t->getNombre().' '.$t->getApellido1().' '.$t->getApellido2(),
-                    $t->getNotario() ?: '',
-                    $t->getPoblacion() ?: '',
-                    $t->getNumValidacion(),
-                    $t->gettipo_doc(),
-                    file_exists($this->getParameter('kernel.project_dir').'/public/img/fichas/'.$t->getImagen())
+                    '2'  => $t->getAnno(),
+                    '3'  => $t->getMes(),
+                    '4'  => $t->getDia(),
+                    '5'  => $t->isMancomunado() ? 'Sí' : 'No',
+                    '6'  => $t->isTextoilegible() ? 'Sí' : 'No',
+                    '7'  => $t->getNumProtocolo(),
+                    '8'  => $t->getNombre().' '.$t->getApellido1().' '.$t->getApellido2(),
+                    '9'  => $t->getNotario() ?: '',
+                    '10' => $t->getPoblacion() ?: '',
+                    '11' => $t->getNumValidacion(),
+                    '12' => $t->gettipo_doc(),
+                    '13' => file_exists($this->getParameter('kernel.project_dir').'/public/img/fichas/'.$t->getImagen())
                         ? "<a href='/img/fichas/{$t->getImagen()}'>{$t->getImagen()}</a>"
                         : $t->getImagen(),
                     // acciones
-                    "<a href='/testamento/{$t->getId()}'><img width='30' src='/img/mostrar.png'></a>"
+                    '14' => "<a href='/testamento/{$t->getId()}'><img width='30' src='/img/mostrar.png'></a>"
                     .($this->isGranted('ROLE_ADMIN')
                         ? " <a href='/testamento/{$t->getId()}/edit'><img width='30' src='/img/editar.png'></a>"
                         : '')
