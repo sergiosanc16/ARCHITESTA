@@ -58,6 +58,7 @@ class TestaVtestavalidacionRepository extends ServiceEntityRepository
                 ->select('t')  
                 ->setFirstResult($ini)
                 ->setMaxResults($lar)
+                ->orderBy('t.id','ASC')
                 ->getQuery()
                 ->getResult();
         }
