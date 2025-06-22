@@ -154,7 +154,7 @@ final class TestaTtestamentoController extends AbstractController
                 'notario' => $t->getNotario(),
                 'poblacion' => $t->getPoblacion(),
                 'validacion' => $t->getNumValidacion(),
-                'documento' => $t->getTipoDoc(),
+                'documento' => $t->gettipo_doc(),
                 'imagen' => $imagenHtml,
                 'acciones' => $acciones,
             ];
