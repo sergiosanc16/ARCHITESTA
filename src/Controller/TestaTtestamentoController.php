@@ -119,47 +119,79 @@ final class TestaTtestamentoController extends AbstractController
     #[Route('/ajax', name: 'testamento_ajax')]
     public function datatable(Request $request, TestaVtestavalidacionRepository $testaTtestamentoRepository): JsonResponse
     {
-        $start = $request->query->getInt('start', 0);
-        $length = $request->query->getInt('length', 25);
+        $start = $request->query->getInt('start');
+        $length = $request->query->getInt('length');
 
         $testamentos = $testaTtestamentoRepository->findAjax($start, $length);
         $test_length = count($testamentos);
         $total       = $testaTtestamentoRepository->countTotal();
 
-        $data = [];
-        foreach ($testamentos as $t) {
-            $estado = $t->getEstadoValidacion() == "M" 
-                ? '<img width="30px" src="/img/estrella.png">' 
-                : $t->getEstadoValidacion();
+        // $data = [];
+        // foreach ($testamentos as $t) {
+        //     $estado = $t->getEstadoValidacion() == "M" 
+        //         ? '<img width="30px" src="/img/estrella.png">' 
+        //         : $t->getEstadoValidacion();
 
-            $imagen = $t->getImagen();
-            $imagenHtml = file_exists(__DIR__.'/../../public/img/fichas/'.$imagen)
-                ? "<a href='/img/fichas/$imagen'>$imagen</a>"
-                : $imagen;
+        //     $imagen = $t->getImagen();
+        //     $imagenHtml = file_exists(__DIR__.'/../../public/img/fichas/'.$imagen)
+        //         ? "<a href='/img/fichas/$imagen'>$imagen</a>"
+        //         : $imagen;
 
-            $acciones = "<a href='/testamento/{$t->getIdTestamento()}'><img width='30px' src='/img/mostrar.png'></a>";
-            if ($this->isGranted('ROLE_ADMIN')) {
-                $acciones .= " <a href='/testamento/{$t->getIdTestamento()}/edit'><img width='30px' src='/img/editar.png'></a>";
+        //     $acciones = "<a href='/testamento/{$t->getIdTestamento()}'><img width='30px' src='/img/mostrar.png'></a>";
+        //     if ($this->isGranted('ROLE_ADMIN')) {
+        //         $acciones .= " <a href='/testamento/{$t->getIdTestamento()}/edit'><img width='30px' src='/img/editar.png'></a>";
+        //     }
+
+            $data[] = [];
+            //     '0' => $t->getIdTestamento(),
+            //     '1' => $estado,
+            //     '2' => $t->getAnno(),
+            //     '3' => $t->getMes(),
+            //     '4' => $t->getDia(),
+            //     '5' => $t->isMancomunado() ? 'Sí' : 'No',
+            //     '6' => $t->isTextoilegible() ? 'Sí' : 'No',
+            //     '7' => $t->getNumProtocolo(),
+            //     '8' => $t->getNombre().' '.$t->getApellido1().' '.$t->getApellido2(),
+            //     '9' => $t->getNotario(),
+            //     '10' => $t->getPoblacion(),
+            //     '11' => $t->getNumValidacion(),
+            //     '12' => $t->gettipo_doc(),
+            //     '13' => $imagenHtml,
+            //     '14' => $acciones,
+            // ];
+
+            foreach ($testamentos as $t) {
+                $fila = [
+                    $t->getId(),
+                    $t->getEstadoValidacion() == 'M'
+                        ? '<img width="30" src="/img/estrella.png">'            // estado
+                        : $t->getEstadoValidacion(),
+                    $t->getAnno(),
+                    $t->getMes(),
+                    $t->getDia(),
+                    $t->isMancomunado() ? 'Sí' : 'No',
+                    $t->isTextoilegible() ? 'Sí' : 'No',
+                    $t->getNumProtocolo(),
+                    $t->getNombre().' '.$t->getApellido1().' '.$t->getApellido2(),
+                    $t->getNotario() ?: '',
+                    $t->getPoblacion() ?: '',
+                    $t->getNumValidacion(),
+                    $t->getTipoDoc(),
+                    file_exists($this->getParameter('kernel.project_dir').'/public/img/fichas/'.$t->getImagen())
+                        ? "<a href='/img/fichas/{$t->getImagen()}'>{$t->getImagen()}</a>"
+                        : $t->getImagen(),
+                    // acciones
+                    "<a href='/testamento/{$t->getId()}'><img width='30' src='/img/mostrar.png'></a>"
+                    .($this->isGranted('ROLE_ADMIN')
+                        ? " <a href='/testamento/{$t->getId()}/edit'><img width='30' src='/img/editar.png'></a>"
+                        : '')
+                ];
+
+                // Con array_values() eliminas las claves para que queden índices 0..n
+                $data[] = array_values($fila);
             }
 
-            $data[] = [
-                '0' => $t->getIdTestamento(),
-                '1' => $estado,
-                '2' => $t->getAnno(),
-                '3' => $t->getMes(),
-                '4' => $t->getDia(),
-                '5' => $t->isMancomunado() ? 'Sí' : 'No',
-                '6' => $t->isTextoilegible() ? 'Sí' : 'No',
-                '7' => $t->getNumProtocolo(),
-                '8' => $t->getNombre().' '.$t->getApellido1().' '.$t->getApellido2(),
-                '9' => $t->getNotario(),
-                '10' => $t->getPoblacion(),
-                '11' => $t->getNumValidacion(),
-                '12' => $t->gettipo_doc(),
-                '13' => $imagenHtml,
-                '14' => $acciones,
-            ];
-        }
+        // }
 
         $json = [
             'draw' => intval($request->query->get('draw')),
