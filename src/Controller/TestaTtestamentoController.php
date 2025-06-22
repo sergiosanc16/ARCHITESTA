@@ -143,21 +143,21 @@ final class TestaTtestamentoController extends AbstractController
             }
 
             $data[] = [
-                'id' => $t->getIdTestamento(),
-                'estado' => $estado,
-                'anno' => $t->getAnno(),
-                'mes' => $t->getMes(),
-                'dia' => $t->getDia(),
-                'mancomunado' => $t->isMancomunado() ? 'Sí' : 'No',
-                'ilegible' => $t->isTextoilegible() ? 'Sí' : 'No',
-                'numProtocolo' => $t->getNumProtocolo(),
-                'otorgante' => $t->getNombre().' '.$t->getApellido1().' '.$t->getApellido2(),
-                'notario' => $t->getNotario(),
-                'poblacion' => $t->getPoblacion(),
-                'validacion' => $t->getNumValidacion(),
-                'documento' => $t->gettipo_doc(),
-                'imagen' => $imagenHtml,
-                'acciones' => $acciones,
+                '0' => $t->getIdTestamento(),
+                '1' => $estado,
+                '2' => $t->getAnno(),
+                '3' => $t->getMes(),
+                '4' => $t->getDia(),
+                '5' => $t->isMancomunado() ? 'Sí' : 'No',
+                '6' => $t->isTextoilegible() ? 'Sí' : 'No',
+                '7' => $t->getNumProtocolo(),
+                '8' => $t->getNombre().' '.$t->getApellido1().' '.$t->getApellido2(),
+                '9' => $t->getNotario(),
+                '10' => $t->getPoblacion(),
+                '11' => $t->getNumValidacion(),
+                '12' => $t->gettipo_doc(),
+                '13' => $imagenHtml,
+                '14' => $acciones,
             ];
         }
 
