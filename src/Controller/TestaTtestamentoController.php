@@ -176,7 +176,7 @@ final class TestaTtestamentoController extends AbstractController
                     $t->getNotario() ?: '',
                     $t->getPoblacion() ?: '',
                     $t->getNumValidacion(),
-                    $t->getTipoDoc(),
+                    $t->gettipo_doc(),
                     file_exists($this->getParameter('kernel.project_dir').'/public/img/fichas/'.$t->getImagen())
                         ? "<a href='/img/fichas/{$t->getImagen()}'>{$t->getImagen()}</a>"
                         : $t->getImagen(),
