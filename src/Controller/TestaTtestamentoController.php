@@ -71,7 +71,7 @@ final class TestaTtestamentoController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_testa_ttestamento_show', methods: ['GET'])]
+    #[Route('/{id<\d+>}', name: 'app_testa_ttestamento_show', methods: ['GET'])]
     public function show(TestaTtestamento $testaTtestamento, 
                          TestaTtestaotorganteRepository $TestaTtestaotorganteRepository,
                          TestaTvalidacionRepository $TestaTvalidacionRepository,
