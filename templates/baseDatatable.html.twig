@@ -42,12 +42,13 @@
 
 
        <script type="text/javascript" class="init">
+       {% set ruta_ajax = id_tabla ~ '_ajax' %}
             $(document).ready(function() {
                 tabla= $('#{{id_tabla}}').DataTable({
                 "pagging": true,
                 "pageLength": 25,
                 ajax: {
-                    url: '{{ path("#{{id_tabla}}_ajax") }}',
+                    url: '{{ path(ruta_ajax) }}',
                     type: 'GET'
                 },
                 language: {
