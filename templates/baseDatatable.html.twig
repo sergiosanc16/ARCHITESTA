@@ -47,12 +47,11 @@
             $(document).ready(function() {
                 tabla= $('#{{id_tabla}}').DataTable({
                 "pagging": true,
-                "pageLength": 25,
                 ajax: {
                     url: '{{ path(ruta_ajax) }}',
                     type: 'GET'
                 },
-                {# serverSide: true, #}
+                serverSide: true, 
                 language: {
                     "decimal": "",
                     "emptyTable": "No hay información",
