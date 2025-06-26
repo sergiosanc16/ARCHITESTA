@@ -206,13 +206,7 @@ final class TestaTtestamentoController extends AbstractController
             'data' => $data
         ];
 
-        return new JsonResponse([
-            'debug' => [
-                'start'   => $start,
-                'length'  => $length,
-                'count'   => count($testamentos),
-                'primer'  => $testamentos[0] ?? null,
-            ],[$json]]);
+        return new JsonResponse($json);
     }
 
 }
