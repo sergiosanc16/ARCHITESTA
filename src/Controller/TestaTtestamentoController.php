@@ -121,6 +121,7 @@ final class TestaTtestamentoController extends AbstractController
     {
         $start = $request->query->getInt('start');
         $length = $request->query->getInt('length');
+        $search = $request->query->get('search')['value'] ?? '';
 
         $testamentos = $testaTtestamentoRepository->findAjax($start, $length);
         $test_length = count($testamentos);

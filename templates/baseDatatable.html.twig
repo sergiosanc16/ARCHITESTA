@@ -43,6 +43,12 @@
 
        <script type="text/javascript" class="init">
        {% set ruta_ajax = id_tabla ~ '_ajax' %}
+       var cols = [];
+       table = document.getElementById(id_table);
+       tr = table.getElementsByTagName("th");
+       for (i = 0; i < tr.length; i++) {
+         cols.push(table[i]);
+       }
        
             $(document).ready(function() {
                 tabla= $('#{{id_tabla}}').DataTable({
@@ -51,7 +57,7 @@
                     url: '{{ path(ruta_ajax) }}',
                     type: 'GET'
                 },
-                serverSide: true, 
+                columns: cols,
                 language: {
                     "decimal": "",
                     "emptyTable": "No hay información",
