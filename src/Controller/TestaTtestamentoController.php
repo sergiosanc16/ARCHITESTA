@@ -120,7 +120,7 @@ final class TestaTtestamentoController extends AbstractController
     public function datatable(Request $request, TestaVtestavalidacionRepository $testaTtestamentoRepository): JsonResponse
     {
         $start = $request->query->getInt('start');
-        $length = 25;
+        $length = 3966;
 
         $testamentos = $testaTtestamentoRepository->findAjax($start, $length);
         $test_length = count($testamentos);
