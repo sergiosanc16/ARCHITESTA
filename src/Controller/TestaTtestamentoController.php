@@ -142,7 +142,7 @@ final class TestaTtestamentoController extends AbstractController
                 $acciones .= " <a href='/testamento/{$t->getIdTestamento()}/edit'><img width='30px' src='/img/editar.png'></a>";
             }
 
-            $data = [
+            $data[] = [
                 '0' => $t->getIdTestamento(),
                 '1' => $estado,
                 '2' => $t->getAnno(),
