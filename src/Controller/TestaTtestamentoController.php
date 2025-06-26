@@ -126,7 +126,7 @@ final class TestaTtestamentoController extends AbstractController
         $test_length = count($testamentos);
         $total       = $testaTtestamentoRepository->countTotal();
 
-        $data[] = [];
+        $data= [];
         dump("esta aqui");
         foreach ($testamentos as $t) {
             dump("entra al bucle");
@@ -144,7 +144,7 @@ final class TestaTtestamentoController extends AbstractController
                 $acciones .= " <a href='/testamento/{$t->getIdTestamento()}/edit'><img width='30px' src='/img/editar.png'></a>";
             }
 
-            $data[] = [
+            $rows = [
                 '0' => $t->getIdTestamento(),
                 '1' => $estado,
                 '2' => $t->getAnno(),
@@ -161,6 +161,8 @@ final class TestaTtestamentoController extends AbstractController
                 '13' => $imagenHtml,
                 '14' => $acciones,
             ];
+            $data[] = array_values($rows);
+
             // dump($data);
 
             // foreach ($testamentos as $t) {
