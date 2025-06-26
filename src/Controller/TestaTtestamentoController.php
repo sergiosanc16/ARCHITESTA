@@ -159,6 +159,7 @@ final class TestaTtestamentoController extends AbstractController
                 '13' => $imagenHtml,
                 '14' => $acciones,
             ];
+            dump($data);
 
             // foreach ($testamentos as $t) {
             //     $fila = [
