@@ -127,7 +127,9 @@ final class TestaTtestamentoController extends AbstractController
         $total       = $testaTtestamentoRepository->countTotal();
 
         $data = [];
+        dump("esta aqui");
         foreach ($testamentos as $t) {
+            dump("entra al bucle");
             $estado = $t->getEstadoValidacion() == "M" 
                 ? '<img width="30px" src="/img/estrella.png">' 
                 : $t->getEstadoValidacion();
@@ -159,7 +161,7 @@ final class TestaTtestamentoController extends AbstractController
                 '13' => $imagenHtml,
                 '14' => $acciones,
             ];
-            dump($data);
+            // dump($data);
 
             // foreach ($testamentos as $t) {
             //     $fila = [
