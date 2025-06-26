@@ -126,6 +126,8 @@ final class TestaTtestamentoController extends AbstractController
         $test_length = count($testamentos);
         $total       = $testaTtestamentoRepository->countTotal();
 
+        dump($testamentos);
+
         $data = [];
         foreach ($testamentos as $t) {
             $estado = $t->getEstadoValidacion() == "M" 
@@ -197,13 +199,20 @@ final class TestaTtestamentoController extends AbstractController
         }
 
         $json = [
+
             'draw' => intval($request->query->get('draw')),
             'recordsTotal' => intval($total),
             'recordsFiltered' => $total,
             'data' => $data
         ];
 
-        return new JsonResponse($json);
+        return new JsonResponse([
+            'debug' => [
+                'start'   => $start,
+                'length'  => $length,
+                'count'   => count($testamentos),
+                'primer'  => $testamentos[0] ?? null,
+            ],[$json]]);
     }
 
 }
