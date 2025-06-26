@@ -122,7 +122,7 @@ final class TestaTtestamentoController extends AbstractController
         $start = $request->query->getInt('start');
         $length = $request->query->getInt('length');
 
-        $testamentos = $testaTtestamentoRepository->findAll();
+        $testamentos = $testaTtestamentoRepository->findAjax($start, $length);
         $test_length = count($testamentos);
         $total       = $testaTtestamentoRepository->countTotal();
 
@@ -153,7 +153,7 @@ final class TestaTtestamentoController extends AbstractController
                         ? " <a href='/testamento/{$t->getId()}/edit'><img width='30' src='/img/editar.png'></a>"
                         : '')
                 ];
-
+                
                 $data[] = array_values($fila);
             }
 
