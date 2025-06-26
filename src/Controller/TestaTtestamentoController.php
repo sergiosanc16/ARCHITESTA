@@ -126,7 +126,7 @@ final class TestaTtestamentoController extends AbstractController
         $test_length = count($testamentos);
         $total       = $testaTtestamentoRepository->countTotal();
 
-        $data = [];
+        $data[] = [];
         dump("esta aqui");
         foreach ($testamentos as $t) {
             dump("entra al bucle");
